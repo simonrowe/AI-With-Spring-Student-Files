@@ -22,6 +22,7 @@ public class StockService implements Function<com.example.service.StockService.R
 	}    
 
     @Autowired AIClient client;
+	
 	public String getCompanySummary(String symbol) {
 		return client.callModel(
 			"Provide a description of the company with stock ticker symbol '%s'".formatted(symbol)
