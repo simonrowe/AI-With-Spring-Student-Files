@@ -1,5 +1,7 @@
 ## Lab 2 - QuickStart - OpenAI
 
+TODO: DO NOT SET KEY IN APPLICATIONS.YML DUE TO COMMIT RISK.
+
 - In this exercise you will create a simple Spring Boot application which can make calls to OpenAI.  You will need to establish credentials with OpenAI first, so let's take care of that now.
 
 **Part 1 - Signup Process for OpenAI**

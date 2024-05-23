@@ -3,4 +3,7 @@ spring.application.name: AI QuickStart OpenAI
 spring:
   ai:
     openai:
-      api-key: YOUR-SECRET-KEY-GOES-HERE
+      api-key: NEVER-PLACE-SECRET-KEY-IN-CONFIG-FILE
+    retry:
+      max-attempts: 1     # Maximum number of retry attempts.
+      on-client-errors: false  # If false, throw a NonTransientAiException, and do not attempt retry for 4xx client error codes.
