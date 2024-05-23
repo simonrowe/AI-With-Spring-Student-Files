@@ -28,7 +28,7 @@ export SPRING_AI_OPENAI_API_KEY="YOUR-KEY-GOES-HERE"
 ---
 **Part 2 - Generate the Project Structure**
 
-5.  Using [https://start.spring.io](https://start.spring.io), create a new Spring Boot Project.
+5.  Use [https://start.spring.io](https://start.spring.io), create a new Spring Boot Project.
   - Use either Maven or Gradle - Groovy (if you have it installed).  All lab instructions are based on Maven.
   - Use the latest stable releases of Boot and Java.  These instructions were originally tested with Java 1.21, Boot 3.2.5.  The version can be changed after the project is generated.
   - Use JAR packaging.

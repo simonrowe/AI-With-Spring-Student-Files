@@ -17,16 +17,12 @@ public class OpenAIClientTests {
 
     @Autowired OpenAIClient openAIClient;
 
-	@Value("${SPRING_AI_OPENAI_API_KEY}") String keyBeingUsed;
-
 	@Test
 	void quickChat() {
 
-		System.out.println("The key being used is: " + keyBeingUsed);
-
         String response = 
             openAIClient.callModel(
-                "Generate the names of the five great lakes and their sizes in square miles.  Produce JSON output.",
+                "Provide a description of the company with stock ticker symbol NVDA.",
                 "gpt-3.5-turbo");
 
 		Assertions.assertThat(response).isNotNull();
