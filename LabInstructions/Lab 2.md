@@ -142,11 +142,13 @@ public class OpenAIClient {
 * **Eclipse**: Type Ctrl-Shift-O.
 21. Save your work.
 
+---
 **Part 6 - Create a `@Test` class**
 
 Anything we code, we should test.  We will make a `@Test` class to ensure our Client object works as expected.
 
-22. Create a new Java file test class in src/test/java/com/example.  Name the class `OpenAIClientTests.java`.
+22. Create a new  **client**  folder under `src/test/java/com/example`.  Within this package create a new Java file called `OpenAIClientTests.java`.
+* The IDE should create an empty Java class definition for you.
 
 23. Alter the test class to include the `@SpringBootTest` annotation. Tell boot to run as a non-web application and 'openai' profile active like this:
 ```
