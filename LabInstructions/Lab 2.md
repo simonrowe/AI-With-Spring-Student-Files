@@ -20,7 +20,7 @@ On Linux or Mac you can run:
 ```
 export SPRING_AI_OPENAI_API_KEY="YOUR-KEY-GOES-HERE"
 ```
-* While the spring.ai.openai.api-key value can be set in application.properties or application.yml, you run the risk of exposing your key should your commit your work to a public source repository.  For this reason, usage of the environment variable is recommened.
+* **CRITICAL: DO NOT STORE THESE VALUES IN A PUBLIC REPOSITORY** While the spring.ai.openai.api-key value can be set in application.properties or application.yml, you run the risk of exposing your key should your commit your work to a public source repository.  For this reason, usage of the environment variable is recommened.
 * If you loose this key, don't worry.  You can easily create a new one if needed.
 * Note: You may have to establish a payment method if you have exhausted your free tier.  This can happen if you use ChatGPT frequently - like we do.  The labs in this course should cost less than $5.
 * Restart your IDE to ensure that the value is picked up.
@@ -67,7 +67,7 @@ The instructions below are for VS Code. If you wish to use IntilliJ or Eclipse a
 The project should be free of compiler errors at this point.  Address any issues you see before continuing.
 
 ---
-**Part 4 - Setup keys and test**
+**Part 4 - Basic Configuration and Test**
 
 At this point, let's take a moment to ensure that everything we have created so far is error free.
 
@@ -79,13 +79,10 @@ spring:
   main.web-application-type: none     # Do not start a web server.
 
   ai:
-    openai:
-      api-key: NEVER-PLACE-SECRET-KEY-IN-CONFIG-FILE
     retry:
       max-attempts: 1           # Maximum number of retry attempts.
       on-client-errors: false   # If false, throw a NonTransientAiException, and do not attempt retry for 4xx client error codes.
 ```
-- Note: The "NEVER-PLACE..." entry is present just to warn you against copying your private key value into this file.
 - Note: The retry* settings will override the `ChatClient`'s default settings.  You are likely to experience errors while you learn the API's usage, and we don't want you to experience unnecessary expenses.
 13.  Save your work.  
 
@@ -94,33 +91,29 @@ spring:
 * **IntelliJ**: Right-click, select “Run ‘Application.main()’”. 
 * **Eclipse**: Right-click, Select Run As / Java Application.
 
-* We expect the application to start.  If you have any errors related to tooling, be sure to address them now before proceeding.
+* We expect the application to start, then stop, without errors.  If you have any errors related to tooling, be sure to address them now before proceeding.
 
-15.  Stop the application.
-* **VS Code**: In the “TERMINAL” tab type “ctrl-c”, or press the trashcan icon.
-* **IntelliJ**: Stop the application by clicking on the red “stop” button on the left edge of the console tab.
-* **Eclipse**: Stop the application by clicking on the red “terminate” button on the console tab.
 ---
 **Part 5 - Try Spring AI's `ChatClient`**
 
 At this point we should be able to try using the ChatClient to make API calls to OpenAI.
 
-16. Create a new "client" folder under `src/main/java/com/example`.
-17. Within this package create a new Java file called `OpenAIClient.java`.
+15. Create a new  **client**  folder under `src/main/java/com/example`.
+1. Within this package create a new Java file called `OpenAIClient.java`.
 * The IDE should create an empty Java class definition for you.
-18. Add the following annotations at the class level to make this object a Spring Bean and to only activate it when the "openai" profile is active:
+17. Add the following annotations at the class level to make this object a Spring Bean created only when the "openai" profile is active:
 ```
 @Component
 @Profile("openai")
 public class OpenAIClient {
 ``` 
-- Note: the `@Profile` annotation we be useful later when we want our application to call different models.
-19. Add code to automatically provide a reference to the `ChatClient`.  Spring Boot automatically creates this when the Spring AI dependencies are on the classpath:
+- Note: the `@Profile` annotation we be useful later when we want our application to switch between OpenAI, Azure, Ollama, etc.
+18. Add code to automatically provide a reference to the `ChatClient`.  Spring Boot automatically creates this when the Spring AI dependencies are on the classpath:
 ```
 	@Autowired
 	ChatClient chatClient;
 ```
-20. Add a `callModel` method.  Define two String parameters for the prompt and model to use.  
+19. Add a `callModel` method.  Define two String parameters for the prompt and model to use.  
 ```
     public String callModel(String prompt, String model ) {
 
@@ -143,26 +136,26 @@ public class OpenAIClient {
 - If model is null, replace it with a default value. 
 - Use the `chatClient` to call the API.  Pass the given prompt as well as an `Options` object defining the model and temperature.
 - The `ChatResponse` is a bit complex.  For this simple example we expect it to contain a single `Generation` object containing an `AssistantMessage` object.  Within this object we will find a JSON object containing our desired response.
-21. Supply any imports needed to make you code compile.
+20. Supply any imports needed to make the code compile.
 * **VS Code**: Type Alt-Shift-O.
 * **IntelliJ**: Type Ctrl-Alt-O.
 * **Eclipse**: Type Ctrl-Shift-O.
-22. Save your work.
+21. Save your work.
 
 **Part 6 - Create a `@Test` class**
 
 Anything we code, we should test.  We will make a `@Test` class to ensure our Client object works as expected.
 
-23. Create a new Java file test class in src/test/java/com/example.  Name the class `OpenAIClientTests.java`.
+22. Create a new Java file test class in src/test/java/com/example.  Name the class `OpenAIClientTests.java`.
 
-24. Alter the test class to include the `@SpringBootTest` annotation. Tell boot to run as a non-web application and 'openai' profile active like this:
+23. Alter the test class to include the `@SpringBootTest` annotation. Tell boot to run as a non-web application and 'openai' profile active like this:
 ```
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.NONE)
 @ActiveProfiles("openai")
 public class OpenAIClientTests {
     //...
 ```	
-25. Add code to automatically provide a reference to the `OpenAIClient`:
+24. Add code to automatically provide a reference to the `OpenAIClient`:
 ```
     @Autowired 
 	OpenAIClient openAIClient;
@@ -183,12 +176,12 @@ Add a `@Test` method to use the `openAIClient` to make an example API call:
 		System.out.println("The results of the call are: " + response);
     }
 ```
-26. Supply any imports needed to make you code compile.
+25. Supply any imports needed to make you code compile.
 * **VS Code**: Type Alt-Shift-O.
 * **IntelliJ**: Type Ctrl-Alt-O.
 * **Eclipse**: Type Ctrl-Shift-O.
 
-27.  Save your work. Run the test.
+26.  Save your work. Run the test.
 * **VS Code**: In the "explorer" view on the left, Right-click on the class, Select "Run Tests".  Or, find the green triangle in the editor’s “gutter”. Click on this to run either an individual test method or all tests in the class.
 * **IntelliJ**: Right-click on the class. Select Run OpenAIClientTests.
 * **Eclipse**: Right-click on the class. Select Run As / Junit Test.
