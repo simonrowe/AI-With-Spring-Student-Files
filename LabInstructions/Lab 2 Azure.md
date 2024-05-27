@@ -1,3 +1,8 @@
+## Lab 2 - Azure OpenAI
+
+TODO: KEY NOT WORKING
+
+In this exercise you will create a simple Spring Boot application which can make calls to Azure OpenAI.  There is quite a bit of work to establish an Azure account, obtain permission to use Azure Open AI, create resources and deployments, etc.  Once we start writing our Spring Boot application, the hard part will behind us.  Let's jump in.
 
 ---
 **Part 1 - Signup Process for Azure OpenAI**
@@ -6,19 +11,20 @@ NOTE:  The AI industry changes rapidly.  The instructions here were valid as of 
 
 Microsoft Azure provides the means to host OpenAI models within an Azure account.  This allows easier access from within Azure-hosted workloads.  SpringAI's client will use slightly different parameters to connect to OpenAI models hosted in Azure.
 
-1. Setup an Azure account:  Go to https://portal.azure.com/#home (If you already have an account, you can skip to the next steps.)
+1. **Setup an Azure account**:  Go to https://portal.azure.com/#home (If you already have an account, you can skip to the next steps.)
 
 - The signup process typically asks your a few questions on what you plan to do with Azure.  This is mainly to customize your experience and it is not necessary to answer these with precision.  We used "Use AI and ML to add intelligent features to apps".
 - You may have to enter a payment method if you do not qualify for a trial.  The labs in this course should cost less than $5.
 - You may be taken on a short tour of the Azure portal.
 
-2. Signup for Azure AI Services: From the Azure main console, find the search field on the top.  Type "Azure AI Services".
-- At present, even if you have an Azure account, you must specifically enable the use of Azure OpenAI: https://customervoice.microsoft.com/Pages/ResponsePage.aspx?id=v4j5cvGGr0GRqy180BHbR7en2Ais5pxKtso_Pz4b1_xUNTZBNzRKNlVQSFhZMU9aV09EVzYxWFdORCQlQCN0PWcu
-- This requires a work email address (not a personal email address) and a subscription.  It can take over 24 hours to receive a response.
+2. **Signup for Azure AI Services**: From the Azure main console, find the search field on the top.  Type "Azure AI Services".
 
-3. Create an Azure OpenAI _resource_: Once you have an Azure account and Azure OpenAI is enabled, create an Azure OpenAI resource:
+* At present, even if you have an Azure account, you must specifically enable the use of Azure OpenAI: https://customervoice.microsoft.com/Pages/ResponsePage.aspx?id=v4j5cvGGr0GRqy180BHbR7en2Ais5pxKtso_Pz4b1_xUNTZBNzRKNlVQSFhZMU9aV09EVzYxWFdORCQlQCN0PWcu .  This requires a work email address (not a personal email address) and a subscription.  
+* It can take over 24 hours to receive a response.
 
-    1.  From the Azure main console, find the search field on the top.  Type "Azure AI Services".
+3. **Create an Azure OpenAI _resource_**: Once you have an Azure account and Azure OpenAI is enabled, create an Azure OpenAI resource:
+
+    1.  From the Azure main console, search for "Azure AI Services".
     1. From the Azure AI Services page, select "Azure OpenAI".
     1. Click "Create Azure OpenAI".
     1. Select any subscription, resource group, and region you like.
@@ -31,13 +37,13 @@ Microsoft Azure provides the means to host OpenAI models within an Azure account
     1. Take a moment to review terms, and click Create.
     1. Wait a moment for resource creation to complete.  Click "Go to Resource" when it appears.
 
-1. Obtain the Azure OpenAI resource endpoint and keys.
+1. **Obtain endpoint and keys**:
 
     1. From the Azure main console, find the search field on the top.  Type "Azure AI Services".
     1. From the Azure AI Services page, select "Azure OpenAI".
     1. From the selection list, choose the resource you just created.
     1. From the resource details page, select "click here to view endpoints". 
-    1. Click "Show Keys".  Record the values for key 1, key 2, and endpoint in a temporary file.  **CRITICAL: DO NOT STORE THESE VALUES IN A PUBLIC REPOSITORY** 
+    1. Click "Show Keys".  Record the values for key 1, key 2, and endpoint in a temporary file.  **CRITICAL: DO NOT STORE THE KEY IN A PUBLIC REPOSITORY** 
 
 1. Set an environment variable named `SPRING_AI_AZURE_OPENAI_API_KEY` using this value.  On Windows you can run: 
 ```
@@ -47,10 +53,10 @@ On Linux or Mac you can run:
 ```
 export SPRING_AI_AZURE_OPENAI_API_KEY="KEY-GOES-HERE"
 ```
-- We can also set the endpoint using an environment variable, but we will set that later in application.yml.
+- We can also set the endpoint (and deployment name) using environment variables, but they are less sensitive.  We will set these later within application.yml.
 
-6. Create an Azure OpenAI _Deployment_: Open https://oai.azure.com/portal in a new browser tab.  Go to Management / Deployments / Create new deployment.
-    1. Select a model to use.  "gpt-35-turbo" has the lowest price at the time of this writing.
+6. **Create a _Deployment_**: Open https://oai.azure.com/portal in a new browser tab.  Go to Management / Deployments / Create new deployment.
+    1. Select a model to use.  _gpt-35-turbo_ has the lowest price at the time of this writing.
     1.  Choose the default version and standard deployment type.
     1.  Provide a name for the deployment.  We suggest using the same name as the "resource" defined earlier.  Record the name, you will need it later.
     1. Adjust advanced options if you like. Create. 
@@ -117,7 +123,8 @@ spring:
         chat.options.model: DEPLOYMENT-NAME-GOES-HERE
     retry:
       max-attempts: 1           # Maximum number of retry attempts.
-      on-client-errors: false   # If false, throw a NonTransientAiException, and do not attempt retry for 4xx client error codes.```
+      on-client-errors: false   # If false, throw a NonTransientAiException, and do not attempt retry for 4xx client error codes.
+```
 - Note: The retry* settings will override the `ChatClient`'s default settings.  You are likely to experience errors while you learn the API's usage, and we don't want you to experience unnecessary expenses.
 13.  Save your work.  
 
@@ -148,7 +155,7 @@ public class OpenAIClient {
 	@Autowired
 	ChatClient chatClient;
 ```
-19. Add a `callModel` method.  Define two String parameters for the prompt and model to use.  
+19. Add a `callModel` method.  Define a String parameter for the prompt:  
 ```
     public String callModel(String prompt ) {
 
@@ -160,5 +167,63 @@ public class OpenAIClient {
         return response.getResults().get(0).getOutput().getContent();
     }
 ````
+- Use the `chatClient` to call the API.  Pass the given prompt as well as an `Options` object.  We can use this to define parameters such as model or temperature if we like, but here we are using a default.
+- The `ChatResponse` is a bit complex.  For this simple example we expect it to contain a single `Generation` object containing an `AssistantMessage` object.  Within this object we will find a JSON object containing our desired response.
+20. Supply any imports needed to make the code compile.
+* **VS Code**: Type Alt-Shift-O.
+* **IntelliJ**: Type Ctrl-Alt-O.
+* **Eclipse**: Type Ctrl-Shift-O.
+21. Save your work.
+
+
+---
+**Part 6 - Create a `@Test` class**
+
+Anything we code, we should test.  We will make a `@Test` class to ensure our Client object works as expected.
+
+22. Create a new  **client**  folder under `src/test/java/com/example`.  Within this package create a new Java file called `AzureClientTests.java`.
+
+23. Alter the test class to include the `@SpringBootTest` annotation. Tell boot to run as a non-web application and activate the 'azure' profile like this:
+```
+@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.NONE)
+@ActiveProfiles("azure")
+public class AzureClientTests {
+    //...
+```	
+24. Add code to automatically provide a reference to the `AzureClient`:
+```
+  @Autowired AzureClient client;
+```
+Add a `@Test` method to use the `client` to make an example API call:
+```
+	@Test
+	void quickChat() {
+
+        String response = 
+            client.callModel(
+                "Generate the names of the five great lakes.  Produce JSON output.");
+
+		Assertions.assertThat(response).isNotNull();
+
+		//	Print the results
+		System.out.println("The results of the call are: " + response);
+    }
+```
+25. Supply any imports needed to make you code compile.
+* **VS Code**: Type Alt-Shift-O.
+* **IntelliJ**: Type Ctrl-Alt-O.
+* **Eclipse**: Type Ctrl-Shift-O.
+
+26.  Save your work. Run the test.
+* **VS Code**: In the "explorer" view on the left, Right-click on the class, Select "Run Tests".  Or, find the green triangle in the editor’s “gutter”. Click on this to run either an individual test method or all tests in the class.
+* **IntelliJ**: Right-click on the class. Select Run OpenAIClientTests.
+* **Eclipse**: Right-click on the class. Select Run As / Junit Test.
+
+The test should run and produce a list of the five Great Lakes.  It is also very possible that you will encounter an error here, possibly due to setup, but also due to changes in Azure OpenAPI since the time of this writing.  Here are some troubleshooting tips.
+* If you have a compilation issue, be sure you have organized imports.  Compare your code to the solution code.
+* A common error is '"401","message":"Access denied due to invalid subscription key or wrong API endpoint..."'. Double-check that you have retrieved the correct values for _key_ and _endpoint_ from the Azure resource details page.
+
+**Part 7 - Summary**
+At this point, you have integrated with Azure's OpenAI hosted models from your own Spring Boot application.  If your were running a Spring Boot application on an Azure VM within a private network, this would be a natural combination to use rather than calling OpenAI directly.  Congratulations! 
 
 
