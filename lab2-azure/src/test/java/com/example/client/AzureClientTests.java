@@ -14,15 +14,8 @@ public class AzureClientTests {
 
     @Autowired AzureClient client;
 
-    // //@Value("${spring.ai.azure.openai.api-key}") String apiKey;
-    // @Value("#{environment.SPRING_AI_AZURE_OPENAI_API_KEY}") String apiKey;
-
-    // @Autowired Environment env;
-
 	@Test
 	void quickChat() {
-
-        // System.out.println("The API key is: " + apiKey);    
 
         String response = 
             client.callModel(
@@ -32,8 +25,6 @@ public class AzureClientTests {
 
 		//	Print the results
 		System.out.println("The results of the call are: " + response);
-
     }
-
 
 }
