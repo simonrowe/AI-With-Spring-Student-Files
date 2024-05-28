@@ -1,7 +1,5 @@
 ## Lab 2 - Azure OpenAI
 
-TODO: KEY NOT WORKING
-
 In this exercise you will create a simple Spring Boot application which can make calls to Azure OpenAI.  There is quite a bit of work to establish an Azure account, obtain permission to use Azure Open AI, create resources and deployments, etc.  Once we start writing our Spring Boot application, the hard part will behind us.  Let's jump in.
 
 ---

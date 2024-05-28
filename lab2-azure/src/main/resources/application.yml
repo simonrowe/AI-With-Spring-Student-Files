@@ -5,7 +5,6 @@ spring:
   ai:
     azure:
       openai:
-        api-key: KEY-GOES-HERE  
         endpoint: ENDPOINT-GOES-HERE
         chat.options.deployment-name: DEPLOYMENT-NAME-GOES-HERE
         chat.options.model: gpt-35-turbo        
