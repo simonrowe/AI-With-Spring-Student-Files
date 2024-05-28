@@ -59,7 +59,7 @@ export SPRING_AI_AZURE_OPENAI_API_KEY="KEY-GOES-HERE"
     1.  Provide a name for the deployment.  We suggest using the same name as the "resource" defined earlier.  Record the name, you will need it later.
     1. Adjust advanced options if you like. Create. 
 
-Note:  Azure OpenAI pricing is available at https://azure.microsoft.com/en-us/pricing/details/cognitive-services/openai-service/ .  Pricing is based on input and output tokens, and varies depending on the model chosen.  Tokens currently cost between $0.0005 and $0.06 per thousand input tokens, $0.002 and $0.12 per thousand output tokens.
+Note:  [Azure OpenAI pricing](https://azure.microsoft.com/en-us/pricing/details/cognitive-services/openai-service/) for chat/text is based on input and output tokens, and varies depending on the model chosen.  Tokens currently cost between $0.0005 and $0.06 per thousand input tokens, $0.002 and $0.12 per thousand output tokens.
 
 ---
 **Part 2 - Generate the Project Structure**
@@ -111,7 +111,7 @@ At this point, let's take a moment to ensure that everything we have created so 
 12.  Establish the following entries:
 ```
 spring:
-  application.name: Lab2 Azure
+  application.name: lab2-azure
   main.web-application-type: none     # Do not start a web server.
 
   ai:
