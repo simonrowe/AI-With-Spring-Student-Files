@@ -59,7 +59,7 @@ export SPRING_AI_AZURE_OPENAI_API_KEY="KEY-GOES-HERE"
     1.  Provide a name for the deployment.  We suggest using the same name as the "resource" defined earlier.  Record the name, you will need it later.
     1. Adjust advanced options if you like. Create. 
 
-Note:  [Azure OpenAI pricing](https://azure.microsoft.com/en-us/pricing/details/cognitive-services/openai-service/) for chat/text is based on input and output tokens, and varies depending on the model chosen.  Tokens currently cost between $0.0005 and $0.06 per thousand input tokens, $0.002 and $0.12 per thousand output tokens.
+Note:  [Azure OpenAI pricing](https://azure.microsoft.com/en-us/pricing/details/cognitive-services/openai-service/) for chat/text is based on input and output tokens, and varies depending on the model chosen.  Tokens currently cost between $0.0005 and $0.06 per thousand input tokens, $0.002 and $0.12 per thousand output tokens.  It is always a good idea to double-check the pricing page when using a cloud provider.
 
 ---
 **Part 2 - Generate the Project Structure**
@@ -121,8 +121,8 @@ spring:
         chat.options.model: DEPLOYMENT-NAME-GOES-HERE
     retry:
       max-attempts: 1           # Maximum number of retry attempts.
-      on-client-errors: false   # If false, throw a NonTransientAiException, and do not attempt retry for 4xx client error codes.
 ```
+- We could store the API key value here in `application.yml`, but this would be a security risk if we were to ever distribute this file.  Setting this value in an environment variable is safer.
 - Note: The retry* settings will override the `ChatClient`'s default settings.  You are likely to experience errors while you learn the API's usage, and we don't want you to experience unnecessary expenses.
 13.  Save your work.  
 
@@ -141,13 +141,13 @@ At this point we should be able to try using the ChatClient to make API calls to
 15. Create a new  **client**  folder under `src/main/java/com/example`.
 1. Within this package create a new Java file called `AzureClient.java`.
 * The IDE should create an empty Java class definition for you.
-17. Add the following annotations at the class level to make this object a Spring Bean and to only activate it when the "openai" profile is active:
+17. Add the following annotations at the class level to make this object a Spring Bean and to only activate it when the "azure" profile is active:
 ```
 @Component
 @Profile("azure")
 public class OpenAIClient {
 ``` 
-- Note: the `@Profile` annotation we be useful later when we want our application to switch between OpenAI, Azure, Ollama, etc.
+- Note: the `@Profile` annotation will be useful later when we want our application to switch between OpenAI, Azure, Ollama, etc.
 18. Add code to automatically provide a reference to the `ChatClient`.  Spring Boot automatically creates this when the Spring AI dependencies are on the classpath:
 ```
 	@Autowired

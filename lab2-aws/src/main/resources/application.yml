@@ -4,6 +4,7 @@ spring:
 
   ai:
     bedrock:
+      aws.region: us-west-2
       titan:
         chat:
           enabled: true
