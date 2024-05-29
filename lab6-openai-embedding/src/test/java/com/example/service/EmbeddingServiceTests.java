@@ -17,13 +17,6 @@ public class EmbeddingServiceTests {
 
     @Autowired EmbeddingService svc;
 
-    @Test
-    public void testLookup() {
-        Map result = svc.lookup("tell me a joke");
-        EmbeddingResponse embeddingResponse = (EmbeddingResponse) result.get("embedding");
-        assert(embeddingResponse != null);
-    }
-
     List<String> products = List.of(
         "Wireless Mouse: A comfortable wireless mouse with ergonomic design and long battery life, perfect for seamless connectivity without cables.",
         "Wireless Headphones: Lightweight, noise-canceling technology, immersive sound and long battery life, ideal for people on-the-go.",

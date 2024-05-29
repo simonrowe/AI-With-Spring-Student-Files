@@ -7,10 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Service;
 
-import java.util.HashSet;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
 
 @Service
 @Profile("openai-embedding")
@@ -23,20 +20,18 @@ public class EmbeddingService {
         this.embeddingModel = embeddingModel;
     }
 
-    public Map lookup(String message) {
-        if (message == null) message = "What are the different services that you offer?";
-
-        EmbeddingResponse embeddingResponse = embeddingModel.embedForResponse(List.of(message));
-        return Map.of("embedding", embeddingResponse);
-    }
-
     public String findClosestMatch(String query, List<String> products) {
         EmbeddingResponse response = null;
+
+        //  Have the AI model turn our product descriptions into embeddings:
         response = embeddingModel.embedForResponse(products);
         List<Embedding> productEmbeddings = response.getResults();
+
+        //  Have the AI model turn our query into an embedding:
         response = embeddingModel.embedForResponse(List.of(query));
         Embedding queryEmbedding = response.getResults().get(0);
 
+        //  Find the product with the highest cosine similarity to the query:
         int mostSimilarIndex = -1;
         double mostSimilarScore = -1;
         for (int i = 0; i < productEmbeddings.size(); i++) {
@@ -48,10 +43,15 @@ public class EmbeddingService {
             }
         }
 
-        return products.get(mostSimilarIndex);
+        if(mostSimilarIndex < 0) {
+            return "No similar product found";
+        } else {
+            return products.get(mostSimilarIndex);
+        }
     }
 
-
+    //  Calculate the cosine similarity between two vectors:
+    //  This is a way to measure the similarity between two vectors of numbers.
     public static double cosineSimilarity(List<Double> vectorA, List<Double> vectorB) {
         if (vectorA.size() != vectorB.size()) {
             throw new IllegalArgumentException("Vectors must have the same length");
@@ -77,13 +77,5 @@ public class EmbeddingService {
         return dotProduct / (Math.sqrt(normA) * Math.sqrt(normB));
     }
 
-    static double cosine_similarity(Map<String, Double> v1, Map<String, Double> v2) {
-        Set<String> both = new HashSet(v1.keySet());
-        both.retainAll(v2.keySet());
-        double sclar = 0, norm1 = 0, norm2 = 0;
-        for (String k : both) sclar += v1.get(k) * v2.get(k);
-        for (String k : v1.keySet()) norm1 += v1.get(k) * v1.get(k);
-        for (String k : v2.keySet()) norm2 += v2.get(k) * v2.get(k);
-        return sclar / Math.sqrt(norm1 * norm2);
-    }
+
 }
