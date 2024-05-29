@@ -1,0 +1,56 @@
+spring:
+  application.name: lab6-openai-embedding
+  main.web-application-type: none     # Do not start a web server.
+
+  ai:
+    openai:
+      embedding:
+        enabled: false
+    retry:
+      max-attempts: 1      # Maximum number of retry attempts.
+
+
+
+---
+spring:
+  config.activate.on-profile: openai-embedding
+
+  ai:
+    openai:
+      embedding:
+        enabled: true
+        options:
+          model: text-embedding-ada-002
+
+---
+spring:
+  config.activate.on-profile: aws-cohere-embedding
+
+  ai:
+    bedrock:
+      cohere:
+        embedding:
+          enabled: true
+          model: cohere.embed-english-v3
+          # model: cohere.embed-multilingual-v3
+
+---
+spring:
+  config.activate.on-profile: aws-titan-embedding
+
+  ai:
+    bedrock:
+      titan:
+        embedding:
+          enabled: true
+          model: amazon.titan-embed-text-v1
+
+---
+spring:
+  config.activate.on-profile: ollama-embedding
+
+  ai:
+    ollama:
+      base-url: http://localhost:11434  # Default base URL when you run Ollama from Docker
+      embedding:
+        enabled: true

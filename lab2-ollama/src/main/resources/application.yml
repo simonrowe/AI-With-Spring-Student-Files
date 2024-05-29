@@ -3,8 +3,7 @@ spring:
   main.web-application-type: none     # Do not start a web server.
 
   ai:
-    openai:
-      ollama.base-url: localhost:11434  # Default base URL when you run Ollama from Docker
+    ollama.base-url: http://localhost:11434  # Default base URL when you run Ollama from Docker
     retry:
       max-attempts: 1           # Maximum number of retry attempts.
       on-client-errors: false   # If false, throw a NonTransientAiException, and do not attempt retry for 4xx client error codes.

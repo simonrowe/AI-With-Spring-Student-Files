@@ -9,10 +9,10 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.example</groupId>
-	<artifactId>lab6-openai-embedding</artifactId>
+	<artifactId>lab6-embedding</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>lab6-openai-embedding</name>
-	<description>Spring AI with OpenAI Embeddings</description>
+	<name>lab6-embedding</name>
+	<description>Spring AI with Embeddings from OpenAI, Bedrock, Ollama</description>
 	<properties>
 		<java.version>21</java.version>
 		<spring-ai.version>1.0.0-M1</spring-ai.version>
@@ -22,6 +22,16 @@
 		<dependency>
 			<groupId>org.springframework.ai</groupId>
 			<artifactId>spring-ai-openai-spring-boot-starter</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework.ai</groupId>
+			<artifactId>spring-ai-bedrock-ai-spring-boot-starter</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework.ai</groupId>
+			<artifactId>spring-ai-ollama-spring-boot-starter</artifactId>
 		</dependency>
 
 		<dependency>

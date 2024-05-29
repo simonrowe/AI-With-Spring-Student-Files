@@ -10,7 +10,7 @@ import org.springframework.stereotype.Service;
 import java.util.*;
 
 @Service
-@Profile("openai-embedding")
+//@Profile("openai-embedding")
 public class EmbeddingService {
 
     private final EmbeddingModel embeddingModel;

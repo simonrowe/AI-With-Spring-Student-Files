@@ -21,4 +21,9 @@ If Docker does not work for any reason, you can also download local software for
 
 Once this is done, you can run a command like: `ollama run llama2`
 
+WHEN YOU GET TO THE EMBEDDINGS LAB you will need to pull "mistral" first.
+I found again that the docker container isn't doing anything.  ollama runs in the background as a service.
+run this: ollama pull mistral
+ollama run mistral
+
 
