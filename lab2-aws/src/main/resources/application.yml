@@ -10,4 +10,3 @@ spring:
           enabled: true
     retry:
       max-attempts: 1           # Maximum number of retry attempts.
-      on-client-errors: false   # If false, throw a NonTransientAiException, and do not attempt retry for 4xx client error codes.
