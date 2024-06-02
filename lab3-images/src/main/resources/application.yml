@@ -11,8 +11,24 @@ spring:
     retry:
       max-attempts: 1           # Maximum number of retry attempts.
 
-  stabilityai:
-    api_key: OVERRIDE_ME_WITH_YOUR_API_KEY
+    # Override autoconfiguration so each model needs explicit enablement.
+    stabilityai:
+      api_key: OVERRIDE_ME_WITH_AN_ENVIRONMENT_VARIABLE
+      image:
+        enabled: false
+    zhipuai:
+      api_key: OVERRIDE_ME_WITH_AN_ENVIRONMENT_VARIABLE
+      image:
+        enabled: false
+    openai:
+      api_key: OVERRIDE_ME_WITH_AN_ENVIRONMENT_VARIABLE
+      image:
+        enabled: false
+    azure:
+      openai:
+        api_key: OVERRIDE_ME_WITH_AN_ENVIRONMENT_VARIABLE
+        image:
+          enabled: false
 
 ---
 spring:
@@ -62,3 +78,11 @@ spring:
           height: 512                   # Must be evenly divisible by 64
           steps: 5                      # Number of diffusion steps to run. Valid range: 10 to 50.
 
+---
+spring:
+  config.activate.on-profile: zhipuai
+
+  ai:
+    zhipuai:
+      image:
+        enabled: true

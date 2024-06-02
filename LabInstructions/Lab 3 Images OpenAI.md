@@ -63,20 +63,20 @@ A half-completed skeleton project has been created for you to relieve you from t
 
 Now we can create a client object to make the image generation API calls. 
 
-5. **TODO-04**: Open `src/main/java/com/example/client/OpenAIClient.java`. Establish the class as a Spring bean with the `@Component`annotation.  Make the bean a member of the **openai** profile:
+5. **TODO-04**: Open `src/main/java/com/example/client/OpenAIClient.java`. Establish the class as a Spring bean with the `@Component`annotation.  Provide an explicit bean name of "openAIClientBean" to avoid naming conflicts with internal SpringAI bean names.  Make the bean a member of the **openai** profile:
 
     ```
-    @Component
+    @Component("openAIClientBean")
     @Profile("openai")
-    public class OpenAIClient {
+    public class OpenAIClient implements AIClient {
     ```
 
-1. **TODO-05**: Define a private final field named "model" of type `OpenAIImageModel`.  Define a constructor which dependency injects this field:
+1. **TODO-05**: Define a private final field named "model" of type `ImageModel`.  Define a constructor which dependency injects this field:
 
     ```
-    private final OpenAiImageModel model;
+    private final ImageModel model;
 
-    public OpenAIClient(OpenAiImageModel model) {
+    public OpenAIClient(ImageModel model) {
         this.model = model;
     }
     ```
@@ -118,10 +118,10 @@ Anything we code, we should test.  We will make a `@Test` method to ensure our C
     public class OpenAIClientTests {
     ```
 
-1. **TODO-10:** Use the `@Autowired` annotation to inject an instance of `OpenAIClient` into this test class.
+1. **TODO-10:** Use the `@Autowired` annotation to inject an instance of `AIClient` into this test class.
 
     ```
-    @Autowired OpenAIClient client;
+    @Autowired AIClient client;
     ```
 
 1. **TODO-11:** Define a `@Test` method.  Have it call the `client.createImageUrl()` method of the client, passing in a string such as _"Two golden retrievers playing tug-o-war in the snow."_ Use AssertJ's `assertThat()` method to ensure that the returned URL is not blank.  Print the URL that is returned.  (Note that `Assertions.*` is already statically imported for you.)

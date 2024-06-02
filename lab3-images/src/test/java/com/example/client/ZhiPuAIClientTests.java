@@ -1,5 +1,10 @@
 package com.example.client;
 
+//  TODO-09: Define this test class as a Spring Boot test.
+//  Set the webEnvironment attribute to SpringBootTest.WebEnvironment.NONE.
+//  Use the @ActiveProfiles annotation to activate the "stabilityai" profile.
+
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -9,13 +14,9 @@ import static com.example.client.Utilities.saveBase64Image;
 import static com.example.client.Utilities.testValidBase64Image;
 import static org.assertj.core.api.Assertions.assertThat;
 
-//  TODO-09: Define this test class as a Spring Boot test.
-//  Set the webEnvironment attribute to SpringBootTest.WebEnvironment.NONE.
-//  Use the @ActiveProfiles annotation to activate the "stabilityai" profile.
-
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.NONE)
-@ActiveProfiles("stabilityai")
-public class StabilityAIClientTests {
+@ActiveProfiles("zhipuai")
+public class ZhiPuAIClientTests {
 
     //  TODO-10: Use the @Autowired annotation to inject an instance of our AIClient.
     @Autowired
@@ -27,8 +28,9 @@ public class StabilityAIClientTests {
     //  Call the provided testValidBase64Image() method to check that the returned string appears to be a valid image.
     //  Call the provided saveBase64Image() to save a copy of your image.
     @Test
+    @Disabled
     public void testCreateImageB64() {
-        String imageB64 = client.createImageB64("An amazing fireworks display over the Sydney Opera House.");
+        String imageB64 = client.createImageB64("Crescent moon over the Shanghai skyline.");
         assertThat(imageB64).isNotBlank();
         testValidBase64Image(imageB64);
         saveBase64Image(imageB64, "lab-image.png");

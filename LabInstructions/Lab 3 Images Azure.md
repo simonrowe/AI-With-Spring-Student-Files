@@ -78,15 +78,15 @@ Now we can create a client object to make the image generation API calls.
     ```
     @Component
     @Profile("azure")
-    public class AzureClient {
+    public class AzureClient implements AIClient {
     ```
 
-1. **TODO-05**: Define a private final field named "model" of type `AzureOpenAiImageModel`.  Define a constructor which dependency injects this field:
+1. **TODO-05**: Define a private final field named "model" of type `ImageModel`.  Define a constructor which dependency injects this field:
 
     ```
-    private final AzureOpenAiImageModel model;
+    private final ImageModel model;
 
-    public AzureClient(AzureOpenAiImageModel model) {
+    public AzureClient(ImageModel model) {
         this.model = model;
     }
     ```
@@ -128,10 +128,10 @@ Anything we code, we should test.  We will make a `@Test` method to ensure our C
     public class AzureClientTests {
     ```
 
-1. **TODO-10:** Use the `@Autowired` annotation to inject an instance of `AzureClient` into this test class.
+1. **TODO-10:** Use the `@Autowired` annotation to inject an instance of `AIClient` into this test class.
 
     ```
-    @Autowired AzureClient client;
+    @Autowired AIClient client;
     ```
 
 1. **TODO-11:** Define a `@Test` method.  Have it call the `client.createImageUrl()` method of the client, passing in a string such as _"A hand-glider soaring over Yosemite valley on a bright summer day."_ Use AssertJ's `assertThat()` method to ensure that the returned URL is not blank.  Print the URL that is returned.  (Note that `Assertions.*` is already statically imported for you.)

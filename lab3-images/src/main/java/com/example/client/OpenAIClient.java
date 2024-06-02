@@ -1,25 +1,23 @@
 package com.example.client;
 
+import org.springframework.ai.image.ImageModel;
 import org.springframework.ai.image.ImagePrompt;
 import org.springframework.ai.image.ImageResponse;
-import org.springframework.ai.openai.OpenAiImageModel;
 import org.springframework.ai.openai.OpenAiImageOptions;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Component;
 
 //  TODO-04: Use a stereotype annotation to mark this class as a Spring bean.
+//  Provide an explicit bean name to avoid naming conflicts with internal SpringAI beans.
 //  Use an annotation to assign it to the "openai" profile.
-@Component
+@Component("openAIClientBean")
 @Profile("openai")
-public class OpenAIClient {
+public class OpenAIClient implements AIClient {
 
     //  TODO-05: Define a private final field named "model" of type OpenAIImageModel.
     //   Define a constructor which dependency injects this field:
-
-    private final OpenAiImageModel model;
-
-    public OpenAIClient(OpenAiImageModel model) {
+    private final ImageModel model;
+    public OpenAIClient(ImageModel model) {
         this.model = model;
     }
 

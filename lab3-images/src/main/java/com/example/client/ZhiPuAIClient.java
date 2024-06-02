@@ -3,30 +3,30 @@ package com.example.client;
 import org.springframework.ai.image.ImageModel;
 import org.springframework.ai.image.ImagePrompt;
 import org.springframework.ai.image.ImageResponse;
-import org.springframework.ai.stabilityai.api.StabilityAiImageOptions;
+import org.springframework.ai.zhipuai.ZhiPuAiImageOptions;
 import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Component;
 
 //  TODO-04: Use a stereotype annotation to mark this class as a Spring bean.
-//  Use an annotation to assign it to the "openai" profile.
+//  Use an annotation to assign it to the "zhipuai" profile.
 @Component
-@Profile("stabilityai")
-public class StabilityAIClient implements AIClient {
+@Profile("zhipuai")
+public class ZhiPuAIClient implements AIClient {
 
-    //  TODO-05: Define a private final field named "model" of type StabilityAiImageModel.
+    //  TODO-05: Define a private final field named "model" of type StabilityAIImageModel.
     //   Define a constructor which dependency injects this field:
     private final ImageModel model;
-    public StabilityAIClient(ImageModel model) {
+    public ZhiPuAIClient(ImageModel model) {
         this.model = model;
     }
 
-    private static final StabilityAiImageOptions DEFAULT_OPTIONS =
-            StabilityAiImageOptions.builder().withN(1).build();
+    private static final ZhiPuAiImageOptions DEFAULT_OPTIONS =
+            ZhiPuAiImageOptions.builder().build();
 
     public String createImageB64(String request) {
 
         //  TODO-06: Create an ImagePrompt object using the request and the DEFAULT_OPTIONS:
-        //  (Feel free to experiment with your own custom-defined StabilityAiImageOptions later).
+        //  (Feel free to experiment with your own custom-defined ZhiPuAiImageOptions later).
         ImagePrompt prompt = new ImagePrompt(
                 request,
                 DEFAULT_OPTIONS

@@ -1,26 +1,22 @@
 package com.example.client;
 
 import org.springframework.ai.azure.openai.AzureOpenAiImageOptions;
+import org.springframework.ai.image.ImageModel;
 import org.springframework.ai.image.ImagePrompt;
 import org.springframework.ai.image.ImageResponse;
-import org.springframework.ai.openai.OpenAiImageModel;
-import org.springframework.ai.openai.OpenAiImageOptions;
 import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Component;
-import org.springframework.ai.azure.openai.AzureOpenAiImageModel;
 
 //  TODO-04: Use a stereotype annotation to mark this class as a Spring bean.
 //  Use an annotation to assign it to the "azure" profile.
 @Component
 @Profile("azure")
-public class AzureClient {
+public class AzureClient implements AIClient {
 
     //  TODO-05: Define a private final field named "model" of type OpenAIImageModel.
     //   Define a constructor which dependency injects this field:
-
-    private final AzureOpenAiImageModel model;
-
-    public AzureClient(AzureOpenAiImageModel model) {
+    private final ImageModel model;
+    public AzureClient(ImageModel model) {
         this.model = model;
     }
 

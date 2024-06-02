@@ -17,8 +17,9 @@ import static org.assertj.core.api.Assertions.assertThat;
 @ActiveProfiles("openai")
 public class OpenAIClientTests {
 
-    //  TODO-10: Use the @Autowired annotation to inject an instance of OpenAIClient.
-    @Autowired OpenAIClient client;
+    //  TODO-10: Use the @Autowired annotation to inject an instance of our AIClient.
+    @Autowired
+    AIClient client;
 
     //  TODO-11: Define a test method to call the createImageUrl method of the client.
     //  Pass in a string that describes the image you want to generate, for example

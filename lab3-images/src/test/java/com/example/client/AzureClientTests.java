@@ -16,9 +16,9 @@ import static org.assertj.core.api.Assertions.assertThat;
 @ActiveProfiles("azure")
 public class AzureClientTests {
 
-    //  TODO-10: Use the @Autowired annotation to inject an instance of AzureClient.
+    //  TODO-10: Use the @Autowired annotation to inject an instance of our AIClient.
     @Autowired
-    AzureClient client;
+    AIClient client;
 
     //  TODO-11: Define a test method to call the createImageUrl method of the client.
     //  Pass in a string that describes the image you want to generate, for example

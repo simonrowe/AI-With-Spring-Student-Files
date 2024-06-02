@@ -126,5 +126,49 @@ NOTE:  Cloud providers such as Stability.AI change their procedures from time to
 Stability.AI offers free credits for new accounts, but these may not be enough to cover the costs of labs in this course.  Be sure you are familiar with [Stability.AI pricing](https://platform.stability.ai/pricing) before working on any Stability.AI-based labs.
 
 
+---
+**Signup Process for ZhiPu AI**
+
+If you wish to work on any of the ZhiPu AI labs, you will need to establish a [ZhiPu AI](https://open.bigmodel.cn/) account.
+
+NOTE:  Cloud providers such as ZhiPu AI change their procedures from time to time without warning.  The instructions here were valid as of June 2024.  You may find the screens and terminology have updated since these instructions were recorded.
+
+1. **Setup a ZhiPu AI account**:  (If you already have an account, you can skip the next few steps).  
+1. Go to [ZhiPu AI / Login](https://open.bigmodel.cn/login)
+1. Click __login__.
+1. Enter a mobile phone number.  You may be asked to complete a small online puzzle by dragging a shape to a spot on an image where it fits.
+1. Enter the code received on your phone.
+1. You may be asked to verify your identity to receive extra tokens.  I found this took me to a Chinese-only language page, so avoid this unless your Mandarin is up to speed.  You can also attempt to use tools like Google translate here on the web page.
+1. On the top right of the page, you will find an icon that looks like a key.  This will take you to a page listing your API Keys.
+1. Use the copy icon to record this key.
+1. Set an environment variable named `SPRING_AI_ZHIPU_AI_API_KEY` using this value.  
+    On Windows you can run: 
+    ```
+    setx SPRING_AI_ZHIPUAI_API_KEY "KEY-GOES-HERE"
+    ```
+    On Linux or Mac you can run:
+    ```
+    export SPRING_AI_ZHIPUAI_API_KEY="KEY-GOES-HERE"
+    ```
+    * **SECURITY WARNING:**  Do not store this key in any file (such as `application.properties` or `application.yml`) that you may share publicly, such as on GitHub, BitBucket, Google Docs, etc.  For the lab environment, we recommend use of environment variables.
+1. Restart your IDE after setting an environment variable this way.
+
+ZhiPu AI offers a fairly generous free tier for new accounts: 25 million tokens upon registration, 5 million tokens more after completing identity verification.  1,000 tokens cost roughly $0.01 at the exchange rate / pricing in June 2024.  Note that these are tokens, not "credits" as are common to other vendors; a request of 100 words with a response of 1,000 words would consume approximately 1,400 tokens. 
+
+For images, no free offer is available.  Images are roughly $0.03 each.  Since ZhiPu is Chinese-based, payments must be made through WeChat pay or Alipay.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 STATIC IMPORTS
