@@ -91,7 +91,8 @@ Now we can create a client object to make the image generation API calls.
     }
     ```
 
-1. **TODO-06:** Within the `createImageUrl()` method, create a local variable reverencing a new `ImagePrompt` object.  Use the `request` parameter and `DEFAULT_OPTIONS` object when defining the prompt.  Later you can experiment by creating your own custom-defined `AzureOpenAiImageOptions`.
+1. **TODO-06:** Within the `createImageUrl()` method, create a local variable of type `ImagePrompt` named _prompt_.  Use the `request` parameter and `DEFAULT_OPTIONS` object when defining the prompt.  Later you can experiment by creating your own custom-defined `AzureOpenAiImageOptions`.
+    * The `*ImageOptions` default values are set by Spring's `Environment` abstraction, in our case `application.yml` and environment variables.  Values set within code override these settings.
 
     ```
     ImagePrompt prompt = new ImagePrompt(
@@ -133,12 +134,12 @@ Anything we code, we should test.  We will make a `@Test` method to ensure our C
     @Autowired AzureClient client;
     ```
 
-1. **TODO-11:** Define a `@Test` method.  Have it call the `client.createImageUrl()` method of the client, passing in a string such as _"Two golden retrievers playing tug-o-war in the snow."_ Use AssertJ's `assertThat()` method to ensure that the returned URL is not blank.  Print the URL that is returned.  (Note that `Assertions.*` is already statically imported for you.)
+1. **TODO-11:** Define a `@Test` method.  Have it call the `client.createImageUrl()` method of the client, passing in a string such as _"A hand-glider soaring over Yosemite valley on a bright summer day."_ Use AssertJ's `assertThat()` method to ensure that the returned URL is not blank.  Print the URL that is returned.  (Note that `Assertions.*` is already statically imported for you.)
 
     ```
     @Test
     public void testCreateImageUrl() {
-        String url = client.createImageUrl("Two golden retrievers playing tug-o-war in the snow.");
+        String url = client.createImageUrl("A hand-glider soaring over Yosemite valley on a bright summer day.");
         assertThat(url).isNotBlank();
         System.out.println("URL: " + url);
     }
@@ -175,11 +176,12 @@ The previous solution resulted in an image hosted on a public URL.  Because we m
     ImageResponse response = model.call(prompt);
     ```
 
-1. **TODO-16 (Optional):** Remove the `return null;` line.  Using your earlier code as a guide, return the Base-64 encoded String from the previous call.  Organize your imports and save your work.
+1. **TODO-16 (Optional):** Remove the `return null;` line.  Using your earlier code as a guide, return the base-64 encoded String from the previous call.  Organize your imports and save your work.
 
     ```
     return response.getResult().getOutput().getB64Json();
     ```
+    * The API returns the image as a base-64 encoded value within a JSON document in the HTTP response.  The model parses the JSON response for us and provides the base64 encoded value.  Perhaps the method should have been named `getB64()`.  
 
 ---
 **Part 6 (Optional) - `@Test` the new method**
@@ -188,12 +190,12 @@ Finally let's add some code to test if the returned Base-64 image is an actual f
 
 20. Return to `src/test/java/com/example/client/AzureClientTests.java`.
 
-1. **TODO-17 (Optional):** Using your earlier `@Test` method as an example, define a new test method to test the client's `createImageB64()` method.  Pass in whatever image description you like.  As before, use `assertThat()` to ensure that the returned String is not blank.  Use the provided `testValidBase64Image()` method to check that the returned string appears to be a valid image, then save the image by calling `saveBase64Image()`. 
+1. **TODO-17 (Optional):** Using your earlier `@Test` method as an example, define a new test method to test the client's `createImageB64()` method.  Pass in whatever image description you like.  As before, use `assertThat()` to ensure that the returned String is not blank.  Use the provided `testValidBase64Image()` method to check that the returned string appears to be a valid image, then save the image by calling `saveBase64Image()`. (Note that `Assertions.*` and `Utilities.*` are already statically imported for you.)
 
     ```
     @Test
     public void testCreateImageB64() {
-        String imageB64 = client.createImageB64("Two golden retrievers playing tug-o-war in the snow.");
+        String imageB64 = client.createImageB64("A hand-glider soaring over Yosemite valley on a bright summer day.");
         assertThat(imageB64).isNotBlank();
         testValidBase64Image(imageB64);
         saveBase64Image(imageB64, "image.png");

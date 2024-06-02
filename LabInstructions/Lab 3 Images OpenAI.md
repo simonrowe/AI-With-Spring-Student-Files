@@ -81,7 +81,8 @@ Now we can create a client object to make the image generation API calls.
     }
     ```
 
-1. **TODO-06:** Within the `createImageUrl()` method, create a local variable reverencing a new `ImagePrompt` object.  Use the `request` parameter and `DEFAULT_OPTIONS` object when defining the prompt.  Later you can experiment by creating your own custom-defined `OpenAiImageOptions`.
+1. **TODO-06:** Within the `createImageUrl()` method, create a local variable of type `ImagePrompt` named _prompt_.  Use the `request` parameter and `DEFAULT_OPTIONS` object when defining the prompt.  Later you can experiment by creating your own custom-defined `OpenAiImageOptions`.
+    * The `*ImageOptions` default values are set by Spring's `Environment` abstraction, in our case `application.yml` and environment variables.  Values set within code override these settings.
 
     ```
     ImagePrompt prompt = new ImagePrompt(
@@ -165,11 +166,12 @@ The previous solution resulted in an image hosted on a public URL.  Because we m
     ImageResponse response = model.call(prompt);
     ```
 
-1. **TODO-16 (Optional):** Remove the `return null;` line.  Using your earlier code as a guide, return the Base-64 encoded String from the previous call.  Organize your imports and save your work.
+1. **TODO-16 (Optional):** Remove the `return null;` line.  Using your earlier code as a guide, return the base-64 encoded String from the previous call.  Organize your imports and save your work.
 
     ```
     return response.getResult().getOutput().getB64Json();
     ```
+    * The API returns the image as a base-64 encoded value within a JSON document in the HTTP response.  The model parses the JSON response for us and provides the base64 encoded value.  Perhaps the method should have been named `getB64()`.  
 
 ---
 **Part 6 (Optional) - `@Test` the new method**
@@ -178,7 +180,7 @@ Finally let's add some code to test if the returned Base-64 image is an actual f
 
 20. Return to `src/test/java/com/example/client/OpenAIClientTests.java`.
 
-1. **TODO-17 (Optional):** Using your earlier `@Test` method as an example, define a new test method to test the client's `createImageB64()` method.  Pass in whatever image description you like.  As before, use `assertThat()` to ensure that the returned String is not blank.  Use the provided `testValidBase64Image()` method to check that the returned string appears to be a valid image, then save the image by calling `saveBase64Image()`. 
+1. **TODO-17 (Optional):** Using your earlier `@Test` method as an example, define a new test method to test the client's `createImageB64()` method.  Pass in whatever image description you like.  As before, use `assertThat()` to ensure that the returned String is not blank.  Use the provided `testValidBase64Image()` method to check that the returned string appears to be a valid image, then save the image by calling `saveBase64Image()`. (Note that `Assertions.*` and `Utilities.*` are already statically imported for you.)
 
     ```
     @Test
