@@ -10,6 +10,9 @@ spring:
     retry:
       max-attempts: 1           # Maximum number of retry attempts.
 
+  stabilityai:
+    api_key: OVERRIDE_ME_WITH_YOUR_API_KEY
+
 ---
 spring:
   config.activate.on-profile: openai
@@ -40,4 +43,21 @@ spring:
             response_format: url  # or b64_json
             size: 1792x1024       # or 1024x1024, 1024x1792
             style: natural        # or vivid
+
+---
+spring:
+  config.activate.on-profile: stabilityai
+
+  ai:
+    stabilityai:
+      image:
+        enabled: true
+        option:
+          n: 1                          # Number of images to generate.
+          responseFormat: image/png     # or application/json
+          cfg_scale: 8.0                # 0-35, how closely the prompt is followed.
+          model: stable-diffusion-v1-6  # The model to use in Stability AI.
+          width: 512                    # Must be evenly divisible by 64
+          height: 512                   # Must be evenly divisible by 64
+          steps: 5                      # Number of diffusion steps to run. Valid range: 10 to 50.
 

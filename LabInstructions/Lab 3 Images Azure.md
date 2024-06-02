@@ -19,6 +19,8 @@ See the **Lab Setup** document to setup an Azure account, enable AI services, cr
     export SPRING_AI_AZURE_OPENAI_API_KEY="KEY-GOES-HERE"
     ```
 * **SECURITY REMINDER:**  Do not store these keys in any file (such as application.properties or application.yml) that you may share publicly, such as on GitHub, BitBucket, Google Docs, etc.
+* Restart your IDE after setting an environment variable this way.
+
 
 1. **Create a _Deployment_**: Open https://oai.azure.com/portal in a new browser tab.  Go to Management / Deployments / Create new deployment.
     1. Select a model to use. At the time of this writing, _dall-e-3_ is the latest model. Feel free to explore newer versions, but different models may not align with these instructions.
