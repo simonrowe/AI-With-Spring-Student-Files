@@ -24,10 +24,10 @@ export SPRING_AI_OPENAI_API_KEY="YOUR-KEY-GOES-HERE"
 ---
 **Part 2 - Setup the Project**
 
-A half-completed skeleton project has been created for you to relieve you from the image generation steps.  The instructions below are for VS Code. If you wish to use IntilliJ or Eclipse and need assistance, see the "Lab Setup" document if you need help.
+A half-completed skeleton project has been created for you to relieve you from the image generation steps.  The instructions below are for VS Code. If you wish to use IntilliJ or Eclipse and need assistance, see the "IDE Tips" document if you need help.
 
 1. From within VS Code, use the File menu and select "Open Folder". Select the _/student-files/lab3-images-openai_ folder.  
-    * See the **Lab Setup** document to troubleshoot any issues when opening this project.
+    * See the **IDE Tips** document to troubleshoot any issues when opening this project.
 
 
 1. **TODO-01**: Open the **pom.xml** file.  Notice that the  `spring-ai-openai-spring-boot-starter` dependency has already been added.
