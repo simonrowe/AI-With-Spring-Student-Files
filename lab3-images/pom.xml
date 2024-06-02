@@ -25,11 +25,11 @@
 			<artifactId>spring-ai-openai-spring-boot-starter</artifactId>
 		</dependency>
 
-<!--		&lt;!&ndash; TODO-01: Notice the starter for Azure OpenAI is present.	&ndash;&gt;-->
-<!--		<dependency>-->
-<!--			<groupId>org.springframework.ai</groupId>-->
-<!--			<artifactId>spring-ai-azure-openai-spring-boot-starter</artifactId>-->
-<!--		</dependency>-->
+		<!-- TODO-01: Notice the starter for Azure OpenAI is present.	-->
+		<dependency>
+			<groupId>org.springframework.ai</groupId>
+			<artifactId>spring-ai-azure-openai-spring-boot-starter</artifactId>
+		</dependency>
 
 <!--		&lt;!&ndash; TODO-01: Notice the starter for Stability AI is present.	&ndash;&gt;-->
 <!--		<dependency>-->

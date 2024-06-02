@@ -23,3 +23,21 @@ spring:
           response_format: url  # or b64_json
           size: 1792x1024       # or 1024x1024, 1024x1792
           style: natural        # or vivid
+
+---
+spring:
+  config.activate.on-profile: azure
+
+  ai:
+    azure:
+      openai:
+        endpoint: ENDPOINT-GOES-HERE
+        image:
+          enabled: true
+          options:
+            deployment-name: DEPLOYMENT-NAME-GOES-HERE
+            n: 1                  # number of images to generate.
+            response_format: url  # or b64_json
+            size: 1792x1024       # or 1024x1024, 1024x1792
+            style: natural        # or vivid
+

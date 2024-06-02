@@ -29,7 +29,7 @@ A half-completed skeleton project has been created for you to relieve you from t
     * See the **Lab Setup** document to troubleshoot any issues when opening this project.
 
 
-1. **TODO-01**: Open the **pom.xml** file.  Notice that the  `spring-ai-azure-openai-spring-boot-starter` dependency has already been added.
+1. **TODO-01**: Open the **pom.xml** file.  Notice that the  `spring-ai-openai-spring-boot-starter` dependency has already been added.
 
 1. **TODO-02**: Open `src/main/resources/application.yml` and establish the following entries:
     ```
@@ -116,7 +116,7 @@ Anything we code, we should test.  We will make a `@Test` method to ensure our C
     public class OpenAIClientTests {
     ```
 
-1. **TODO-10:** Use the @Autowired annotation to inject an instance of `OpenAIClient` into this test class.
+1. **TODO-10:** Use the `@Autowired` annotation to inject an instance of `OpenAIClient` into this test class.
 
     ```
     @Autowired OpenAIClient client;
@@ -188,6 +188,7 @@ Finally let's add some code to test if the returned Base-64 image is an actual f
         saveBase64Image(imageB64, "image.png");
     }
     ```
+    * Note: The `test*()` and `save*()` methods belong to the `Utilities` class. It is a statically imported helper class containing methods to make lab testing easier.  It is not part of SpringAI or any AI model.
 
 1. Organize your imports and save your work.  Run this test.  Expect it to take a few moments to run, and it should pass.
 

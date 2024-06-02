@@ -1,23 +1,24 @@
 package com.example.client;
 
-import static org.assertj.core.api.Assertions.*;
-import static com.example.client.Utilities.*;
-
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.ActiveProfiles;
 
+import static org.assertj.core.api.Assertions.assertThat;
+import static com.example.client.Utilities.*;
 
 //  TODO-09: Define this test class as a Spring Boot test.
 //  Set the webEnvironment attribute to SpringBootTest.WebEnvironment.NONE.
-//  Use the @ActiveProfiles annotation to activate the "openai" profile.
+//  Use the @ActiveProfiles annotation to activate the "azure" profile.
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.NONE)
-@ActiveProfiles("openai")
-public class OpenAIClientTests {
+@ActiveProfiles("azure")
+public class AzureClientTests {
 
-    //  TODO-10: Use the @Autowired annotation to inject an instance of OpenAIClient.
-    @Autowired OpenAIClient client;
+    //  TODO-10: Use the @Autowired annotation to inject an instance of AzureClient.
+    @Autowired
+    AzureClient client;
 
     //  TODO-11: Define a test method to call the createImageUrl method of the client.
     //  Pass in a string that describes the image you want to generate, for example
@@ -53,6 +54,5 @@ public class OpenAIClientTests {
         testValidBase64Image(imageB64);
         saveBase64Image(imageB64, "lab-image.png");
     }
-
 
 }
