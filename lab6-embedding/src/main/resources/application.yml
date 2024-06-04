@@ -6,6 +6,10 @@ spring:
     openai:
       embedding:
         enabled: false
+    ollama:
+      embedding:
+        enabled: false
+
     retry:
       max-attempts: 1      # Maximum number of retry attempts.
 
@@ -25,9 +29,10 @@ spring:
 ---
 spring:
   config.activate.on-profile: aws-cohere-embedding
-
+  
   ai:
     bedrock:
+      aws.region: us-west-2   # Warning: must be explicitly set even if ~/.aws/config is set.
       cohere:
         embedding:
           enabled: true

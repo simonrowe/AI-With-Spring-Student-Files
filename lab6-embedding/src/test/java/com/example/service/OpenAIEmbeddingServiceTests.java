@@ -1,16 +1,16 @@
 package com.example.service;
 
+
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.ActiveProfiles;
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.NONE)
-@ActiveProfiles("ollama-embedding")
-public class OllamaEmbeddingServiceTests {
+@ActiveProfiles("openai-embedding")
+public class OpenAIEmbeddingServiceTests {
 
-    @Autowired
-    EmbeddingService svc;
+    @Autowired EmbeddingService svc;
 
     @Test
     public void testFindClosestMatch() {
