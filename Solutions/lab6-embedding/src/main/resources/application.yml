@@ -1,0 +1,65 @@
+# TODO-02: Set the spring.application.name to "lab3-embedding" or something similar.
+# Set this application as a non-web application by setting the spring.main.web-application-type to none.
+# Disable the automatic retry mechanism by setting the spring.ai.retry.max-attempts to 1.
+# Set the model-specific attributes according to the lab instructions.
+# Take advantage of YAML's hierarchical structure (indenting) to set these values.
+
+spring:
+  application.name: lab6-embedding
+  main.web-application-type: none     # Do not start a web server.
+
+  ai:
+    openai:
+      embedding:
+        enabled: false
+    ollama:
+      embedding:
+        enabled: false
+
+    retry:
+      max-attempts: 1      # Maximum number of retry attempts.
+
+---
+spring:
+  config.activate.on-profile: openai
+
+  ai:
+    openai:
+      embedding:
+        enabled: true
+        options:
+          model: text-embedding-ada-002
+
+---
+spring:
+  config.activate.on-profile: aws-cohere
+  
+  ai:
+    bedrock:
+      aws.region: us-west-2   # Warning: must be explicitly set even if ~/.aws/config is set.
+      cohere:
+        embedding:
+          enabled: true
+          model: cohere.embed-english-v3
+          # model: cohere.embed-multilingual-v3
+
+---
+spring:
+  config.activate.on-profile: aws-titan
+
+  ai:
+    bedrock:
+      titan:
+        embedding:
+          enabled: true
+          model: amazon.titan-embed-text-v1
+
+---
+spring:
+  config.activate.on-profile: ollama
+
+  ai:
+    ollama:
+      base-url: http://localhost:11434  # Default base URL when you run Ollama from Docker
+      embedding:
+        enabled: true
