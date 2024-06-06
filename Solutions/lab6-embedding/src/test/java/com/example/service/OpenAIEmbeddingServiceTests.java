@@ -1,5 +1,6 @@
 package com.example.service;
 
+import static org.assertj.core.api.Assertions.*;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,12 +21,12 @@ public class OpenAIEmbeddingServiceTests {
     //  TODO-12: Define a test method to call the testFindClosestMatch method of the service.
     //  Use the Utilities class to provide the query and products inputs.
     //  Capture the result in a String variable.
-    //  assert that the String begins with "Wireless Headphones:".
+    //  assertThat the result startsWith "Wireless Headphones".
     //  Print the result to the console:
     @Test
     public void testFindClosestMatch() {
         String result = svc.findClosestMatch(Utilities.query, Utilities.products);
-        assert(result.startsWith("Wireless Headphones:"));
+        assertThat(result).startsWith("Wireless Headphones:");
         System.out.println(result);
     }
 

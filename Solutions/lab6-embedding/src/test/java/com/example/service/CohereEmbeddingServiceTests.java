@@ -1,5 +1,7 @@
 package com.example.service;
 
+import static org.assertj.core.api.Assertions.*;
+
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -25,7 +27,7 @@ public class CohereEmbeddingServiceTests {
     @Test
     public void testFindClosestMatch() {
         String result = svc.findClosestMatch(Utilities.query, Utilities.products);
-        assert(result.startsWith("Wireless Headphones:"));
+        assertThat(result).startsWith("Wireless Headphones:");
         System.out.println(result);
     }
 

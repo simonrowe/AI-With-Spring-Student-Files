@@ -1,5 +1,7 @@
 package com.example.service;
 
+import static org.assertj.core.api.Assertions.*;
+
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,7 +28,7 @@ public class TitanEmbeddingServiceTests {
     @Disabled  //  Temporarily disabled due to Titan response formatting problem.  ValidationException: Malformed input request: 2 schema violations found, please reformat your input and try again. (Service: BedrockRuntime, Status Code: 400, Request ID: xxxxxx
     public void testFindClosestMatch() {
         String result = svc.findClosestMatch(Utilities.query, Utilities.products);
-        assert(result.startsWith("Wireless Headphones:"));
+        assertThat(result).startsWith("Wireless Headphones:");
         System.out.println(result);
     }
 
