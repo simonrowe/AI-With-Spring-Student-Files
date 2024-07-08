@@ -1,30 +1,31 @@
 package com.example.client;
 
-import static org.assertj.core.api.Assertions.*;
+import static org.assertj.core.api.Assertions.assertThat;
 
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.boot.test.context.SpringBootTest.WebEnvironment;
 import org.springframework.test.context.ActiveProfiles;
 
-//  TODO-08: Implement a test class for the AzureClient class.
+//  TODO-08: Implement a test class for the AwsClient class.
 //  Use the @SpringBootTest annotation to load the Spring context.
 //  Set the webEnvironment to NONE.
-//  Use the @ActiveProfiles annotation to specify the "azure" profile.
+//  Use the @ActiveProfiles annotation to specify the "aws" profile.
 
-@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.NONE)
-@ActiveProfiles("azure")
-public class AzureClientTests {
+@SpringBootTest(webEnvironment = WebEnvironment.NONE)
+@ActiveProfiles("aws")
+public class AwsClientTests {
 
     //  TODO-09: Inject your AIClient object into this test class:
     @Autowired AIClient client;
 
-	@Test
+    @Test
     //@Disabled
 	void quickChat() {
 
-        String prompt = "Generate the names of the five great lakes.  Produce JSON output ONLY.";
+        String prompt = "Generate a list containing the names of the five great lakes. Return JSON format only; do not return any additional text or explanations outside of the JSON structure.";
         String response = null;
 
         //  TODO-10: Use the client object to call the API. 

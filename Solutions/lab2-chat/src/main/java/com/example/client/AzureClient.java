@@ -2,6 +2,7 @@ package com.example.client;
 
 import org.springframework.ai.azure.openai.AzureOpenAiChatModel;
 import org.springframework.ai.azure.openai.AzureOpenAiChatOptions;
+import org.springframework.ai.bedrock.titan.BedrockTitanChatModel;
 import org.springframework.ai.chat.client.ChatClient;
 import org.springframework.ai.chat.model.ChatResponse;
 import org.springframework.ai.chat.prompt.ChatOptions;
@@ -10,22 +11,39 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Component;
 
+//  TODO-01: Follow the lab instructions for establishing an Azure account,
+//  permission to use Azure AI Services, OpenID resource, endpoint, keys,
+//  and deployment.  Once all of this is finished, move on to the next step.
+
 @Component
 @Profile("azure")
-public class AzureClient {
+public class AzureClient implements AIClient {
 
-   	@Autowired AzureOpenAiChatModel chatModel;
+    private ChatClient client;
 
-    public String callModel(String prompt ) {
+    //  TODO-05: Create a constructor for this bean.
+    //  Inject a AzureOpenAiChatModel object into the constructor.
+    //  Pass the model to the ChatClient.builder to build a ChatClient object.
+    //  Save the ChatClient object in the client field.
+    public AzureClient(AzureOpenAiChatModel model) {
+        client = ChatClient.builder(model).build();
+    }
 
-        ChatOptions options = 
-            AzureOpenAiChatOptions.builder().build();
-        
-		ChatResponse response = chatModel.call(
-			new Prompt(prompt,options )
-        );
+    public String callApi(String input) {
 
-        return response.getResult().getOutput().getContent();
+        //  TODO-06: Define a new Prompt object using the user input.
+        Prompt prompt = new Prompt(input);
+
+        //  TODO-07: Use the client object to call the API.
+        //  The .prompt() method can be used to set the prompt defined above.
+        //  The .call() method will make the call to the model.
+        //  The .content() method will return the content of the response.
+        //  Have the method return the content of the response.
+        return 
+            client
+                .prompt(prompt)
+                .call()
+                .content();
     }
 
 }

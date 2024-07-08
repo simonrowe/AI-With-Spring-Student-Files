@@ -19,26 +19,50 @@
 	</properties>
 	<dependencies>
 
+		<!-- 
+		TODO-02: Add the dependency for Amazon Bedrock.  
+		The groupId value will be org.springframework.ai
+		The artifactId will be spring-ai-bedrock-ai-spring-boot-starter
+		-->
 		<dependency>
 			<groupId>org.springframework.ai</groupId>
 			<artifactId>spring-ai-bedrock-ai-spring-boot-starter</artifactId>
 		</dependency>
 
+		<!-- 
+		TODO-02: Add the dependency for openai.  
+		The groupId value will be org.springframework.ai
+		The artifactId will be spring-ai-openai-spring-boot-starter
+		-->
 		<dependency>
 			<groupId>org.springframework.ai</groupId>
 			<artifactId>spring-ai-openai-spring-boot-starter</artifactId>
 		</dependency>
 
+		<!-- 
+		TODO-02: Add the dependency for azure openai.  
+		The groupId value will be org.springframework.ai
+		The artifactId will be spring-ai-azure-openai-spring-boot-starter
+		-->
 		<dependency>
 			<groupId>org.springframework.ai</groupId>
 			<artifactId>spring-ai-azure-openai-spring-boot-starter</artifactId>
 		</dependency>
 
+		<!-- 
+		TODO-02: Add the dependency for ollama.  
+		The groupId value will be org.springframework.ai
+		The artifactId will be spring-ai-ollama-spring-boot-starter
+		-->
 		<dependency>
 			<groupId>org.springframework.ai</groupId>
 			<artifactId>spring-ai-ollama-spring-boot-starter</artifactId>
 		</dependency>
 
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-aop</artifactId>
+		  </dependency>
 
 		<dependency>
 			<groupId>org.springframework.boot</groupId>

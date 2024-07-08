@@ -2,28 +2,33 @@ package com.example.client;
 
 import org.springframework.ai.chat.client.ChatClient;
 import org.springframework.ai.chat.prompt.Prompt;
-import org.springframework.ai.openai.OpenAiChatModel;
+import org.springframework.ai.ollama.OllamaChatModel;
 import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Component;
 
-//  TODO-01: Follow the lab setup instructions for establishing an OpenAI account.
-//  Once this is finished, move on to the next step.
+//  TODO-01: Follow the lab setup instructions to install Docker and 
+//  Run Ollama in a Docker container.  Once this is complete, move on to the next step.
 
-@Component("openAIClientBean")
-@Profile("openai")
-public class OpenAIClient implements AIClient {
-
+@Component
+@Profile("ollama")
+public class OllamaClient implements AIClient {
+    
     private ChatClient client;
 
     //  TODO-05: Create a constructor for this bean.
-    //  Inject a OpenAiChatModel object into the constructor.
+    //  Inject a OllamaChatModel object into the constructor.
     //  Pass the model to the ChatClient.builder to build a ChatClient object.
     //  Save the ChatClient object in the client field.
-    public OpenAIClient(OpenAiChatModel model) {
+    public OllamaClient(OllamaChatModel model) {
         client = ChatClient.builder(model).build();
     }
 
+    @Override
     public String callApi(String input) {
+
+        // if (model==null) {
+        //     model = "llama2";
+        // }   
 
         //  TODO-06: Define a new Prompt object using the user input.
         Prompt prompt = new Prompt(input);
@@ -39,5 +44,5 @@ public class OpenAIClient implements AIClient {
                 .call()
                 .content();
     }
-
+    
 }
