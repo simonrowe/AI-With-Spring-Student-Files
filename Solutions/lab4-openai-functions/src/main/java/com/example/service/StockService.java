@@ -8,10 +8,19 @@ import org.springframework.stereotype.Service;
 
 import com.example.client.AIClient;
 
+//	TODO-11: Annotate this class as a Spring bean using the @Service annotation.
+//  Set its name to "stockService" to align with the callback function from the earlier step.
+//  Use the @Description annotation to provide a helpful description for the OpenAI Client object.
+
 @Service("stockService")
 @Description("Service to get stock information")	//	Helpful description for the OpenAI Client object.
 public class StockService implements Function<com.example.service.StockService.Request, com.example.service.StockService.Response> {
 
+	//	TODO-12: Notice the pre-defined records for Request and Response.
+	//  These structures will be understood by the OpenAI client software.
+	//  Notice the apply() method, this will be invoked by the OpenAI client
+	//	automatically when the response is returned from the server:
+	
     public record Request(String symbol) {}
     public record Response(String symbol, Double price, String currency) {}
 
@@ -24,7 +33,7 @@ public class StockService implements Function<com.example.service.StockService.R
     @Autowired AIClient client;
 	
 	public String getCompanySummary(String symbol) {
-		return client.callModel(
+		return client.callApi(
 			"Provide a description of the company with stock ticker symbol '%s'".formatted(symbol)
 		);
 	}

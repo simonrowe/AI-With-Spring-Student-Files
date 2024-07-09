@@ -18,6 +18,16 @@
 		<spring-ai.version>0.8.1</spring-ai.version>
 	</properties>
 	<dependencies>
+
+		<!-- 
+		TODO-01: If you have not already done so in a previous lab,
+		follow the lab setup instructions for establishing an OpenAI account.
+		-->
+		
+		<!-- 
+		TODO-02: Notice the dependency for openai is already set.  
+		-->
+
 		<dependency>
 			<groupId>org.springframework.ai</groupId>
 			<artifactId>spring-ai-openai-spring-boot-starter</artifactId>
