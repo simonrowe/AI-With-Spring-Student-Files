@@ -5,13 +5,11 @@ import java.util.List;
 import org.springframework.ai.embedding.Embedding;
 import org.springframework.ai.embedding.EmbeddingModel;
 import org.springframework.ai.embedding.EmbeddingResponse;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Service;
 
 //  TODO-04: Use a stereotype annotation to mark this class as a Spring bean.
 //  Use an annotation to assign it to the "embedding" profile.
-
 @Service
 @Profile("embedding")
 public class EmbeddingService {
