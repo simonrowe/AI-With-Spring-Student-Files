@@ -6,8 +6,8 @@ import org.springframework.ai.ollama.OllamaChatModel;
 import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Component;
 
-//  TODO-01: Follow the lab setup instructions to install Docker and 
-//  Run Ollama in a Docker container.  Once this is complete, move on to the next step.
+//  TODO-05: Use a stereotype annotation to mark this class as a Spring bean.
+//  Use an annotation to assign it to the "ollama" profile.
 
 @Component
 @Profile("ollama")
@@ -15,7 +15,7 @@ public class OllamaClient implements AIClient {
     
     private ChatClient client;
 
-    //  TODO-05: Create a constructor for this bean.
+    //  TODO-06: Create a constructor for this bean.
     //  Inject a OllamaChatModel object into the constructor.
     //  Pass the model to the ChatClient.builder to build a ChatClient object.
     //  Save the ChatClient object in the client field.
@@ -30,10 +30,10 @@ public class OllamaClient implements AIClient {
         //     model = "llama2";
         // }   
 
-        //  TODO-06: Define a new Prompt object using the user input.
+        //  TODO-07: Define a new Prompt object using the user input.
         Prompt prompt = new Prompt(input);
 
-        //  TODO-07: Use the client object to call the API.
+        //  TODO-08: Use the client object to call the API.
         //  The .prompt() method can be used to set the prompt defined above.
         //  The .call() method will make the call to the model.
         //  The .content() method will return the content of the response.

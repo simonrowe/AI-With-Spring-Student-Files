@@ -20,6 +20,12 @@
 	<dependencies>
 
 		<!-- 
+		TODO-01: Follow the lab setup instructions for establishing an AWS account
+		and permission to use the Titan chat model.  Once this is finished,
+		move on to the next step. 
+		-->
+		
+		<!-- 
 		TODO-02: Add the dependency for Amazon Bedrock.  
 		The groupId value will be org.springframework.ai
 		The artifactId will be spring-ai-bedrock-ai-spring-boot-starter
@@ -29,6 +35,11 @@
 			<artifactId>spring-ai-bedrock-ai-spring-boot-starter</artifactId>
 		</dependency>
 
+		<!-- 
+		TODO-01: Follow the lab setup instructions for establishing an OpenAI account.
+		Once this is complete, move on to the next step. 
+		-->
+		
 		<!-- 
 		TODO-02: Add the dependency for openai.  
 		The groupId value will be org.springframework.ai
@@ -40,6 +51,12 @@
 		</dependency>
 
 		<!-- 
+		TODO-01: Follow the lab instructions for establishing an Azure account,
+		permission to use Azure AI Services, OpenID resource, endpoint, keys,
+		and deployment.  Once complete, move on to the next step. 
+		-->
+
+		<!-- 
 		TODO-02: Add the dependency for azure openai.  
 		The groupId value will be org.springframework.ai
 		The artifactId will be spring-ai-azure-openai-spring-boot-starter
@@ -49,6 +66,11 @@
 			<artifactId>spring-ai-azure-openai-spring-boot-starter</artifactId>
 		</dependency>
 
+		<!-- 
+		TODO-01: Follow the lab setup instructions to install Docker and 
+		Run Ollama in a Docker container.  Once complete, move on to the next step. 
+		-->
+				
 		<!-- 
 		TODO-02: Add the dependency for ollama.  
 		The groupId value will be org.springframework.ai
