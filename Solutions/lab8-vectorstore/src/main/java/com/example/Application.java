@@ -1,12 +1,13 @@
 package com.example;
 
 import org.springframework.ai.embedding.EmbeddingModel;
-import org.springframework.ai.openai.OpenAiEmbeddingModel;
-import org.springframework.ai.openai.api.OpenAiApi;
+import org.springframework.ai.vectorstore.SimpleVectorStore;
+import org.springframework.ai.vectorstore.VectorStore;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Profile;
+
 
 @SpringBootApplication
 public class Application {
@@ -15,10 +16,14 @@ public class Application {
 		SpringApplication.run(Application.class, args);
 	}
 
-	// @Bean
-	// @Profile({"redis-vector-store","openai-embedding"})
-	// public EmbeddingModel embeddingModel() {
-	// 	// Can be any other EmbeddingModel implementation.
-	// 	return new OpenAiEmbeddingModel(new OpenAiApi(System.getenv("SPRING_AI_OPENAI_API_KEY")));
-	// }	
+	//	TODO-02: Define a bean method named "vectorStore" of type VectorStore.
+	//  The method should accept an EmbeddingModel parameter
+	//	Have it instantiate and return a new SimpleVectorStore injected with the given EmbeddingModel.
+	//  Use @Profile to assign this bean to the "simple-vector-store" profile.
+	@Bean
+	@Profile("simple-vector-store")
+	public VectorStore vectorStore(EmbeddingModel embeddingModel) {
+		return new SimpleVectorStore(embeddingModel);
+	}
+	
 }
