@@ -13,20 +13,20 @@ spring:
 
     # Override autoconfiguration so each model needs explicit enablement.
     stabilityai:
-      api_key: OVERRIDE_ME_WITH_AN_ENVIRONMENT_VARIABLE
+      api_key: NEVER-PLACE-SECRET-KEY-IN-CONFIG-FILE
       image:
         enabled: false
     zhipuai:
-      api_key: OVERRIDE_ME_WITH_AN_ENVIRONMENT_VARIABLE
+      api_key: NEVER-PLACE-SECRET-KEY-IN-CONFIG-FILE
       image:
         enabled: false
     openai:
-      api_key: OVERRIDE_ME_WITH_AN_ENVIRONMENT_VARIABLE
+      api_key: NEVER-PLACE-SECRET-KEY-IN-CONFIG-FILE
       image:
         enabled: false
     azure:
       openai:
-        api_key: OVERRIDE_ME_WITH_AN_ENVIRONMENT_VARIABLE
+        api_key: NEVER-PLACE-SECRET-KEY-IN-CONFIG-FILE
         image:
           enabled: false
 

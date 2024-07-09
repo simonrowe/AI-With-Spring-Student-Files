@@ -53,7 +53,7 @@ spring:
   application.name: Lab2 OpenAI Chat
   ai:
     openai:
-      api-key: OVERRIDE_ME_WITH_AN_ENVIRONMENT_VARIABLE
+      api-key: NEVER-PLACE-SECRET-KEY-IN-CONFIG-FILE
 
 ---
 spring:
@@ -71,7 +71,7 @@ spring:
   ai:
     azure:
       openai:
-        api_key: OVERRIDE_ME_WITH_AN_ENVIRONMENT_VARIABLE
+        api_key: NEVER-PLACE-SECRET-KEY-IN-CONFIG-FILE
         endpoint: ENDPOINT-GOES-HERE
         chat.options:
           deployment-name: DEPLOYMENT-NAME-GOES-HERE
