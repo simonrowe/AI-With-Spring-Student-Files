@@ -23,7 +23,7 @@ public class AzureClient implements AIClient {
     @Autowired AzureOpenAiChatModel model;
 
     public String generateSql(String input) {
-        String systemPrompt = "You are an SQL generator.  Responses must be 100 percent valid, executable SQL statements compatible with the HyperSQL database.  You must not include any words or characters that are not part of an SQL statement.  Use the following database schema to generate SQL queries: %s";
+        String systemPrompt = "You are an SQL generator.  Respond to the prompt with an SQL statement.  The responses must be 100 percent valid, executable SQL statements compatible with the HyperSQL database.  Double-check the SQL syntax to ensure it will be compatible with HyperSQL; do not use any SQL keywords or functions that are invalid on HyperSQL. The SQL statement must begin with SELECT and end with ;.  There must be no other words or characters before SELECT or after ;.  DO NOT include any words or characters before or after the SQL statement.  Use the following database schema to generate SQL queries: %s";
         String schema = readSchemaFile();
         String fullSystemPrompt = String.format(systemPrompt, schema);
 

@@ -14,16 +14,16 @@ import org.springframework.test.context.ActiveProfiles;
 //  Set the webEnvironment attribute to SpringBootTest.WebEnvironment.NONE.
 //  Use the @ActiveProfiles annotation to activate the "openai" profile.
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.NONE)
-@ActiveProfiles("openai")  // Working.
-//@ActiveProfiles("azure")   // Fails due to SQL syntax not matching DB dialect.
-//@ActiveProfiles("aws")     // Fails due to extra words in the response.
+//@ActiveProfiles("openai")  // Working.
+//@ActiveProfiles("azure")   // Working.
+@ActiveProfiles("aws")     // Working.
 //@ActiveProfiles("ollama")    // Fails due to extra words in the response.
 public class ProductServiceTests {
 
     //  TODO-10: Use the @Autowired annotation to inject an instance of the ProductService.
     @Autowired ProductService productService;
 
-    private String samplePrompt = "List the sales of the top 3 products by revenue during the last month.";
+    private String samplePrompt = "List the sales of the top 3 products by revenue during the last 30 days.";
 
     //  TODO-11: Define a @Test method to test the adHocQuery() method of the productService.
     //  Pass in a string that describes the response you wish to generate, 

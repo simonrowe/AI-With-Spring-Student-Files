@@ -3,7 +3,9 @@ package com.example.client;
 import java.io.BufferedReader;
 import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.nio.charset.StandardCharsets;import org.springframework.ai.bedrock.titan.BedrockTitanChatModel;
+import java.nio.charset.StandardCharsets;
+
+import org.springframework.ai.bedrock.anthropic.BedrockAnthropicChatModel;
 import org.springframework.ai.chat.client.ChatClient;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Profile;
@@ -17,11 +19,11 @@ import org.springframework.stereotype.Component;
 @Profile("aws")
 public class AwsClient implements AIClient {
 
-    //  TODO-06: Autowire the BedrockTitanChatModel bean.
-    @Autowired BedrockTitanChatModel model;
+    //  TODO-06: Autowire the BedrockAnthropicChatModel bean.
+    @Autowired BedrockAnthropicChatModel model;
 
     public String generateSql(String input) {
-        String systemPrompt = "You are an SQL generator.  Responses must be 100 percent valid, executable SQL statements.  You must not include any words or characters that are not part of an SQL statement.  Use the following database schema to generate SQL queries: %s";
+        String systemPrompt = "You are an SQL generator.  Responses must be 100 percent valid, executable SQL statements.  You must not include any words or characters that are not part of an SQL statement.  There should be no words before the SELECT or after the ;.  Use the following database schema to generate SQL queries: %s";
         String schema = readSchemaFile();
         String fullSystemPrompt = String.format(systemPrompt, schema);
 
