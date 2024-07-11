@@ -1,19 +1,17 @@
 package com.example.client;
 
-import java.util.List;
-
-import org.springframework.ai.azure.openai.AzureOpenAiChatModel;
 import org.springframework.ai.chat.client.ChatClient;
 import org.springframework.ai.chat.prompt.ChatOptions;
 import org.springframework.ai.chat.prompt.Prompt;
 import org.springframework.ai.openai.OpenAiChatModel;
 import org.springframework.ai.openai.OpenAiChatOptions;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Component;
 
-//  TODO-05: Use a stereotype annotation to mark this class as a Spring bean.
+//  TODO-05: Use @Component("openAIClientBean") to mark this class as a Spring bean.
+//  (The name "openAIClientBean" is only needed to prevent naming ambiguitiy with Spring's "OpenAIClient" bean.)
 //  Use an annotation to assign it to the "openai" profile.
+
 @Component("openAIClientBean")
 @Profile("openai")
 public class OpenAIClient implements AIClient {

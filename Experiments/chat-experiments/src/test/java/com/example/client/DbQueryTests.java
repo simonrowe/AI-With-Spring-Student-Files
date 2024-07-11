@@ -56,7 +56,7 @@ public class DbQueryTests {
     @Autowired
     ResourceLoader resourceLoader;
 
-    private String readSchemaFile() {
+    static String readSchemaFile() {
         try {
             return new ClassPathResource("schema.sql").getContentAsString(StandardCharsets.UTF_8);
         } catch (IOException e) {

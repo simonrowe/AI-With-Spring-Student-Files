@@ -9,7 +9,7 @@ import org.springframework.test.context.ActiveProfiles;
 
 //  TODO-09: Define this test class as a Spring Boot test.
 //  Set the webEnvironment attribute to SpringBootTest.WebEnvironment.NONE.
-//  Use the @ActiveProfiles annotation to activate the "aws" profile.
+//  Use the @ActiveProfiles annotation to activate the "azure" profile.
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.NONE)
 @ActiveProfiles("azure")
 public class AzureClientTests {
