@@ -16,18 +16,21 @@ import com.example.client.AIClient;
 @Description("Service to get stock information")	//	Helpful description for the OpenAI Client object.
 public class StockService implements Function<com.example.service.StockService.Request, com.example.service.StockService.Response> {
 
+	public static Double price = Math.round(Math.random()*800)/100.0;
+	public static Integer volume = (int) (Math.random() * 999 + 1);
+
+
 	//	TODO-12: Notice the pre-defined records for Request and Response.
 	//  These structures will be understood by the OpenAI client software.
 	//  Notice the apply() method, this will be invoked by the OpenAI client
 	//	automatically when the response is returned from the server:
 	
     public record Request(String symbol) {}
-    public record Response(String symbol, Double price, String currency) {}
+    public record Response(String symbol, Double price, Integer volume, String currency) {}
 
 	public Response apply(Request request) {
 		//	For now, just return a hard-coded response:
-		double price = Math.random()*800;
-		return new Response(request.symbol(),price, "USD");
+		return new Response(request.symbol(),price,volume, "USD");
 	}    
 
     @Autowired AIClient client;

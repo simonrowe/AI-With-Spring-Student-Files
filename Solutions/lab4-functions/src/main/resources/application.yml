@@ -43,5 +43,5 @@ spring:
         endpoint: ENDPOINT-GOES-HERE
         chat.options:
           deployment-name: DEPLOYMENT-NAME-GOES-HERE
-          model: gpt-35-turbo        
+          model: gpt-4        # gpt-35-turbo     
 
