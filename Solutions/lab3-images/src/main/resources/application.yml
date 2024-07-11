@@ -1,4 +1,4 @@
-# TODO-02: Set the spring.application.name to "lab3-images" or something similar.
+# TODO-02: Set the spring.application.name to "Lab3 Images" or something similar.
 # Set this application as a non-web application by setting the spring.main.web-application-type to none.
 # Disable the automatic retry mechanism by setting the spring.ai.retry.max-attempts to 1.
 # Set the model-specific attributes according to the lab instructions.
