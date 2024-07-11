@@ -1,69 +1,18 @@
 ## Lab 2 - AWS Bedrock
 
-In this exercise you will create a simple Spring Boot application which can make calls to Amazon Bedrock.  Bedrock is a managed service which gives us access to many different text and image generation [models](https://docs.aws.amazon.com/bedrock/latest/userguide/model-ids.html#model-ids-arns).  The first thing we will need to do is create an AWS account (if we don't have one) and obtain AWS credentials (access key ID and secret key).  Once we start writing our Spring Boot application, the hard part will behind us.  Let's jump in.
+In this exercise you will create a simple Spring Boot application which can make calls to Amazon Bedrock.  Bedrock is a managed service which gives us access to many different text and image generation [models](https://docs.aws.amazon.com/bedrock/latest/userguide/model-ids.html#model-ids-arns).  
+
+Let's jump in.
 
 ---
-**Part 1 - Obtain an AWS Account**
+**Part 1 - Obtain an AWS Account, Set Credentials, Enable Bedrock Models**
 
-Note that the exact screen flow to perform these steps may vary over time as AWS modifies their user interface.
-
-1. If you already have an AWS account for personal use - and AWS credentials - you can skip this section.  If you have access to an account through your employer, you _may_ be able to use it, but you could find that you have insufficient permission to use the services described in this lab.  We recommend having your own account under your complete control.
-
-1. Go to https://aws.amazon.com/ and follow the process to create an AWS account.  There are many resources that can help guide you through this process such as [this video](https://www.youtube.com/watch?v=xi-JDeceLeI).
-    - Record your 12-digit account number. You will need it later when signing into the console.  If you have an opportunity to create an account 'alias', we recommend it.
-    - AWS Accounts require a payment method (credit card) be established for billing. The charges associated with this lab should be extremely small, even if you run the lab dozens of times experimenting with multiple models.  
-
-3. The account you have just created gives you access to "root" permissions which cannot be limited.  AWS strongly recommends avoiding root credentials for day-to-day use.  Instead create an "IAM user" within this account.  [This video](https://www.youtube.com/watch?v=ubrE4xq9_9c) provides a good guide.   
-    - Ignore recommendations to use Identity Center.  It provides a more proper way to manage identities in your AWS account, but it is tangental to our purposes here.
-    - Give your user the `AmazonBedrockFullAccess` policy.  This follows the _grant least privilege_ security approach to allow only what is needed for this lab.
-    - Be sure to "Download .csv file" containing the user's password.  You may need this later to sign into the console.
-4. Select the new user from the user list and access the security credentials.  Create an access key.  Choose any use case, but ignore the recommended alternatives.  Be sure to download the resulting CSV file; this contains the Access Key ID and Secret access key "credentials" that we need.  
-- If you loose this file don't worry; just repeat the steps to create a new key.
-- On AWS, don't confuse Access Key ID / Secret access key with user name and password.  The former are "credentials" used for programatic access, the latter is only for human access to the web interface    
+The first thing we will need to do is setup our AWS account. Follow the instructions in the **Lab Setup guide** _Signup Process for Amazon / Bedrock_ section to establish an AWS Account, IAM User, set credentials in your local environment, and enable Bedrock models.
 
 ---
-**Part 2 - Set Credentials**
+**Part 2 - Generate the Project Structure**
 
-Next, provide the access key ID and secret key to our software.  
-
-AWS recommends (and we agree) that the best way to provide credentials to our code is IAM Roles and the [EC2 Instance Metadata service](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/configuring-instance-metadata-service.html), or the local `~/.aws/credentials file`.  However, to keep things simple and consistent with other labs, we will use environment variables.
-
-4. Set the following environment variables using the values obtained from the CSV file.  On Windows you can run: 
-    ```
-    setx SPRING_AI_BEDROCK_AWS_ACCESS_KEY "YOUR_ACCESS_KEY"
-    setx SPRING_AI_BEDROCK_AWS_SECRET_KEY "YOUR_SECRET_KEY"
-    ```
-    On Linux or Mac you can run:   
-    ```
-    export SPRING_AI_BEDROCK_AWS_ACCESS_KEY="YOUR_ACCESS_KEY"
-    export SPRING_AI_BEDROCK_AWS_SECRET_KEY="YOUR_SECRET_KEY"
-    ```
-
----
-**Part 3 - Enable Bedrock Models**
-
-When using Amazon Bedrock, you must _enable_ the models you wish to use. This is easily done via the AWS Management Console.
-
-Note that the exact steps may vary over time as AWS modifies their user interface.
-
-5. From the AWS Management Console main page, select the [region](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-regions-availability-zones.html#concepts-regions) you wish to use from the drop-down list in the upper right.  The solution code will use _us-west_2_, but feel free to choose another.  Be aware that some regions may require you to "opt-in" to use them, and may not provide the same Bedrock features.  (Have fun by selecting a region on the opposite side of the planet from you.)
-
-
-
-1. In the search box on the top of the console, type **bedrock** and select the Amazon Bedrock service.
-1. Open the left menu if it is closed (click the "hamburger" icon with three horizontal lines). From the menu select **Model access**.
-1. Click **Modify model access**.
-1. Select **Titan Text G1 - Express** and click **Next**.
-- Note: you may enable other models if you like.  Generally there is no charge to enable a model, only acceptance of a license agreement.  The _Titan_ models from Amazon are relatively inexpensive.
-10. Click **Submit**.  It may take a few moments for the model to become active.
-
-Note:  [Amazon Bedrock pricing](https://aws.amazon.com/bedrock/pricing/) for chat/text is based on input and output tokens, and varies depending on the model chosen.  Tokens currently cost between $0.00015 and $0.02 per thousand input tokens, $0.00125 and $0.024 per thousand output tokens.  It is always a good idea to double-check the pricing page when using a cloud provider.
-
-
----
-**Part 3 - Generate the Project Structure**
-
-5.  Use [https://start.spring.io](https://start.spring.io), create a new Spring Boot Project.
+1.  Use [https://start.spring.io](https://start.spring.io), create a new Spring Boot Project.
   - Use either Maven or Gradle - Groovy (if you have it installed).  All lab instructions are based on Maven.
   - Use the latest stable releases of Boot and Java.  These instructions were originally tested with Java 1.21, Boot 3.2.5.  The version can be changed after the project is generated.
   - Use JAR packaging.
@@ -72,7 +21,7 @@ Note:  [Amazon Bedrock pricing](https://aws.amazon.com/bedrock/pricing/) for cha
   - Search for and select the `Amazon Bedrock` dependency. 
 6. Generate.  Find the downloaded zip and expand it.  Copy the `lab2-aws` project to wherever you downloaded your labfiles to.
 ---
-**Part 4 - Import into your IDE**
+**Part 3 - Import into your IDE**
 
 The project structure generated by Spring Initializr follows a Maven-type generic pattern and can be imported into various IDEs. You can use either VS Code (assuming the appropriate extensions are installed, see "IDE Tips"), IntelliJ, or Eclipse. 
 
@@ -102,7 +51,7 @@ The instructions below are for VS Code. If you wish to use IntilliJ or Eclipse a
 The project should be free of compiler errors at this point.  Address any issues you see before continuing.
 
 ---
-**Part 5 - Basic Configuration and Test**
+**Part 4 - Basic Configuration and Test**
 
 At this point, let's take a moment to ensure that everything we have created so far is error free.
 
@@ -138,7 +87,7 @@ spring:
 * We expect the application to start, then stop, without errors.  If you have any errors related to tooling, be sure to address them now before proceeding.
 
 ---
-**Part 6 - Try Spring AI's `ChatClient`**
+**Part 5 - Try Spring AI's `ChatClient`**
 
 At this point we should be able to try using the ChatClient to make API calls to Amazon Bedrock and any of its hosted models.
 

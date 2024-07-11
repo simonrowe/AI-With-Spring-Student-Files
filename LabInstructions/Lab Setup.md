@@ -5,6 +5,11 @@ how to open / import projects into eclipse or intellij
 
 organize imports
 
+
+
+
+
+
 ---
 **Signup Process for OpenAI**
 
@@ -96,6 +101,63 @@ NOTE:  Cloud providers such as Azure change their procedures from time to time w
 
 Note:  [Azure OpenAI pricing](https://azure.microsoft.com/en-us/pricing/details/cognitive-services/openai-service/) for chat/text is based on input and output tokens, and varies depending on the model chosen.  Tokens currently cost between $0.0005 and $0.06 per thousand input tokens, $0.002 and $0.12 per thousand output tokens.  It is always a good idea to double-check the pricing page when using a cloud provider.
 
+---
+**Signup Process for Amazon / Bedrock**
+
+Note that the exact screen flow to perform these steps may vary over time as AWS modifies their user interface.
+
+1. Signup for an AWS Account
+
+    1. If you already have an AWS account for personal use - and AWS credentials - you can skip this section.  If you have access to an account through your employer, you _may_ be able to use it, but you could find that you have insufficient permission to use the services described in this lab.  We recommend having your own account under your complete control.
+
+    1. Go to https://aws.amazon.com/ and follow the process to create an AWS account.  There are many resources that can help guide you through this process such as [this video](https://www.youtube.com/watch?v=xi-JDeceLeI).
+        - Record your 12-digit account number. You will need it later when signing into the console.  If you have an opportunity to create an account 'alias', we recommend it.
+        - AWS Accounts require a payment method (credit card) be established for billing. The charges associated with this lab should be extremely small, even if you run the lab dozens of times experimenting with multiple models.  
+
+    3. The account you have just created gives you access to "root" permissions which cannot be limited.  AWS strongly recommends avoiding root credentials for day-to-day use.  Instead create an "IAM user" within this account.  [This video](https://www.youtube.com/watch?v=ubrE4xq9_9c) provides a good guide.   
+        - Ignore recommendations to use Identity Center.  It provides a more proper way to manage identities in your AWS account, but it is tangental to our purposes here.
+        - Give your user the `AmazonBedrockFullAccess` policy.  This follows the _grant least privilege_ security approach to allow only what is needed for this lab.
+        - Be sure to "Download .csv file" containing the user's password.  You may need this later to sign into the console.
+    4. Select the new user from the user list and access the security credentials.  Create an access key.  Choose any use case, but ignore the recommended alternatives.  Be sure to download the resulting CSV file; this contains the Access Key ID and Secret access key "credentials" that we need.  
+    - If you loose this file don't worry; just repeat the steps to create a new key.
+    - On AWS, don't confuse Access Key ID / Secret access key with user name and password.  The former are "credentials" used for programatic access, the latter is only for human access to the web interface    
+
+1. Set Credentials
+
+    Next, provide the access key ID and secret key to our software.  
+
+    AWS recommends (and we agree) that the best way to provide credentials to our code is IAM Roles and the [EC2 Instance Metadata service](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/configuring-instance-metadata-service.html), or the local `~/.aws/credentials file`.  However, to keep things simple and consistent with other labs, we will use environment variables.
+
+    1. Set the following environment variables using the values obtained from the CSV file.  On Windows you can run: 
+        ```
+        setx SPRING_AI_BEDROCK_AWS_ACCESS_KEY "YOUR_ACCESS_KEY"
+        setx SPRING_AI_BEDROCK_AWS_SECRET_KEY "YOUR_SECRET_KEY"
+        ```
+        On Linux or Mac you can run:   
+        ```
+        export SPRING_AI_BEDROCK_AWS_ACCESS_KEY="YOUR_ACCESS_KEY"
+        export SPRING_AI_BEDROCK_AWS_SECRET_KEY="YOUR_SECRET_KEY"
+        ```
+
+1. Enable Bedrock Models
+
+    When using Amazon Bedrock, you must _enable_ the models you wish to use. This is easily done via the AWS Management Console.
+
+    Note that the exact steps may vary over time as AWS modifies their user interface.
+
+    5. From the AWS Management Console main page, select the [region](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-regions-availability-zones.html#concepts-regions) you wish to use from the drop-down list in the upper right.  The solution code will use _us-west_2_, but feel free to choose another.  Be aware that some regions may require you to "opt-in" to use them, and may not provide the same Bedrock features.  (Have fun by selecting a region on the opposite side of the planet from you.)
+    1. In the search box on the top of the console, type **bedrock** and select the Amazon Bedrock service.
+    1. Open the left menu if it is closed (click the "hamburger" icon with three horizontal lines). From the menu select **Model access**.
+    1. Click **Modify model access**.
+    1. For the labs presented in this course, we recommend you select and enable the following models:
+    * **Amazon - Titan Text G1 - Express**
+    * **Amazon - Titan Embeddings G1 - Text**
+    * **Anthropic - Claude**
+    - Note: you may enable other models if you like.  Generally there is little or no charge to enable a specific model, only acceptance of a license agreement.  The _Titan_ models from Amazon are relatively inexpensive.
+    10. Click **Submit**.  It may take a few moments for the model to become active.
+
+    Note:  [Amazon Bedrock pricing](https://aws.amazon.com/bedrock/pricing/) for chat/text is based on input and output tokens, and varies depending on the model chosen.  Tokens currently cost between $0.00015 and $0.02 per thousand input tokens, $0.00125 and $0.024 per thousand output tokens.  It is always a good idea to double-check the pricing page when using a cloud provider.
+
 
 ---
 **Signup Process for Stability.AI**
@@ -157,9 +219,24 @@ ZhiPu AI offers a fairly generous free tier for new accounts: 25 million tokens 
 
 For images, no free offer is available.  Images are roughly $0.03 each.  Since ZhiPu is Chinese-based, payments must be made through WeChat pay or Alipay.
 
+POSTGRESQL DOCKER INSTALL
+
+docker pull postgres
+
+docker run --name local_postgres -e POSTGRES_PASSWORD=mysecretpassword -d postgres
+
+docker exec -it local_postgres psql -U postgres
+
+-----
+For PGVectorStore variant of postgres:
+Warning: this is not an official image.
+
+docker run --name local_pgvector -d -p 5432:5432 -e POSTGRES_USER=postgres -e POSTGRES_PASSWORD=postgres ankane/pgvector
+
+docker exec -it local_pgvector psql -U postgres
 
 
-
+Background information, but not the instructions I followed:  https://www.docker.com/blog/how-to-use-the-postgres-docker-official-image/
 
 
 
