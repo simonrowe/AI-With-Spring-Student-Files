@@ -1,6 +1,7 @@
 package com.example.client;
 
 import java.io.BufferedReader;
+import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.nio.charset.StandardCharsets;
@@ -12,6 +13,7 @@ import org.springframework.ai.chat.client.ChatClient;
 import org.springframework.ai.openai.OpenAiChatModel;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.core.io.ClassPathResource;
 import org.springframework.core.io.Resource;
 import org.springframework.core.io.ResourceLoader;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -55,19 +57,25 @@ public class DbQueryTests {
     ResourceLoader resourceLoader;
 
     private String readSchemaFile() {
-        StringBuilder schema = new StringBuilder();
         try {
-            Resource resource = resourceLoader.getResource("classpath:schema.sql");
-            try (InputStream inputStream = resource.getInputStream();
-                 BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream, StandardCharsets.UTF_8))) {
-                String line;
-                while ((line = reader.readLine()) != null) {
-                    schema.append(line).append("\n");
-                }
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
+            return new ClassPathResource("schema.sql").getContentAsString(StandardCharsets.UTF_8);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
         }
-        return schema.toString();
+
+        // StringBuilder schema = new StringBuilder();
+        // try {
+        //     Resource resource = resourceLoader.getResource("classpath:schema.sql");
+        //     try (InputStream inputStream = resource.getInputStream();
+        //          BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream, StandardCharsets.UTF_8))) {
+        //         String line;
+        //         while ((line = reader.readLine()) != null) {
+        //             schema.append(line).append("\n");
+        //         }
+        //     }
+        // } catch (Exception e) {
+        //     e.printStackTrace();
+        // }
+        // return schema.toString();
     }
 }
