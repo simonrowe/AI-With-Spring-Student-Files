@@ -7,8 +7,7 @@ organize imports
 
 
 
-
-
+[Setup Process for Azure OpenAI](#azure)
 
 ---
 **Signup Process for OpenAI**
@@ -38,7 +37,7 @@ Login or signup for an account.  We recommend the signup option using Google, Mi
 
 
 ---
-**Signup Process for Azure OpenAI**
+### Setup Process for Azure OpenAI {#azure}
 
 If you wish to work on any of the Azure OpenAI labs, you will need to establish an Azure account, sign up for Azure AI services, and create a resource and a deployment.
 
