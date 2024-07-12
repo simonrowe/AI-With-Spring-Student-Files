@@ -1,18 +1,45 @@
-install extensions in vs code
-'Test Runner for Java'
-
-how to open / import projects into eclipse or intellij
-
-organize imports
 
 
-Quick Links:
+## Table of Contents:
+
+- [Setup Process for Java JDK](#setup-process-for-java-jdk)
+- [Setup Process for Visual Studio Code](#setup-process-for-visual-studio-code)
+- [Setup Process for IntelliJ Community Edition](#setup-process-for-intellij-community-edition)
+- [Setup Process for Eclipse](#setup-process-for-eclipse)
+- [Setup Process for OpenAI](#setup-process-for-openai)
 - [Setup Process for Azure OpenAI](#setup-process-for-azure-openai)
-
-
+- [Setup Process for Amazon Bedrock](#setup-process-for-amazon-bedrock)
+- [Setup Process for Stability.AI](#setup-process-for-stability.ai)
+- [Setup Process for ZhiPu AI](#setup-process-for-zhipu-ai)
+- [Setup Process for Ollama](#setup-process-for-ollama)
+- [Setup Process for Docker](#setup-process-for-docker)
+- [Setup Process for PostgreSQL Docker Container](#setup-process-for-postgresql-docker-container)
+- [Setup Process for PGVector Docker Container](#setup-process-for-pgvector-docker-container)
 
 ---
-**Signup Process for OpenAI**
+### Setup Process for Java JDK
+
+TODO
+
+---
+### Setup Process for Visual Studio Code
+
+TODO
+
+---
+### Setup Process for IntelliJ Community Edition
+
+TODO
+
+---
+### Setup Process for Eclipse
+
+
+
+TODO
+
+---
+### Setup Process for OpenAI
 
 You will need an account on OpenAI to perform any of the labs specific to this technology
 
@@ -103,7 +130,7 @@ NOTE:  Cloud providers such as Azure change their procedures from time to time w
 Note:  [Azure OpenAI pricing](https://azure.microsoft.com/en-us/pricing/details/cognitive-services/openai-service/) for chat/text is based on input and output tokens, and varies depending on the model chosen.  Tokens currently cost between $0.0005 and $0.06 per thousand input tokens, $0.002 and $0.12 per thousand output tokens.  It is always a good idea to double-check the pricing page when using a cloud provider.
 
 ---
-**Signup Process for Amazon / Bedrock**
+**Setup Process for Amazon / Bedrock**
 
 Note that the exact screen flow to perform these steps may vary over time as AWS modifies their user interface.
 
@@ -161,7 +188,7 @@ Note that the exact screen flow to perform these steps may vary over time as AWS
 
 
 ---
-**Signup Process for Stability.AI**
+**Setup Process for Stability.AI**
 
 If you wish to work on any of the Stability.AI labs, you will need to establish a [Stability.AI](https://platform.stability.ai) account.
 
@@ -190,7 +217,7 @@ Stability.AI offers free credits for new accounts, but these may not be enough t
 
 
 ---
-**Signup Process for ZhiPu AI**
+**Setup Process for ZhiPu AI**
 
 If you wish to work on any of the ZhiPu AI labs, you will need to establish a [ZhiPu AI](https://open.bigmodel.cn/) account.
 
@@ -220,33 +247,41 @@ ZhiPu AI offers a fairly generous free tier for new accounts: 25 million tokens 
 
 For images, no free offer is available.  Images are roughly $0.03 each.  Since ZhiPu is Chinese-based, payments must be made through WeChat pay or Alipay.
 
-POSTGRESQL DOCKER INSTALL
+---
+### Setup Process for Ollama
 
+
+---
+### Setup Process for Docker
+
+---
+### Setup Process for PostgreSQL Docker Container
+
+Run these commands from the command line:
+
+```
 docker pull postgres
-
 docker run --name local_postgres -e POSTGRES_PASSWORD=mysecretpassword -d postgres
 
 docker exec -it local_postgres psql -U postgres
+```
 
------
-For PGVectorStore variant of postgres:
-Warning: this is not an official image.
+---
+### Setup Process for PGVector Docker Container
+
+The labs featuring Vector Store have optional steps for running on an actual Vector Store rather than the `SimpleVectorStore`. To complete these steps, Use PostgreSQL's PGVectorStore.  It is a variant of postgres specialized for Vector storage. 
+
+WARNING:  This is not an official image.
+
+```
+# Note: Signin may be required:
+docker pull ankane/pgvector
 
 docker run --name local_pgvector -d -p 5432:5432 -e POSTGRES_USER=postgres -e POSTGRES_PASSWORD=postgres ankane/pgvector
 
 docker exec -it local_pgvector psql -U postgres
-
+```
 
 Background information, but not the instructions I followed:  https://www.docker.com/blog/how-to-use-the-postgres-docker-official-image/
 
 
-
-
-
-
-
-
-
-
-
-STATIC IMPORTS
