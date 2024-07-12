@@ -6,8 +6,10 @@ how to open / import projects into eclipse or intellij
 organize imports
 
 
+Quick Links:
+- [Setup Process for Azure OpenAI](#setup-process-for-azure-openai)
 
-[Setup Process for Azure OpenAI](#azure)
+
 
 ---
 **Signup Process for OpenAI**
@@ -37,7 +39,7 @@ Login or signup for an account.  We recommend the signup option using Google, Mi
 
 
 ---
-### Setup Process for Azure OpenAI {#azure}
+### Setup Process for Azure OpenAI
 
 If you wish to work on any of the Azure OpenAI labs, you will need to establish an Azure account, sign up for Azure AI services, and create a resource and a deployment.
 
