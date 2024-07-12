@@ -9,7 +9,7 @@
 - [Setup Process for OpenAI](#setup-process-for-openai)
 - [Setup Process for Azure OpenAI](#setup-process-for-azure-openai)
 - [Setup Process for Amazon Bedrock](#setup-process-for-amazon-bedrock)
-- [Setup Process for Stability.AI](#setup-process-for-stability.ai)
+- [Setup Process for Stability.AI](#setup-process-for-stability ai)
 - [Setup Process for ZhiPu AI](#setup-process-for-zhipu-ai)
 - [Setup Process for Ollama](#setup-process-for-ollama)
 - [Setup Process for Docker](#setup-process-for-docker)
@@ -19,24 +19,123 @@
 ---
 ### Setup Process for Java JDK
 
-TODO
+If you don't already have it installed, you will need a JDK installed on your local environment.  The labs were developed and tested with Java 21; an earlier Java version will not work, but a later version should.  The instructions below are for OpenJDK, but you can also use Temurin, Correto, or any other distribution if you like.
+
+#### Windows:
+1. **Download the JDK**: Go to the [OpenJDK Downloads page](https://jdk.java.net/) and download the latest version for Windows.
+2. **Run the Installer**: Double-click the downloaded `.msi` or `.exe` file to start the installation.
+3. **Follow Installation Wizard**: Follow the prompts in the installation wizard to complete the installation.
+4. **Set Environment Variables**:
+    - Open **System Properties** (Right-click on My Computer/This PC > Properties > Advanced system settings).
+    - Click on **Environment Variables**.
+    - Under **System variables**, click **New** and add:
+      - Variable name: `JAVA_HOME`
+      - Variable value: `C:\Program Files\Java\jdk-[your-version]`
+    - Find the `Path` variable in the System variables list, select it, and click **Edit**. Add a new entry:
+      - `C:\Program Files\Java\jdk-[your-version]\bin`
+5. **Verify Installation**: Open Command Prompt and type `java -version` to confirm the installation.
+
+#### Mac:
+1. **Download the JDK**: Go to the [OpenJDK Downloads page](https://jdk.java.net/) and download the latest version for macOS.
+2. **Run the Installer**: Open the downloaded `.dmg` file and follow the prompts to install the JDK.
+3. **Set Environment Variables**:
+    - Open Terminal.
+    - Edit the `.bash_profile` or `.zshrc` file (depending on your shell) by adding:
+      ```sh
+      export JAVA_HOME=$(/usr/libexec/java_home)
+      export PATH=$JAVA_HOME/bin:$PATH
+      ```
+    - Save the file and run `source ~/.bash_profile` or `source ~/.zshrc` to apply the changes.
+4. **Verify Installation**: Open Terminal and type `java -version` to confirm the installation.
+
+#### Official Links
+- [OpenJDK Downloads](https://jdk.java.net/)
+- [Oracle JDK Downloads](https://www.oracle.com/java/technologies/javase-downloads.html)
+
+For detailed instructions, visit the [official OpenJDK documentation](https://openjdk.java.net/install/).
+
 
 ---
 ### Setup Process for Visual Studio Code
 
-TODO
+If you'd like to do the labs in VSCode, follow these setup instructions.  If you already have VSCode and want to use it for Java, look at the Extension section.
+
+#### Windows:
+1. **Download VSCode**: Go to the [Visual Studio Code download page](https://code.visualstudio.com/Download) and download the installer for Windows.
+2. **Run the Installer**: Double-click the downloaded `.exe` file to start the installation.
+3. **Follow Installation Wizard**: Follow the prompts in the installation wizard. Ensure to check the boxes for "Add to PATH" and other options as needed.
+4. **Launch VSCode**: After installation, open VSCode from the Start menu or desktop shortcut.
+
+#### macOS:
+1. **Download VSCode**: Go to the [Visual Studio Code download page](https://code.visualstudio.com/Download) and download the `.dmg` file for macOS.
+2. **Run the Installer**: Open the downloaded `.dmg` file and drag the VSCode icon to the Applications folder.
+3. **Launch VSCode**: Open VSCode from the Applications folder or Launchpad.
+
+#### Installing the "Extension Pack for Java™ by Microsoft"
+1. **Open Extensions View**: Launch VSCode and click on the Extensions view icon on the Sidebar (or press `Ctrl+Shift+X`).
+2. **Search for the Extension Pack**: In the Extensions view, type `"Extension Pack for Java™ by Microsoft"` in the search box.
+3. **Install the Extension Pack**: Find the "Extension Pack for Java" by Microsoft and click the `Install` button.
+4. **Verify Installation**: After installation, the extension pack will be listed under "Installed" in the Extensions view.
+
+#### Official Links
+- [Visual Studio Code Download](https://code.visualstudio.com/Download)
+- [Extension Pack for Java™ by Microsoft](https://marketplace.visualstudio.com/items?itemName=vscjava.vscode-java-pack)
+
+For detailed instructions and additional information, visit the [official VSCode documentation](https://code.visualstudio.com/docs) and the [Java in VSCode documentation](https://code.visualstudio.com/docs/java/java-tutorial).
+
 
 ---
 ### Setup Process for IntelliJ Community Edition
 
-TODO
+Instructions to Install IntelliJ IDEA Community Edition.  If you follow these instructions, _be sure to download the **community edition* rather than the paid edition.  Both work, but one is free.
+
+#### Windows:
+1. **Download IntelliJ IDEA Community Edition**: Go to the [IntelliJ IDEA Downloads page](https://www.jetbrains.com/idea/download/) and ensure you select the **Community** edition under the "Windows" section.
+2. **Run the Installer**: Double-click the downloaded `.exe` file to start the installation.
+3. **Follow Installation Wizard**:
+    - Select installation options as needed (e.g., add to PATH, create desktop shortcut).
+    - Click "Next" and then "Install" to proceed with the installation.
+4. **Launch IntelliJ IDEA**: After installation, open IntelliJ IDEA from the Start menu or desktop shortcut.
+5. **Complete Initial Setup**: Follow the initial setup wizard to customize your IntelliJ IDEA environment.
+
+#### macOS:
+1. **Download IntelliJ IDEA Community Edition**: Go to the [IntelliJ IDEA Downloads page](https://www.jetbrains.com/idea/download/) and ensure you select the **Community** edition under the "macOS" section.
+2. **Run the Installer**: Open the downloaded `.dmg` file and drag the IntelliJ IDEA icon to the Applications folder.
+3. **Launch IntelliJ IDEA**: Open IntelliJ IDEA from the Applications folder or Launchpad.
+4. **Complete Initial Setup**: Follow the initial setup wizard to customize your IntelliJ IDEA environment.
+
+#### Official Links
+- [IntelliJ IDEA Downloads](https://www.jetbrains.com/idea/download/)
+- [IntelliJ IDEA Documentation](https://www.jetbrains.com/idea/documentation/)
+
 
 ---
 ### Setup Process for Eclipse
 
+#### Windows:
+1. **Download Eclipse**: Go to the [Eclipse Downloads page](https://www.eclipse.org/downloads/) and click on the "Download x86_64" link to get the installer for Windows.
+2. **Run the Installer**: Double-click the downloaded `.exe` file to start the Eclipse Installer.
+3. **Select Eclipse IDE for Java Developers**: In the installer, select "Eclipse IDE for Java Developers" (or the version that suits your needs).
+4. **Choose Installation Folder**: Select the installation folder or leave it as the default, then click "Install".
+5. **Accept Licenses**: Accept the license agreements to proceed with the installation.
+6. **Launch Eclipse**: After installation, click the "Launch" button in the installer or open Eclipse from the Start menu or desktop shortcut.
+7. **Select Workspace**: Upon first launch, you will be prompted to select a workspace directory. Choose a default workspace or specify a different location, then click "Launch".
 
+#### macOS:
+1. **Download Eclipse**: Go to the [Eclipse Downloads page](https://www.eclipse.org/downloads/) and click on the "Download x86_64" link to get the installer for macOS.
+2. **Run the Installer**: Open the downloaded `.dmg` file and drag the Eclipse icon to the Applications folder.
+3. **Select Eclipse IDE for Java Developers**: Open the Eclipse Installer from the Applications folder and select "Eclipse IDE for Java Developers" (or the version that suits your needs).
+4. **Choose Installation Folder**: Select the installation folder or leave it as the default, then click "Install".
+5. **Accept Licenses**: Accept the license agreements to proceed with the installation.
+6. **Launch Eclipse**: After installation, open Eclipse from the Applications folder or Launchpad.
+7. **Select Workspace**: Upon first launch, you will be prompted to select a workspace directory. Choose a default workspace or specify a different location, then click "Launch".
 
-TODO
+#### Official Links
+- [Eclipse Downloads](https://www.eclipse.org/downloads/)
+- [Eclipse Documentation](https://help.eclipse.org/latest/index.jsp)
+
+For detailed instructions and additional information, visit the [Eclipse Documentation](https://help.eclipse.org/latest/index.jsp).
+
 
 ---
 ### Setup Process for OpenAI
@@ -130,7 +229,7 @@ NOTE:  Cloud providers such as Azure change their procedures from time to time w
 Note:  [Azure OpenAI pricing](https://azure.microsoft.com/en-us/pricing/details/cognitive-services/openai-service/) for chat/text is based on input and output tokens, and varies depending on the model chosen.  Tokens currently cost between $0.0005 and $0.06 per thousand input tokens, $0.002 and $0.12 per thousand output tokens.  It is always a good idea to double-check the pricing page when using a cloud provider.
 
 ---
-**Setup Process for Amazon / Bedrock**
+**Setup Process for Amazon Bedrock**
 
 Note that the exact screen flow to perform these steps may vary over time as AWS modifies their user interface.
 
@@ -188,7 +287,7 @@ Note that the exact screen flow to perform these steps may vary over time as AWS
 
 
 ---
-**Setup Process for Stability.AI**
+**Setup Process for Stability AI**
 
 If you wish to work on any of the Stability.AI labs, you will need to establish a [Stability.AI](https://platform.stability.ai) account.
 
@@ -217,7 +316,7 @@ Stability.AI offers free credits for new accounts, but these may not be enough t
 
 
 ---
-**Setup Process for ZhiPu AI**
+### Setup Process for ZhiPu AI
 
 If you wish to work on any of the ZhiPu AI labs, you will need to establish a [ZhiPu AI](https://open.bigmodel.cn/) account.
 
@@ -253,6 +352,29 @@ For images, no free offer is available.  Images are roughly $0.03 each.  Since Z
 
 ---
 ### Setup Process for Docker
+
+For labs that require it, you will need Docker installed and running.  Reference the following instructions.
+
+#### Windows:
+1. **Download Docker Desktop**: Go to [Docker Desktop for Windows](https://desktop.docker.com/win/stable/Docker%20Desktop%20Installer.exe).
+2. **Run the Installer**: Double-click the downloaded installer to start the installation.
+3. **Follow Installation Wizard**: Follow the prompts in the installation wizard.
+4. **Start Docker**: After installation, Docker Desktop should start automatically. If not, search for "Docker Desktop" in the Start menu and open it.
+5. **Enable WSL 2**: During setup, enable WSL 2 if prompted for better performance.
+
+#### Mac:
+1. **Download Docker Desktop**: Go to [Docker Desktop for Mac](https://desktop.docker.com/mac/stable/Docker.dmg).
+2. **Run the Installer**: Double-click the downloaded `.dmg` file to open the installer.
+3. **Drag to Applications**: Drag the Docker icon to the Applications folder.
+4. **Start Docker**: Open Docker from the Applications folder or Launchpad.
+5. **Follow Setup Instructions**: Complete the setup as prompted by Docker Desktop.
+
+#### Official Links
+- [Docker Desktop for Windows](https://desktop.docker.com/win/stable/Docker%20Desktop%20Installer.exe)
+- [Docker Desktop for Mac](https://desktop.docker.com/mac/stable/Docker.dmg)
+
+For detailed instructions, visit the [official Docker documentation](https://docs.docker.com/get-docker/).
+
 
 ---
 ### Setup Process for PostgreSQL Docker Container
