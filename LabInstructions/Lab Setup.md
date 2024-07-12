@@ -9,7 +9,7 @@
 - [Setup Process for OpenAI](#setup-process-for-openai)
 - [Setup Process for Azure OpenAI](#setup-process-for-azure-openai)
 - [Setup Process for Amazon Bedrock](#setup-process-for-amazon-bedrock)
-- [Setup Process for Stability.AI](#setup-process-for-stability ai)
+- [Setup Process for Stability.AI](#setup-process-for-stability-ai)
 - [Setup Process for ZhiPu AI](#setup-process-for-zhipu-ai)
 - [Setup Process for Ollama](#setup-process-for-ollama)
 - [Setup Process for Docker](#setup-process-for-docker)
