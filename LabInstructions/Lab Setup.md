@@ -1,4 +1,8 @@
+To complete the labs you will need to perform some minimum setup.  You should have a Java JDK installed and an IDE.  
 
+Beyond this, your setup will depend on which labs you wish to complete.  You only need to follow the setup instructions for the labs you are interested in.  For example, if you want to do the OpenAI labs but not the Amazon/Bedrock labs, there is no need to complete the Amazon setup steps.
+
+These lab instructions may drift over time as the underlying technologies change, especially instructions based on following user interfaces.  If you find the instructions don't match what you see, please send me a message to alert me to the change.
 
 ## Table of Contents:
 
@@ -58,7 +62,7 @@ For detailed instructions, visit the [official OpenJDK documentation](https://op
 ---
 ### Setup Process for Visual Studio Code
 
-If you'd like to do the labs in VSCode, follow these setup instructions.  If you already have VSCode and want to use it for Java, look at the Extension section.
+If you'd like to do the labs in VSCode, follow these setup instructions.  If you already have VSCode and want to use it for Java, follow the guidance below on installing the correct Extension.
 
 #### Windows:
 1. **Download VSCode**: Go to the [Visual Studio Code download page](https://code.visualstudio.com/Download) and download the installer for Windows.
@@ -287,7 +291,7 @@ Note that the exact screen flow to perform these steps may vary over time as AWS
 
 
 ---
-**Setup Process for Stability AI**
+### Setup Process for Stability AI
 
 If you wish to work on any of the Stability.AI labs, you will need to establish a [Stability.AI](https://platform.stability.ai) account.
 
