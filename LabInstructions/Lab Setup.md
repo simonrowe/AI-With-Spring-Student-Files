@@ -152,8 +152,9 @@ NOTE:  The AI industry changes rapidly.  The instructions here were valid as of 
 Login or signup for an account.  We recommend the signup option using Google, Microsoft, Apple, etc. 
 2. This will take you to an initial page welcoming you to the OpenAI Developer Platform.  Once here you can create API Keys at https://platform.openai.com/api-keys.
 3. Create a new secret key.  Either type of secret key will work, but the “service account” option is more appropriate.  Make a service account ID such as "svc-account-one".  For the project, you should already see a default project associated with your default organization.
-4. Create secret key.  COPY the generated key value. 
-5. Set an environment variable named `SPRING_AI_OPENAI_API_KEY` using this value.  On Windows you can run: 
+4. Create secret key.  COPY the generated key value.
+    a. "Projects" are a way to organize work, permissions, and quotas.  You can make your own project if you want. 
+6. Set an environment variable named `SPRING_AI_OPENAI_API_KEY` using this value.  On Windows you can run: 
     ```
     setx SPRING_AI_OPENAI_API_KEY "YOUR-KEY-GOES-HERE"
     ```
