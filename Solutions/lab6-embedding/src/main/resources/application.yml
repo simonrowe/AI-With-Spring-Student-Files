@@ -9,13 +9,9 @@ spring:
   main.web-application-type: none     # Do not start a web server.
 
   ai:
-    openai:
-      embedding:
-        enabled: false
-    ollama:
-      embedding:
-        enabled: false
-
+    openai.embedding.enabled: false   # Allow profile to enable this if needed.
+    ollama.embedding.enabled: false   # Allow profile to enable this if needed.
+    embedding.transformer.enabled: false  # SpringAI provides a default embeddings model.  Disable this to force the use of a different model.
     retry:
       max-attempts: 1      # Maximum number of retry attempts.
 
@@ -90,3 +86,13 @@ spring:
       base-url: http://localhost:11434  # Default base URL when you run Ollama from Docker
       embedding:
         enabled: true
+
+---
+spring:
+  config.activate.on-profile: internal
+
+  ai:
+    embedding:
+      transformer:
+        enabled: true
+

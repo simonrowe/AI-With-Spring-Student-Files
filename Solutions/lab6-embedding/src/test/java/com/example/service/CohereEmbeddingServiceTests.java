@@ -34,5 +34,11 @@ public class CohereEmbeddingServiceTests {
     //  TODO-13: Organize your imports and save your work.
     //  Run this test.  It should pass.
     //  The product description for wireless headphones should be displayed.
-    
+
+
+    //  TODO-14 (OPTIONAL): Instead of using an external model, we can use an internal SpringAI class to create embeddings.
+    //  Alter the @ActiveProfiles method to enable the "embedding" and "internal" profiles.
+    //  Open application.yml and view the configuration of the "internal" profile,
+    //  It simply enables SpringAI's TransformersEmbeddingModel bean.
+    //  Run the test again.  It should still pass, but this time no external model was used.
 }

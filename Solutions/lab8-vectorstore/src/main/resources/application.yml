@@ -5,9 +5,9 @@ spring:
   ai:
     openai.embedding.enabled: false   # Allow profile to enable this if needed.
     ollama.embedding.enabled: false   # Allow profile to enable this if needed.
+    embedding.transformer.enabled: false  # SpringAI provides a default embeddings model.  Disable this to force the use of a different model.
     retry:
       max-attempts: 1      # Maximum number of retry attempts.
-    embedding.transformer.enabled: false  # SpringAI provides a default embeddings model.  Disable this to force the use of a different model.
 
 ---
 spring:

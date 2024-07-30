@@ -24,22 +24,20 @@ public class EmbeddingService {
     public String findClosestMatch(String query, List<String> products) {
 
         EmbeddingResponse response = null;
-        List<Embedding> productEmbeddings = null;
-        Embedding queryEmbedding = null;
+        List<List<Double>> productEmbeddings = null;
+        List<Double> queryEmbedding = null;
 
 
         //  TODO-06: Use the AI model to turn our product descriptions into Embeddings.
-        //  Pass the incoming products list to the model's embedForResponse method.
+        //  Pass the incoming products list to the model's embed method.
         //  Use the response to populate the productEmbeddings List:
-        response = model.embedForResponse(products);
-        productEmbeddings = response.getResults();
+        productEmbeddings = model.embed(products);
 
 
         //  TODO-07: Use the AI model to turn our query into a single Embedding.
-        //  Pass the query string to the model's embedForResponse method.
-        //  Use the single result from the response to populate the queryEmbedding variable.
-        response = model.embedForResponse(List.of(query));
-        queryEmbedding = response.getResults().get(0);
+        //  Pass the query string to the model's embed method.
+        //  Use the response to populate the queryEmbedding List.
+        queryEmbedding = model.embed(query);
 
 
         //  TODO-08 find the product description most relevant to the query.
@@ -62,12 +60,12 @@ public class EmbeddingService {
     //  This method compares the query embedding to each product embedding to find the most similarity.
     //  The Cosine similarity algorithm measures the similarity between two vectors.
     //  The index of the product with the highest similarity is returned.
-    public static int findColosestMatch(Embedding query, List<Embedding> products) {
+    public static int findColosestMatch(List<Double> query, List<List<Double>> products) {
         int mostSimilarIndex = -1;
         double mostSimilarScore = -1;
         for (int i = 0; i < products.size(); i++) {
-            Embedding productEmbedding = products.get(i);
-            double similarity = cosineSimilarity(query.getOutput(), productEmbedding.getOutput());
+            List<Double> productEmbedding = products.get(i);
+            double similarity = cosineSimilarity(query, productEmbedding);
             if (similarity > mostSimilarScore) {
                 mostSimilarScore = similarity;
                 mostSimilarIndex = i;
