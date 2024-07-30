@@ -5,7 +5,6 @@ spring:
   ai:
     openai.embedding.enabled: false   # Allow profile to enable this if needed.
     ollama.embedding.enabled: false   # Allow profile to enable this if needed.
-    embedding.transformer.enabled: false  # SpringAI provides a default embeddings model.  Disable this to force the use of a different model.
     retry:
       max-attempts: 1      # Maximum number of retry attempts.
 
@@ -124,8 +123,11 @@ spring:
   # (You may not want to do this in a production environment.)
   # Set the spring.ai.vectorstore.pgvector.index-type to HNSW.
   # Set the spring.ai.vectorstore.pgvector.distance-type to COSINE_DISTANCE.
-  # Set the spring.ai.vectorstore.pgvector.dimensions to 384.  This value is sensitive to the underlying model you are using
-  
+  # Set the spring.ai.vectorstore.pgvector.dimensions based on the the underlying model you are using
+  #    For AWS/Bedrock/Cohere, use 384
+  #    For OpenAI's text-embedding-ada-002, use 1536
+  #    If you make a mistake here, don't worry.  The error message will tell you the correct #.  Delete and restart the DB with the revised number.
+
   datasource:
     url: jdbc:postgresql://localhost:5432/postgres
     username: postgres
