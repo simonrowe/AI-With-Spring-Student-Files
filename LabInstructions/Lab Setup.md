@@ -19,7 +19,7 @@ These lab instructions may drift over time as the underlying technologies change
 - [Setup Process for Docker](#setup-process-for-docker)
 - [Setup Process for PostgreSQL Docker Container](#setup-process-for-postgresql-docker-container)
 - [Setup Process for PGVector Docker Container](#setup-process-for-pgvector-docker-container)
-
+- [Setup Process for Redis Docker Container](#setup-process-for-redis-docker-container)
 ---
 ### Setup Process for Java JDK
 
@@ -428,7 +428,7 @@ docker exec -it local_postgres psql -U postgres
 ---
 ### Setup Process for PGVector Docker Container
 
-The labs featuring Vector Store have optional steps for running on an actual Vector Store rather than the `SimpleVectorStore`. To complete these steps, Use PostgreSQL's PGVectorStore.  It is a variant of postgres specialized for Vector storage. 
+The labs featuring Vector Store have optional steps for running on an actual Vector Store rather than the `SimpleVectorStore`. To complete these steps using PostgreSQL's PGVectorStore, follow the steps here.  PGVectorStore is a variant of postgres specialized for Vector storage. 
 
 WARNING:  This is not an official image.
 
@@ -443,4 +443,21 @@ docker exec -it local_pgvector psql -U postgres
 
 Background information, but not the instructions I followed:  https://www.docker.com/blog/how-to-use-the-postgres-docker-official-image/
 
+
+---
+### Setup Process for Redis Docker Container
+
+The labs featuring Vector Store have optional steps for running on an actual Vector Store rather than the `SimpleVectorStore`. To complete these steps using Redis as a vector store, run Redis as a Docker container.
+
+install Redis by running on Docker:
+
+```
+docker pull redis/redis-stack:latest
+docker run -d --name redis-stack -p 6379:6379 -p 8001:8001 redis/redis-stack:latest
+```
+
+Note:  If you like, you can set a password on startup like this:
+```
+docker run -d --name redis-stack -p 6379:6379 -p 8001:8001 -e REDIS_ARGS="--requirepass mypassword" redis/redis-stack:latest
+```
 
