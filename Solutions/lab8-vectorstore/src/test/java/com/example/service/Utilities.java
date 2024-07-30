@@ -15,7 +15,7 @@ public interface Utilities {
         "3D Printer: Beginner-friendly 3D printer with large print volume, Wi-Fi/USB connectivity, and a variety of compatible filaments. Built-in heated bed ensures high-quality prints.",
         "VR Headset: Experience stunning visuals with a high-resolution display and wide field of view. Move naturally within VR worlds with motion tracking technology. Explore a growing library of games, experiences, and educational content. Designed for extended comfort.",
         "Foldable Drone: Capture breathtaking aerial footage with this compact, foldable drone. Easy to transport and perfect for capturing stunning views on the go.",
-        "Smart Garden Kit: Grow fresh herbs and vegetables year-round with this automated smart garden. Features automatic watering and lighting for effortless gardening.",
+        "Smart Garden Kit: Grow fresh herbs and vegetables year-round with this automated smart garden. Features automatic watering and lighting for effortless gardening.  Great for healthy eating.",
         "Solar-Powered Phone Charger: Never run out of power again! This portable solar charger keeps your phone juiced up anywhere, using the power of the sun.",
         "AI-Powered Language Translator: Break down language barriers in real-time with this innovative translator. Speaks and translates conversations seamlessly."
     );
