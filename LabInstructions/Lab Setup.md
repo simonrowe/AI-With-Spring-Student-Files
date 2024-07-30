@@ -152,9 +152,8 @@ NOTE:  The AI industry changes rapidly.  The instructions here were valid as of 
 Login or signup for an account.  We recommend the signup option using Google, Microsoft, Apple, etc. 
 2. This will take you to an initial page welcoming you to the OpenAI Developer Platform.  Once here you can create API Keys at https://platform.openai.com/api-keys.
 3. Create a new secret key.  Either type of secret key will work, but the “service account” option is more appropriate.  Make a service account ID such as "svc-account-one".  For the project, you should already see a default project associated with your default organization.
-    1. "Projects" are a way to organize work, permissions, and quotas.  You can make your own project if you want. 
-4. Create secret key.  COPY the generated key value.
-6. Set an environment variable named `SPRING_AI_OPENAI_API_KEY` using this value.  On Windows you can run: 
+4. Create secret key.  COPY the generated key value. 
+5. Set an environment variable named `SPRING_AI_OPENAI_API_KEY` using this value.  On Windows you can run: 
     ```
     setx SPRING_AI_OPENAI_API_KEY "YOUR-KEY-GOES-HERE"
     ```
@@ -165,7 +164,7 @@ Login or signup for an account.  We recommend the signup option using Google, Mi
 
     * **SECURITY WARNING:**  Do not store this key in any file (such as `application.properties` or `application.yml`) that you may share publicly, such as on GitHub, BitBucket, Google Docs, etc.  For the lab environment, we recommend use of environment variables.
     * If you loose this key, don't worry.  You can easily create a new one if needed.
-    * Note: You may have to establish a payment method if you have exhausted your free tier.  This can happen if you use ChatGPT frequently - like we do.  The labs in this course should cost less than $5, and probably less than $0.50.
+    * Note: You may have to establish a payment method if you have exhausted your free tier.  This can happen if you use ChatGPT frequently - like we do.  The labs in this course should cost less than $5.
 1. Restart your IDE after setting an environment variable this way.
 
 
