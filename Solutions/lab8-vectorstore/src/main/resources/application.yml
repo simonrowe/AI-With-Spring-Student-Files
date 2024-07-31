@@ -1,5 +1,5 @@
 spring:
-  application.name: Lab6 VectorStore
+  application.name: Lab8 VectorStore
   main.web-application-type: none     # Do not start a web server.
 
   ai:
@@ -11,9 +11,9 @@ spring:
 ---
 spring:
   config.activate.on-profile: openai-embedding
-  application.name: Lab6 VectorStore OpenAI
+  application.name: Lab8 VectorStore OpenAI
 
-# TODO-01: Set the spring.application.name to "Lab6 VectorStore OpenAI" or something similar.
+# TODO-01: Set the spring.application.name to "Lab8 VectorStore OpenAI" or something similar.
 # Set this application as a non-web application by setting the spring.main.web-application-type to none.
 # Disable the automatic retry mechanism by setting the spring.ai.retry.max-attempts to 1.
 # Set spring.ai.openai.embedding.options.model to text-embedding-ada-002, or see https://platform.openai.com/docs/models/embeddings for latest list.
@@ -30,7 +30,7 @@ spring:
 spring:
   config.activate.on-profile: aws-cohere-embedding
 
-# TODO-01: Set the spring.application.name to "Lab6 VectorStore Cohere" or something similar.
+# TODO-01: Set the spring.application.name to "Lab8 VectorStore Cohere" or something similar.
 # Set this application as a non-web application by setting the spring.main.web-application-type to none.
 # Disable the automatic retry mechanism by setting the spring.ai.retry.max-attempts to 1.
 # Set spring.ai.cohere.embedding.enabled to true to switch this embedding model on.
@@ -48,7 +48,7 @@ spring:
 spring:
   config.activate.on-profile: aws-titan-embedding
 
-# TODO-01: Set the spring.application.name to "Lab6 VectorStore Titan" or something similar.
+# TODO-01: Set the spring.application.name to "Lab8 VectorStore Titan" or something similar.
 # Set this application as a non-web application by setting the spring.main.web-application-type to none.
 # Disable the automatic retry mechanism by setting the spring.ai.retry.max-attempts to 1.
 # Set spring.ai.titan.embedding.enabled to true to switch this embedding model on.
@@ -66,7 +66,7 @@ spring:
 spring:
   config.activate.on-profile: ollama-embedding
 
-# TODO-01: Set the spring.application.name to "Lab6 VectorStore Ollama" or something similar.
+# TODO-01: Set the spring.application.name to "Lab8 VectorStore Ollama" or something similar.
 # Set this application as a non-web application by setting the spring.main.web-application-type to none.
 # Disable the automatic retry mechanism by setting the spring.ai.retry.max-attempts to 1.
 # Set spring.ai.ollama.embedding.enabled to true to switch this embedding model on.
