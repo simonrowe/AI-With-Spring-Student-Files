@@ -36,6 +36,6 @@ public class OllamaClientTests {
     }
 
     //  TODO-16: Organize your imports and save your work.
-    //  Run this test, it should pass.
+    //  Run this test, it should pass.  Expect it to run slowly.
     //  Check the results in the console.
 }

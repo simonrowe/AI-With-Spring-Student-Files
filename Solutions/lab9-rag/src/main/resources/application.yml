@@ -5,16 +5,22 @@ spring:
   ai:
     openai.embedding.enabled: false   # Allow profile to enable this if needed.
     ollama.embedding.enabled: false   # Allow profile to enable this if needed.
+    bedrock.titan.chat.enabled: false # Allow profile to enable this if needed.
+    openai.chat.enabled: false        # Allow profile to enable this if needed.
+    azure.openai.chat.enabled:  false # Allow profile to enable this if needed.
+    ollama.chat.enabled: false        # Allow profile to enable this if needed.
     retry:
       max-attempts: 1      # Maximum number of retry attempts.
-
 ---
 spring:
   config.activate.on-profile: ollama
 
   # TODO-03: Set the ai.ollama.base-url to http://localhost:11434, unless your container is running on a different URL.
   ai:
-    ollama.base-url: http://localhost:11434  # Default base URL when you run Ollama from Docker
+    ollama:
+      base-url: http://localhost:11434  # Default base URL when you run Ollama from Docker
+      chat:
+        enabled: true
 
 ---
 spring:
@@ -33,10 +39,12 @@ spring:
 spring:
   config.activate.on-profile: openai
 
-  # TODO-03: For OpenAI, note that there are various properties we can set here, but none are required.
+  # TODO-03: For OpenAI, set the ai.openai.chat.enabled to true.
   ai:
     openai:
       api-key: NEVER-PLACE-SECRET-KEY-IN-CONFIG-FILE
+      chat:
+        enabled: true
 
 ---
 spring:
@@ -50,9 +58,12 @@ spring:
       openai:
         api_key: NEVER-PLACE-SECRET-KEY-IN-CONFIG-FILE
         endpoint: ENDPOINT-GOES-HERE
-        chat.options:
-          deployment-name: DEPLOYMENT-NAME-GOES-HERE
-          model: gpt-35-turbo
+        chat:
+          enabled: true
+          options:
+            deployment-name: DEPLOYMENT-NAME-GOES-HERE
+            model: gpt-35-turbo
+
 
 ---
 spring:

@@ -1,6 +1,7 @@
 package com.example.client;
 
 import org.springframework.ai.chat.client.ChatClient;
+import org.springframework.ai.chat.model.ChatModel;
 import org.springframework.ai.chat.prompt.Prompt;
 import org.springframework.ai.openai.OpenAiChatModel;
 import org.springframework.context.annotation.Profile;
@@ -15,10 +16,10 @@ public class OpenAIClient implements AIClient {
     private ChatClient client;
 
     //  TODO-10: Create a constructor for this bean.
-    //  Inject a OpenAiChatModel object into the constructor.
+    //  Inject a ChatModel object into the constructor.
     //  Pass the model to the ChatClient.builder to build a ChatClient object.
     //  Save the ChatClient object in the client field.
-    public OpenAIClient(OpenAiChatModel model) {
+    public OpenAIClient(ChatModel model) {
         client = ChatClient.builder(model).build();
     }
 

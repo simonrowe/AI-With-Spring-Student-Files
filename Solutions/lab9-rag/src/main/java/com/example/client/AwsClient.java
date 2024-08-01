@@ -2,6 +2,7 @@ package com.example.client;
 
 import org.springframework.ai.bedrock.titan.BedrockTitanChatModel;
 import org.springframework.ai.chat.client.ChatClient;
+import org.springframework.ai.chat.model.ChatModel;
 import org.springframework.ai.chat.prompt.Prompt;
 import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Component;
@@ -12,14 +13,14 @@ import java.util.List;
 @Component
 @Profile("aws")
 public class AwsClient implements AIClient {
-    
+
     private ChatClient client;
 
     //  TODO-10: Create a constructor for this bean.
-    //  Inject a BedrockTitanChatModel object into the constructor.
+    //  Inject a ChatModel object into the constructor.
     //  Pass the model to the ChatClient.builder to build a ChatClient object.
     //  Save the ChatClient object in the client field.
-    public AwsClient(BedrockTitanChatModel model) {
+    public AwsClient(ChatModel model) {
         client = ChatClient.builder(model).build();
     }
 
