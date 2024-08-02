@@ -2,8 +2,15 @@ package com.example.client;
 
 import org.springframework.ai.bedrock.titan.BedrockTitanChatModel;
 import org.springframework.ai.chat.client.ChatClient;
+import org.springframework.ai.chat.messages.AssistantMessage;
+import org.springframework.ai.chat.messages.Message;
+import org.springframework.ai.chat.messages.SystemMessage;
+import org.springframework.ai.chat.messages.UserMessage;
 import org.springframework.ai.chat.model.ChatModel;
 import org.springframework.ai.chat.prompt.Prompt;
+import org.springframework.ai.document.Document;
+import org.springframework.ai.embedding.EmbeddingRequest;
+import org.springframework.ai.embedding.EmbeddingResponse;
 import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Component;
 
@@ -28,8 +35,8 @@ public class AwsClient implements AIClient {
     public String getProductRecommendationsText(String input, List<String> products ) {
 
         //  TODO-11: Call the AIClient.buildPrompt() method with the input and products parameters.
-        //  Use the return value to instantiate a new Prompt() object.
-        Prompt prompt = new Prompt( AIClient.buildPrompt(input,products) );
+        //  Use the return value to set a Prompt variable.
+        Prompt prompt = AIClient.buildPrompt(input,products);
 
         //  TODO-12: Use the client object to call the API.
         //  The .prompt() method can be used to set the prompt defined above.

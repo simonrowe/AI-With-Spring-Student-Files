@@ -27,8 +27,8 @@ public class OllamaClient implements AIClient {
     public String getProductRecommendationsText(String input, List<String> products) {
 
         //  TODO-11: Call the AIClient.buildPrompt() method with the input and products parameters.
-        //  Use the return value to instantiate a new Prompt() object.
-        Prompt prompt = new Prompt( AIClient.buildPrompt(input,products) );
+        //  Use the return value to set a Prompt variable.
+        Prompt prompt = AIClient.buildPrompt(input,products);
 
         //  TODO-12: Use the client object to call the API.
         //  The .prompt() method can be used to set the prompt defined above.
