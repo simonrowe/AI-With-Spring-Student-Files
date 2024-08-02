@@ -81,6 +81,9 @@ If you'd like to do the labs in VSCode, follow these setup instructions.  If you
 3. **Install the Extension Pack**: Find the "Extension Pack for Java" by Microsoft and click the `Install` button.
 4. **Verify Installation**: After installation, the extension pack will be listed under "Installed" in the Extensions view.
 
+#### Installing the "Test Runner for Java"
+- Follow the previous steps, but select `Test Runner for Java`.
+
 #### Official Links
 - [Visual Studio Code Download](https://code.visualstudio.com/Download)
 - [Extension Pack for Java™ by Microsoft](https://marketplace.visualstudio.com/items?itemName=vscjava.vscode-java-pack)
@@ -151,7 +154,7 @@ NOTE:  The AI industry changes rapidly.  The instructions here were valid as of 
 1. Go to https://platform.openai.com/signup
 Login or signup for an account.  We recommend the signup option using Google, Microsoft, Apple, etc. 
 2. This will take you to an initial page welcoming you to the OpenAI Developer Platform.  Once here you can create API Keys at https://platform.openai.com/api-keys.
-3. Create a new secret key.  Either type of secret key will work, but the “service account” option is more appropriate.  Make a service account ID such as "svc-account-one".  For the project, you should already see a default project associated with your default organization.
+3. Find the APIKeys page and Create a new secret key.  Either type of secret key will work, but the “service account” option is more appropriate.  Make a service account ID such as "svc-account-one".  For the project, you should already see a default project associated with your default organization, so there is no reason to specify a value.
 4. Create secret key.  COPY the generated key value. 
 5. Set an environment variable named `SPRING_AI_OPENAI_API_KEY` using this value.  On Windows you can run: 
     ```

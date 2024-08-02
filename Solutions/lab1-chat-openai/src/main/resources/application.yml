@@ -1,0 +1,9 @@
+spring:
+  application:
+    name: lab1-chat-openai
+
+  main.web-application-type: none     # Do not start a web server.
+
+  ai:
+    retry:
+      max-attempts: 1           # Maximum number of retry attempts.

@@ -115,11 +115,7 @@ In any IDE, or any editor at all, save by clicking Ctrl-S.
 Anytime you change an environment variable on your system, you will need to restart your IDE.  This is because the existing process space of your IDE is unaware of the change.  Restarting your IDE establishes a new space with the current set of variables.
 
 
-install extensions in vs code
-'Test Runner for Java'
 
-how to open / import projects into eclipse or intellij
 
-organize imports
 
 static imports
