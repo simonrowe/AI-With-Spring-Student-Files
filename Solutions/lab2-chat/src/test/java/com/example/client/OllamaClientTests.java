@@ -9,9 +9,8 @@ import org.springframework.boot.test.context.SpringBootTest.WebEnvironment;
 import org.springframework.test.context.ActiveProfiles;
 
 //  TODO-09: Define this test class as a Spring Boot test.
-//  Set the webEnvironment attribute to SpringBootTest.WebEnvironment.NONE.
 //  Use the @ActiveProfiles annotation to activate the "ollama" profile.
-@SpringBootTest(webEnvironment = WebEnvironment.NONE)
+@SpringBootTest
 @ActiveProfiles("ollama")
 public class OllamaClientTests {
 

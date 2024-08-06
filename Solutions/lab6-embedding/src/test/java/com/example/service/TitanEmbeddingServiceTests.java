@@ -9,10 +9,9 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.ActiveProfiles;
 
 //  TODO-10: Define this test class as a Spring Boot test.
-//  Set the webEnvironment attribute to SpringBootTest.WebEnvironment.NONE.
 //  Use the @ActiveProfiles annotation to activate the "embedding" and "aws-titan" profiles.
 
-@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.NONE)
+@SpringBootTest
 @ActiveProfiles({"embedding","aws-titan"})
 public class TitanEmbeddingServiceTests {
 

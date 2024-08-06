@@ -1,9 +1,5 @@
 package com.example.client;
 
-//  TODO-09: Define this test class as a Spring Boot test.
-//  Set the webEnvironment attribute to SpringBootTest.WebEnvironment.NONE.
-//  Use the @ActiveProfiles annotation to activate the "stabilityai" profile.
-
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,7 +10,10 @@ import static com.example.client.Utilities.saveBase64Image;
 import static com.example.client.Utilities.testValidBase64Image;
 import static org.assertj.core.api.Assertions.assertThat;
 
-@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.NONE)
+//  TODO-09: Define this test class as a Spring Boot test.
+//  Use the @ActiveProfiles annotation to activate the "stabilityai" profile.
+
+@SpringBootTest
 @ActiveProfiles("zhipuai")
 public class ZhiPuAIClientTests {
 

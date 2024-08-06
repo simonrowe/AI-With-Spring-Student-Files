@@ -5,13 +5,11 @@ import static org.assertj.core.api.Assertions.assertThat;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.boot.test.context.SpringBootTest.WebEnvironment;
 import org.springframework.test.context.ActiveProfiles;
 
 //  TODO-09: Define this test class as a Spring Boot test.
-//  Set the webEnvironment attribute to SpringBootTest.WebEnvironment.NONE.
 //  Use the @ActiveProfiles annotation to activate the "aws" profile.
-@SpringBootTest(webEnvironment = WebEnvironment.NONE)
+@SpringBootTest
 @ActiveProfiles("aws")
 public class AwsClientTests {
 

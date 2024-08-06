@@ -11,9 +11,8 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.ActiveProfiles;
 
 //  TODO-09: Define this test class as a Spring Boot test.
-//  Set the webEnvironment attribute to SpringBootTest.WebEnvironment.NONE.
 //  Use the @ActiveProfiles annotation to activate the "openai" profile.
-@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.NONE)
+@SpringBootTest
 //@ActiveProfiles("openai")  // Working.
 //@ActiveProfiles("azure")   // Working.
 @ActiveProfiles("aws")     // Working.

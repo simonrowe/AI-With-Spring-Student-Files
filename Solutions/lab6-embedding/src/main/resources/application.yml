@@ -1,6 +1,4 @@
 # TODO-03: Set the spring.application.name to "Lab6 Embedding" or something similar.
-# Set this application as a non-web application by setting the spring.main.web-application-type to none.
-# Disable the automatic retry mechanism by setting the spring.ai.retry.max-attempts to 1.
 # Set the model-specific attributes according to the lab instructions.
 # Take advantage of YAML's hierarchical structure (indenting) to set these values.
 
@@ -20,8 +18,6 @@ spring:
   config.activate.on-profile: openai
 
 # TODO-03: Set the spring.application.name to "Lab6 Embedding OpenAI" or something similar.
-# Set this application as a non-web application by setting the spring.main.web-application-type to none.
-# Disable the automatic retry mechanism by setting the spring.ai.retry.max-attempts to 1.
 # Set ai.openai.embedding.options.model to text-embedding-ada-002.
 # Take advantage of YAML's hierarchical structure (indenting) to set these values.
 
@@ -37,8 +33,6 @@ spring:
   config.activate.on-profile: aws-cohere
   
 # TODO-03: Set the spring.application.name to "Lab6 Embedding Bedrock Cohere" or something similar.
-# Set this application as a non-web application by setting the spring.main.web-application-type to none.
-# Disable the automatic retry mechanism by setting the spring.ai.retry.max-attempts to 1.
 # Set ai.bedrock.aws.region to "us-west-2", or whichever region you have enabled the titan model in.
 # Set ai.bedrock.cohere.embedding.enabled to specify use of the Cohere embedding model.
 # Set ai.bedrock.cohere.embedding.model to cohere.embed-english-v3, or whatever value matches your enabled model.
@@ -57,8 +51,6 @@ spring:
   config.activate.on-profile: aws-titan
 
 # TODO-03: Set the spring.application.name to "Lab6 Embedding Bedrock Titan" or something similar.
-# Set this application as a non-web application by setting the spring.main.web-application-type to none.
-# Disable the automatic retry mechanism by setting the spring.ai.retry.max-attempts to 1.
 # Set ai.bedrock.aws.region to "us-west-2", or whichever region you have enabled the titan model in.
 # Set ai.bedrock.titan.embedding.enabled to specify use of the Titan embedding model.
 # Set ai.bedrock.titan.embedding.model to amazon.titan-embed-text-v1, or whatever value matches your enabled model.
@@ -76,8 +68,6 @@ spring:
   config.activate.on-profile: ollama
 
 # TODO-03: Set the spring.application.name to "Lab6 Embedding Ollama" or something similar.
-# Set this application as a non-web application by setting the spring.main.web-application-type to none.
-# Disable the automatic retry mechanism by setting the spring.ai.retry.max-attempts to 1.
 # Set ai.ollama.embedding.enabled to specify use of an embedding model.
 # Set the ai.ollama.base-url to http://localhost:11434, unless your container is running on a different URL.
 

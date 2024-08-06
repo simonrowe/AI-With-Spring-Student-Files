@@ -11,9 +11,8 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 
 //  TODO-09: Define this test class as a Spring Boot test.
-//  Set the webEnvironment attribute to SpringBootTest.WebEnvironment.NONE.
 //  Use the @ActiveProfiles annotation to activate the "openai" profile.
-@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.NONE)
+@SpringBootTest
 @ActiveProfiles("openai")
 public class OpenAIClientTests {
 

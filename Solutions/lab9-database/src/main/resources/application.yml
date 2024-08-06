@@ -12,8 +12,6 @@ spring:
   config.activate.on-profile: ollama
 
   # TODO-04: Set the spring.application.name to "Lab9 Ollama Chat" or something similar.
-  # Set this application as a non-web application using spring.main.web-application-type: none.
-  # Disable the automatic retry mechanism using spring.ai.retry.max-attempts: 1.
   # Set the ai.ollama.base-url to http://localhost:11434, unless your container is running on a different URL.
 
   application.name: Lab9 Ollama Chat
@@ -25,8 +23,6 @@ spring:
   config.activate.on-profile: aws
 
   # TODO-04: Set the spring.application.name to "Lab9 Bedrock Chat" or something similar.
-  # Set this application as a non-web application using spring.main.web-application-type: none.
-  # Disable the automatic retry mechanism using spring.ai.retry.max-attempts: 1.
   # Set the ai.bedrock.aws.region to "us-west-2", or whichever region you have enabled the titan model in.
   # Set the ai.bedrock.titan.chat.enabled to specify use of the Titan chat model.
   # Take advantage of YAML's hierarchical structure (indenting) to set these values.
@@ -48,8 +44,6 @@ spring:
   config.activate.on-profile: openai
 
   # TODO-04: Set the spring.application.name to "Lab9 OpenAI Chat" or something similar.
-  # Set this application as a non-web application using spring.main.web-application-type: none.
-  # Disable the automatic retry mechanism using spring.ai.retry.max-attempts: 1.
   # Note that there are various properties we can set here, including credentials,
   # but we never want to commit credentials to source control.
   
@@ -66,8 +60,6 @@ spring:
   config.activate.on-profile: azure
 
   # TODO-04: Set the spring.application.name to "Lab9 Azure OpenAI Chat" or something similar.
-  # Set this application as a non-web application using spring.main.web-application-type: none.
-  # Disable the automatic retry mechanism using spring.ai.retry.max-attempts: 1.
   # Set the ai.azure.openai.endpoint to the value you established during Azure setup.
   # Set the ai.azure.openai.chat.options.deployment-name to the value you establised during setup.
   # Set the ai.azure.openai.chat.options.model to "gpt-35-turbo" to use the GPT-3.5 model.

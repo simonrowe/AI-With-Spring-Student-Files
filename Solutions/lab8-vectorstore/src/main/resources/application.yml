@@ -14,8 +14,6 @@ spring:
   application.name: Lab8 VectorStore OpenAI
 
 # TODO-01: Set the spring.application.name to "Lab8 VectorStore OpenAI" or something similar.
-# Set this application as a non-web application by setting the spring.main.web-application-type to none.
-# Disable the automatic retry mechanism by setting the spring.ai.retry.max-attempts to 1.
 # Set spring.ai.openai.embedding.options.model to text-embedding-ada-002, or see https://platform.openai.com/docs/models/embeddings for latest list.
 # Take advantage of YAML's hierarchical structure to set these values.
 
@@ -31,8 +29,6 @@ spring:
   config.activate.on-profile: aws-cohere-embedding
 
 # TODO-01: Set the spring.application.name to "Lab8 VectorStore Cohere" or something similar.
-# Set this application as a non-web application by setting the spring.main.web-application-type to none.
-# Disable the automatic retry mechanism by setting the spring.ai.retry.max-attempts to 1.
 # Set spring.ai.cohere.embedding.enabled to true to switch this embedding model on.
 # Set spring.ai.cohere.embedding.model to cohere.embed-english-v3, or see https://docs.aws.amazon.com/bedrock/latest/userguide/models-supported.html for latest list.
 # Take advantage of YAML's hierarchical structure to set these values.
@@ -49,8 +45,6 @@ spring:
   config.activate.on-profile: aws-titan-embedding
 
 # TODO-01: Set the spring.application.name to "Lab8 VectorStore Titan" or something similar.
-# Set this application as a non-web application by setting the spring.main.web-application-type to none.
-# Disable the automatic retry mechanism by setting the spring.ai.retry.max-attempts to 1.
 # Set spring.ai.titan.embedding.enabled to true to switch this embedding model on.
 # Set spring.ai.titan.embedding.model to amazon.titan-embed-text-v1, or see https://docs.aws.amazon.com/bedrock/latest/userguide/models-supported.html for latest list.
 # Take advantage of YAML's hierarchical structure to set these values.
@@ -67,8 +61,6 @@ spring:
   config.activate.on-profile: ollama-embedding
 
 # TODO-01: Set the spring.application.name to "Lab8 VectorStore Ollama" or something similar.
-# Set this application as a non-web application by setting the spring.main.web-application-type to none.
-# Disable the automatic retry mechanism by setting the spring.ai.retry.max-attempts to 1.
 # Set spring.ai.ollama.embedding.enabled to true to switch this embedding model on.
 # Set spring.ai.ollama.base-url to http://localhost:11434 unless you are running Ollama from a different URL.
 # Take advantage of YAML's hierarchical structure to set these values.

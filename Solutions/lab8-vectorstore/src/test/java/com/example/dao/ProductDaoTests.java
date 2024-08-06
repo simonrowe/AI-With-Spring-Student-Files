@@ -12,7 +12,7 @@ import org.springframework.test.context.ActiveProfiles;
 
 import com.example.service.Utilities;
 
-@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.NONE)
+@SpringBootTest
 @ActiveProfiles({"simple-vector-store","openai-embedding"})
 //@ActiveProfiles({"pg-vector-store","openai-embedding"})
 //@ActiveProfiles({"redis-vector-store","openai-embedding"})

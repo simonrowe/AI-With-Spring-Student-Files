@@ -9,10 +9,9 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.ActiveProfiles;
 
 //  TODO-14: Define this test class as a Spring Boot test.
-//  Set the webEnvironment attribute to SpringBootTest.WebEnvironment.NONE.
 //  Use the @ActiveProfiles annotation to activate the "simple-vector-store" profile.
 
-@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.NONE)
+@SpringBootTest
 @ActiveProfiles({"simple-vector-store","openai-embedding"})
 //@ActiveProfiles({"redis-vector-store","openai-embedding"})
 //@ActiveProfiles({"pg-vector-store","openai-embedding"})

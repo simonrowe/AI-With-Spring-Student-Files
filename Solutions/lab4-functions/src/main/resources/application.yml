@@ -11,8 +11,6 @@ spring:
   config.activate.on-profile: openai
 
   # TODO-04: Set the spring.application.name to "Lab4 OpenAI Functions" or something similar.
-  # Set this application as a non-web application using spring.main.web-application-type: none.
-  # Disable the automatic retry mechanism using spring.ai.retry.max-attempts: 1.
   # Note that there are various properties we can set here, including credentials,
   # but we never want to commit credentials to source control.
 
@@ -29,8 +27,6 @@ spring:
   config.activate.on-profile: azure
 
   # TODO-04: Set the spring.application.name to "Lab4 Azure OpenAI Functions" or something similar.
-  # Set this application as a non-web application using spring.main.web-application-type: none.
-  # Disable the automatic retry mechanism using spring.ai.retry.max-attempts: 1.
   # Set the ai.azure.openai.endpoint to the value you established during Azure setup.
   # Set the ai.azure.openai.chat.options.deployment-name to the value you establised during setup.
   # Set the ai.azure.openai.chat.options.model to "gpt-35-turbo" to use the GPT-3.5 model.

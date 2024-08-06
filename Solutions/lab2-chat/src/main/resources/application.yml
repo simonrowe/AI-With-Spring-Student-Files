@@ -6,27 +6,31 @@ spring:
     retry:
       max-attempts: 1           # Maximum number of retry attempts.
       on-client-errors: false   # If false, throw a NonTransientAiException, and do not attempt retry for 4xx client error codes.
+    bedrock.titan.chat.enabled: false # Disable all models by default.
+    ollama.chat.enabled: false        # Disable all models by default.
+    openai.chat.enabled: false        # Disable all models by default.
+    azure.openai.chat.enabled: false  # Disable all models by default.
+
 
 ---
 spring:
   config.activate.on-profile: ollama
 
   # TODO-04: Set the spring.application.name to "Lab2 Ollama Chat" or something similar.
-  # Set this application as a non-web application using spring.main.web-application-type: none.
-  # Disable the automatic retry mechanism using spring.ai.retry.max-attempts: 1.
   # Set the ai.ollama.base-url to http://localhost:11434, unless your container is running on a different URL.
 
   application.name: Lab2 Ollama Chat
   ai:
-    ollama.base-url: http://localhost:11434  # Default base URL when you run Ollama from Docker
+    ollama:
+      base-url: http://localhost:11434  # Default base URL when you run Ollama from Docker
+      chat:
+        enabled: true
 
 ---
 spring:
   config.activate.on-profile: aws
 
   # TODO-04: Set the spring.application.name to "Lab2 Bedrock Chat" or something similar.
-  # Set this application as a non-web application using spring.main.web-application-type: none.
-  # Disable the automatic retry mechanism using spring.ai.retry.max-attempts: 1.
   # Set the ai.bedrock.aws.region to "us-west-2", or whichever region you have enabled the titan model in.
   # Set the ai.bedrock.titan.chat.enabled to specify use of the Titan chat model.
   # Take advantage of YAML's hierarchical structure (indenting) to set these values.
@@ -39,29 +43,24 @@ spring:
         chat:
           enabled: true
 
-
 ---
 spring:
   config.activate.on-profile: openai
 
   # TODO-04: Set the spring.application.name to "Lab2 OpenAI Chat" or something similar.
-  # Set this application as a non-web application using spring.main.web-application-type: none.
-  # Disable the automatic retry mechanism using spring.ai.retry.max-attempts: 1.
-  # Note that there are various properties we can set here, including credentials,
-  # but we never want to commit credentials to source control.
-  
+  # Set the spring.ai.openai.enabled property to true to enable this chatModel.
   application.name: Lab2 OpenAI Chat
   ai:
     openai:
       api-key: NEVER-PLACE-SECRET-KEY-IN-CONFIG-FILE
+      chat.enabled: true
 
 ---
 spring:
   config.activate.on-profile: azure
 
   # TODO-04: Set the spring.application.name to "Lab2 Azure OpenAI Chat" or something similar.
-  # Set this application as a non-web application using spring.main.web-application-type: none.
-  # Disable the automatic retry mechanism using spring.ai.retry.max-attempts: 1.
+  # Set the ai.azure.openai.chat.enabled to true to enable the chatModel.
   # Set the ai.azure.openai.endpoint to the value you established during Azure setup.
   # Set the ai.azure.openai.chat.options.deployment-name to the value you establised during setup.
   # Set the ai.azure.openai.chat.options.model to "gpt-35-turbo" to use the GPT-3.5 model.
@@ -73,7 +72,9 @@ spring:
       openai:
         api_key: NEVER-PLACE-SECRET-KEY-IN-CONFIG-FILE
         endpoint: ENDPOINT-GOES-HERE
-        chat.options:
-          deployment-name: DEPLOYMENT-NAME-GOES-HERE
-          model: gpt-35-turbo        
+        chat:
+          enabled: true
+          options:
+            deployment-name: DEPLOYMENT-NAME-GOES-HERE
+            model: gpt-35-turbo
 
