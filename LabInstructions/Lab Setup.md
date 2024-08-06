@@ -197,7 +197,7 @@ NOTE:  Cloud providers such as Azure change their procedures from time to time w
     1. From the Azure AI Services page, select "Azure OpenAI".
     1. Click "Create Azure OpenAI".
     1. Select any subscription, resource group, and region you like.
-    1. Resource names must be unique.  I suggest creating one based on your full name plus a unique number.  
+    1. Resource names must be unique.  I suggest creating one based on your full name plus a unique number, like the year.  
     1. Select the standard pricing tier.  If you have more than one option you may explore which one is the best deal for your situation.
     1. Click "Next"
     1. For network, select "All Networks..." for this exercise.  In a production situation we would usually restrict this to a private network on our Azure account.
@@ -230,7 +230,7 @@ NOTE:  Cloud providers such as Azure change their procedures from time to time w
 1. **Create a _Deployment_**: Open https://oai.azure.com/portal in a new browser tab.  Go to Management / Deployments / Create new deployment.
     1. Select a model to use.  _gpt-35-turbo_ has the lowest price at the time of this writing.
     1.  Choose the default version and standard deployment type.
-    1.  Provide a name for the deployment.  We suggest using the same name as the "resource" defined earlier.  Record the name, you will need it later.
+    1.  Provide a name for the deployment.  We suggest using the same name as the model you've just selected (there is generally a 1 to 1 relationship with model and deployment).  Record the name, you will need it later.
     1. Adjust advanced options if you like. Create. 
 
 Note:  [Azure OpenAI pricing](https://azure.microsoft.com/en-us/pricing/details/cognitive-services/openai-service/) for chat/text is based on input and output tokens, and varies depending on the model chosen.  Tokens currently cost between $0.0005 and $0.06 per thousand input tokens, $0.002 and $0.12 per thousand output tokens.  It is always a good idea to double-check the pricing page when using a cloud provider.
@@ -357,9 +357,9 @@ For images, no free offer is available.  Images are roughly $0.03 each.  Since Z
 ### Setup Process for Ollama
 
 
-TODO:  VERIFY
+Ollama is a locally hosted Large Language Model.  Official installation instructions can be found at https://ollama.com/.  
 
-Ollama is a locally hosted Large Language Model.  The easiest way to run Ollama is via Docker container.  Follow the instructions below to install Docker and make sure it is running.  Running `docker ps` should result in no error.
+One easy way to run Ollama is via Docker container.  Follow the instructions below to install Docker and make sure it is running.  Running `docker ps` should result in no error.
 
 Run the following Docker commands:
 
@@ -370,7 +370,7 @@ docker exec -it ollama ollama run llama2
 ```
 
 * The first command downloads the official ollama image from Dockerhub.
-* The second runs ollama in the background, setting up a folder on your home directory called ".ollama" for storage.  It listens for traffic on port 11434, which is exactly what the SpringAI client will expect.
+* The second runs ollama in the background, setting up a folder on your home directory called ".ollama" for storage.  It listens for traffic on port 11434, which is exactly what the SpringAI model expects by default.
 * The third command instructs ollama to download the llama2 model.  Once this is done the container will respond to requests targeting the given model. 
 
 Warning - these models are LARGE; the llama2 model will be a 4GB download.  Llama3 is closer to 40!
