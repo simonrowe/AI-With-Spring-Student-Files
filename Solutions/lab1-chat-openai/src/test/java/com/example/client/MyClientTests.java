@@ -12,7 +12,11 @@ public class MyClientTests {
 
     @Test
     public void testCallModel() {
-        String response = client.callModel("What are the names of the five great lakes.  Produce JSON output.");
+        String response = client.callModel(
+        """
+        What are the names of the five great lakes.  Produce JSON output.
+        """
+        );
         Assertions.assertThat(response).contains("Superior", "Huron", "Erie", "Michigan", "Ontario");
         System.out.println("The response is: " + response);
     }
