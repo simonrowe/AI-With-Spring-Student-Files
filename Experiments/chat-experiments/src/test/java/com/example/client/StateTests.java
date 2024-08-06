@@ -1,26 +1,27 @@
 package com.example.client;
 
-import static org.assertj.core.api.Assertions.*;
-
 import org.junit.jupiter.api.Test;
 import org.springframework.ai.chat.client.ChatClient;
+import org.springframework.ai.chat.client.advisor.AbstractChatMemoryAdvisor;
 import org.springframework.ai.chat.client.advisor.MessageChatMemoryAdvisor;
+import org.springframework.ai.chat.client.advisor.SimpleLoggerAdvisor;
 import org.springframework.ai.chat.memory.InMemoryChatMemory;
-import org.springframework.ai.openai.OpenAiChatModel;
+import org.springframework.ai.chat.model.ChatModel;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.ActiveProfiles;
-import org.springframework.ai.chat.client.advisor.AbstractChatMemoryAdvisor;
+
+import static org.assertj.core.api.Assertions.assertThat;
 
 
 
-@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.NONE)
-//@ActiveProfiles("openai")
-@ActiveProfiles("aws")
+@SpringBootTest
+@ActiveProfiles("openai")
+//@ActiveProfiles("aws")
 public class StateTests {
 
     private ChatClient client;
-    @Autowired OpenAiChatModel model;
+    @Autowired ChatModel model;
 
     @Test
     void testCallback() {
@@ -30,13 +31,15 @@ public class StateTests {
         client = ChatClient
             .builder(model)
             .defaultAdvisors(
-                new MessageChatMemoryAdvisor (memory)
+                new MessageChatMemoryAdvisor (memory),
+                new SimpleLoggerAdvisor()
             )
             .build();
 
+        var conversationKey = AbstractChatMemoryAdvisor.CHAT_MEMORY_CONVERSATION_ID_KEY;
         String response = client.prompt()
             .user("List out the names of the Great Lakes.")
-            .advisors(a -> a.param(AbstractChatMemoryAdvisor.CHAT_MEMORY_CONVERSATION_ID_KEY, 111))
+            .advisors(a -> a.param(conversationKey, 111))
             .call()
             .content();
         
