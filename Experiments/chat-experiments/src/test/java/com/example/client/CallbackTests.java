@@ -11,7 +11,7 @@ import org.springframework.test.context.ActiveProfiles;
 
 import com.example.client.EntityTests.ActorFilms;
 
-@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.NONE)
+@SpringBootTest
 @ActiveProfiles("openai")
 public class CallbackTests {
 

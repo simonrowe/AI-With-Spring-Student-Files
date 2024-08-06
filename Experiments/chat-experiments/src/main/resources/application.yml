@@ -6,7 +6,7 @@ spring:
     retry:
       max-attempts: 1           # Maximum number of retry attempts.
       on-client-errors: false   # If false, throw a NonTransientAiException, and do not attempt retry for 4xx client error codes.
-    #bedrock.titan.chat.enabled: false # Disable all models by default.
+    bedrock.titan.chat.enabled: false # Disable all models by default.
     ollama.chat.enabled: false        # Disable all models by default.
     openai.chat.enabled: false        # Disable all models by default.
     azure.openai.chat.enabled: false  # Disable all models by default.
