@@ -113,10 +113,10 @@ Now we can create a client object to make the image generation API calls.
 
 Anything we code, we should test.  We will make a `@Test` method to ensure our Client object works as expected.
 
-11. **TODO-09**: Open `src/test/java/com/example/client/StabilityAIClientTests.java`. Use `@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.NONE)` to define this test class as a Spring Boot test without a web environment.  Use the `@ActiveProfiles` annotation to set **stabilityai** as the active profile.
+11. **TODO-09**: Open `src/test/java/com/example/client/StabilityAIClientTests.java`. Use `@SpringBootTest` to define this test class as a Spring Boot test.  Use the `@ActiveProfiles` annotation to set **stabilityai** as the active profile.
 
     ```
-    @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.NONE)
+    @SpringBootTest
     @ActiveProfiles("stabilityai")
     public class StabilityAIClientTests {
     ```

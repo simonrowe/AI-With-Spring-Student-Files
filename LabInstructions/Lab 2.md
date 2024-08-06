@@ -150,9 +150,9 @@ Anything we code, we should test.  We will make a `@Test` class to ensure our Cl
 22. Create a new  **client**  folder under `src/test/java/com/example`.  Within this package create a new Java file called `OpenAIClientTests.java`.
 * The IDE should create an empty Java class definition for you.
 
-23. Alter the test class to include the `@SpringBootTest` annotation. Tell boot to run as a non-web application and 'openai' profile active like this:
+23. Alter the test class to include the `@SpringBootTest` annotation. Tell boot to activate the 'openai' profile:
 ```
-@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.NONE)
+@SpringBootTest
 @ActiveProfiles("openai")
 public class OpenAIClientTests {
     //...

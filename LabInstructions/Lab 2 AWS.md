@@ -137,9 +137,9 @@ Anything we code, we should test.  We will make a `@Test` class to ensure our Cl
 
 22. Create a new  **client**  folder under `src/test/java/com/example`.  Within this package create a new Java file called `AwsClientTests.java`.
 
-23. Alter the test class to include the `@SpringBootTest` annotation. Tell boot to run as a non-web application and activate the 'aws' profile like this:
+23. Alter the test class to include the `@SpringBootTest` annotation. Tell boot to activate the 'aws' profile:
 ```
-@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.NONE)
+@SpringBootTest
 @ActiveProfiles("aws")
 public class AwsClientTests {
     //...
