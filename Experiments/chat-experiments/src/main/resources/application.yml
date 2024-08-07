@@ -9,6 +9,7 @@ spring:
     bedrock.titan.chat.enabled: false # Disable all models by default.
     ollama.chat.enabled: false        # Disable all models by default.
     openai.chat.enabled: false        # Disable all models by default.
+    openai.image.enabled: false        # Disable all models by default.
     azure.openai.chat.enabled: false  # Disable all models by default.
 
 ---
@@ -73,3 +74,19 @@ spring:
           deployment-name: DEPLOYMENT-NAME-GOES-HERE
           model: gpt-35-turbo        
 
+---
+spring:
+  config.activate.on-profile: stabilityai
+
+  ai:
+    stabilityai:
+      image:
+        enabled: true
+        option:
+          n: 1                          # Number of images to generate.
+          responseFormat: application/json   # or   image/png
+          cfg_scale: 8.0                # 0-35, how closely the prompt is followed.
+          model: stable-diffusion-v1-6  # The model to use in Stability AI.
+          width: 512                    # Must be evenly divisible by 64
+          height: 512                   # Must be evenly divisible by 64
+          steps: 5                      # Number of diffusion steps to run. Valid range: 10 to 50.

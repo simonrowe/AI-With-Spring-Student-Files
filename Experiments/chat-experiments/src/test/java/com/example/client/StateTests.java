@@ -4,7 +4,7 @@ import org.junit.jupiter.api.Test;
 import org.springframework.ai.chat.client.ChatClient;
 import org.springframework.ai.chat.client.advisor.AbstractChatMemoryAdvisor;
 import org.springframework.ai.chat.client.advisor.MessageChatMemoryAdvisor;
-import org.springframework.ai.chat.client.advisor.SimpleLoggerAdvisor;
+
 import org.springframework.ai.chat.memory.InMemoryChatMemory;
 import org.springframework.ai.chat.model.ChatModel;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,8 +31,8 @@ public class StateTests {
         client = ChatClient
             .builder(model)
             .defaultAdvisors(
-                new MessageChatMemoryAdvisor (memory),
-                new SimpleLoggerAdvisor()
+                new MessageChatMemoryAdvisor (memory)//,
+                //new SimpleLoggerAdvisor()
             )
             .build();
 
