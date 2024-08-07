@@ -5,6 +5,7 @@ import org.assertj.core.api.Assertions;
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.nio.file.Files;
+import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Base64;
 
@@ -36,7 +37,10 @@ public class Utilities {
         }
         byte[] decoded = Base64.getDecoder().decode(b64);
         try {
-            Files.write(Paths.get(filePath), decoded);
+            //  Use the Paths.of to create a Path object from a String:
+            Path p = Paths.get(filePath);
+            System.out.println("Saving image to: " + p.toAbsolutePath());
+            Files.write(p, decoded);
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
