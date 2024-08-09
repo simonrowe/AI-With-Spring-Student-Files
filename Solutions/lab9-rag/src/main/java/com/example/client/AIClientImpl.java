@@ -55,7 +55,7 @@ public class AIClientImpl implements AIClient {
 
 
     @Override
-    public String getProductRecommendationsText(String query) {
+    public String getProductRecommendations(String query) {
 
         //  TODO-09: Define a new QuestionAnswerAdvisor object.
         //  Inject it with the VectorStore object that was @Autowired earlier.

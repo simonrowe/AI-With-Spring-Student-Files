@@ -6,7 +6,7 @@ import java.util.List;
 public interface AIClient {
 
     void save(List<String> products);
-    String getProductRecommendationsText(String query);
+    String getProductRecommendations(String query);
 
 //    public static Prompt buildPrompt(String query, List<String> recomendations) {
 //

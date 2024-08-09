@@ -19,15 +19,15 @@ public class OllamaClientTests {
 
     //  TODO-13: Write a @Test method to validate the AIClient.
     //  First, call the client's save() method with the Utilities.productCatalog list; this populates the test data.
-    //  Next, call the client's getProductRecommendationsText() method with the Utilities.query String.
+    //  Next, call the client's getProductRecommendations() method with the Utilities.query String.
     //  Use AssertJ's Assertions.assertThat() method to ensure that the content is not null.
     //  Use AssertJ's Assertions.assertThat() method to ensure that the content contains expected results.
     //  Utilities.sampleResults array contains the expected results.
     //  Print the response string that is returned.
     @Test
-    public void testGetProductRecommendationsText() {
+    public void testGetProductRecommendations() {
         client.save(Utilities.productCatalog);
-        String response = client.getProductRecommendationsText(Utilities.query);
+        String response = client.getProductRecommendations(Utilities.query);
         System.out.println(response);
 
         assertThat(response).isNotNull();
@@ -38,7 +38,7 @@ public class OllamaClientTests {
 
 
 
-//  TODO-25 (OPTIONAL):  Alter the @ActiveProfiles annotation at the top of this class.
+//  TODO-23 (OPTIONAL):  Alter the @ActiveProfiles annotation at the top of this class.
 //  Replace the "simple-vector-store" profile with "redis-vector-store"
 //  Save your work and run the test again.  It should pass.
 
