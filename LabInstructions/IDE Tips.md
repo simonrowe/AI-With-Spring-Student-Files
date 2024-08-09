@@ -76,6 +76,18 @@ VSCode, IntelliJ, and Eclipse (as well as other less-commonly known IDEs) unders
     * Right-click, Select Run As / Java Application.
 
 ---
+**Finding TODOs**
+
+Most of the lab projects contain TODO instructions that will tell you how do complete the exercise.  
+
+* **Using VS Code:** Select "Edit" / "Find in Files..." and search for "TODO".
+* **Using IntelliJ:**  Select "Edit" / "Find" / "Find in Files..." and search for "TODO".  Use the "Open in Find Window" button to place the results in a tab for easy navigation.
+* **Using Eclipse:** Select "Window" / "Show View" / "Tasks".  Use the "Search" view to search for "TODO".  Find a filter icon on the top of this tab.  Check "Show all items", "TODOs".  For scope select "on elements in the selected projects".  The list of TODOs will appear in order!
+
+IMPORTANT: Work through the TODO instructions in order!   
+
+
+---
 **Running Tests**
 
 IDEs consider classes within the `src/test/java/` folder to be automated tests.  Running these test classes is slightly different than running a Java application.
