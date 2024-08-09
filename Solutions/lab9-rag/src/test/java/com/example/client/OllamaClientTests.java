@@ -1,41 +1,49 @@
 package com.example.client;
 
-import com.example.Utilities;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.boot.test.context.SpringBootTest.WebEnvironment;
 import org.springframework.test.context.ActiveProfiles;
 
 import static org.assertj.core.api.Assertions.assertThat;
-//  TODO-13: Define this test class as a Spring Boot test.
+
+//  TODO-11: Define this test class as a Spring Boot test.
 //  Use the @ActiveProfiles annotation to activate the "simple-vector-store" and "ollama" profiles.
+
 @SpringBootTest
 @ActiveProfiles({"simple-vector-store","ollama"})
 public class OllamaClientTests {
 
-    //  TODO-14: Use the @Autowired annotation to inject an instance of our AIClient.
+    //  TODO-12: Use the @Autowired annotation to inject an instance of the AIClient.
     @Autowired AIClient client;
 
-    //  TODO-15: Define a @Test method to test the getProductRecommendationsText() method of the client.
-    //  Pass in a query string to describe a search request.  Use Utilities.query.
-    //  Pass in a List of products to pass in the prompt.  Use Utilities.productMatches
+    //  TODO-13: Write a @Test method to validate the AIClient.
+    //  First, call the client's save() method with the Utilities.productCatalog list; this populates the test data.
+    //  Next, call the client's getProductRecommendationsText() method with the Utilities.query String.
     //  Use AssertJ's Assertions.assertThat() method to ensure that the content is not null.
     //  Use AssertJ's Assertions.assertThat() method to ensure that the content contains expected results.
     //  Utilities.sampleResults array contains the expected results.
     //  Print the response string that is returned.
     @Test
-    void testGetProductRecommendationsText() {
-        String response =
-                client.getProductRecommendationsText(Utilities.query, Utilities.productMatches);
+    public void testGetProductRecommendationsText() {
+        client.save(Utilities.productCatalog);
+        String response = client.getProductRecommendationsText(Utilities.query);
+        System.out.println(response);
+
         assertThat(response).isNotNull();
         assertThat(response).contains(Utilities.sampleResults);
-
-        //	Print the results
-        System.out.println("The results of the call are: " + response);
     }
 
-    //  TODO-16: Organize your imports and save your work.
-    //  Run this test, it should pass.  Expect it to run slowly.
-    //  Check the results in the console.
+//  TODO-14: Save all work.  Run this test, it should pass.
+
+
+
+//  TODO-25 (OPTIONAL):  Alter the @ActiveProfiles annotation at the top of this class.
+//  Replace the "simple-vector-store" profile with "redis-vector-store"
+//  Save your work and run the test again.  It should pass.
+
+//  TODO-26 (OPTIONAL):  Alter the @ActiveProfiles annotation at the top of this class.
+//  Replace the "simple-vector-store" profile with "pg-vector-store"
+//  Save your work and run the test again.  It should pass.
+
 }

@@ -1,4 +1,4 @@
-package com.example;
+package com.example.client;
 
 import java.util.List;
 
@@ -30,6 +30,6 @@ public interface Utilities {
     //  Sample user query:
     String query = "I need high quality wireless headphones to block out noise on a plane";
 
-    String[] sampleResults = {"ireless", "noise-cancel", "https", "123", "567"};
+    String[] sampleResults = {"ireless", "noise-cancel", "https", "123"};
 
 }
