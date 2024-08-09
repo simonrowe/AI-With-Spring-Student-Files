@@ -26,10 +26,20 @@ The instructions below are for VS Code. If you wish to use IntelliJ or Eclipse a
 
 The project should be free of compiler errors at this point.  Address any issues you see before continuing.
 
+3. Find the TODO instructions.
+
+* **Using VS Code:** Select "Edit" / "Find in Files..." and search for "TODO".
+* **Using IntelliJ:**  Select "Edit" / "Find" / "Find in Files..." and search for "TODO".  Use the "Open in Find Window" button to place the results in a tab for easy navigation.
+* **Using Eclipse:** Select "Window" / "Show View" / "Tasks".  Use the "Search" view to search for "TODO".  Find a filter icon on the top of this tab.  Check "Show all items", "TODOs".  For scope select "on elements in the selected projects".  The list of TODOs will appear in order!
+
+IMPORTANT: Work through the TODO instructions in order!   
+
+
+
 ---
 **Part 4 - Initial Configuration and Test**
 
-3. **TODO-02**: Open the **pom.xml** file.  Add the dependency for Amazon Bedrock.  The groupId value will be `org.springframework.ai`.  The artifactId will be `spring-ai-bedrock-ai-spring-boot-starter`.  Save your work.
+4. **TODO-02**: Open the **pom.xml** file.  Add the dependency for Amazon Bedrock.  The groupId value will be `org.springframework.ai`.  The artifactId will be `spring-ai-bedrock-ai-spring-boot-starter`.  Save your work.
 
 ```
 <dependency>
@@ -37,7 +47,7 @@ The project should be free of compiler errors at this point.  Address any issues
 	<artifactId>spring-ai-bedrock-ai-spring-boot-starter</artifactId>
 </dependency>
 ```
-4.  **TODO-03**: Open the main application class at `src/main/java/com/example/Application.java`.  Run the application.
+5.  **TODO-03**: Open the main application class at `src/main/java/com/example/Application.java`.  Run the application.
 
 * **VS Code**: Right-click, Run Java.  Or open the file and click the “Run” option hovering over the main() method.
 * **IntelliJ**: Right-click, select “Run ‘Application.main()’”. 
@@ -45,7 +55,7 @@ The project should be free of compiler errors at this point.  Address any issues
 
 We expect the application to start, then stop, without errors.  If you have any errors related to tooling, be sure to address them now before proceeding.
 
-5.  **TODO-04**: Open the `src/main/resources/application.yml` file.  Establish the following entries:
+6.  **TODO-04**: Open the `src/main/resources/application.yml` file.  Establish the following entries:
 
 ```
 spring:
@@ -67,14 +77,14 @@ spring:
 - Note: The retry settings will override the `ChatClient`'s default settings.  You are likely to experience errors while you learn the API's usage, and we don't want you to experience unnecessary delays or expenses.
 - We could store the access key ID and secret key values in this file, but this would be a security risk if we were to ever distribute this file.  Setting these values in environment variables is safer.
 
-6.  Save your work.  
+7.  Save your work.  
 
 ---
 **Part 5 - Try Spring AI's `ChatClient`**
 
 Now we can use the ChatClient to make API calls to Amazon Bedrock and any of its hosted models.
 
-7. **TODO-05**:  Open `src/main/java/com/example/client/AwsClient.java`.  Use a stereotype annotation to mark this class as a Spring bean.  Use another annotation to assign it to the "aws" profile.
+8. **TODO-05**:  Open `src/main/java/com/example/client/AwsClient.java`.  Use a stereotype annotation to mark this class as a Spring bean.  Use another annotation to assign it to the "aws" profile.
 
 ```
 @Component
@@ -83,7 +93,7 @@ public class AwsClient implements AIClient {
 ```
 - Note: the `@Profile` annotation will be useful later when we want our application to switch between OpenAI, Azure, Ollama, etc.
 
-8. **TODO-06**: Create a constructor for this bean.  Inject a ChatModel object into the constructor.  Pass the model to the ChatClient.builder to build a ChatClient object.  Save the ChatClient object in the client field.
+9. **TODO-06**: Create a constructor for this bean.  Inject a ChatModel object into the constructor.  Pass the model to the ChatClient.builder to build a ChatClient object.  Save the ChatClient object in the client field.
 
 ```
     public AwsClient(ChatModel model) {
@@ -94,14 +104,14 @@ public class AwsClient implements AIClient {
 - The `ChatClient.Builder` is automatically created by Spring Boot when it sees SpringAI on the classpath, and Spring will automatically inject it into your constructor on bean creation.  Provide code to build the client using the builder::
 
 
-9. **TODO-07**:  Within the `callApi` method, Define a new Prompt object using the user input.
+10. **TODO-07**:  Within the `callApi` method, Define a new Prompt object using the user input.
 
 ```
         Prompt prompt = new Prompt(input);
 ```
 - This code creates a `Prompt` object with the given String input.  The prompt is the main input into the client.  Later we will see some alternate ways we can create a client.
 
-10.  **TODO-08**: Use the client object to call the API.
+11.  **TODO-08**: Use the client object to call the API.
 - The `.prompt()` method can be used to set the prompt defined above.
 - The `.call()` method will make the call to the model.
 - The `.content()` method will return the content of the response.
@@ -117,18 +127,18 @@ public class AwsClient implements AIClient {
 
 - The `call().content()` is a way to obtain a simple String response rather than a more complex `ChatResponse` object.
 
-11. Supply any imports needed to make the code compile.
+12. Supply any imports needed to make the code compile.
 * **VS Code**: Type Alt-Shift-O.
 * **IntelliJ**: Type Ctrl-Alt-O.
 * **Eclipse**: Type Ctrl-Shift-O.
-12. Save your work.
+13. Save your work.
 
 ---
 **Part 6 - Create a `@Test` class**
 
 Anything we code, we should test.  We will make a `@Test` class to ensure our Client object works as expected.
 
-13. **TODO-09**:  Open `src/test/java/com/example/client/AwsClientTests.java`.  Add an annotation to define the class as a Spring Boot test.  Annotate the class with the @ActiveProfiles annotation to activate the "aws" profile.
+14. **TODO-09**:  Open `src/test/java/com/example/client/AwsClientTests.java`.  Add an annotation to define the class as a Spring Boot test.  Annotate the class with the @ActiveProfiles annotation to activate the "aws" profile.
 
 ```
 @SpringBootTest
@@ -136,14 +146,14 @@ Anything we code, we should test.  We will make a `@Test` class to ensure our Cl
 public class AwsClientTests {
 ```
 
-14. **TODO-10:** Use the @Autowired annotation to inject an instance of our AIClient.
+15. **TODO-10:** Use the @Autowired annotation to inject an instance of our AIClient.
 - The class we worked on in the last section implements `AIClient`, so we can inject the dependency by its interface.
 
 ```
     @Autowired AIClient client;
 ```
 
-15.  **TODO-11:** Define a @Test method to test the `callApi()` method of the client.
+16.  **TODO-11:** Define a @Test method to test the `callApi()` method of the client.
 - Pass in a string that describes the response you wish to generate, such as the `samplePrompt` String defined in code above, or an equivalent.
 - Use AssertJ's Assertions.assertThat() method to ensure that the content is not null.
 - Use AssertJ's Assertions.assertThat() method to ensure that the content contains expected results.
@@ -163,7 +173,7 @@ public class AwsClientTests {
 		System.out.println("The results of the call are: " + response);
     }
 ```
-16. **TODO-12:** Organize your imports and save your work.  Run this test, it should pass.  Check the results in the console.
+17. **TODO-12:** Organize your imports and save your work.  Run this test, it should pass.  Check the results in the console.
 
 The test should run and produce a list of the five Great Lakes.  It is also very possible that you will encounter an error here, possibly due to setup, but also due to changes in Amazon Bedrock since the time of this writing.  Here are some troubleshooting tips.
 * If you have a compilation issue, be sure you have organized imports.  Compare your code to the solution code.
