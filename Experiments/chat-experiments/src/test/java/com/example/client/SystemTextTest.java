@@ -11,19 +11,25 @@ import org.springframework.test.context.ActiveProfiles;
 @ActiveProfiles("openai")
 public class SystemTextTest {
 
-    private ChatClient client;
+    ChatClient client;
     @Autowired OpenAiChatModel model;
 
     @Test
     void testSystem() {
-        client = 
+
+        String systemMessage =
+            "You are a REST service that provides responses in 100% JSON format.";
+        String userMessage =
+            "List the names and capitals of all US States, in descending order by population";
+
+        client =
             ChatClient.builder(model)
-                .defaultSystem("You are a friendly chat bot that answers question in the voice of a Pirate")
+                .defaultSystem(systemMessage)
                 .build();
 
         String response =
             client
-                .prompt().user("tell me a joke")
+                .prompt().user(userMessage)
                 .call()
                 .content();
 

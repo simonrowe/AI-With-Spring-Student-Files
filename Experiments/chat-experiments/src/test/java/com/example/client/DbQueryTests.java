@@ -10,6 +10,7 @@ import java.util.Map;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.ai.chat.client.ChatClient;
+import org.springframework.ai.chat.model.ChatModel;
 import org.springframework.ai.openai.OpenAiChatModel;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -24,30 +25,65 @@ import org.springframework.test.context.ActiveProfiles;
 public class DbQueryTests {
 
     private ChatClient client;
-    @Autowired OpenAiChatModel model;
+    @Autowired
+    ChatModel model;
 
     @Test
     void testQuery() {
-        String systemPrompt = "You are an SQL generator.  Responses must be 100 percent valid, executable SQL statements.  You must not include any words or characters that are not part of an SQL statement.  Use the following database schema to generate SQL queries: %s";
+        String systemPrompt =
+        """
+        You are an SQL generating web service.
+        Responses must be valid, HyperSQL-compatible, executable SQL statements.  
+        The SQL statement must be placed between <SQL-START> and <SQL-END> tags.
+        Use the following database schema to generate SQL queries: %s
+        """;
         String schema = readSchemaFile();
 
         client = 
             ChatClient.builder(model)
                 .defaultSystem(String.format(systemPrompt, schema))
-                .build();
+                    .build();
 
+        String userMessage =
+        "List the sales of the top 3 products by revenue during the last month.";
         String response =
             client
-                .prompt().user("List the sales of the top 3 products by revenue during the last month.")
-                .call()
-                .content();
+                .prompt().user(userMessage)
+                    .call()
+                        .content();
     
         System.out.println(response);                 
 
+        assert response.contains("<SQL-START>") && response.contains("<SQL-END>");
+
+        // Extract the SQL statement from the response:
+        String sql = response.substring(
+                response.indexOf("<SQL-START>") + "<SQL-START>".length(),
+                response.indexOf("<SQL-END>"));
+
         List<Map<String,Object>> results = 
-            template.queryForList(response);
+            template.queryForList(sql);
     
         System.out.println(results);                 
+
+        ///////////////////////
+
+        systemPrompt =
+        "You are a web service which specializes in executive summaries.";
+
+        ChatClient client =
+            ChatClient.builder(model)
+                .defaultSystem(String.format(systemPrompt, schema))
+                    .build();
+
+        response =
+            client
+                .prompt().user(
+                    userMessage + ".  Supporting data:  " + results)
+                        .call()
+                            .content();
+
+        System.out.println(response);
     }
 
     @Autowired JdbcTemplate template;
@@ -63,19 +99,5 @@ public class DbQueryTests {
             throw new RuntimeException(e);
         }
 
-        // StringBuilder schema = new StringBuilder();
-        // try {
-        //     Resource resource = resourceLoader.getResource("classpath:schema.sql");
-        //     try (InputStream inputStream = resource.getInputStream();
-        //          BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream, StandardCharsets.UTF_8))) {
-        //         String line;
-        //         while ((line = reader.readLine()) != null) {
-        //             schema.append(line).append("\n");
-        //         }
-        //     }
-        // } catch (Exception e) {
-        //     e.printStackTrace();
-        // }
-        // return schema.toString();
     }
 }
