@@ -37,7 +37,7 @@ IMPORTANT: Work through the TODO instructions in order!
 
 
 ---
-**Part 4 - Initial Configuration and Test**
+**Part 3 - Initial Configuration and Test**
 
 4. **TODO-02**: Open the **pom.xml** file.  Add the dependency for Amazon Bedrock.  The groupId value will be `org.springframework.ai`.  The artifactId will be `spring-ai-bedrock-ai-spring-boot-starter`.  Save your work.
 
