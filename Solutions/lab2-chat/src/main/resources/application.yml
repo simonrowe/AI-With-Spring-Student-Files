@@ -24,7 +24,8 @@ spring:
       base-url: http://localhost:11434  # Default base URL when you run Ollama from Docker
       chat:
         enabled: true
-
+        options:
+          model: mistral
 ---
 spring:
   config.activate.on-profile: aws

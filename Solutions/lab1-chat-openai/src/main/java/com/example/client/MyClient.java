@@ -14,7 +14,6 @@ public class MyClient {
     }
 
     public String callModel(String input) {
-        String model = "gpt-3.5-turbo";
         return client
                 .prompt()
                 .user(input)

@@ -381,9 +381,12 @@ If Docker does not work for any reason, you can also download local software for
 
 EMBEDDINGS:  When you get to the lab on embeddings, if you wish to use Ollama, you'll need to download and install the "mistral" model first.
 I found again that the docker container isn't doing anything.  ollama runs in the background as a service.
-run this: ollama pull mistral
-ollama run mistral
+run this: 
 
+```
+ollama pull mistral
+ollama run mistral
+```
 
 
 

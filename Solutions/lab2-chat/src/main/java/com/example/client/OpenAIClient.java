@@ -26,17 +26,16 @@ public class OpenAIClient implements AIClient {
 
     public String callApi(String input) {
 
-        //  TODO-07: Define a new Prompt object using the user input.
-        Prompt prompt = new Prompt(input);
-
-        //  TODO-08: Use the client object to call the API.
-        //  The .prompt() method can be used to set the prompt defined above.
-        //  The .call() method will make the call to the model.
-        //  The .content() method will return the content of the response.
+        //  TODO-07: Use the client object to call the API.
+        //  .prompt() creates a prompt to pass to the Model.class
+        //  .user() sets the "user" message. Pass the input String parameter.
+        //  .call() invokes the model.  It returns a CallResponse.
+        //  .content() is a simple means of extracting String content from the response. 
         //  Have the method return the content of the response.
         return 
             client
-                .prompt(prompt)
+                .prompt()
+                .user(input)
                 .call()
                 .content();
     }
