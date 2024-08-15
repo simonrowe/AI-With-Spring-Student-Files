@@ -9,20 +9,8 @@ Be aware that [ZhiPu AI](https://open.bigmodel.cn/) is based in China.  When wor
 ---
 **Part 1 - Setup ZhiPuAI Account**
 
-If you have not already done so, setup an account with ZhiPuAI.  The instructions are in the **Lab Setup** document.  When you are finished, you should have an environment variable established with your API key:
-
-On Windows you can run: 
-
-```
-setx SPRING_AI_ZHIPUAI_API_KEY "KEY-GOES-HERE"
-```
-On Linux or Mac you can run:
-```
-export SPRING_AI_ZHIPUAI_API_KEY="KEY-GOES-HERE"
-```
-
-* **SECURITY WARNING:**  Do not store this key in any file (such as `application.properties` or `application.yml`) that you may share publicly, such as on GitHub, BitBucket, Google Docs, etc.  For the lab environment, we recommend use of environment variables.
-* Restart your IDE after setting an environment variable this way.
+If you have not already done so, setup an account with ZhiPuAI.  The instructions are in the **Lab Setup** document.  When you are finished, you should have an environment variable established with your API key.
+* Restart your IDE after setting environment variables.
 
 
 ---

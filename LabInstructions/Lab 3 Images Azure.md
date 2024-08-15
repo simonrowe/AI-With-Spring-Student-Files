@@ -7,34 +7,12 @@ Within the project code, you will find comments containing **TODO** instructions
 ---
 **Part 1 - Setup Azure Deployment**
 
-See the **Lab Setup** document to setup an Azure account, enable AI services, create a resource, and obtain credentials, if you have not done so already. When you are finished, you should have an environment variable established with your API key:
-
-* On Windows you can run: 
-
-    ```
-    setx SPRING_AI_AZURE_OPENAI_API_KEY "KEY-GOES-HERE"
-    ```
-* On Linux or Mac you can run:
-    ```
-    export SPRING_AI_AZURE_OPENAI_API_KEY="KEY-GOES-HERE"
-    ```
-* **SECURITY REMINDER:**  Do not store these keys in any file (such as application.properties or application.yml) that you may share publicly, such as on GitHub, BitBucket, Google Docs, etc.
-* Restart your IDE after setting an environment variable this way.
-
-
-1. **Create a _Deployment_**: Open https://oai.azure.com/portal in a new browser tab.  Go to Management / Deployments / Create new deployment.
-    1. Select a model to use. At the time of this writing, _dall-e-3_ is the latest model. Feel free to explore newer versions, but different models may not align with these instructions.
-    1.  Choose the default version and standard deployment type.
-    1.  Provide a name for the deployment.  We suggest using the same name as the model you selected.  Record the name, you will need it later.
-    1. Adjust advanced options if you like. Create. 
+If you have not already done so, Establish an Azure account.  Follow the instructions in the **Lab Setup guide** and find the _Signup Process for Azure OpenAI_ section.  Walk through these instructions to establish an Azure Account, OpenAI _resource_, Endpoint, Keys, and Deployment. 
 
 ---
 **Part 2 - Setup the Project**
 
-A half-completed skeleton project has been created for you to relieve you from the image generation steps.  The instructions below are for VS Code. If you wish to use IntilliJ or Eclipse and need assistance, see the "IDE Tips" document if you need help.
-
-1. From within VS Code, use the File menu and select "Open Folder". Select the _/student-files/lab3-images-azure_ folder.  
-    * See the **IDE Tips** document to troubleshoot any issues when opening this project.
+1. From within VS Code, open the _/student-files/lab3-images-azure_ folder.  
 
 1. **TODO-01**: Open the **pom.xml** file.  Notice that the  `spring-ai-azure-openai-spring-boot-starter` dependency has already been added.
 
@@ -62,7 +40,7 @@ A half-completed skeleton project has been created for you to relieve you from t
     * SpringAI applications can run as part of a web application, but these exercises are built to avoid that extra step.
     * The retry* settings will override the `*ImageModel`'s default settings.  You are likely to experience errors while you learn the API's usage, and we don't want you to experience unnecessary expenses.  
     * If you forgot your _endpoint_, the value can be found in the [Azure Portal](https://portal.azure.com/) / _Azure OpenAI_. Open your resource and select _click here to view endpoints_.
-    * The deployment name is the same value you defined above.
+    * The deployment name is the same value you defined during setup.
     * You can experiment with some of the image settings later.  Remember that larger, higher-quality images incur greater costs.  
 
 1. **TODO-03** Open the main application class in `src/main/java/com/example/Application.java`.  Run the application. We expect the application to start, then stop, without errors.  If you have any errors related to tooling, be sure to address them now before proceeding.

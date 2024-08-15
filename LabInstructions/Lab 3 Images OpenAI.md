@@ -7,19 +7,7 @@ Within the project code, you will find comments containing **TODO** instructions
 ---
 **Part 1 - Signup for OpenAI Account**
 
-If you have not already done so, setup an account with OpenAI.  The instructions are in the **Lab Setup** document.  When you are finished, you should have an environment variable established with your API key:
-
-Windows you can run: 
-```
-setx SPRING_AI_OPENAI_API_KEY "YOUR-KEY-GOES-HERE"
-```
-On Linux or Mac you can run:
-```
-export SPRING_AI_OPENAI_API_KEY="YOUR-KEY-GOES-HERE"
-```
-* **SECURITY REMINDER:**  Do not store these keys in any file (such as application.properties or application.yml) that you may share publicly, such as on GitHub, BitBucket, Google Docs, etc.
-* Restart your IDE after setting an environment variable this way.
-
+If you have not already done so, setup an account with OpenAI.  The instructions are in the **Lab Setup** document. 
 
 ---
 **Part 2 - Setup the Project**
