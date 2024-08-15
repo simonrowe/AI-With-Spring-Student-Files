@@ -27,7 +27,7 @@ public class AzureClientTests {
     //  Print the response string that is returned.
 
 	@Test
-	void quickChat() {
+	void callApiTest() {
 
         String response =
             client.callApi(samplePrompt);
