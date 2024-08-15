@@ -76,6 +76,7 @@ spring:
 
   - Adjust the [region](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-regions-availability-zones.html#concepts-regions) code to match the region where you enabled the Bedrock model.
   - The `bedrock.titan.chat.enabled` setting tells Spring Boot to specifically autoconfigure objects supporting the _Titan_ model.  
+  - SpringAI applications can run as part of a web application, but these exercises are built to avoid that extra step.
   - Note: The retry settings will override the `ChatClient`'s default settings.  You are likely to experience errors while you learn the API's usage, and we don't want you to experience unnecessary delays or expense.
   - We could store the access key ID and secret key values in this file, but this would be a security risk if we were to ever distribute this file.  Setting these values in environment variables is safer.
 
