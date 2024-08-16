@@ -1,3 +1,6 @@
+# In-Depth: Building Generative AI Applications with Spring
+## Lab Setup
+
 To complete the labs you will need to perform some minimum setup.  You should have a Java JDK installed and an IDE.  
 
 Beyond this, your setup will depend on which labs you wish to complete.  You only need to follow the setup instructions for the labs you are interested in.  For example, if you want to do the OpenAI labs but not the Amazon/Bedrock labs, there is no need to complete the Amazon setup steps.
