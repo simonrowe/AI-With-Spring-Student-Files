@@ -1,4 +1,6 @@
 -- Schema for HyperSQL database
+-- TODO-03: Observe the database schema below.
+-- This information will be passed to the model for SQL generation.
 
 -- Creating PRODUCT table
 CREATE TABLE PRODUCT (

@@ -1,20 +1,24 @@
 spring:
-  application.name: Lab9 Chat
+  application.name: Lab11 SQL Generation
   main.web-application-type: none     # Do not start a web server.
 
   ai:
     retry:
       max-attempts: 1           # Maximum number of retry attempts.
       on-client-errors: false   # If false, throw a NonTransientAiException, and do not attempt retry for 4xx client error codes.
+    bedrock.anthropic.chat.enabled: false # Disable all models by default.
+    ollama.chat.enabled: false        # Disable all models by default.
+    openai.chat.enabled: false        # Disable all models by default.
+    azure.openai.chat.enabled: false  # Disable all models by default.
 
 ---
 spring:
   config.activate.on-profile: ollama
 
-  # TODO-04: Set the spring.application.name to "Lab9 Ollama Chat" or something similar.
+  # TODO-02: Set the spring.application.name to "Lab11 Ollama Chat" or something similar.
   # Set the ai.ollama.base-url to http://localhost:11434, unless your container is running on a different URL.
 
-  application.name: Lab9 Ollama Chat
+  application.name: Lab11 SQL Generation with Ollama
   ai:
     ollama.base-url: http://localhost:11434  # Default base URL when you run Ollama from Docker
 
@@ -22,12 +26,12 @@ spring:
 spring:
   config.activate.on-profile: aws
 
-  # TODO-04: Set the spring.application.name to "Lab9 Bedrock Chat" or something similar.
+  # TODO-02: Set the spring.application.name to "Lab11 Bedrock Chat" or something similar.
   # Set the ai.bedrock.aws.region to "us-west-2", or whichever region you have enabled the titan model in.
   # Set the ai.bedrock.titan.chat.enabled to specify use of the Titan chat model.
   # Take advantage of YAML's hierarchical structure (indenting) to set these values.
   
-  application.name: Lab9 Bedrock Chat
+  application.name: Lab11 SQL Generation with Bedrock
   ai:
     bedrock:
       aws.region: us-west-2
@@ -43,11 +47,11 @@ spring:
 spring:
   config.activate.on-profile: openai
 
-  # TODO-04: Set the spring.application.name to "Lab9 OpenAI Chat" or something similar.
+  # TODO-02: Set the spring.application.name to "Lab11 OpenAI Chat" or something similar.
   # Note that there are various properties we can set here, including credentials,
   # but we never want to commit credentials to source control.
   
-  application.name: Lab9 OpenAI Chat
+  application.name: Lab11 SQL Generation with OpenAI
   ai:
     openai:
       api-key: NEVER-PLACE-SECRET-KEY-IN-CONFIG-FILE
@@ -55,17 +59,18 @@ spring:
         options:
           model: gpt-3.5-turbo
 
+
 ---
 spring:
   config.activate.on-profile: azure
 
-  # TODO-04: Set the spring.application.name to "Lab9 Azure OpenAI Chat" or something similar.
+  # TODO-02: Set the spring.application.name to "Lab11 Azure OpenAI Chat" or something similar.
   # Set the ai.azure.openai.endpoint to the value you established during Azure setup.
   # Set the ai.azure.openai.chat.options.deployment-name to the value you establised during setup.
   # Set the ai.azure.openai.chat.options.model to "gpt-35-turbo" to use the GPT-3.5 model.
   # Take advantage of YAML's hierarchical structure (indenting) to set these values.
 
-  application.name: Lab9 Azure OpenAI Chat
+  application.name: Lab11 SQL Generation with Azure
   ai:
     azure:
       openai:

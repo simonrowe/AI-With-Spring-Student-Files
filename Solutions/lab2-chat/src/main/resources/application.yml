@@ -5,7 +5,7 @@ spring:
   ai:
     retry:
       max-attempts: 1           # Maximum number of retry attempts.
-    bedrock.titan.chat.enabled: false # Disable all models by default.
+    bedrock.anthropic.chat.enabled: false # Disable all models by default.
     ollama.chat.enabled: false        # Disable all models by default.
     openai.chat.enabled: false        # Disable all models by default.
     azure.openai.chat.enabled: false  # Disable all models by default.
