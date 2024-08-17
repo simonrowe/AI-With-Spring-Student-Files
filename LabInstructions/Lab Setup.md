@@ -289,7 +289,7 @@ Note that the exact screen flow to perform these steps may vary over time as AWS
     1. For the labs presented in this course, we recommend you select and enable the following models:
     * **Amazon - Titan Text G1 - Express**
     * **Amazon - Titan Embeddings G1 - Text**
-    * **Anthropic - Claude**
+    * **Anthropic - Claude V2**
     - Note: you may enable other models if you like.  Generally there is little or no charge to enable a specific model, only acceptance of a license agreement.  The _Titan_ models from Amazon are relatively inexpensive.
     10. Click **Submit**.  It may take a few moments for the model to become active.
 
