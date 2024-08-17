@@ -45,13 +45,14 @@ At the time of this writing, we've found the **Anthropic Claude** models generat
 6.  Open the `src/main/resources/application.yml` file.  
 
 1.  **TODO-02**: Establish the following configuration entries:
+    - Set `spring.application.name` to "Lab11 SQL Generation with Bedrock" or something similar.
+    - SpringAI applications can run as part of a web application, but these exercises are built to avoid that extra step.
+    - Adjust the retry settings to fail fast.  
+    - A _client error_ indicates a problem with our request; there is typically no point in retrying such a request.
     - Adjust the [region](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-regions-availability-zones.html#concepts-regions) code to match the region where you enabled the Bedrock model.
     - The `spring.ai.bedrock.anthropic.chat.enabled` setting tells Spring Boot to specifically autoconfigure objects supporting the _Anthropic_ models.  
     - Use `spring.ai.bedrock.anthropic.chat.model` = **anthropic.claude-v2**.  
         * Feel free to experiment with other models.
-    - SpringAI applications can run as part of a web application, but these exercises are built to avoid that extra step.
-    - Adjust the retry settings to fail fast.  
-    - A _client error_ indicates a problem with our request; there is typically no point in retrying such a request.
     
 
 ```  
@@ -84,7 +85,7 @@ spring:
 
 Now we can build a component which will use the `ChatClient` to generate SQL and summarize the returned results.
 
-8. **TODO-04**:  Open `src/main/java/com/example/client/AwsClient.java`.  
+8. **TODO-04**:  Open `src/main/java/com/example/client/AIClient.java`.  
     - Use a stereotype annotation to mark this class as a Spring bean.  
 
 ```

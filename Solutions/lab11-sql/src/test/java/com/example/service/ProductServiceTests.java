@@ -2,9 +2,6 @@ package com.example.service;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-import java.util.List;
-import java.util.Map;
-
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -13,9 +10,9 @@ import org.springframework.test.context.ActiveProfiles;
 //  TODO-15: Define this test class as a Spring Boot test.
 //  Use the @ActiveProfiles annotation to activate the "aws" profile.
 @SpringBootTest
-//@ActiveProfiles("openai")  // Working.
+@ActiveProfiles("openai")  // Working.
 //@ActiveProfiles("azure")   // Working.
-@ActiveProfiles("aws")     // Working.
+//@ActiveProfiles("aws")     // Working.
 //@ActiveProfiles("ollama")    // Fails due to extra words in the response.
 public class ProductServiceTests {
 
@@ -30,7 +27,8 @@ public class ProductServiceTests {
     //  Pass in a string that describes the query to be made. 
     //  Use the "samplePrompt" String defined above or an equivalent.
     //  Use AssertJ's Assertions.assertThat() method to ensure that the content is not null.
-    //  Use AssertJ's Assertions.assertThat() method to ensure that the content contains expected number of rows.
+    //  Use AssertJ's Assertions.assertThat() method to ensure that the content contains some expected results.
+    //  Use the "sampleResults" array as an example.
     //  Print the response List that is returned.
     @Test
     void productQueryTest() {
