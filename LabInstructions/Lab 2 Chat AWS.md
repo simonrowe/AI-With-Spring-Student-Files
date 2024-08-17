@@ -13,7 +13,7 @@ Let's jump in.
 
 The instructions below are for VS Code. If you wish to use IntelliJ or Eclipse and need assistance, see the "IDE Tips" document.
 
-2. Open the _/student-files/lab2-aws_ folder.  
+2. Open the _/student-files/lab2-chat-aws_ folder.  
     * Give the VSCode a moment to initialize its workspace, especially if this is the first time importing a Gradle/Maven project.
     * If you see a message about enabling null analysis for the project, you can select either enable or disable.
     * If you see a message about installing _Extension Pack for Java_, take the install option.
@@ -83,7 +83,7 @@ spring:
 7.  Save your work.  
 
 ---
-**Part 5 - Try Spring AI's `ChatClient`**
+**Part 4 - Try Spring AI's `ChatClient`**
 
 Now we can use the ChatClient to make API calls to Amazon Bedrock and any of its hosted models.
 
@@ -131,7 +131,7 @@ public class AwsClient implements AIClient {
 1. Save your work.
 
 ---
-**Part 6 - Create a `@Test` class**
+**Part 5 - Create a `@Test` class**
 
 Anything we code, we should test.  We will make a `@Test` class to ensure our Client object works as expected.
 
@@ -179,7 +179,7 @@ public class AwsClientTests {
     * Be sure the region in your `application.yml` file is the same region where you enabled the Bedrock model.
 
 
-**Part 7 - Summary**
+**Part 6 - Summary**
 
 At this point, you have integrated with one of Amazon Bedrock's hosted models from your own Spring Boot application.  If your were running a Spring Boot application on an AWS EC2 instance within a private network, this would be a natural combination to use rather than calling OpenAI or another hosted model directly.  Congratulations! 
 

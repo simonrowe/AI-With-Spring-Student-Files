@@ -13,7 +13,7 @@ Let's jump in.
 
 The instructions below are for VS Code. If you wish to use IntelliJ or Eclipse and need assistance, see the "IDE Tips" document.
 
-2. Open the _/student-files/lab2-openai_ folder.  
+2. Open the _/student-files/lab2-chat-openai_ folder.  
     * Give the VSCode a moment to initialize its workspace, especially if this is the first time importing a Gradle/Maven project.
     * If you see a message about enabling null analysis for the project, you can select either enable or disable.
     * If you see a message about installing _Extension Pack for Java_, take the install option.
@@ -79,7 +79,7 @@ spring:
 7.  Save your work.  
 
 ---
-**Part 5 - Try Spring AI's `ChatClient`**
+**Part 4 - Try Spring AI's `ChatClient`**
 
 Now we can use the ChatClient to make API calls to OpenAI's hosted models.
 
@@ -129,7 +129,7 @@ public class OpenAIClient implements AIClient {
 1. Save your work.
 
 ---
-**Part 6 - Create a `@Test` class**
+**Part 5 - Create a `@Test` class**
 
 Anything we code, we should test.  We will make a `@Test` class to ensure our Client object works as expected.
 
@@ -176,7 +176,7 @@ public class OpenAIClientTests {
     * Be sure your API Key is established in environment variables.
 
 
-**Part 7 - Summary**
+**Part 6 - Summary**
 
 At this point, you have integrated with OpenAI from your own Spring Boot application.  Congratulations! 
 
