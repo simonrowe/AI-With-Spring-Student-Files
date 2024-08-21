@@ -54,7 +54,7 @@ spring:
   ai:
     retry:
       max-attempts: 1      # Maximum number of retry attempts.
-      on-client-errors: false   # If false, throw a NonTransientAiException, and do not attempt retry for 4xx client error codes.  ai:
+      on-client-errors: false   # If false, throw a NonTransientAiException, and do not attempt retry for 4xx client error codes. 
     openai:
       api-key: NEVER-PLACE-SECRET-KEY-IN-CONFIG-FILE
       chat:

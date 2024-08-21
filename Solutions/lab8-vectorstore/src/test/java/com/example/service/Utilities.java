@@ -4,6 +4,8 @@ import java.util.List;
 
 public interface Utilities {
 
+    String samplePrompt = "I need high quality wireless headphones to block out noise on a plane";
+
     //  Sample product catalog:
     List <String> products = List.of(
         "Wireless Mouse: A comfortable wireless mouse with ergonomic design and long battery life, perfect for seamless connectivity without cables.",

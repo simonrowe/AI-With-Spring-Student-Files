@@ -43,7 +43,7 @@ public class ProductDao {
     }
 
 
-    //  TODO-08: Define a public String findClosestMatch() method.
+    //  TODO-07: Define a public String findClosestMatch() method.
     //  Define a single parameter of type String containing a query.
     //  Call the findClosestMatches() method with the query and 1 as the number of matches.
     public String findClosestMatch(String query) {

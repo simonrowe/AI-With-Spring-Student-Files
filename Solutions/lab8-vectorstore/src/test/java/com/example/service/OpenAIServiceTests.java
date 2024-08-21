@@ -8,8 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.ActiveProfiles;
 
-//  TODO-14: Define this test class as a Spring Boot test.
-//  Use the @ActiveProfiles annotation to activate the "simple-vector-store" profile.
+//  TODO-13: Define this test class as a Spring Boot test.
+//  Use the @ActiveProfiles annotation to activate the "simple-vector-store" and "openai-embedding" profiles.
 
 @SpringBootTest
 @ActiveProfiles({"simple-vector-store","openai-embedding"})
@@ -17,12 +17,11 @@ import org.springframework.test.context.ActiveProfiles;
 //@ActiveProfiles({"pg-vector-store","openai-embedding"})
 public class OpenAIServiceTests {
 
-    //  TODO-15: Use the @Autowired annotation to inject an instance of the ProductService.
+    //  TODO-14: Use the @Autowired annotation to inject an instance of the ProductService.
     @Autowired ProductService svc;
 
-    String samplePrompt = "I need high quality wireless headphones to block out noise on a plane";
 
-    //  TODO-16: Write a @Test method to validate the ProductService.
+    //  TODO-15: Write a @Test method to validate the ProductService.
     //  First, call the service's save() method with the Utilities.products list; this populates the test data.
     //  Next, call the service's findClosestMatch() method with the samplePrompt String.
     //  Use assertThat() to validate that the result starts with "Wireless Headphones:".
@@ -30,12 +29,12 @@ public class OpenAIServiceTests {
     @Test
     public void testFindClosestMatch() {
         svc.save(Utilities.products);
-        String result = svc.findClosestMatch(samplePrompt);
+        String result = svc.findClosestMatch(Utilities.samplePrompt);
         assertThat(result).startsWith("Wireless Headphones:");
         System.out.println(result);
     }
 
-    //  TODO-17: Save all work.  Run this test, it should pass.
+    //  TODO-16: Save all work.  Run this test, it should pass.
 
     //  TODO-22 (OPTIONAL):  Comment out the @ActiveProfiles annotation at the top of this class.
     //  Replace it with @ActiveProfiles("redis-vector-store")
