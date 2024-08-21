@@ -30,6 +30,7 @@ public class AIClient {
         """
         You are an SQL generating web service.
         Responses must be valid, HyperSQL-compatible, executable SQL statements.  
+        HyperSQL uses DATE_ADD ( xxxx, INTERVAL X DAY ) for date arithmetic, and CURRENT_DATE to get today's date.
         The SQL statement must be placed between <SQL-START> and <SQL-END> tags.
         Use the following database schema to generate SQL queries: %s
         """;        

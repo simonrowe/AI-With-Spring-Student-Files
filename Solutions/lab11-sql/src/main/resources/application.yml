@@ -47,8 +47,8 @@ spring:
   config.activate.on-profile: openai
 
   # TODO-02: Set the spring.application.name to "Lab11 SQL Generation with OpenAI" or something similar.
-  # Note that there are various properties we can set here, including credentials,
-  # but we never want to commit credentials to source control.
+  # Set spring.ai.openai.chat.enabled to true.
+  # Set spring.ai.openai.chat.options.model to "gpt-3.5-turbo" or the model of your choice.
   
   application.name: Lab11 SQL Generation with OpenAI
   ai:
