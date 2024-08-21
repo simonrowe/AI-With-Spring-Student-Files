@@ -24,14 +24,14 @@ The instructions below are for VS Code. If you wish to use IntelliJ or Eclipse a
 ---
 **Part 1 - Setup Azure Deployment**
 
-If you have not already done so, Establish an Azure account.  Follow the instructions in the **Lab Setup guide** and find the _Signup Process for Azure OpenAI_ section.  Walk through these instructions to establish an Azure Account, OpenAI _resource_, Endpoint, Keys, and Deployment. 
+3. If you have not already done so, Establish an Azure account.  Follow the instructions in the **Lab Setup guide** and find the _Signup Process for Azure OpenAI_ section.  Walk through these instructions to establish an Azure Account, OpenAI _resource_, Endpoint, Keys, and Deployment. 
 
 ---
 **Part 3 - Initial Configuration**
 
 4. Open the **pom.xml** file.
 
-5. **TODO-01**: Notice that the dependency for groupId `org.springframework.ai` artifactId `spring-ai-azure-openai-spring-boot-starter` is already present
+1. **TODO-01**: Notice that the dependency for groupId `org.springframework.ai` artifactId `spring-ai-azure-openai-spring-boot-starter` is already present
     * You do not need to make any changes here.
 ```
 <dependency>
@@ -86,7 +86,7 @@ spring:
 
 Now we can build a component which will use the `ChatClient` to generate SQL and summarize the returned results.
 
-8. **TODO-04**:  Open `src/main/java/com/example/client/AIClient.java`.  
+11. **TODO-04**:  Open `src/main/java/com/example/client/AIClient.java`.  
     - Use a stereotype annotation to mark this class as a Spring bean.  
 
 ```
@@ -94,7 +94,7 @@ Now we can build a component which will use the `ChatClient` to generate SQL and
 public class AIClient {
 ```
 
-9. **TODO-05**: Dependency inject the `ChatModel` bean.
+12. **TODO-05**: Dependency inject the `ChatModel` bean.
     * The `ChatModel` will be autoconfigured for us based on the dependencies and enablement settings above.
 
 ```
@@ -106,7 +106,7 @@ public class AIClient {
 
 The first method to implement will need to generate an SQL statement based on user input and the database schema.
 
-10. **TODO-06:** Observe the system message that will be provided to the model.
+13. **TODO-06:** Observe the system message that will be provided to the model.
     * It provides direct instructions for the model to generate SQL queries.
     * It directs the model to place generated SQL within \<SQL-START> and \<SQL-END> tags.
     * The database schema will be provided within the message.
@@ -122,7 +122,7 @@ Use the following database schema to generate SQL queries: %s
 """;        
 ```
 
-11. **TODO-07:** Create a chatClient.
+14. **TODO-07:** Create a chatClient.
     *   Pass the model to the ChatClient.builder to build a ChatClient object.
     *   Use .defaultSystem() to set the system-level prompt to "fullSystemPrompt" defined above.
 
@@ -133,7 +133,7 @@ Use the following database schema to generate SQL queries: %s
                 .build();
 ```
 
-12. **TODO-08:** Use the client object to call the foundational model.
+15. **TODO-08:** Use the client object to call the foundational model.
     * The .prompt().user() method can be used to set the user-level prompt from the input parameter.
     * The .call() method will make the call to the model.
     * The .content() method will return the content of the response.
@@ -156,14 +156,14 @@ Use the following database schema to generate SQL queries: %s
 
 The second method will generate an executive summary for the user prompt based on the raw data returned from the database.
 
-13. **TODO-09:** Within the `summary()` method, observe the system message.  It provides direct instructions for the model to produce executive summaries.
+16. **TODO-09:** Within the `summary()` method, observe the system message.  It provides direct instructions for the model to produce executive summaries.
 
 ```
     String systemMessage =
         "You are a web service which specializes in executive summaries.";
 ```
 
-14. **TODO-10: Create a chatClient.
+17. **TODO-10: Create a chatClient.
     * Pass the model to the `ChatClient.builder` to build a `ChatClient` object.
     * Use .defaultSystem() to set the system-level prompt to "systemMessage" defined above.
 
@@ -174,7 +174,7 @@ The second method will generate an executive summary for the user prompt based o
                 .build();
 ```
 
-15. **TODO-11:** Use the `client` object to call the foundational model.
+18. **TODO-11:** Use the `client` object to call the foundational model.
     * The .prompt().user() method can be used to set the "fullUserMessage" defined earlier.
         * This variable combines the user-provided query with the raw data supplied by the earlier query.
     * The .call() method will make the call to the model.
@@ -191,14 +191,14 @@ The second method will generate an executive summary for the user prompt based o
         return response;
 ```
 
-16. Organize your imports.  Save your work.
+19. Organize your imports.  Save your work.
 
 ---
 **Part 7 - Implement the `ProductService`.**
 
-17. Open `src/main/java/com.example.service.ProductService.java`.
+20. Open `src/main/java/com.example.service.ProductService.java`.
 
-18. **TODO-12:** Implement the `productQuery()` method.  Begin by generating SQL based on the user-provided query String.
+1. **TODO-12:** Implement the `productQuery()` method.  Begin by generating SQL based on the user-provided query String.
     * Call the `AIClient.generateSql()` method which you completed earlier.
     * Pass the user-provided query parameter to the `generateSql()` method.
     * Capture the return value in a String.
@@ -207,7 +207,7 @@ The second method will generate an executive summary for the user prompt based o
     String sql = aiClient.generateSql(userQuery);
 ```
 
-19. **TODO-13:** Call the `ProductDao.adHocQuery()` to execute the SQL query.
+22. **TODO-13:** Call the `ProductDao.adHocQuery()` to execute the SQL query.
     * Pass the SQL query generated from the last method.
     * Capture the results in a List<Map<String,Object>> variable.
         * Spring's `JdbcTemplate.queryForList()` method called within the `ProductDao` returns a List structure where each result set row is represented by a Map structure.
@@ -216,7 +216,7 @@ The second method will generate an executive summary for the user prompt based o
     List<Map<String,Object>> results = productDao.adHocQuery(sql);
 ```
 
-20. **TODO-14:** Call the `AIClient` once more, this time to summarize the results.
+23. **TODO-14:** Call the `AIClient` once more, this time to summarize the results.
     * Call the `summarize()` method you implemented earlier.
     * Pass 1) the original user-provided query parameter and 2) the results from the previous call, converted to String.
     * Return the results of the summarize() method.
@@ -231,9 +231,9 @@ The second method will generate an executive summary for the user prompt based o
 
 Anything we code, we should test.  We will make a `@Test` class to ensure our Client object works as expected.
 
-21. Open `src/test/java/com/example/service/ProductServiceTests.java`.  
+24. Open `src/test/java/com/example/service/ProductServiceTests.java`.  
 
-22. **TODO-15** Add an annotation to define the class as a Spring Boot test.  Annotate the class with the `@ActiveProfiles` annotation to activate the **azure** profile.
+1. **TODO-15** Add an annotation to define the class as a Spring Boot test.  Annotate the class with the `@ActiveProfiles` annotation to activate the **azure** profile.
 
 ```
 @SpringBootTest
@@ -241,12 +241,12 @@ Anything we code, we should test.  We will make a `@Test` class to ensure our Cl
 public class ProductServiceTests {
 ```
 
-23. **TODO-16:** Use the `@Autowired` annotation to inject an instance of the `ProductService`.
+26. **TODO-16:** Use the `@Autowired` annotation to inject an instance of the `ProductService`.
 ```
     @Autowired ProductService productService;
 ```
 
-24. **TODO-17:** Define a `productQueryTest()` `@Test` method to test the `productQuery()` method of the productService.
+27. **TODO-17:** Define a `productQueryTest()` `@Test` method to test the `productQuery()` method of the productService.
     * A "samplePrompt" String has been provided as example test data to be provided to as the user-defined query.
     * Use AssertJ's `Assertions.assertThat()` method to ensure that the content is not null.
     * Use AssertJ's `Assertions.assertThat().contains()` method to ensure that the content contains some expected results.  Use the "sampleResults" array as an example.
@@ -267,7 +267,7 @@ public class ProductServiceTests {
     }
 ```
 
-25. **TODO-18:** Organize all imports. Save all work.  Run the test.  It should pass.
+28. **TODO-18:** Organize all imports. Save all work.  Run the test.  It should pass.
     * Note: There is a good possibility that the test may fail.  The behavior of the foundational models is not deterministic. If an error occurs, experiment with the various prompts to try to get the expected results.
 
 **Part 9 - Summary**
