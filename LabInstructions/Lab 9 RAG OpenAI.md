@@ -36,12 +36,25 @@ If you have not already done so, setup an account with OpenAI.  The instructions
 ```
 6. Save your work.
 
-7. Open `src/main/resources/application.yml`.  
+1. Open `src/main/resources/application.yml`.  
 
-8. **TODO-03:**  For OpenAI, set the ai.openai.chat.enabled to true.
+1. **TODO-03:**  Establish the following configuration entries:
+  * Set `spring.application.name` to "Lab9 RAG with OpenAI" or something similar.
+  * Set `spring.main.web-application-type` to none to run as a non-web application.  Spring AI applications can run as web applications, but these exercises avoid this distraction.
+  * Set `spring.ai.retry.max-attempts` to 1 to fail fast to save time if you have errors.
+  * Set `spring.ai.retry.on-client-errors` to false since there is typically no point in retrying a client (vs server) error.
+  * Set `spring.ai.openai.chat.enabled` to true to enable the chat model.
+  * Set `spring.ai.openai.chat.options.model` to "gpt-35-turbo" to use the GPT-3.5 model, or allow it to default.
+
 
 ```
+spring:
+  application.name: Lab9 RAG with OpenAI
+  main.web-application-type: none     # Do not start a web server.
   ai:
+    retry:
+      max-attempts: 1      # Maximum number of retry attempts.
+      on-client-errors: false   # If false, throw a NonTransientAiException, and do not attempt retry for 4xx client error codes.  ai:
     openai:
       api-key: NEVER-PLACE-SECRET-KEY-IN-CONFIG-FILE
       chat:

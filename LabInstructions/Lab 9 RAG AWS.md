@@ -36,12 +36,24 @@ If you have not already done so, follow the instructions in the **Lab Setup guid
 ```
 6. Save your work.
 
-7. Open `src/main/resources/application.yml`.  
+1. Open `src/main/resources/application.yml`.  
 
-8. **TODO-03:**  Set the spring.ai.bedrock.titan.chat.enabled to true to specify use of the Titan chat model.  Set the spring.ai.bedrock.aws.region to "us-west-2", or whichever region you have enabled the titan model in.  (The "ai" tag should fall beneath the existing "spring" tag.):
+1. **TODO-03:**  Establish the following configuration entries:
+  * Set `spring.application.name` to "Lab9 RAG with AWS" or something similar.
+  * Set `spring.main.web-application-type` to none to run as a non-web application.  Spring AI applications can run as web applications, but these exercises avoid this distraction.
+  * Set `spring.ai.retry.max-attempts` to 1 to fail fast to save time if you have errors.
+  * Set `spring.ai.retry.on-client-errors` to false since there is typically no point in retrying a client (vs server) error.
+  * Set `spring.ai.bedrock.titan.chat.enabled` to true to specify use of the Titan chat model.  
+  * Set `spring.ai.bedrock.aws.region` to "us-west-2", or whichever region you have enabled the titan model in.  
 
 ```
+spring:
+  application.name: Lab9 RAG with AWS
+  main.web-application-type: none     # Do not start a web server.
   ai:
+    retry:
+      max-attempts: 1      # Maximum number of retry attempts.
+      on-client-errors: false   # If false, throw a NonTransientAiException, and do not attempt retry for 4xx client error codes.  
     bedrock:
       aws.region: us-west-2
       titan:
@@ -51,7 +63,7 @@ If you have not already done so, follow the instructions in the **Lab Setup guid
 
 9. Open `src/main/java/com.example.Application`.
 
-10. **TODO-04:** Define a bean method named "vectorStore" of type `VectorStore`. The method should accept an `EmbeddingModel` parameter.  Have it instantiate and return a `new SimpleVectorStore` injected with the given `EmbeddingModel`.  Use `@Profile` to assign this bean to the **simple-vector-store** profile.
+1. **TODO-04:** Define a bean method named "vectorStore" of type `VectorStore`. The method should accept an `EmbeddingModel` parameter.  Have it instantiate and return a `new SimpleVectorStore` injected with the given `EmbeddingModel`.  Use `@Profile` to assign this bean to the **simple-vector-store** profile.
 
 ```
 	@Bean
@@ -68,7 +80,7 @@ If you have not already done so, follow the instructions in the **Lab Setup guid
 
 12. Open `src/main/java/com.example.client.AIClientImpl`.  
 
-13. **TODO-05:** Use the `@Service` annotation to define this class as a Spring Service.
+1. **TODO-05:** Use the `@Service` annotation to define this class as a Spring Service.
 
 ```
 @Service
@@ -143,7 +155,7 @@ Anything we code, we should test. We will make a `@Test` class to ensure our Cli
 
 20.  Open `src/test/java/com.example.client.AwsClientTest`.
 
-21.  **TODO-11:** Define this test class as a Spring Boot test.  Use the `@ActiveProfiles` annotation to activate the **simple-vector-store** and **aws** profiles.
+1.  **TODO-11:** Define this test class as a Spring Boot test.  Use the `@ActiveProfiles` annotation to activate the **simple-vector-store** and **aws** profiles.
 
 ```
 @SpringBootTest
@@ -236,7 +248,7 @@ Be sure you have completed the "Setup Process for PostgreSQL Docker Container" a
 
 33. Open the **pom.xml** file.
 
-34. **TODO-24** Replace the simple in-memory vector store with Redis by removing the commend on the `spring-ai-pgvector-store-spring-boot-starter` dependency.
+1. **TODO-24** Replace the simple in-memory vector store with Redis by removing the commend on the `spring-ai-pgvector-store-spring-boot-starter` dependency.
 
 ```
 		<dependency>
@@ -247,7 +259,7 @@ Be sure you have completed the "Setup Process for PostgreSQL Docker Container" a
 
 35. Open `src/main/resources/application.yml`.  
 
-36. **TODO-25**  Set properties for the Postgres vector store.  Note that these will only be used if the "pg-vector-store" profile is active.
+1. **TODO-25**  Set properties for the Postgres vector store.  Note that these will only be used if the "pg-vector-store" profile is active.
 * Set `spring.datasource.url` to **jdbc:postgresql://localhost:5432/postgres**, unless your Postgres is running elsewhere.
 * Set `spring.datasource.username` and `spring.datasource.password` the username and password set when running the container.
 * Set `spring.ai.vectorstore.pgvector.initialize-schema` to **true** to create the necessary schema. (You may not want to do this in a production environment.)
@@ -277,9 +289,9 @@ If you make a mistake here, don't worry.  The error message will tell you the co
 
 37.  Notice that there are autoconfigure instructions to exclude RedisVectorStoreAutoConfiguration.  This is done to address the possibility that a student may enable both the redis-vector-store and pg-vector-store profiles simultaneously.
 
-38.  Open `src/test/java/com.example.client.AwsClientTest`.
+1.  Open `src/test/java/com.example.client.AwsClientTest`.
 
-39.  **TODO-26:** Alter the `@ActiveProfiles` annotation at the top of this class.  Replace the "simple-vector-store" profile with "pg-vector-store"
+1.  **TODO-26:** Alter the `@ActiveProfiles` annotation at the top of this class.  Replace the "simple-vector-store" profile with "pg-vector-store"
 
 ```
 @SpringBootTest

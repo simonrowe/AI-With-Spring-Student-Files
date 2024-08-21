@@ -20,13 +20,13 @@ If you have not already done so, follow the instructions in the **Lab Setup guid
 
 1. Open the _/student-files/lab9-rag-azure_ project in your IDE.   The project should be free of compiler errors at this point.  Address any issues you see before continuing.
 
-2. Find the TODO instructions.  Work through the TODO instructions in order!   
+1. Find the TODO instructions.  Work through the TODO instructions in order!   
 
-3. Open the **pom.xml** file.
+1. Open the **pom.xml** file.
 
-4. **TODO-01**: Observe the dependency for `spring-ai-transformers-spring-boot-starter`.  This dependency defines Spring AI's built in TransformerEmbeddingModel.  We will use this model to create embeddings rather than use an external model.  There is nothing you need to do with this dependency.  If you are motivated, after you have completed the lab, feel free to replace this with a hosted FM for embeddings if you like.
+1. **TODO-01**: Observe the dependency for `spring-ai-transformers-spring-boot-starter`.  This dependency defines Spring AI's built in TransformerEmbeddingModel.  We will use this model to create embeddings rather than use an external model.  There is nothing you need to do with this dependency.  If you are motivated, after you have completed the lab, feel free to replace this with a hosted FM for embeddings if you like.
 
-5. **TODO-02:** Add the dependency for Amazon Azure OpenAI.  The groupId value will be `org.springframework.ai`, the artifactId will be `spring-ai-azure-openai-ai-spring-boot-starter`.  
+1. **TODO-02:** Add the dependency for Amazon Azure OpenAI.  The groupId value will be `org.springframework.ai`, the artifactId will be `spring-ai-azure-openai-spring-boot-starter`.  
 
 ```
 <dependency>
@@ -36,16 +36,26 @@ If you have not already done so, follow the instructions in the **Lab Setup guid
 ```
 6. Save your work.
 
-7. Open `src/main/resources/application.yml`.  
+1. Open `src/main/resources/application.yml`.  
 
-8. **TODO-03:**  Set the following properties:
-* Set the ai.azure.openai.chat.enabled to true.  
-* Set the ai.azure.openai.endpoint to the value you established during Azure setup. 
-* Set the ai.azure.openai.chat.options.deployment-name to the value you establised during setup.  
-* Set the ai.azure.openai.chat.options.model to "gpt-35-turbo", or whichever model you have enabled.
+1. **TODO-03:**  Establish the following configuration entries:
+  * Set `spring.application.name` to "Lab9 RAG with Azure" or something similar.
+  * Set `spring.main.web-application-type` to none to run as a non-web application.  Spring AI applications can run as web applications, but these exercises avoid this distraction.
+  * Set `spring.ai.retry.max-attempts` to 1 to fail fast to save time if you have errors.
+  * Set `spring.ai.retry.on-client-errors` to false since there is typically no point in retrying a client (vs server) error.
+  * Set `spring.ai.azure.openai.chat.enabled` to true.  
+  * Set `spring.ai.azure.openai.endpoint` to the value you established during Azure setup. 
+  * Set `spring.ai.azure.openai.chat.options.deployment-name` to the value you establised during setup.  
+  * Set `spring.ai.azure.openai.chat.options.model` to "gpt-35-turbo", or whichever model you have enabled.
 
 ```
+spring:
+  application.name: Lab9 RAG with Azure
+  main.web-application-type: none     # Do not start a web server.
   ai:
+    retry:
+      max-attempts: 1      # Maximum number of retry attempts.
+      on-client-errors: false   # If false, throw a NonTransientAiException, and do not attempt retry for 4xx client error codes.  
     azure:
       openai:
         api_key: NEVER-PLACE-SECRET-KEY-IN-CONFIG-FILE
