@@ -9,7 +9,7 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.example</groupId>
-	<artifactId>lab6-embedding</artifactId>
+	<artifactId>lab08-embedding</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>lab08-embedding</name>
 	<description>Spring AI with Embeddings from OpenAI, Bedrock, Ollama</description>

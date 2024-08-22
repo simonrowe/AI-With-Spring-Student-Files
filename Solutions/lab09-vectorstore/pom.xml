@@ -9,9 +9,9 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.example</groupId>
-	<artifactId>lab8-vectorstore</artifactId>
+	<artifactId>lab09-vectorstore</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>lab8-vectorstore</name>
+	<name>lab09-vectorstore</name>
 	<description>Spring AI with Embeddings from OpenAI, Bedrock, Ollama using a vector store</description>
 	<properties>
 		<java.version>21</java.version>

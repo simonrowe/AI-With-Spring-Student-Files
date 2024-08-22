@@ -9,7 +9,7 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.example</groupId>
-	<artifactId>lab9-rag</artifactId>
+	<artifactId>lab10-rag</artifactId>
 	<version>1</version>
 	<name>lab10-rag</name>
 	<description>Spring AI implementation of RAG</description>

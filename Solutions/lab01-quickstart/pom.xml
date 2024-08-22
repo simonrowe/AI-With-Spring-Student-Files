@@ -5,42 +5,35 @@
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
-		<version>3.3.0</version>
+		<version>3.3.2</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.example</groupId>
-	<artifactId>lab3-images</artifactId>
+	<artifactId>lab01-quickstart</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>lab3-images</name>
-	<description>Demo project for Spring Boot</description>
+	<name>lab01-quickstart</name>
+	<description>Spring AI demo</description>
+	<url/>
+	<licenses>
+		<license/>
+	</licenses>
+	<developers>
+		<developer/>
+	</developers>
+	<scm>
+		<connection/>
+		<developerConnection/>
+		<tag/>
+		<url/>
+	</scm>
 	<properties>
 		<java.version>21</java.version>
-		<spring-ai.version>1.0.0-M1</spring-ai.version>
+		<spring-ai.version>1.0.0-SNAPSHOT</spring-ai.version>
 	</properties>
 	<dependencies>
-
-		<!-- TODO-01: Notice the starter for OpenAI is present.	-->
 		<dependency>
 			<groupId>org.springframework.ai</groupId>
 			<artifactId>spring-ai-openai-spring-boot-starter</artifactId>
-		</dependency>
-
-		<!-- TODO-01: Notice the starter for Azure OpenAI is present.	-->
-		<dependency>
-			<groupId>org.springframework.ai</groupId>
-			<artifactId>spring-ai-azure-openai-spring-boot-starter</artifactId>
-		</dependency>
-
-		<!-- TODO-01: Notice the starter for Stability AI is present.	-->
-		<dependency>
-			<groupId>org.springframework.ai</groupId>
-			<artifactId>spring-ai-stability-ai-spring-boot-starter</artifactId>
-		</dependency>
-
-		<!-- TODO-01: Notice the starter for ZhiPuAI is present.	-->
-		<dependency>
-			<groupId>org.springframework.ai</groupId>
-			<artifactId>spring-ai-zhipuai-spring-boot-starter</artifactId>
 		</dependency>
 
 		<dependency>

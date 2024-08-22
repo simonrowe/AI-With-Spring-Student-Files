@@ -11,7 +11,7 @@
 	<groupId>com.example</groupId>
 	<artifactId>lab12-sql</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>lab2-apenai</name>
+	<name>lab12-sql</name>
 	<description>SpringAI project for generative text</description>
 	<properties>
 		<java.version>21</java.version>
