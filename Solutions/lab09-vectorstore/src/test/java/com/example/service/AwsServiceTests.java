@@ -16,7 +16,7 @@ import org.springframework.test.context.ActiveProfiles;
 @ActiveProfiles({"simple-vector-store","aws-cohere-embedding"})
 //@ActiveProfiles({"redis-vector-store","aws-cohere-embedding"})
 //@ActiveProfiles({"pg-vector-store","aws-cohere-embedding"})
-public class CohereServiceTests {
+public class AwsServiceTests {
 
     //  TODO-14: Use the @Autowired annotation to inject an instance of the ProductService.
     @Autowired ProductService svc;

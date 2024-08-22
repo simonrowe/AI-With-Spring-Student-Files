@@ -11,7 +11,7 @@
 	<groupId>com.example</groupId>
 	<artifactId>lab6-embedding</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>lab6-embedding</name>
+	<name>lab08-embedding</name>
 	<description>Spring AI with Embeddings from OpenAI, Bedrock, Ollama</description>
 	<properties>
 		<java.version>21</java.version>

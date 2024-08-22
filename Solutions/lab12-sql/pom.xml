@@ -9,7 +9,7 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.example</groupId>
-	<artifactId>lab2-chat</artifactId>
+	<artifactId>lab12-sql</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>lab2-apenai</name>
 	<description>SpringAI project for generative text</description>

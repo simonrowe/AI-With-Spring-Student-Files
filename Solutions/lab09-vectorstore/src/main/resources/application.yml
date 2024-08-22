@@ -37,9 +37,8 @@ spring:
   # Set spring.main.web-application-type to none to run as a non-web application.
   # Set spring.ai.retry.max-attempts to 1 to fail fast.
   # Set spring.ai.retry.on-client-errors to false since there is typically no point in retrying such a request.
-  # Set spring.ai.cohere.embedding.enabled to true to switch this embedding model on.
-  # Set spring.ai.cohere.embedding.model to cohere.embed-english-v3, or see https://docs.aws.amazon.com/bedrock/latest/userguide/models-supported.html for latest list.
-  # Take advantage of YAML's hierarchical structure to set these values.
+  # Set spring.ai.bedrock.cohere.embedding.enabled to true to switch this embedding model on.
+  # Set spring.ai.bedrock.cohere.embedding.model to cohere.embed-english-v3, or see https://docs.aws.amazon.com/bedrock/latest/userguide/models-supported.html for latest list.
 
   ai:
     bedrock:
@@ -57,8 +56,8 @@ spring:
   # Set spring.main.web-application-type to none to run as a non-web application.
   # Set spring.ai.retry.max-attempts to 1 to fail fast.
   # Set spring.ai.retry.on-client-errors to false since there is typically no point in retrying such a request.
-  # Set spring.ai.titan.embedding.enabled to true to switch this embedding model on.
-  # Set spring.ai.titan.embedding.model to amazon.titan-embed-text-v1, or see https://docs.aws.amazon.com/bedrock/latest/userguide/models-supported.html for latest list.
+  # Set spring.ai.bedrock.titan.embedding.enabled to true to switch this embedding model on.
+  # Set spring.ai.bedrock.titan.embedding.model to amazon.titan-embed-text-v1, or see https://docs.aws.amazon.com/bedrock/latest/userguide/models-supported.html for latest list.
 
   ai:
     bedrock:
