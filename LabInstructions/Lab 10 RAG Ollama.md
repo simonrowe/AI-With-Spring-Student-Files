@@ -1,4 +1,4 @@
-## Lab 9 - Retrieval Augmented Generation - Ollama
+## Lab 10 - Retrieval Augmented Generation - Ollama
 
 In this exercise you will create a Spring Boot application which implements retrieval augmented generation.  It will utilize most of the technologies seen in the previous labs; embeddings, vector stores, and semantic search.  To streamline the entire process, the ChatClient will use a QuestionAnswerAdvisor so our code can avoid working directly with embeddings, vector stores, or semantic searches.
 

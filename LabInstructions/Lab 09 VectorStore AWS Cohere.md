@@ -1,7 +1,7 @@
 
-## Lab 8 - VectorStore - Ollama
+## Lab 09 - VectorStore - AWS Cohere
 
-In this exercise you will create a Spring Boot application which utilizes a Vector Store.  You'll gain experience in loading a Vector Store with documents and performing semantic searches.  We will use Ollama for our embedding model.
+In this exercise you will create a Spring Boot application which utilizes a Vector Store.  You'll gain experience in loading a Vector Store with documents and performing semantic searches.  We will use an Amazon Bedrock hosed Cohere model for our embedding model.
 
 Within the codebase you will find ordered *TODO* comments that describe what actions to take for each step.  By finding all files containing *TODO*, and working on the steps in numeric order, it is possible to complete this exercise without looking at the instructions.  If you do need guidance, you can always look at these instructions for full information.  Just be sure to perform the *TODO* steps in order.
 
@@ -12,27 +12,28 @@ Solution code is provided for you in a separate folder, so you can compare your 
 Let's jump in.
 
 ---
-**Part 1 - Complete Ollama Local Setup**
+**Part 1 - Obtain an AWS Account, Set Credentials, Enable Bedrock Models**
 
-If you have not already done so, complete the instructions for running Ollama in your local environment.  See the "Setup Process for Docker" and "Setup Process for Ollama" section in the **Lab Setup** guide.  Make sure your Ollama container is running.
+If you have not already done so, follow the instructions in the **Lab Setup guide** _Signup Process for Amazon / Bedrock_ section to setup an AWS Account, IAM User, set credentials in your local environment, and enable Bedrock models.
+
+Specifically, this lab will utilize the Cohere embedding model.
 
 ---
 **Part 2 - Setup the Project**
 
-1. Open the _/student-files/lab8-vectorstore-ollama_ project in your IDE.   The project should be free of compiler errors at this point.  Address any issues you see before continuing.
+1. Open the _/student-files/lab8-vectorstore-aws_ project in your IDE.   The project should be free of compiler errors at this point.  Address any issues you see before continuing.
 
 1. Find the TODO instructions.  Work through the TODO instructions in order!   
 
 1. Open the **application.yml** file.
 
 1. **TODO-01:** Establish the following configuration entries:
-  * Set `spring.application.name` to "Lab8 VectorStore with Ollama" or something similar.
+  * Set `spring.application.name` to "Lab8 VectorStore with AWS Cohere" or something similar.
   * Set `spring.main.web-application-type` to none to run as a non-web application.  Spring AI applications can run as web applications, but these exercises avoid this distraction.
   * Set `spring.ai.retry.max-attempts` to 1 to fail fast to save time if you have errors.
   * Set `spring.ai.retry.on-client-errors` to false since there is typically no point in retrying a client (vs server) error.
-  * Set `spring.ai.ollama.embedding.enabled` to true to enable the embedding model.
-  * Set `spring.ai.ollama.base-url` to http://localhost:11434 unless you are running Ollama from a different URL.
-
+  * Set `spring.ai.bedrock.cohere.embedding.enabled` to true to switch this embedding model on.
+  * Set `spring.ai.bedrock.cohere.embedding.model` to "cohere.embed-english-v3", or see https://docs.aws.amazon.com/bedrock/latest/userguide/models-supported.html for latest list.
 
 ```
 spring:
@@ -42,10 +43,11 @@ spring:
     retry:
       max-attempts: 1      # Maximum number of retry attempts.
       on-client-errors: false   # Do not retry 4xx errors. 
-    ollama:
-      base-url: http://localhost:11434  # Default base URL when you run Ollama from Docker
-      embedding:
-        enabled: true
+    bedrock:
+      cohere:
+        embedding:
+          enabled: true
+          model: cohere.embed-english-v3
 ```
 
 ---
@@ -192,14 +194,14 @@ public class ProductService {
 
 Anything that we code, we should test.  Create a test which loads the Vector Store with sample product descriptions.  They we will test semantic searches for a product idea, and expect to get a match.
 
-21. Open `src/test/java/com.example.service.OllamaServiceTests.java`
+21. Open `src/test/java/com.example.service.AwsServiceTests.java`
 
-22. **TODO-13:** Define this test class as a Spring Boot test.  Use the `@ActiveProfiles` annotation to activate the **simple-vector-store** and **ollama-embedding** profiles.
+22. **TODO-13:** Define this test class as a Spring Boot test.  Use the `@ActiveProfiles` annotation to activate the **simple-vector-store** and **aws-cohere-embedding** profiles.
 
 ```
 @SpringBootTest
-@ActiveProfiles({"simple-vector-store","ollama-embedding"})
-public class OllamaServiceTests {
+@ActiveProfiles({"simple-vector-store","aws-cohere-embedding"})
+public class AwsServiceTests {
 ```
 
 23. **TODO-14:** Use the `@Autowired` annotation to inject an instance of the `ProductService`.
@@ -263,12 +265,12 @@ The existing implementation uses an in-memory Vector Store, which is not appropr
         initializeSchema: true       # Potentially destructive.
 ```
 
-31. Open `src/test/java/com.example.service.OllamaServiceTests.java`
+31. Open `src/test/java/com.example.service.AwsServiceTests.java`
 
-32. **TODO-22**:  Comment out the `@ActiveProfiles` annotation at the top of this class.  Replace it with `@ActiveProfiles({"redis-vector-store","ollama-embedding"})`
+32. **TODO-22**:  Comment out the `@ActiveProfiles` annotation at the top of this class.  Replace it with `@ActiveProfiles({"redis-vector-store","aws-cohere-embedding"})`
 
 ```
-@ActiveProfiles({"redis-vector-store","ollama-embedding"})
+@ActiveProfiles({"redis-vector-store","aws-cohere-embedding"})
 ```
 33. Save your work and run the test.  It should pass.
 
@@ -319,12 +321,12 @@ Another alternative to the in-memory and Redis vector stores is the PGVector sto
         dimensions: ####
 ```
 
-39. Open `src/test/java/com.example.service.OllamaServiceTests.java`
+39. Open `src/test/java/com.example.service.AwsServiceTests.java`
 
-40. **TODO-26**:  Comment out the `@ActiveProfiles` annotation at the top of this class.  Replace it with `@ActiveProfiles({"pg-vector-store","ollama-embedding"})`
+40. **TODO-26**:  Comment out the `@ActiveProfiles` annotation at the top of this class.  Replace it with `@ActiveProfiles({"pg-vector-store","aws-cohere-embedding"})`
 
 ```
-@ActiveProfiles({"pg-vector-store","ollama-embedding"})
+@ActiveProfiles({"pg-vector-store","aws-cohere-embedding"})
 ```
 41. Save your work and run the test.  It should pass.
 

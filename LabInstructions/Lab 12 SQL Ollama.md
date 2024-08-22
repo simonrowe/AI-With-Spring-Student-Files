@@ -1,4 +1,4 @@
-## Lab 11 - SQL Generation - Ollama
+## Lab 12 - SQL Generation - Ollama
 
 One compelling generative AI use case is code generation.  The ability to generate SQL queries in response to user requests opens the door for rich possibilities.  
 

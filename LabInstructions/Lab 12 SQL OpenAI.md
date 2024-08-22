@@ -1,8 +1,8 @@
-## Lab 11 - SQL Generation - Azure
+## Lab 12 - SQL Generation - OpenAI
 
 One compelling generative AI use case is code generation.  The ability to generate SQL queries in response to user requests opens the door for rich possibilities.  
 
-In this exercise you will complete an SQL generation application able to respond to natural language query requests.  We will use Azure-hosted OpenAI models to turn a user request into an SQL statement, and the SQL results into a text summary.
+In this exercise you will complete an SQL generation application able to respond to natural language query requests.  We will use OpenAI models to turn a user request into an SQL statement, and the SQL results into a text summary.
 
 Within the project code, you will find comments containing **TODO** instructions.  These instructions match the order of instructions in this lab document.  If you find it easier, you can complete this lab by following the embedded **TODO** comments; just make sure you follow them in order.
 
@@ -15,61 +15,55 @@ Let's jump in.
 
 The instructions below are for VS Code. If you wish to use IntelliJ or Eclipse and need assistance, see the "IDE Tips" document.
 
-1. Open the _/student-files/lab11-sql-azure_ project folder.  
+1. Open the _/student-files/lab11-sql-openai project folder.  
 
     The project should be free of compiler errors at this point.  Address any issues you see before continuing.
 
 1. Find the TODO instructions.  Work through the TODO instructions in order!   
 
 ---
-**Part 1 - Setup Azure Deployment**
+**Part 2 - Signup for OpenAI Account**
 
-3. If you have not already done so, Establish an Azure account.  Follow the instructions in the **Lab Setup guide** and find the _Signup Process for Azure OpenAI_ section.  Walk through these instructions to establish an Azure Account, OpenAI _resource_, Endpoint, Keys, and Deployment. 
+3. If you have not already done so, setup an account with OpenAI.  The instructions are in the **Lab Setup** document. 
 
 ---
 **Part 3 - Initial Configuration**
 
 4. Open the **pom.xml** file.
 
-1. **TODO-01**: Notice that the dependency for groupId `org.springframework.ai` artifactId `spring-ai-azure-openai-spring-boot-starter` is already present
+1. **TODO-01**: Notice that the dependency for groupId `org.springframework.ai` artifactId `spring-ai-openai-spring-boot-starter` is already present
     * You do not need to make any changes here.
 ```
 <dependency>
 	<groupId>org.springframework.ai</groupId>
-	<artifactId>spring-ai-azure-openai-spring-boot-starter</artifactId>
+	<artifactId>spring-ai-openai-spring-boot-starter</artifactId>
 </dependency>
 ```
 
 6.  Open the `src/main/resources/application.yml` file.  
 
 1.  **TODO-02**: Establish the following configuration entries:
-    - Set `spring.application.name` to "Lab11 SQL Generation with Azure" or something similar.
+    - Set `spring.application.name` to "Lab11 SQL Generation with OpenAI" or something similar.
     - SpringAI applications can run as part of a web application, but these exercises are built to avoid that extra step.
     - Adjust the retry settings to fail fast.  
     - A _client error_ indicates a problem with our request; there is typically no point in retrying such a request.
-    - Set the `spring.ai.azure.openai.endpoint` to the value you established during Azure setup.
-    - Set the `spring.ai.azure.openai.chat.enabled` to true to enable the chat model.
-    - Set the `spring.ai.azure.openai.chat.options`.deployment-name to the value you established during setup.
-    - Set the `spring.ai.azure.openai.chat.options.model` to "gpt-35-turbo" to use the GPT-3.5 model.
-
+    - Set the `spring.ai.openai.chat.enabled` to true to enable the chat model.
+    - Set the `spring.ai.openai.chat.options.model` to "gpt-35-turbo" to use the GPT-3.5 model.
 
 ```  
 spring:
-  application.name: Lab11 SQL Generation with Azure
+  application.name: Lab11 SQL Generation with OpenAI
   main.web-application-type: none     # Do not start a web server.
   ai:
     retry:
       max-attempts: 1           # Maximum number of retry attempts.
       on-client-errors: false   # If false, throw a NonTransientAiException, and do not attempt retry for 4xx client error codes.
-    azure:
-      openai:
-        api_key: NEVER-PLACE-SECRET-KEY-IN-CONFIG-FILE
-        endpoint: ENDPOINT-GOES-HERE
-        chat:
-          enabled: true
-          options:
-            deployment-name: DEPLOYMENT-NAME-GOES-HERE
-            model: gpt-35-turbo        
+    openai:
+      api-key: NEVER-PLACE-SECRET-KEY-IN-CONFIG-FILE
+      chat:
+        enabled: true
+        options:
+          model: gpt-3.5-turbo
 ```
 
 8.  Save your work. 
@@ -174,7 +168,7 @@ The second method will generate an executive summary for the user prompt based o
                 .build();
 ```
 
-18. **TODO-11:** Use the `client` object to call the foundational model.
+19. **TODO-11:** Use the `client` object to call the foundational model.
     * The .prompt().user() method can be used to set the "fullUserMessage" defined earlier.
         * This variable combines the user-provided query with the raw data supplied by the earlier query.
     * The .call() method will make the call to the model.
@@ -207,7 +201,7 @@ The second method will generate an executive summary for the user prompt based o
     String sql = aiClient.generateSql(userQuery);
 ```
 
-22. **TODO-13:** Call the `ProductDao.adHocQuery()` to execute the SQL query.
+19. **TODO-13:** Call the `ProductDao.adHocQuery()` to execute the SQL query.
     * Pass the SQL query generated from the last method.
     * Capture the results in a List<Map<String,Object>> variable.
         * Spring's `JdbcTemplate.queryForList()` method called within the `ProductDao` returns a List structure where each result set row is represented by a Map structure.
@@ -216,7 +210,7 @@ The second method will generate an executive summary for the user prompt based o
     List<Map<String,Object>> results = productDao.adHocQuery(sql);
 ```
 
-23. **TODO-14:** Call the `AIClient` once more, this time to summarize the results.
+20. **TODO-14:** Call the `AIClient` once more, this time to summarize the results.
     * Call the `summarize()` method you implemented earlier.
     * Pass 1) the original user-provided query parameter and 2) the results from the previous call, converted to String.
     * Return the results of the summarize() method.
@@ -231,22 +225,22 @@ The second method will generate an executive summary for the user prompt based o
 
 Anything we code, we should test.  We will make a `@Test` class to ensure our Client object works as expected.
 
-24. Open `src/test/java/com/example/service/ProductServiceTests.java`.  
+21. Open `src/test/java/com/example/service/ProductServiceTests.java`.  
 
-1. **TODO-15** Add an annotation to define the class as a Spring Boot test.  Annotate the class with the `@ActiveProfiles` annotation to activate the **azure** profile.
+22. **TODO-15** Add an annotation to define the class as a Spring Boot test.  Annotate the class with the `@ActiveProfiles` annotation to activate the **openai** profile.
 
 ```
 @SpringBootTest
-@ActiveProfiles("azure")
+@ActiveProfiles("openai")
 public class ProductServiceTests {
 ```
 
-26. **TODO-16:** Use the `@Autowired` annotation to inject an instance of the `ProductService`.
+23. **TODO-16:** Use the `@Autowired` annotation to inject an instance of the `ProductService`.
 ```
     @Autowired ProductService productService;
 ```
 
-27. **TODO-17:** Define a `productQueryTest()` `@Test` method to test the `productQuery()` method of the productService.
+24. **TODO-17:** Define a `productQueryTest()` `@Test` method to test the `productQuery()` method of the productService.
     * A "samplePrompt" String has been provided as example test data to be provided to as the user-defined query.
     * Use AssertJ's `Assertions.assertThat()` method to ensure that the content is not null.
     * Use AssertJ's `Assertions.assertThat().contains()` method to ensure that the content contains some expected results.  Use the "sampleResults" array as an example.
@@ -267,7 +261,7 @@ public class ProductServiceTests {
     }
 ```
 
-28. **TODO-18:** Organize all imports. Save all work.  Run the test.  It should pass.
+25. **TODO-18:** Organize all imports. Save all work.  Run the test.  It should pass.
     * Note: There is a good possibility that the test may fail.  The behavior of the foundational models is not deterministic. If an error occurs, experiment with the various prompts to try to get the expected results.
 
 **Part 9 - Summary**

@@ -1,8 +1,8 @@
-## Lab 9 - Retrieval Augmented Generation - AWS Bedrock
+## Lab 10 - Retrieval Augmented Generation - OpenAI
 
 In this exercise you will create a Spring Boot application which implements retrieval augmented generation.  It will utilize most of the technologies seen in the previous labs; embeddings, vector stores, and semantic search.  To streamline the entire process, the ChatClient will use a QuestionAnswerAdvisor so our code can avoid working directly with embeddings, vector stores, or semantic searches.
 
-This lab will feature chat models hosted in Amazon Bedrock.  Bedrock is a managed service which gives us access to many different chat and image generation [models](https://docs.aws.amazon.com/bedrock/latest/userguide/model-ids.html#model-ids-arns).  It will also have optional steps to use Redis or PGVector as vector stores rather than an in-memory implementation. 
+This lab will feature the OpenAI chat models.  It will also have optional steps to use Redis or PGVector as vector stores rather than an in-memory implementation. 
 
 Within the codebase you will find ordered *TODO* comments that describe what actions to take for each step.  By finding all files containing *TODO*, and working on the steps in numeric order, it is possible to complete this exercise without looking at the instructions.  If you do need guidance, you can always look at these instructions for full information.  Just be sure to perform the *TODO* steps in order.
 
@@ -11,14 +11,14 @@ Solution code is provided for you in a separate folder, so you can compare your 
 Let's jump in.
 
 ---
-**Part 1 - Obtain an AWS Account, Set Credentials, Enable Bedrock Models**
+**Part 1 - Establish an OpenAI Account**
 
-If you have not already done so, follow the instructions in the **Lab Setup guide** _Signup Process for Amazon / Bedrock_ section to setup an AWS Account, IAM User, set credentials in your local environment, and enable Bedrock models.
+If you have not already done so, setup an account with OpenAI.  The instructions are in the **Lab Setup** document. 
 
 ---
 **Part 2 - Setup the Project**
 
-1. Open the _/student-files/lab9-rag-aws_ project in your IDE.   The project should be free of compiler errors at this point.  Address any issues you see before continuing.
+1. Open the _/student-files/lab9-rag-openai_ project in your IDE.   The project should be free of compiler errors at this point.  Address any issues you see before continuing.
 
 2. Find the TODO instructions.  Work through the TODO instructions in order!   
 
@@ -26,12 +26,12 @@ If you have not already done so, follow the instructions in the **Lab Setup guid
 
 4. **TODO-01**: Observe the dependency for `spring-ai-transformers-spring-boot-starter`.  This dependency defines Spring AI's built in TransformerEmbeddingModel.  We will use this model to create embeddings rather than use an external model.  There is nothing you need to do with this dependency.  If you are motivated, after you have completed the lab, feel free to replace this with a hosted FM for embeddings if you like.
 
-5. **TODO-02:** Add the dependency for Amazon Bedrock.  The groupId value will be `org.springframework.ai`, the artifactId will be `spring-ai-bedrock-ai-spring-boot-starter`.  
+5. **TODO-02:** Add the dependency for Amazon OpenAI.  The groupId value will be `org.springframework.ai`, the artifactId will be `spring-ai-openai-spring-boot-starter`.  
 
 ```
 <dependency>
     <groupId>org.springframework.ai</groupId>
-    <artifactId>spring-ai-bedrock-ai-spring-boot-starter</artifactId>
+    <artifactId>spring-ai-openai-spring-boot-starter</artifactId>
 </dependency>
 ```
 6. Save your work.
@@ -39,31 +39,31 @@ If you have not already done so, follow the instructions in the **Lab Setup guid
 1. Open `src/main/resources/application.yml`.  
 
 1. **TODO-03:**  Establish the following configuration entries:
-  * Set `spring.application.name` to "Lab9 RAG with AWS" or something similar.
+  * Set `spring.application.name` to "Lab9 RAG with OpenAI" or something similar.
   * Set `spring.main.web-application-type` to none to run as a non-web application.  Spring AI applications can run as web applications, but these exercises avoid this distraction.
   * Set `spring.ai.retry.max-attempts` to 1 to fail fast to save time if you have errors.
   * Set `spring.ai.retry.on-client-errors` to false since there is typically no point in retrying a client (vs server) error.
-  * Set `spring.ai.bedrock.titan.chat.enabled` to true to specify use of the Titan chat model.  
-  * Set `spring.ai.bedrock.aws.region` to "us-west-2", or whichever region you have enabled the titan model in.  
+  * Set `spring.ai.openai.chat.enabled` to true to enable the chat model.
+  * Set `spring.ai.openai.chat.options.model` to "gpt-35-turbo" to use the GPT-3.5 model, or allow it to default.
+
 
 ```
 spring:
-  application.name: Lab9 RAG with AWS
+  application.name: Lab9 RAG with OpenAI
   main.web-application-type: none     # Do not start a web server.
   ai:
     retry:
       max-attempts: 1      # Maximum number of retry attempts.
-      on-client-errors: false   # If false, throw a NonTransientAiException, and do not attempt retry for 4xx client error codes.  
-    bedrock:
-      aws.region: us-west-2
-      titan:
-        chat:
-          enabled: true
+      on-client-errors: false   # If false, throw a NonTransientAiException, and do not attempt retry for 4xx client error codes. 
+    openai:
+      api-key: NEVER-PLACE-SECRET-KEY-IN-CONFIG-FILE
+      chat:
+        enabled: true
 ```
 
 9. Open `src/main/java/com.example.Application`.
 
-1. **TODO-04:** Define a bean method named "vectorStore" of type `VectorStore`. The method should accept an `EmbeddingModel` parameter.  Have it instantiate and return a `new SimpleVectorStore` injected with the given `EmbeddingModel`.  Use `@Profile` to assign this bean to the **simple-vector-store** profile.
+10. **TODO-04:** Define a bean method named "vectorStore" of type `VectorStore`. The method should accept an `EmbeddingModel` parameter.  Have it instantiate and return a `new SimpleVectorStore` injected with the given `EmbeddingModel`.  Use `@Profile` to assign this bean to the **simple-vector-store** profile.
 
 ```
 	@Bean
@@ -80,7 +80,7 @@ spring:
 
 12. Open `src/main/java/com.example.client.AIClientImpl`.  
 
-1. **TODO-05:** Use the `@Service` annotation to define this class as a Spring Service.
+13. **TODO-05:** Use the `@Service` annotation to define this class as a Spring Service.
 
 ```
 @Service
@@ -153,14 +153,14 @@ Have the method return the content of the response.
 
 Anything we code, we should test. We will make a `@Test` class to ensure our Client object works as expected.
 
-20.  Open `src/test/java/com.example.client.AwsClientTest`.
+20.  Open `src/test/java/com.example.client.OpenAIClientTest`.
 
-1.  **TODO-11:** Define this test class as a Spring Boot test.  Use the `@ActiveProfiles` annotation to activate the **simple-vector-store** and **aws** profiles.
+21.  **TODO-11:** Define this test class as a Spring Boot test.  Use the `@ActiveProfiles` annotation to activate the **simple-vector-store** and **openai** profiles.
 
 ```
 @SpringBootTest
-@ActiveProfiles({"simple-vector-store","aws"})
-public class AwsClientTests {
+@ActiveProfiles({"simple-vector-store","openai"})
+public class OpenAIClientTests {
 ```
 
 22.  **TODO-12:**  Use the `@Autowired` annotation to inject an instance of the `AIClient`.
@@ -226,15 +226,15 @@ Be sure you have completed the "Setup Process for Redis Docker Container" instru
 
 29.  Notice that there are autoconfigure instructions to exclude PgVectorStoreAutoConfiguration and DataSourceAutoConfiguration.  This is done to address the possibility that a student may enable both the redis-vector-store and pg-vector-store profiles.
 
-30.  Open `src/test/java/com.example.client.AwsClientTest`.
+30.  Open `src/test/java/com.example.client.OpenAIClientTest`.
 
 31.  **TODO-23:**  Alter the `@ActiveProfiles` annotation at the top of this class.  Replace the **simple-vector-store** profile with **redis-vector-store**.
 
 ```
 @SpringBootTest
-@ActiveProfiles({"redis-vector-store","aws"})
-//@ActiveProfiles({"simple-vector-store","aws"})
-public class AwsClientTests {
+@ActiveProfiles({"redis-vector-store","openai"})
+//@ActiveProfiles({"simple-vector-store","openai"})
+public class OpenAIClientTests {
 ```
 
 32.  Save your work and run the test again.  It should pass.
@@ -248,7 +248,7 @@ Be sure you have completed the "Setup Process for PostgreSQL Docker Container" a
 
 33. Open the **pom.xml** file.
 
-1. **TODO-24** Replace the simple in-memory vector store with Redis by removing the commend on the `spring-ai-pgvector-store-spring-boot-starter` dependency.
+34. **TODO-24** Replace the simple in-memory vector store with Redis by removing the commend on the `spring-ai-pgvector-store-spring-boot-starter` dependency.
 
 ```
 		<dependency>
@@ -259,7 +259,7 @@ Be sure you have completed the "Setup Process for PostgreSQL Docker Container" a
 
 35. Open `src/main/resources/application.yml`.  
 
-1. **TODO-25**  Set properties for the Postgres vector store.  Note that these will only be used if the "pg-vector-store" profile is active.
+36. **TODO-25**  Set properties for the Postgres vector store.  Note that these will only be used if the "pg-vector-store" profile is active.
 * Set `spring.datasource.url` to **jdbc:postgresql://localhost:5432/postgres**, unless your Postgres is running elsewhere.
 * Set `spring.datasource.username` and `spring.datasource.password` the username and password set when running the container.
 * Set `spring.ai.vectorstore.pgvector.initialize-schema` to **true** to create the necessary schema. (You may not want to do this in a production environment.)
@@ -289,15 +289,15 @@ If you make a mistake here, don't worry.  The error message will tell you the co
 
 37.  Notice that there are autoconfigure instructions to exclude RedisVectorStoreAutoConfiguration.  This is done to address the possibility that a student may enable both the redis-vector-store and pg-vector-store profiles simultaneously.
 
-1.  Open `src/test/java/com.example.client.AwsClientTest`.
+38.  Open `src/test/java/com.example.client.OpenAIClientTest`.
 
-1.  **TODO-26:** Alter the `@ActiveProfiles` annotation at the top of this class.  Replace the "simple-vector-store" profile with "pg-vector-store"
+39.  **TODO-26:** Alter the `@ActiveProfiles` annotation at the top of this class.  Replace the "simple-vector-store" profile with "pg-vector-store"
 
 ```
 @SpringBootTest
-@ActiveProfiles({"pg-vector-store","aws"})
-//@ActiveProfiles({"simple-vector-store","aws"})
-public class AwsClientTests {
+@ActiveProfiles({"pg-vector-store","openai"})
+//@ActiveProfiles({"simple-vector-store","openai"})
+public class OpenAIClientTests {
 ```
 
 40. Save your work and run the test again.  It should pass.

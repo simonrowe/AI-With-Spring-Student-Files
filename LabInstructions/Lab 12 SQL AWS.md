@@ -1,4 +1,4 @@
-## Lab 11 - SQL Generation - AWS
+## Lab 12 - SQL Generation - AWS
 
 One compelling generative AI use case is code generation.  The ability to generate SQL queries in response to user requests opens the door for rich possibilities.  
 

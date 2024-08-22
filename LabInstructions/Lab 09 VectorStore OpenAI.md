@@ -1,7 +1,7 @@
 
-## Lab 8 - VectorStore - AWS Cohere
+## Lab 09 - VectorStore - OpenAI
 
-In this exercise you will create a Spring Boot application which utilizes a Vector Store.  You'll gain experience in loading a Vector Store with documents and performing semantic searches.  We will use an Amazon Bedrock hosed Cohere model for our embedding model.
+In this exercise you will create a Spring Boot application which utilizes a Vector Store.  You'll gain experience in loading a Vector Store with documents and performing semantic searches.  We will use OpenAI for an embedding model.
 
 Within the codebase you will find ordered *TODO* comments that describe what actions to take for each step.  By finding all files containing *TODO*, and working on the steps in numeric order, it is possible to complete this exercise without looking at the instructions.  If you do need guidance, you can always look at these instructions for full information.  Just be sure to perform the *TODO* steps in order.
 
@@ -12,42 +12,41 @@ Solution code is provided for you in a separate folder, so you can compare your 
 Let's jump in.
 
 ---
-**Part 1 - Obtain an AWS Account, Set Credentials, Enable Bedrock Models**
+**Part 1 - Establish an OpenAI Account**
 
-If you have not already done so, follow the instructions in the **Lab Setup guide** _Signup Process for Amazon / Bedrock_ section to setup an AWS Account, IAM User, set credentials in your local environment, and enable Bedrock models.
-
-Specifically, this lab will utilize the Cohere embedding model.
+If you have not already done so, setup an account with OpenAI.  The instructions are in the **Lab Setup** document. 
 
 ---
 **Part 2 - Setup the Project**
 
-1. Open the _/student-files/lab8-vectorstore-aws_ project in your IDE.   The project should be free of compiler errors at this point.  Address any issues you see before continuing.
+1. Open the _/student-files/lab8-vectorstore-openai_ project in your IDE.   The project should be free of compiler errors at this point.  Address any issues you see before continuing.
 
 1. Find the TODO instructions.  Work through the TODO instructions in order!   
 
 1. Open the **application.yml** file.
 
 1. **TODO-01:** Establish the following configuration entries:
-  * Set `spring.application.name` to "Lab8 VectorStore with AWS Cohere" or something similar.
+  * Set `spring.application.name` to "Lab8 VectorStore with OpenAI" or something similar.
   * Set `spring.main.web-application-type` to none to run as a non-web application.  Spring AI applications can run as web applications, but these exercises avoid this distraction.
   * Set `spring.ai.retry.max-attempts` to 1 to fail fast to save time if you have errors.
   * Set `spring.ai.retry.on-client-errors` to false since there is typically no point in retrying a client (vs server) error.
-  * Set `spring.ai.bedrock.cohere.embedding.enabled` to true to switch this embedding model on.
-  * Set `spring.ai.bedrock.cohere.embedding.model` to "cohere.embed-english-v3", or see https://docs.aws.amazon.com/bedrock/latest/userguide/models-supported.html for latest list.
+  * Set `spring.ai.openai.embedding.enabled` to true to enable the embedding model.
+  * Set `spring.ai.openai.embedding.options.model` to text-embedding-ada-002, or see https://platform.openai.com/docs/models/embeddings for latest list.
 
 ```
 spring:
-  application.name: Lab8 VectorStore with Ollama
+  application.name: Lab8 VectorStore with OpenAI
   main.web-application-type: none     # Do not start a web server.
   ai:
     retry:
       max-attempts: 1      # Maximum number of retry attempts.
       on-client-errors: false   # Do not retry 4xx errors. 
-    bedrock:
-      cohere:
-        embedding:
-          enabled: true
-          model: cohere.embed-english-v3
+    openai:
+      api-key: NEVER-PLACE-SECRET-KEY-IN-CONFIG-FILE
+      embedding:
+        enabled: true
+        options:
+          model: text-embedding-ada-002
 ```
 
 ---
@@ -194,14 +193,14 @@ public class ProductService {
 
 Anything that we code, we should test.  Create a test which loads the Vector Store with sample product descriptions.  They we will test semantic searches for a product idea, and expect to get a match.
 
-21. Open `src/test/java/com.example.service.AwsServiceTests.java`
+21. Open `src/test/java/com.example.service.OpenAIServiceTests.java`
 
-22. **TODO-13:** Define this test class as a Spring Boot test.  Use the `@ActiveProfiles` annotation to activate the **simple-vector-store** and **aws-cohere-embedding** profiles.
+22. **TODO-13:** Define this test class as a Spring Boot test.  Use the `@ActiveProfiles` annotation to activate the **simple-vector-store** and **openai-embedding** profiles.
 
 ```
 @SpringBootTest
-@ActiveProfiles({"simple-vector-store","aws-cohere-embedding"})
-public class AwsServiceTests {
+@ActiveProfiles({"simple-vector-store","openai-embedding"})
+public class OpenAIServiceTests {
 ```
 
 23. **TODO-14:** Use the `@Autowired` annotation to inject an instance of the `ProductService`.
@@ -227,7 +226,7 @@ public class AwsServiceTests {
     }
 ```
 
-25. **TODO-16:** Save all work.  Run this test, it should pass, though it may run slowly.
+25. **TODO-16:** Save all work.  Run this test, it should pass.
 
 Congratulations!  You have successfully implemented an in-memory vector store, populated with embeddings of product descriptions, and performed semantic search to find matches.
 
@@ -265,12 +264,12 @@ The existing implementation uses an in-memory Vector Store, which is not appropr
         initializeSchema: true       # Potentially destructive.
 ```
 
-31. Open `src/test/java/com.example.service.AwsServiceTests.java`
+31. Open `src/test/java/com.example.service.OpenAIServiceTests.java`
 
-32. **TODO-22**:  Comment out the `@ActiveProfiles` annotation at the top of this class.  Replace it with `@ActiveProfiles({"redis-vector-store","aws-cohere-embedding"})`
+32. **TODO-22**:  Comment out the `@ActiveProfiles` annotation at the top of this class.  Replace it with `@ActiveProfiles({"redis-vector-store","openai-embedding"})`
 
 ```
-@ActiveProfiles({"redis-vector-store","aws-cohere-embedding"})
+@ActiveProfiles({"redis-vector-store","openai-embedding"})
 ```
 33. Save your work and run the test.  It should pass.
 
@@ -321,12 +320,12 @@ Another alternative to the in-memory and Redis vector stores is the PGVector sto
         dimensions: ####
 ```
 
-39. Open `src/test/java/com.example.service.AwsServiceTests.java`
+39. Open `src/test/java/com.example.service.OpenAIServiceTests.java`
 
-40. **TODO-26**:  Comment out the `@ActiveProfiles` annotation at the top of this class.  Replace it with `@ActiveProfiles({"pg-vector-store","aws-cohere-embedding"})`
+40. **TODO-26**:  Comment out the `@ActiveProfiles` annotation at the top of this class.  Replace it with `@ActiveProfiles({"pg-vector-store","openai-embedding"})`
 
 ```
-@ActiveProfiles({"pg-vector-store","aws-cohere-embedding"})
+@ActiveProfiles({"pg-vector-store","openai-embedding"})
 ```
 41. Save your work and run the test.  It should pass.
 
