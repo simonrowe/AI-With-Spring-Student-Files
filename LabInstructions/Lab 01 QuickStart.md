@@ -17,7 +17,7 @@ WARNING: Do not use the instructions for "Azure OpenAI" at this point; they will
   - Use either Maven or Gradle - Groovy (if you have it installed).  All lab instructions are based on Maven.
   - Use the latest stable releases of Boot and Java.  These instructions were originally tested with Java 1.21, Boot 3.2.5.  The version can be changed after the project is generated.
   - Use JAR packaging.
-  - For project metadata, adjust the values as you like.  These instructions will assume an artifact and name of “lab1-openai”.
+  - For project metadata, adjust the values as you like.  These instructions will assume an artifact and name of “lab01-openai”.
   - Adjust the package to `com.example` for simplicity.  Feel free to re-arrange the package structure later, but the remaining instructions will assume the former.
   - Search for and select the `OpenAI` dependency. (Do **NOT** select the Azure OpenAI for this lab!)
 2. Generate.  Find the downloaded zip and expand it.  Copy the `lab01-openai` project to your _/student-files/_ folder, or wherever you downloaded your labfiles to.
