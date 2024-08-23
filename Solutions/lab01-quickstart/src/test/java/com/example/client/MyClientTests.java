@@ -11,8 +11,8 @@ public class MyClientTests {
     @Autowired MyClient client;
 
     @Test
-    public void testCallModel() {
-        String response = client.callModel(
+    public void testCall() {
+        String response = client.call(
         """
         What are the names of the five great lakes.  Produce JSON output.
         """

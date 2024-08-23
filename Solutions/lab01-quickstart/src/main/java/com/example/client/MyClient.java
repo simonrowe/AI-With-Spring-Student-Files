@@ -1,7 +1,7 @@
 package com.example.client;
 
 import org.springframework.ai.chat.client.ChatClient;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.ai.chat.model.ChatModel;
 import org.springframework.stereotype.Component;
 
 @Component
@@ -9,11 +9,11 @@ public class MyClient {
 
     private final ChatClient client;
 
-    public MyClient(ChatClient.Builder builder) {
-        client = builder.build();
+    public MyClient(ChatModel model) {
+        client = ChatClient.builder(model).build();
     }
 
-    public String callModel(String input) {
+    public String call(String input) {
         return client
                 .prompt()
                 .user(input)
