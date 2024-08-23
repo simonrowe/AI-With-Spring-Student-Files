@@ -20,7 +20,7 @@ WARNING: Do not use the instructions for "Azure OpenAI" at this point; they will
   - For project metadata, adjust the values as you like.  These instructions will assume an artifact and name of “lab01-openai”.
   - Adjust the package to `com.example` for simplicity.  Feel free to re-arrange the package structure later, but the remaining instructions will assume the former.
   - Search for and select the `OpenAI` dependency. (Do **NOT** select the Azure OpenAI for this lab!)
-2. Generate.  Find the downloaded zip and expand it.  Copy the `lab01-openai` project to your _/student-files/_ folder, or wherever you downloaded your labfiles to.
+2. Generate.  Find the downloaded zip and expand it.  Copy the `lab01-openai` project to your _/AI-With-Spring-Student-Files/_ folder, or wherever you downloaded your labfiles to.
 
 ---
 **Part 3 - Import into your IDE**
@@ -142,8 +142,8 @@ public class MyClientTests {
 Add a `@Test` method to use the `openAIClient` to make an example API call:
 ```
     @Test
-    public void testCallModel() {
-        String response = client.callModel(
+    public void testCall() {
+        String response = client.call(
             "What are the names of the five great lakes.  Produce JSON output.");
         Assertions.assertThat(response).contains(
             "Superior", "Huron", "Erie", "Michigan", "Ontario");
