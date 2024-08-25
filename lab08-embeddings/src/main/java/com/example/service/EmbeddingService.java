@@ -6,15 +6,12 @@ import org.springframework.ai.embedding.EmbeddingModel;
 import org.springframework.stereotype.Service;
 
 //  TODO-04: Use a stereotype annotation to mark this class as a Spring bean.
-@Service
+
 public class EmbeddingService {
 
     //  TODO-05: Define a private final field named "model" of type EmbeddingModel.
     //   Define a constructor which dependency injects this field:
-    private final EmbeddingModel model;
-    public EmbeddingService(EmbeddingModel model) {
-        this.model = model;
-    }
+
 
     public String findClosestMatch(String query, List<String> products) {
 
@@ -25,28 +22,20 @@ public class EmbeddingService {
         //  TODO-06: Use the AI model to turn our product descriptions into Embeddings.
         //  Pass the incoming products list to the model's embed method.
         //  Use the response to populate the productEmbeddings List:
-        productEmbeddings = model.embed(products);
-
+    
 
         //  TODO-07: Use the AI model to turn our query into a single Embedding.
         //  Pass the query string to the model's embed method.
-        //  Use the response to populate the queryEmbedding List.
-        queryEmbedding = model.embed(query);
-
+        //  Use the response to populate the queryEmbedding array.
+    
 
         //  TODO-08 find the product description most relevant to the query.
         //  Call the findColosestMatch() method with the correct arguments.
         //  Store the returned integer in the mostSimilarIndex variable.
         //  If the returned index < 0, return "No similar product found"
         //  Otherwise, get the item in the products list matching this index.
-        int mostSimilarIndex = -1;
-        mostSimilarIndex = findColosestMatch(queryEmbedding, productEmbeddings);
-        
-        if(mostSimilarIndex < 0) {
-            return "No similar product found";
-        } else {
-            return products.get(mostSimilarIndex);
-        }
+
+        return null; //  Replace this line with your code.
     }
 
 

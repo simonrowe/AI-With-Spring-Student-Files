@@ -2,6 +2,8 @@ package com.example.service;
 
 import static org.assertj.core.api.Assertions.*;
 
+import java.util.List;
+
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -13,31 +15,34 @@ import org.springframework.test.context.ActiveProfiles;
 //      For standard OpenAI,    use "openai".
 //      For Ollama,             use "ollama".
 
-@SpringBootTest
-@ActiveProfiles("openai")
-// @ActiveProfiles("aws")
-// @ActiveProfiles("ollama")
-//@ActiveProfiles("internal")
 public class EmbeddingServiceTests {
 
-    //  TODO-11: Use the @Autowired annotation to inject an instance of our EmbeddingService.
-    @Autowired EmbeddingService svc;
 
-    //  TODO-12: Define a test method to call the testFindClosestMatch method of the service.
-    //  Use the Utilities class to provide the query and products inputs.
+    //  Sample product catalog:
+    List<String> products = List.of(
+            "Wireless Mouse: A comfortable wireless mouse with ergonomic design and long battery life, perfect for seamless connectivity without cables.",
+            "Wireless Headphones: Lightweight, noise-canceling technology, immersive sound and long battery life, ideal for people on-the-go.",
+            "Bluetooth Speaker: Portable Bluetooth speaker with excellent sound quality and long battery life, suitable for outdoor use and parties.",
+            "4K Monitor: A 27-inch 4K UHD monitor with vibrant colors and high dynamic range for stunning visuals, providing an exceptional viewing experience."
+    );
+
+    //  Sample user query:
+    String query = "I need high quality wireless headphones to block out noise on a plane";
+
+
+    //  TODO-12: Define a test method to call the findClosestMatch method of the service.
+    //  Use the provided query and products variables as test inputs.
     //  Capture the result in a String variable.
     //  assertThat the result startsWith "Wireless Headphones".
     //  Print the result to the console:
-    @Test
-    public void testFindClosestMatch() {
-        String result = svc.findClosestMatch(Utilities.query, Utilities.products);
-        assertThat(result).startsWith("Wireless Headphones:");
-        System.out.println(result);
-    }
 
+
+
+    
     //  TODO-13: Organize your imports and save your work.
     //  Run this test.  It should pass.
     //  The product description for wireless headphones should be displayed.
+
 
 
     //  TODO-14 (OPTIONAL): Instead of using an external model, we can use an internal SpringAI class to create embeddings.

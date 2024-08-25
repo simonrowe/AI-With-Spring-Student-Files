@@ -9,9 +9,9 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.example</groupId>
-	<artifactId>lab08-embedding-solution</artifactId>
+	<artifactId>lab08-embeddings</artifactId>
 	<version>1</version>
-	<name>lab08-embedding-solution</name>
+	<name>lab08-embeddings</name>
 	<description>Spring AI with Embeddings</description>
 	<properties>
 		<java.version>21</java.version>

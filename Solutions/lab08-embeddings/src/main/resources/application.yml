@@ -1,0 +1,68 @@
+spring:
+  application.name: Lab6 Embedding
+  main.web-application-type: none     # Do not start a web server.
+
+  ai:
+    openai.embedding.enabled: false   # Allow profile to enable this if needed.
+    ollama.embedding.enabled: false   # Allow profile to enable this if needed.
+    embedding.transformer.enabled: false  # SpringAI provides a default embeddings model.  Disable this to force the use of a different model.
+    retry:
+      max-attempts: 1      # Maximum number of retry attempts.
+
+# TODO-03: Adjust the settings below based on the chat model you plan to use.
+# If you plan to use Amazon Bedrock: 
+#   - Adjust the region setting if needed.
+#   - Adjust the model setting if needed.
+# If you plan to use OpenAI:
+#   - Adjust the model setting if needed.
+# If you plan to use Ollama:
+#   - Adjust the base-url and model settings if needed.
+#   - Make sure your Ollama Docker container is running.
+# Note that only one model will be active at a time.  The active model is determined by the active profile.
+
+---
+spring:
+  config.activate.on-profile: openai
+
+  # OpenAI Settings:
+  ai:
+    openai:
+      embedding:
+        enabled: true
+        options:
+          model: text-embedding-ada-002
+
+---
+spring:
+  config.activate.on-profile: aws
+  
+  # Amazon Bedrock Cohere Settings:
+  ai:
+    bedrock:
+      aws.region: us-west-2   
+      cohere:
+        embedding:
+          enabled: true
+          model: cohere.embed-english-v3
+
+---
+spring:
+  config.activate.on-profile: ollama
+
+  # Ollama Settings:
+  ai:
+    ollama:
+      base-url: http://localhost:11434  # Default base URL when you run Ollama from Docker
+      embedding:
+        enabled: true
+
+---
+spring:
+  config.activate.on-profile: internal
+
+  # SpringAI internal embedding model settings:
+  ai:
+    embedding:
+      transformer:
+        enabled: true
+
