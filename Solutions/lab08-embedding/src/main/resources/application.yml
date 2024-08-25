@@ -17,6 +17,7 @@ spring:
 #   - Adjust the model setting if needed.
 # If you plan to use Ollama:
 #   - Adjust the base-url and model settings if needed.
+#   - Make sure your Ollama Docker container is running.
 # Note that only one model will be active at a time.  The active model is determined by the active profile.
 
 ---

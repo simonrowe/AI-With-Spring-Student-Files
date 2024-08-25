@@ -22,7 +22,7 @@
 		<!-- TODO-01: 
 		 Notice the starters for OpenAI, Ollama, and Bedrock are present.	
 		 Only one of these will be active at a time. 
-		 If using Bedrock, make sure you have enabled the "Cohere" and "Titan" models.
+		 If using Bedrock, make sure you have enabled the "Cohere" embedding model.
 		 -->
 		<dependency>
 			<groupId>org.springframework.ai</groupId>
