@@ -7,158 +7,215 @@ An example is combining general knowlege about a given company with its current 
 > The stock ticker symbol 'TSLA' belongs to Tesla, Inc. Tesla is a renowned electric vehicle and clean energy company. The current stock price for Tesla is $174.11 
 
 ---
-**Part 1 - Create Spring Boot Project**
+**Part 1 - Setup the Project**
 
-1. Create a new Spring Boot application. Name the project **lab-4-openai-local**, and use this value for the artifact. Use JAR packaging and the latest versions of Java. Use the latest version of Boot. Set the package as `com.example`. Search for and select "OpenAI" as a dependency.  Generate, Unzip, and import this project into your IDE.
+1. Open the _/student-files/lab06-functions-openai_ folder.  
 
-1. Find and rename the `src/main/resources/application.properties` to `src/main/resources/application.yml`. Establish the following entries:
-```
-spring:
-  application.name: lab4-openai-functions
-  main.web-application-type: none  # No web server.
-```
-3. Find the main test class in `src/test/java/com/example`.  Rename it to `ApplicationTests.java` (if you like.)  Run the test, the test should start and stop with no errors.
-- Note: This assumes the `SPRING_AI_OPENAI_API_KEY` is still set from previous labs.
+    The project should be free of compiler errors at this point.  Address any issues you see before continuing.
 
----
-**Part 2 - Create a Client Object**
+1. Find the TODO instructions.
 
-Similar to previous labs, we will establish a client object for our application to interact with OpenAI. To decouple our business logic from a specific AI model, we will build an interface first.
+    * **Using VS Code:** Select "Edit" / "Find in Files..." and search for "TODO".
+    * **Using IntelliJ:**  Select "Edit" / "Find" / "Find in Files..." and search for "TODO".  Use the "Open in Find Window" button to place the results in a tab for easy navigation.
+    * **Using Eclipse:** Select "Window" / "Show View" / "Tasks".  Use the "Search" view to search for "TODO".  Find a filter icon on the top of this tab.  Check "Show all items", "TODOs".  For scope select "on elements in the selected projects".  The list of TODOs will appear in order!
 
-4. Create a new **client** folder under `src/main/java/com/example`.  Within this package create a new Java file called `AIClient.java`.
-* The IDE should create an empty Java class definition for you.
-5. Copy the following code to define this interface and save your work:
-```
-public interface AIClient {
-    public String callModel(String prompt );
-    public String callModel(String prompt, String model );
-}
-```
-* Note: the purpose of this interface is to decouple the `@Service` bean we will build from specific AI APIs.
-6. Within `src/main/java/com/example/client` create a new Java file called `OpenAIClient`.  Give it the following initial definition.  Organize imports and save your work:
-```
-@Component
-@Profile("openai")
-public class OpenAIClient implements AIClient {
-
-   	@Autowired
-	ChatClient chatClient;
-
-    public String callModel(String prompt ) {
-		return callModel(prompt, null);
-	}
-
-    public String callModel(String prompt, String model ) {
-        return null;
-    }
-}
-```
-* This client object will provide the implementation specific to OpenAI.  Spring will only create it when the "openai" profile is active, making it possible for our code to support multiple models.  The `@Autowired ChatClient` is provided automatically by Spring Boot.
-
-7. Implement the second `callModel` method.  With the following code:
-```
-    public String callModel(String prompt, String model ) {
-
-        if (model==null) {
-            model = "gpt-3.5-turbo";    // (1)
-        }
-
-		ChatResponse response = chatClient.call(
-			new Prompt(prompt,              // (2)
-            	OpenAiChatOptions.builder()
-					.withModel(model)
-                    .withFunction("stockService") // (3)
-					.build()
-				));
-
-        return response.getResults().get(0).getOutput().getContent();   //  (4)
-    }
-```
-* (1) If the incoming model parameter is null, set it to a default value. **NOTE:** This value may need to be adjusted if you take this course after 2024.  See https://platform.openai.com/docs/models.
-* (2) The prompt will be passed from our `@Service` object.
-* (3) Critical: `withFunction()` allows us to define the function to be called to embellish the response.  `stockService` will be a bean which we will create in the next step.
-* (4) Return the result.
-
-8. Organize your imports and save your work.
+    IMPORTANT: Work through the TODO instructions in order!   
 
 
 ---
-**Part 3 - Create a Service Object**
+**Part 2 - Establish an OpenAI Account**
 
-Next we will create a `@Bean` which retrieves current price of a given stock given a ticker symbol.  OpenAI's models are trained on data from the past; they can give us general information about a company, but cannot provide current information.  We will use a local function to obtain this.
+1. **TODO-01**: If you have not already done so, setup an account with OpenAI.  The instructions are in the **Lab Setup** document. 
 
-To keep our lab focused, the service will generate a random price rather than attempt to lookup a live value.
 
-9. Create a new **service** folder under `src/main/java/com/example`.  Within this package create a new Java file called `StockService.java`.
-1. Copy the following code to begin, expect a compilation error:
-```
-@Service("stockService")    // (1)
-@Description("Service to get stock information")    // (2)	
-public class StockService implements Function<com.example.service.StockService.Request, com.example.service.StockService.Response> {  // (3)
 
-}
-```
-* (1) The name of this `@Service` must match the value provided to the `withFunction()` call on the client's options.
-* (2) The `@Description` provides descriptive information to the client.
-* (3) The class must implement `java.util.function.Function` to be usable to the `ChatClient`.  The interface will define input and output types which will be communicated to the API.
+---
+**Part 3 - Initial Configuration and Test**
 
-11. Next, add the following `Record` definitions to the class to clearly define the input and output types.  This will impact the JSON description sent to the API:
-```
-    public record Request(String symbol) {}
-    public record Response(String symbol, Double price, String currency) {}
-```
+2. Open the **pom.xml** file.
 
-12. The `Function` interface requires an `apply()` method.  This method will be called by the client after the response is received from the API.  It will provide current information on the stock price:
-```
-	public Response apply(Request request) {
-		//	For now, return an artificial response:
-		double price = Math.random()*800;
-		return new Response(request.symbol(),price, "USD");
-	}    
-```
-13. Now we can implement our main business method.  Our goal is to provide a brief description of a company including current price information:
-```
-    @Autowired AIClient client;
+1. **TODO-02**: Observe that the dependency for OpenAI is already setup.  There is nothing you need to do here:
+
+    ```
+    <dependency>
+        <groupId>org.springframework.ai</groupId>
+        <artifactId>spring-ai-openai-spring-boot-starter</artifactId>
+    </dependency>
+    ```
+    - Warning: Do NOT use the dependency for _azure_ OpenAI in this lab. 
+
+1.  Open `src/main/java/com/example/Application.java`.
+
+1.  **TODO-03**: Run the application.
+
+    * **VS Code**: Right-click, Run Java.  Or open the file and click the “Run” option hovering over the main() method.
+    * **IntelliJ**: Right-click, select “Run ‘Application.main()’”. 
+    * **Eclipse**: Right-click, Select Run As / Java Application.
+
+    We expect the application to start, then stop, without errors.  If you have any errors related to tooling, be sure to address them now before proceeding.
+
+1.  **TODO-04**: Open `src/main/resources/application.yml`. 
+    * Set `spring.application.name` to "Lab06 OpenAI Functions" or something similar.
+    * Set `spring.main.web-application-type` to none to run as a non-web application.  Spring AI applications can run as web applications, but these exercises avoid this distraction.
+    * Set `spring.ai.retry.max-attempts` to 1 to fail fast to save time if you have errors.
+    * Set `spring.ai.retry.on-client-errors` to false since there is typically no point in retrying a client (vs server) error.
+    * Set `spring.ai.openai.chat.enabled` to true to enable the chat model.
+    * Set `spring.ai.openai.chat.options.model` to "gpt-35-turbo" to use the GPT-3.5 model, or allow it to default.
+
+    ```
+    spring:
+      application.name: Lab06 Local Functions
+      main.web-application-type: none     # Do not start a web server.
+      ai:
+        retry:
+          max-attempts: 1      # Maximum number of retry attempts.
+          on-client-errors: false   # Do not retry for 4xx errors.
+        openai:
+          api-key: NEVER-PLACE-SECRET-KEY-IN-CONFIG-FILE
+          chat.enabled: true          
+    ```
+
+1.  Save your work.  
+
+
+
+---
+**Part 4 - Create a Client Object**
+
+8. Open `src/main/java/com.example.client.OpenAIClientImpl`.
+
+1. **TODO-05:** Use an annotation to mark this class as a Spring bean.  Use an annotation to assign it to the "openai" profile.
+
+    ```
+    @Component
+    @Profile("openai")
+    public class OpenAIClientImpl implements AIClient {
+    ```
+1. **TODO-06:** Within the class, create a constructor for this bean.
+    * Inject a `ChatModel` object into the constructor.
+    * Pass the model to the `ChatClient.builder` to build a `ChatClient` object.
+    * Save the `ChatClient` object in the client field.
+
+    ```
+    public OpenAIClientImpl(ChatModel model) {
+        client = ChatClient.builder(model).build();
+    }
+    ```
+
+1. ***TODO-07:** Within the `callApi()` method, build a `ChatOptions` object using the `OpenAiChatOptions` builder.
+    * Use the `withFunction()` method to set the "stockService" bean name.
+
+    ```
+		ChatOptions options = 
+			OpenAiChatOptions.builder()
+				.withFunction("stockService")
+				.build();
+    ```
+
+1. **TODO-08:** Build a Prompt object using the input and the `ChatOptions` object:
+
+    ```
+	Prompt prompt = new Prompt(input, options);
+    ```
+
+1. **TODO-09:** Use the client object to call the API.
+    * The `.prompt()` method can be used to set the prompt defined above.
+    * The `.call()` method will make the call to the model.
+    * The `.content()` method will return the content of the response.
+    * Have the method return the content of the response.
 	
-	public String getCompanySummary(String symbol) {
-		return client.callModel(
-			"Provide a description of the company with stock ticker symbol '%s'".formatted(symbol)
-		);
-	}
-```
-14. Organize your imports, save your work.
+    ```
+    	return 
+			client
+				.prompt(prompt)
+				.call()
+				.content();
+    ```
+
+1. Organize your imports, save your work.
+
 
 ---
-**Part 4 - `@Test` Your Service**
+**Part 4 - Define the StockService**
 
-Anything we code, we should test.  
+The heart of the local function process will be the `StockService`.  This defines the local function which will be called by the client to complete the response returned from the model.  To make this work, it will require metadata to properly identify its form and purpose. 
 
-15. Create a new **service** folder under `src/test/java/com/example`.  Within this package create a new Java file called `StockServiceTests.java`.  Provide the following initial implementation:
-```
-@SpringBootTest
-@ActiveProfiles("openai")
-public class StockServiceTests {
+15. Open `src/main/java/com.example.service.StockService`.
 
-    @Autowired  StockService service;
+1. **TODO-11:** Annotate this class as a Spring bean using the `@Service` annotation.
+    * Set its name to "stockService" to align with the callback function from the earlier step.
+    * Use the `@Description` annotation to provide a helpful description for the OpenAI Client object.
+    * Notice that the class implements Function, with very specific input and output types.
 
-}
-```
+    ```
+    @Service("stockService")
+    @Description("Service to get stock information")	
+    public class StockService 
+        implements Function<
+            com.example.service.StockService.Request, 
+            com.example.service.StockService.Response> {
+    ```
 
-16. Provide a `@Test` method to call the service's `getCompanySummary()` with the stock ticker symbol of your choice.  Assert that the response contains information on the company you selected:
-```
-    @Test
-    void testGetCompanySummary() {
-        String summary = service.getCompanySummary("NVDA");
+1.  **TODO-12:** Notice the pre-defined records for Request and Response.
+    * These structures will be understood by the OpenAI client software.
+    * Notice the apply() method, this will be invoked by the OpenAI client automatically when the response is returned from the server.
+    * The code is not actually determining stock price or trading volume; it is simply returning fixed values (easier to test).
+	
+    ```
+    public record Request(String symbol) {}
+    public record Response(String symbol, Double price, Integer volume, String currency) {}
 
-        assertThat(summary).isNotNull();
-        assertThat(summary).contains("NVIDIA Corporation");
+	public Response apply(Request request) {
+		//	For now, just return a hard-coded response:
+		return new Response(request.symbol(),price,volume, "USD");
+	}    
+    ```
 
-        System.out.println("The company summary is: " + summary);
+---
+**Part 5 - Create a `@Test` class**
+
+Anything we code, we should test.  We will make a `@Test` class to ensure our Client object works as expected.
+
+18. Open `src/test/java/com/example/client/OpenAIClientTests.java`.
+
+1. **TODO-13:** Define this test class as a Spring Boot test.  Use the `@ActiveProfiles` annotation to activate the "openai" profile.
+
+    ```
+    @SpringBootTest
+    @ActiveProfiles("openai")
+    public class OpenAIClientTests {
+    ```
+
+1. **TODO-14:** Use the `@Autowired` annotation to inject an instance of our AIClient.
+
+    ```
+    @Autowired AIClient client;
+    ```
+
+1. **TODO-15:** Define a `@Test` method to test the `callApi()` method of the client.
+    * Pass in a string that describes the response you wish to generate, such as the provided "samplePrompt" String, or an equivalent.
+    * Use AssertJ's `Assertions.assertThat()` method to ensure that the content is not null.
+    * Use AssertJ's `Assertions.assertThat()` method to ensure that the content contains expected results.
+    * Print the response string that is returned.
+
+    ```
+	@Test
+	void testCallApi() {
+
+        String response = client.callApi(samplePrompt);
+
+		assertThat(response).isNotNull();
+        assertThat(response).contains(sampleResults);
+
+		//	Print the results
+		System.out.println("The results of the call are: " + response);
+
     }
-```
-17. Organize imports and save your work.  Note that the `assertThat` functions are part of AssertJ.  You may need to manually add the following import statement:  `import static org.assertj.core.api.Assertions.*;`.
+    ```
 
-1. Run the test, it should pass.  You should see a description of the output similar to this:
+1. **TODO-16:** Organize imports and save all work.  Note that the `assertThat` functions are part of AssertJ.  You may need to manually add `import static org.assertj.core.api.Assertions.*;`.
+
+1. Run this test, it should pass.  Notice the output contains specific data obtained from the StockService.  You should see a description of the output similar to this:
 
 > The company summary is: NVIDIA Corporation (NVDA) is a technology company known for its graphics processing units (GPUs) and chipsets. The stock price for NVDA is $607.37 USD.
 
