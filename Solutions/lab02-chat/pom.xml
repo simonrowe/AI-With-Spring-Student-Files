@@ -10,12 +10,12 @@
 	</parent>
 	<groupId>com.example</groupId>
 	<artifactId>lab02-chat-solution</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>1</version>
 	<name>lab02-chat-solution</name>
 	<description>SpringAI project for generative text</description>
 	<properties>
 		<java.version>21</java.version>
-		<spring-ai.version>1.0.0-M1</spring-ai.version>
+		<spring-ai.version>1.0.0-SNAPSHOT</spring-ai.version>
 	</properties>
 	<dependencies>
 

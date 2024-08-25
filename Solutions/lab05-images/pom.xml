@@ -10,12 +10,12 @@
 	</parent>
 	<groupId>com.example</groupId>
 	<artifactId>lab05-images-solution</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>1</version>
 	<name>lab05-images-solution</name>
-	<description>Demo project for Spring Boot</description>
+	<description>SpringAI image generation</description>
 	<properties>
 		<java.version>21</java.version>
-		<spring-ai.version>1.0.0-M1</spring-ai.version>
+		<spring-ai.version>1.0.0-SNAPSHOT</spring-ai.version>
 	</properties>
 	<dependencies>
 
@@ -78,6 +78,15 @@
 				<enabled>false</enabled>
 			</snapshots>
 		</repository>
+		<repository>
+			<id>spring-snapshots</id>
+			<name>Spring Snapshots</name>
+			<url>https://repo.spring.io/snapshot</url>
+			<releases>
+				<enabled>false</enabled>
+			</releases>
+		</repository>
 	</repositories>
+
 
 </project>
