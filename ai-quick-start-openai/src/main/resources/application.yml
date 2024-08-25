@@ -1,6 +1,0 @@
-spring.application.name: AI QuickStart OpenAI
-
-spring:
-  ai:
-    openai:
-      api-key: YOUR-SECRET-KEY-GOES-HERE
