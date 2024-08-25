@@ -30,9 +30,7 @@ public class AIClientImpl implements AIClient {
             //  TODO-06: Alter this ChatClient.
             //  Use the .defaultAdvisors() method to add the 
             //  MessageChatMemoryAdvisor defined above.
-            .defaultAdvisors(
-                new MessageChatMemoryAdvisor (memory)
-            )        
+            .defaultAdvisors(advisor)        
             .build();
     }
 
@@ -43,18 +41,21 @@ public class AIClientImpl implements AIClient {
                 .prompt()
                 .user(input)
 
-                // TODO-00:  Use the .advisors() method to inject an AvisorSpec Consumer to this call.
+                // TODO-07:  Use the .advisors() method to inject an AvisorSpec Consumer to this call.
                 // The advisors() method will accept a Lambda expression that implements the Consumer.
                 // The parameter to the Consumer is an AdvisorSpec.
                 // Use the AdvisorSpec's .param() method to add a parameter identifying the conversation.
                 // The parameter key should be the conversationKey defined above.
                 // The parameter value should be the conversationId passed to this method.
-                .advisors(a -> a.param(conversationKey, 111))
+                .advisors(a -> a.param(conversationKey, conversationId))
 
                 .call()
                 .content();
     }
 
+    // TODO-08:  Return to the @Test method in AIClientImplTests.
+    // Re-run the test.  It should now pass.
+    
 
     public StateData retrieve(String input) {
         return
