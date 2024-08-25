@@ -1,7 +1,3 @@
-# TODO-03: Set the spring.application.name to "Lab6 Embedding" or something similar.
-# Set the model-specific attributes according to the lab instructions.
-# Take advantage of YAML's hierarchical structure (indenting) to set these values.
-
 spring:
   application.name: Lab6 Embedding
   main.web-application-type: none     # Do not start a web server.
@@ -13,14 +9,21 @@ spring:
     retry:
       max-attempts: 1      # Maximum number of retry attempts.
 
+# TODO-03: Adjust the settings below based on the chat model you plan to use.
+# If you plan to use Amazon Bedrock: 
+#   - Adjust the region setting if needed.
+#   - Adjust the model setting if needed.
+# If you plan to use OpenAI:
+#   - Adjust the model setting if needed.
+# If you plan to use Ollama:
+#   - Adjust the base-url and model settings if needed.
+# Note that only one model will be active at a time.  The active model is determined by the active profile.
+
 ---
 spring:
   config.activate.on-profile: openai
 
-# TODO-03: Set the spring.application.name to "Lab6 Embedding OpenAI" or something similar.
-# Set ai.openai.embedding.options.model to text-embedding-ada-002.
-# Take advantage of YAML's hierarchical structure (indenting) to set these values.
-
+  # OpenAI Settings:
   ai:
     openai:
       embedding:
@@ -30,17 +33,12 @@ spring:
 
 ---
 spring:
-  config.activate.on-profile: aws-cohere
+  config.activate.on-profile: aws
   
-# TODO-03: Set the spring.application.name to "Lab6 Embedding Bedrock Cohere" or something similar.
-# Set ai.bedrock.aws.region to "us-west-2", or whichever region you have enabled the titan model in.
-# Set ai.bedrock.cohere.embedding.enabled to specify use of the Cohere embedding model.
-# Set ai.bedrock.cohere.embedding.model to cohere.embed-english-v3, or whatever value matches your enabled model.
-# Take advantage of YAML's hierarchical structure (indenting) to set these values.
-
+  # Amazon Bedrock Cohere Settings:
   ai:
     bedrock:
-      aws.region: us-west-2   # Warning: must be explicitly set even if ~/.aws/config is set.
+      aws.region: us-west-2   
       cohere:
         embedding:
           enabled: true
@@ -48,29 +46,9 @@ spring:
 
 ---
 spring:
-  config.activate.on-profile: aws-titan
-
-# TODO-03: Set the spring.application.name to "Lab6 Embedding Bedrock Titan" or something similar.
-# Set ai.bedrock.aws.region to "us-west-2", or whichever region you have enabled the titan model in.
-# Set ai.bedrock.titan.embedding.enabled to specify use of the Titan embedding model.
-# Set ai.bedrock.titan.embedding.model to amazon.titan-embed-text-v1, or whatever value matches your enabled model.
-# Take advantage of YAML's hierarchical structure (indenting) to set these values.
-
-  ai:
-    bedrock:
-      titan:
-        embedding:
-          enabled: true
-          model: amazon.titan-embed-text-v1
-
----
-spring:
   config.activate.on-profile: ollama
 
-# TODO-03: Set the spring.application.name to "Lab6 Embedding Ollama" or something similar.
-# Set ai.ollama.embedding.enabled to specify use of an embedding model.
-# Set the ai.ollama.base-url to http://localhost:11434, unless your container is running on a different URL.
-
+  # Ollama Settings:
   ai:
     ollama:
       base-url: http://localhost:11434  # Default base URL when you run Ollama from Docker
@@ -81,6 +59,7 @@ spring:
 spring:
   config.activate.on-profile: internal
 
+  # SpringAI internal embedding model settings:
   ai:
     embedding:
       transformer:

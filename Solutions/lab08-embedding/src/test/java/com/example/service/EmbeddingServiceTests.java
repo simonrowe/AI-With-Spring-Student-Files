@@ -8,12 +8,17 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.ActiveProfiles;
 
 //  TODO-10: Define this test class as a Spring Boot test.
-//  Use the @ActiveProfiles annotation to activate the "embedding" and "openai" profiles.
+//  Use the @ActiveProfiles annotation to activate the matching embedding model you plan to use.
+//      For Amazon Bedrock,     use "aws".
+//      For standard OpenAI,    use "openai".
+//      For Ollama,             use "ollama".
 
 @SpringBootTest
-@ActiveProfiles({"embedding","openai"})
-//@ActiveProfiles({"embedding","internal"})
-public class OpenAIEmbeddingServiceTests {
+@ActiveProfiles("openai")
+// @ActiveProfiles("aws")
+// @ActiveProfiles("ollama")
+//@ActiveProfiles("internal")
+public class EmbeddingServiceTests {
 
     //  TODO-11: Use the @Autowired annotation to inject an instance of our EmbeddingService.
     @Autowired EmbeddingService svc;
@@ -36,7 +41,7 @@ public class OpenAIEmbeddingServiceTests {
 
 
     //  TODO-14 (OPTIONAL): Instead of using an external model, we can use an internal SpringAI class to create embeddings.
-    //  Alter the @ActiveProfiles method to enable the "embedding" and "internal" profiles.
+    //  Alter the @ActiveProfiles method to enable the "internal" profiles.
     //  Open application.yml and view the configuration of the "internal" profile,
     //  It simply enables SpringAI's TransformersEmbeddingModel bean.
     //  Run the test again.  It should still pass, but this time no external model was used.
