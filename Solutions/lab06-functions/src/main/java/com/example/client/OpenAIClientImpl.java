@@ -1,9 +1,9 @@
 package com.example.client;
 
 import org.springframework.ai.chat.client.ChatClient;
+import org.springframework.ai.chat.model.ChatModel;
 import org.springframework.ai.chat.prompt.ChatOptions;
 import org.springframework.ai.chat.prompt.Prompt;
-import org.springframework.ai.openai.OpenAiChatModel;
 import org.springframework.ai.openai.OpenAiChatOptions;
 import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Component;
@@ -11,7 +11,7 @@ import org.springframework.stereotype.Component;
 //  TODO-05: Use @Component to mark this class as a Spring bean.
 //  Use an annotation to assign it to the "openai" profile.
 
-@Component("openAIClientBean")
+@Component
 @Profile("openai")
 public class OpenAIClientImpl implements AIClient {
 

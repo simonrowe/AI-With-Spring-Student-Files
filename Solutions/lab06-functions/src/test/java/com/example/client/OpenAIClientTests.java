@@ -29,7 +29,7 @@ public class OpenAIClientTests {
     //  Print the response string that is returned.
 
 	@Test
-	void quickChat() {
+	void testCallApi() {
 
         String response = client.callApi(samplePrompt);
 
@@ -38,8 +38,10 @@ public class OpenAIClientTests {
 
 		//	Print the results
 		System.out.println("The results of the call are: " + response);
-
     }
 
+    //  TODO-16: Organize imports and save all work.
+    //  Run this test, it should pass.
+    //  Notice the output contains specific data obtained from the StockService.
 
 }

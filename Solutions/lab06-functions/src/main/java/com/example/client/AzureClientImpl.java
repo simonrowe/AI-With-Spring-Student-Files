@@ -1,8 +1,8 @@
 package com.example.client;
 
-import org.springframework.ai.azure.openai.AzureOpenAiChatModel;
 import org.springframework.ai.azure.openai.AzureOpenAiChatOptions;
 import org.springframework.ai.chat.client.ChatClient;
+import org.springframework.ai.chat.model.ChatModel;
 import org.springframework.ai.chat.prompt.ChatOptions;
 import org.springframework.ai.chat.prompt.Prompt;
 import org.springframework.context.annotation.Profile;
@@ -12,7 +12,7 @@ import org.springframework.stereotype.Component;
 //  Use an annotation to assign it to the "azure" profile.
 @Component
 @Profile("azure")
-public class AzureClient implements AIClient {
+public class AzureClientImpl implements AIClient {
 
     private ChatClient client;
 
@@ -20,7 +20,7 @@ public class AzureClient implements AIClient {
     //  Inject a ChatModel object into the constructor.
     //  Pass the model to the ChatClient.builder to build a ChatClient object.
     //  Save the ChatClient object in the client field.
-    public AzureClient(ChatModel model) {
+    public AzureClientImpl(ChatModel model) {
         client = ChatClient.builder(model).build();
     }
 

@@ -44,5 +44,10 @@ public class AzureClientTests {
         
     }
 
+    //  TODO-16: Organize imports and save all work.
+    //  Note that the `assertThat` functions are part of AssertJ.  
+    //  You may need to manually add `import static org.assertj.core.api.Assertions.*;`.
+    //  Run this test, it should pass.
+    //  Notice the output contains specific data obtained from the StockService.
 
 }
