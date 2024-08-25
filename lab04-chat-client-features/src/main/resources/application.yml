@@ -1,0 +1,76 @@
+spring:
+  application.name: Lab04 Chat Client Features
+  main.web-application-type: none     # Do not start a web server.
+
+  ai:
+    retry:
+      max-attempts: 1           # Maximum number of retry attempts.
+    bedrock.anthropic.chat.enabled: false # Disable all models by default.
+    ollama.chat.enabled: false        # Disable all models by default.
+    openai.chat.enabled: false        # Disable all models by default.
+    azure.openai.chat.enabled: false  # Disable all models by default.
+
+    # TODO-01: Adjust the settings below based on the chat model you plan to use.
+    # If you plan to use Amazon Bedrock: 
+    #   - Adjust the region setting if needed.
+    # If you plan to use Azure OpenAI:
+    #   - Adjust the endpoint, deployment-name, and model settings as needed.
+    # If you plan to use OpenAI:
+    #   - Adjust the model setting if needed.
+    # If you plan to use Ollama:
+    #   - Adjust the base-url and model settings if needed.
+
+---
+spring:
+  config.activate.on-profile: aws
+
+  application.name: Lab04 Chat Client Features - Bedrock
+  ai:
+    bedrock:
+      aws:
+        region: us-west-2 # Adjust as needed.
+        access-key: NEVER-PLACE-SECRET-KEY-IN-CONFIG-FILE
+        secret-key: NEVER-PLACE-SECRET-KEY-IN-CONFIG-FILE
+      titan:
+        chat:
+          enabled: true
+
+---
+spring:
+  config.activate.on-profile: openai
+
+  application.name: Lab04 Chat Client Features - OpenAI
+  ai:
+    openai:
+      api-key: NEVER-PLACE-SECRET-KEY-IN-CONFIG-FILE
+      chat.enabled: true
+
+---
+spring:
+  config.activate.on-profile: azure
+
+  application.name: Lab04 Chat Client Features - Azure OpenAI
+  ai:
+    azure:
+      openai:
+        api_key: NEVER-PLACE-SECRET-KEY-IN-CONFIG-FILE
+        endpoint: ENDPOINT-GOES-HERE                      # Adjust as needed.
+        chat:
+          enabled: true
+          options:
+            deployment-name: DEPLOYMENT-NAME-GOES-HERE    # Adjust as needed.
+            model: gpt-35-turbo                           # Adjust as needed.
+
+---
+spring:
+  config.activate.on-profile: ollama
+
+  application.name: Lab04 Chat Client Features - Ollama
+  ai:
+    ollama:
+      base-url: http://localhost:11434  # Adjust as needed.
+      chat:
+        enabled: true
+        options:
+          model: mistral  # Adjust as needed.
+
