@@ -1,30 +1,26 @@
 package com.example.client;
 
 import org.springframework.ai.chat.client.ChatClient;
-import org.springframework.ai.chat.prompt.Prompt;
-import org.springframework.ai.openai.OpenAiChatModel;
-import org.springframework.context.annotation.Profile;
+import org.springframework.ai.chat.model.ChatModel;
 import org.springframework.stereotype.Component;
 
-//  TODO-05: Use @Component("openAIClientBean") to mark this class as a Spring bean.
-//  (The name "openAIClientBean" is only needed to prevent naming ambiguitiy with Spring's "OpenAIClient" bean.)
-//  Use an annotation to assign it to the "openai" profile.
+//  TODO-05: Use a stereotype annotation to mark this class as a Spring bean.
 
-@Component("openAIClientBean")
-@Profile("openai")
-public class OpenAIClient implements AIClient {
-
+@Component
+public class AIClientImpl implements AIClient {
+    
     private ChatClient client;
 
     //  TODO-06: Create a constructor for this bean.
-    //  Inject a OpenAiChatModel object into the constructor.
+    //  Inject a ChatModel object into the constructor.
     //  Pass the model to the ChatClient.builder to build a ChatClient object.
     //  Save the ChatClient object in the client field.
-    public OpenAIClient(OpenAiChatModel model) {
+    public AIClientImpl(ChatModel model) {
         client = ChatClient.builder(model).build();
     }
 
-    public String callApi(String input) {
+
+    public String callApi(String input ) {
 
         //  TODO-07: Use the client object to call the API.
         //  .prompt() creates a prompt to pass to the Model.class

@@ -91,18 +91,15 @@ spring:
 ---
 **Part 4 - Try Spring AI's `ChatClient`**
 
-Now we can use the ChatClient to make API calls to Amazon Bedrock and any of its hosted models.
+Now we can use the ChatClient to make API calls to the Azure-hosted OpenAI models.
 
-8. **TODO-05**:  Open `src/main/java/com/example/client/AzureClient.java`.  
+8. **TODO-05**:  Open `src/main/java/com/example/client/AIClientImpl.java`.  
     - Use a stereotype annotation to mark this class as a Spring bean.  
-    - Use another annotation to assign it to the **azure** profile.
 
 ```
 @Component
-@Profile("azure")
-public class AzureClient implements AIClient {
+public class AIClientImpl implements AIClient {
 ```
-- Note: the `@Profile` annotation will be useful later when we want our application to switch between AWS, OpenAI, Azure, Ollama, etc.
 
 9. **TODO-06**: Create a constructor for this bean.  
     - Inject a ChatModel object into the constructor.  
@@ -110,7 +107,7 @@ public class AzureClient implements AIClient {
         - The `ChatClient.Builder` is automatically created by auto-configuration when it sees the Azure dependency on the classpath, and Spring will automatically inject it into your constructor on bean creation.  
 
 ```
-    public AzureClient(ChatModel model) {
+    public AIClientImpl(ChatModel model) {
         client = ChatClient.builder(model).build();
     }
 ```
@@ -130,7 +127,7 @@ public class AzureClient implements AIClient {
                 .content();
 ```
 
-11. Supply any imports needed to make the code compile.
+12. Supply any imports needed to make the code compile.
     * **VS Code**: Type Alt-Shift-O.
     * **IntelliJ**: Type Ctrl-Alt-O.
     * **Eclipse**: Type Ctrl-Shift-O.

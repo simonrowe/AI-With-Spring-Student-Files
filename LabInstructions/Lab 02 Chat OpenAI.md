@@ -83,18 +83,13 @@ spring:
 
 Now we can use the ChatClient to make API calls to OpenAI's hosted models.
 
-8. **TODO-05**:  Open `src/main/java/com/example/client/OpenAIClient.java`.  
-
-    - Use @Component("openAIClientBean") to mark this class as a Spring bean.
-        - (The name "openAIClientBean" is only needed to prevent naming ambiguitiy with Spring's "OpenAIClient" bean.)    
-    - Use another annotation to assign it to the **openai** profile.
+8. **TODO-05**:  Open `src/main/java/com/example/client/AIClientImpl.java`.  
+    - Use a stereotype annotation to mark this class as a Spring bean.  
 
 ```
-@Component("openAIClientBean")
-@Profile("openai")
-public class OpenAIClient implements AIClient {
+@Component
+public class AIClientImpl implements AIClient {
 ```
-- Note: the `@Profile` annotation will be useful later when we want our application to switch between AWS, OpenAI, Azure, Ollama, etc.
 
 9. **TODO-06**: Create a constructor for this bean.  
     - Inject a ChatModel object into the constructor.  
@@ -102,7 +97,7 @@ public class OpenAIClient implements AIClient {
         - The `ChatClient.Builder` is automatically created by auto-configuration when it sees the OpenAI dependency on the classpath, and Spring will automatically inject it into your constructor on bean creation.  
 
 ```
-    public OpenAIClient(ChatModel model) {
+    public AIClientImpl(ChatModel model) {
         client = ChatClient.builder(model).build();
     }
 ```
@@ -127,6 +122,7 @@ public class OpenAIClient implements AIClient {
     * **IntelliJ**: Type Ctrl-Alt-O.
     * **Eclipse**: Type Ctrl-Shift-O.
 1. Save your work.
+
 
 ---
 **Part 5 - Create a `@Test` class**
