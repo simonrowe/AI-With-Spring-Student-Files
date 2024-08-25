@@ -1,43 +1,46 @@
 spring:
-  application.name: Lab4 Local Functions
+  application.name: Lab06 Local Functions
   main.web-application-type: none     # Do not start a web server.
   ai:
+    openai.chat.enabled: false        # Disable all models by default.
+    azure.openai.chat.enabled: false  # Disable all models by default.
     retry:
       max-attempts: 1           # Maximum number of retry attempts.
       on-client-errors: false   # If false, throw a NonTransientAiException, and do not attempt retry for 4xx client error codes.
+
 
 ---
 spring:
   config.activate.on-profile: openai
 
-  # TODO-04: Set the spring.application.name to "Lab4 OpenAI Functions" or something similar.
-  # Note that there are various properties we can set here, including credentials,
-  # but we never want to commit credentials to source control.
+  # TODO-04: Set the spring.application.name to "Lab06 OpenAI Functions" or something similar.
+  # Set the spring.ai.openai.chat.enabled to true.
 
-  application.name: Lab4 OpenAI Functions
+  application.name: Lab06 OpenAI Functions
   ai:
     openai:
       api-key: NEVER-PLACE-SECRET-KEY-IN-CONFIG-FILE
-    retry:
-      max-attempts: 1           # Maximum number of retry attempts.
-      on-client-errors: false   # If false, throw a NonTransientAiException, and do not attempt retry for 4xx client error codes.
+      chat:
+        enabled: true
 
 ---
 spring:
   config.activate.on-profile: azure
 
-  # TODO-04: Set the spring.application.name to "Lab4 Azure OpenAI Functions" or something similar.
-  # Set the ai.azure.openai.endpoint to the value you established during Azure setup.
-  # Set the ai.azure.openai.chat.options.deployment-name to the value you establised during setup.
-  # Set the ai.azure.openai.chat.options.model to "gpt-35-turbo" to use the GPT-3.5 model.
-  # Take advantage of YAML's hierarchical structure (indenting) to set these values.
+  # TODO-04: Set the spring.application.name to "Lab06 Azure OpenAI Functions" or something similar.
+  # Set the spring.ai.azure.openai.endpoint to the value you established during Azure setup.
+  # Set the spring.ai.azure.openai.chat.options.deployment-name to the value you establised during setup.
+  # Set the spring.ai.azure.openai.chat.options.model to "gpt-35-turbo" to use the GPT-3.5 model.
+  # Set the spring.ai.azure.openai.chat.enabled to true.
 
-  application.name: Lab2 Azure OpenAI Chat
+  application.name: Lab06 Azure OpenAI Chat
   ai:
     azure:
       openai:
         endpoint: ENDPOINT-GOES-HERE
-        chat.options:
-          deployment-name: DEPLOYMENT-NAME-GOES-HERE
-          model: gpt-4        # gpt-35-turbo     
+        chat:
+          enabled: true
+          options:
+            deployment-name: DEPLOYMENT-NAME-GOES-HERE
+            model: gpt-4        # gpt-35-turbo     
 
