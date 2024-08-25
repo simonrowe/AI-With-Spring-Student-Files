@@ -11,7 +11,7 @@
 	<groupId>com.example</groupId>
 	<artifactId>lab04-chat-client-features-solution</artifactId>
 	<version>1</version>
-	<name>lab02-chat-client-features-solution</name>
+	<name>lab04-chat-client-features-solution</name>
 	<description>Demonstration of ChatClient features</description>
 	<properties>
 		<java.version>21</java.version>

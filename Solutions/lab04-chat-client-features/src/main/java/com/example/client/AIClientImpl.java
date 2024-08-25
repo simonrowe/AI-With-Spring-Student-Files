@@ -1,39 +1,69 @@
 package com.example.client;
 
 import org.springframework.ai.chat.client.ChatClient;
+import org.springframework.ai.chat.client.advisor.AbstractChatMemoryAdvisor;
+import org.springframework.ai.chat.client.advisor.MessageChatMemoryAdvisor;
+import org.springframework.ai.chat.memory.InMemoryChatMemory;
 import org.springframework.ai.chat.model.ChatModel;
 import org.springframework.stereotype.Component;
-
-//  TODO-05: Use a stereotype annotation to mark this class as a Spring bean.
 
 @Component
 public class AIClientImpl implements AIClient {
     
     private ChatClient client;
 
-    //  TODO-06: Create a constructor for this bean.
-    //  Inject a ChatModel object into the constructor.
-    //  Pass the model to the ChatClient.builder to build a ChatClient object.
-    //  Save the ChatClient object in the client field.
+    //  TODO-04: Define a member variable of type InMemoryChatMemory.
+    //  Initialize it with a new instance of InMemoryChatMemory.
+    InMemoryChatMemory memory = new InMemoryChatMemory(); 
+
+    String conversationKey = AbstractChatMemoryAdvisor.CHAT_MEMORY_CONVERSATION_ID_KEY;
+
+    //  TODO-05: Defined a member variable of type MessageChatMemoryAdvisor.
+    //  Initialize it with a new instance of MessageChatMemoryAdvisor 
+    //  injected with the InMemoryChatMemory instance defined above. 
+    MessageChatMemoryAdvisor advisor = new MessageChatMemoryAdvisor(memory);
+
     public AIClientImpl(ChatModel model) {
-        client = ChatClient.builder(model).build();
+        client = ChatClient
+            .builder(model)
+
+            //  TODO-06: Alter this ChatClient.
+            //  Use the .defaultAdvisors() method to add the 
+            //  MessageChatMemoryAdvisor defined above.
+            .defaultAdvisors(
+                new MessageChatMemoryAdvisor (memory)
+            )        
+            .build();
     }
 
 
-    public String callApi(String input ) {
-
-        //  TODO-07: Use the client object to call the API.
-        //  .prompt() creates a prompt to pass to the Model.class
-        //  .user() sets the "user" message. Pass the input String parameter.
-        //  .call() invokes the model.  It returns a CallResponse.
-        //  .content() is a simple means of extracting String content from the response. 
-        //  Have the method return the content of the response.
+    public String conversationalChat(String input, int conversationId){
         return 
             client
                 .prompt()
                 .user(input)
+
+                // TODO-00:  Use the .advisors() method to inject an AvisorSpec Consumer to this call.
+                // The advisors() method will accept a Lambda expression that implements the Consumer.
+                // The parameter to the Consumer is an AdvisorSpec.
+                // Use the AdvisorSpec's .param() method to add a parameter identifying the conversation.
+                // The parameter key should be the conversationKey defined above.
+                // The parameter value should be the conversationId passed to this method.
+                .advisors(a -> a.param(conversationKey, 111))
+
                 .call()
                 .content();
     }
 
+
+    public StateData retrieve(String input) {
+        return
+           client
+                .prompt()
+                .user(input)
+                .call()
+                .entity(StateData.class);
+    }
+
+ 
 }
