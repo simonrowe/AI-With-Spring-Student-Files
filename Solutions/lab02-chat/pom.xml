@@ -9,9 +9,9 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.example</groupId>
-	<artifactId>lab02-chat</artifactId>
+	<artifactId>lab02-chat-solution</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>lab02-chat</name>
+	<name>lab02-chat-solution</name>
 	<description>SpringAI project for generative text</description>
 	<properties>
 		<java.version>21</java.version>

@@ -9,9 +9,9 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.example</groupId>
-	<artifactId>lab01-quickstart</artifactId>
+	<artifactId>lab01-quickstart-solution</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>lab01-quickstart</name>
+	<name>lab01-quickstart-solution</name>
 	<description>Spring AI demo</description>
 	<url/>
 	<licenses>

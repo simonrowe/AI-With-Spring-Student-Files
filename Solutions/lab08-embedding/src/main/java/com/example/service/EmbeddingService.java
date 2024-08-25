@@ -23,9 +23,8 @@ public class EmbeddingService {
 
     public String findClosestMatch(String query, List<String> products) {
 
-        EmbeddingResponse response = null;
-        List<List<Double>> productEmbeddings = null;
-        List<Double> queryEmbedding = null;
+        List<float[]> productEmbeddings = null;
+        float[] queryEmbedding = null;
 
 
         //  TODO-06: Use the AI model to turn our product descriptions into Embeddings.
@@ -60,11 +59,11 @@ public class EmbeddingService {
     //  This method compares the query embedding to each product embedding to find the most similarity.
     //  The Cosine similarity algorithm measures the similarity between two vectors.
     //  The index of the product with the highest similarity is returned.
-    public static int findColosestMatch(List<Double> query, List<List<Double>> products) {
+    public static int findColosestMatch(float[] query, List<float[]> products) {
         int mostSimilarIndex = -1;
         double mostSimilarScore = -1;
         for (int i = 0; i < products.size(); i++) {
-            List<Double> productEmbedding = products.get(i);
+            float[] productEmbedding = products.get(i);
             double similarity = cosineSimilarity(query, productEmbedding);
             if (similarity > mostSimilarScore) {
                 mostSimilarScore = similarity;
@@ -77,8 +76,8 @@ public class EmbeddingService {
 
     //  Calculate the cosine similarity between two vectors:
     //  This is a way to measure the similarity between two vectors of numbers.
-    public static double cosineSimilarity(List<Double> vectorA, List<Double> vectorB) {
-        if (vectorA.size() != vectorB.size()) {
+    public static double cosineSimilarity(float[] vectorA, float[] vectorB) {
+        if (vectorA.length != vectorB.length) {
             throw new IllegalArgumentException("Vectors must have the same length");
         }
 
@@ -86,9 +85,9 @@ public class EmbeddingService {
         double normA = 0.0;
         double normB = 0.0;
 
-        for (int i = 0; i < vectorA.size(); i++) {
-            double a = vectorA.get(i);
-            double b = vectorB.get(i);
+        for (int i = 0; i < vectorA.length; i++) {
+            double a = vectorA[i];
+            double b = vectorB[i];
             dotProduct += a * b;
             normA += a * a;
             normB += b * b;

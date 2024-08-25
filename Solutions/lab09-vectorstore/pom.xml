@@ -9,13 +9,13 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.example</groupId>
-	<artifactId>lab09-vectorstore</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
-	<name>lab09-vectorstore</name>
-	<description>Spring AI with Embeddings from OpenAI, Bedrock, Ollama using a vector store</description>
+	<artifactId>lab09-vectorstore-solution</artifactId>
+	<version>1</version>
+	<name>lab09-vectorstore-solution</name>
+	<description>Spring AI with Embeddings and VectorStore</description>
 	<properties>
 		<java.version>21</java.version>
-		<spring-ai.version>1.0.0-M1</spring-ai.version>
+		<spring-ai.version>1.0.0-SNAPSHOT</spring-ai.version>
 	</properties>
 	<dependencies>
 

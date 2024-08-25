@@ -9,13 +9,13 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.example</groupId>
-	<artifactId>lab08-embedding</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
-	<name>lab08-embedding</name>
-	<description>Spring AI with Embeddings from OpenAI, Bedrock, Ollama</description>
+	<artifactId>lab08-embedding-solution</artifactId>
+	<version>1</version>
+	<name>lab08-embedding-solution</name>
+	<description>Spring AI with Embeddings</description>
 	<properties>
 		<java.version>21</java.version>
-		<spring-ai.version>1.0.0-M1</spring-ai.version>
+		<spring-ai.version>1.0.0-SNAPSHOT</spring-ai.version>
 	</properties>
 	<dependencies>
 
