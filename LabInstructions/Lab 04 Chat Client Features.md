@@ -13,7 +13,7 @@ Let's jump in.
 
 The instructions below are for VS Code. If you wish to use IntelliJ or Eclipse and need assistance, see the "IDE Tips" document.
 
-2. Open the _/student-files/lab04-chat-client-features_ folder.  
+1. Open the _/student-files/lab04-chat-client-features_ folder.  
     * Give the VSCode a moment to initialize its workspace, especially if this is the first time importing a Gradle/Maven project.
     * If you see a message about enabling null analysis for the project, you can select either enable or disable.
     * If you see a message about installing _Extension Pack for Java_, take the install option.
@@ -33,7 +33,7 @@ The instructions below are for VS Code. If you wish to use IntelliJ or Eclipse a
 ---
 **Part 2 - Establish Model Access**
 
-1. Open `src/main/resources/application.yml`.
+3. Open `src/main/resources/application.yml`.
 
 1. **TODO-01**: The lab project is already setup with dependencies for Bedrock, Azure, Ollama, and OpenAI.  However, you may need to adjust the settings based on your own accounts / environments.  Adjust the settings to correspond to the model(s) you plan on using:
 
@@ -49,6 +49,7 @@ The instructions below are for VS Code. If you wish to use IntelliJ or Eclipse a
     1. If you plan to use **Ollama**:
         * Adjust the base-url and model settings if needed.  Use your previous lab settings for guidance.
         * Make sure you have followed the **Lab Setup** document for Ollama.
+        * Make sure your Ollama Docker container is running.
 
 1. Save your work.
 
