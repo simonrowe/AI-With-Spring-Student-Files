@@ -1,4 +1,4 @@
-## Lab 3 - Image Generation with ZhiPuAI
+## Lab 5 - Image Generation with ZhiPuAI
 
 In this exercise you will create a simple Spring Boot application which can make calls to ZhiPuAI to generate images.  We will need an account on ZhiPuAI, then we will add code to a half-completed project structure.  Our code will create a client object for making image generation API calls, and as usual we will make sure we have test coverage.  Let's jump in.
 
@@ -18,7 +18,7 @@ If you have not already done so, setup an account with ZhiPuAI.  The instruction
 
 A half-completed skeleton project has been created for you to relieve you from the image generation steps.  The instructions below are for VS Code. If you wish to use IntilliJ or Eclipse and need assistance, see the "IDE Tips" document if you need help.
 
-1. From within VS Code, use the File menu and select "Open Folder". Select the _/student-files/lab3-images-zhipuai_ folder.  
+1. From within VS Code, use the File menu and select "Open Folder". Select the _/student-files/lab05-images-zhipuai_ folder.  
     * See the **IDE Tips** document to troubleshoot any issues when opening this project.
 
 1. **TODO-01**: Open the **pom.xml** file.  Notice that the  `spring-ai-zhipuai-spring-boot-starter` dependency has already been added.

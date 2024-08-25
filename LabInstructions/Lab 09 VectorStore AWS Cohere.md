@@ -21,7 +21,7 @@ Specifically, this lab will utilize the Cohere embedding model.
 ---
 **Part 2 - Setup the Project**
 
-1. Open the _/student-files/lab8-vectorstore-aws_ project in your IDE.   The project should be free of compiler errors at this point.  Address any issues you see before continuing.
+1. Open the _/student-files/lab09-vectorstore-aws_ project in your IDE.   The project should be free of compiler errors at this point.  Address any issues you see before continuing.
 
 1. Find the TODO instructions.  Work through the TODO instructions in order!   
 

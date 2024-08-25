@@ -18,7 +18,7 @@ If you have not already done so, complete the instructions for running Ollama in
 ---
 **Part 2 - Setup the Project**
 
-1. Open the _/student-files/lab9-rag-ollama_ project in your IDE.   The project should be free of compiler errors at this point.  Address any issues you see before continuing.
+1. Open the _/student-files/lab10-rag-ollama_ project in your IDE.   The project should be free of compiler errors at this point.  Address any issues you see before continuing.
 
 1. Find the TODO instructions.  Work through the TODO instructions in order!   
 

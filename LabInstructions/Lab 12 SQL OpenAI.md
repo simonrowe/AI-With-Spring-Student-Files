@@ -15,7 +15,7 @@ Let's jump in.
 
 The instructions below are for VS Code. If you wish to use IntelliJ or Eclipse and need assistance, see the "IDE Tips" document.
 
-1. Open the _/student-files/lab11-sql-openai project folder.  
+1. Open the _/student-files/lab12-sql-openai project folder.  
 
     The project should be free of compiler errors at this point.  Address any issues you see before continuing.
 

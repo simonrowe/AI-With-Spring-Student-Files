@@ -1,4 +1,4 @@
-## Lab 3 - Image Generation with Azure OpenAI
+## Lab 5 - Image Generation with Azure OpenAI
 
 In this exercise you will create a simple Spring Boot application which can make calls to Azure OpenAI to generate images.  We will begin by establishing an Azure account and permission to use Azure Open AI, which you may have from earlier labs.  Next we will open a half-completed project, create a client object for making image generation API calls, and as usual we will make sure we have test coverage.  Let's jump in.
 
@@ -12,7 +12,7 @@ If you have not already done so, Establish an Azure account.  Follow the instruc
 ---
 **Part 2 - Setup the Project**
 
-1. From within VS Code, open the _/student-files/lab3-images-azure_ folder.  
+1. From within VS Code, open the _/student-files/lab05-images-azure_ folder.  
 
 1. **TODO-01**: Open the **pom.xml** file.  Notice that the  `spring-ai-azure-openai-spring-boot-starter` dependency has already been added.
 

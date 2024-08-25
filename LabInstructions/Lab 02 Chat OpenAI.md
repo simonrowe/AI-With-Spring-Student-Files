@@ -13,7 +13,7 @@ Let's jump in.
 
 The instructions below are for VS Code. If you wish to use IntelliJ or Eclipse and need assistance, see the "IDE Tips" document.
 
-2. Open the _/student-files/lab2-chat-openai_ folder.  
+2. Open the _/student-files/lab02-chat-openai_ folder.  
     * Give the VSCode a moment to initialize its workspace, especially if this is the first time importing a Gradle/Maven project.
     * If you see a message about enabling null analysis for the project, you can select either enable or disable.
     * If you see a message about installing _Extension Pack for Java_, take the install option.
