@@ -17,10 +17,10 @@ public class AzureClient implements AIClient {
     private ChatClient client;
 
     //  TODO-06: Create a constructor for this bean.
-    //  Inject a AzureOpenAiChatModel object into the constructor.
+    //  Inject a ChatModel object into the constructor.
     //  Pass the model to the ChatClient.builder to build a ChatClient object.
     //  Save the ChatClient object in the client field.
-    public AzureClient(AzureOpenAiChatModel model) {
+    public AzureClient(ChatModel model) {
         client = ChatClient.builder(model).build();
     }
 
