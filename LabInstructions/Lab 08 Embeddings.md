@@ -51,9 +51,12 @@ The instructions below are for VS Code. If you wish to use IntelliJ or Eclipse a
         * Adjust the model setting if needed.  Use your previous lab settings for guidance.
         * Make sure you have followed the **Lab Setup** document for OpenAI.
     1. If you plan to use **Ollama**:
-        * Adjust the base-url and model settings if needed.  Use your previous lab settings for guidance.
         * Make sure you have followed the **Lab Setup** document for Ollama.
+        * Adjust the base-url if needed.  Use your previous lab settings for guidance.
         * Make sure your Ollama Docker container is running.
+        * For this lab we will use the **mxbai-embed-large** model.  Pull it if you have not already done so.  You can experiment with other embedding models if you like.
+
+
 
 1. Save your work.
 

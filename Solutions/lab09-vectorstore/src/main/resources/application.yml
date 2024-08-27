@@ -77,12 +77,15 @@ spring:
   # Set spring.ai.retry.on-client-errors to false since there is typically no point in retrying such a request.
   # Set spring.ai.ollama.embedding.enabled to true to switch this embedding model on.
   # Set spring.ai.ollama.base-url to http://localhost:11434 unless you are running Ollama from a different URL.
+  # Set spring.ai.ollama.embedding.options.model to mxbai-embed-large, or experiment with another embedding model
 
   ai:
     ollama:
       base-url: http://localhost:11434  # Default base URL when you run Ollama from Docker
       embedding:
         enabled: true
+        options:
+          model: mxbai-embed-large
 
 ---
 spring:

@@ -13,7 +13,10 @@ Let's jump in.
 ---
 **Part 1 - Complete Ollama Local Setup**
 
-If you have not already done so, complete the instructions for running Ollama in your local environment.  See the "Setup Process for Docker" and "Setup Process for Ollama" section in the **Lab Setup** guide.  Make sure your Ollama container is running.
+If you have not already done so, complete the instructions for running Ollama in your local environment.  See the "Setup Process for Docker" and "Setup Process for Ollama" section in the **Lab Setup** guide.  
+
+    Make sure your Ollama container is running.  For this lab we will use the **mxbai-embed-large** model.  Pull it if you have not already done so.  You can experiment with other embedding models.
+
 
 ---
 **Part 2 - Setup the Project**

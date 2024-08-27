@@ -13,7 +13,7 @@ import org.springframework.test.context.ActiveProfiles;
 @SpringBootTest
 @ActiveProfiles({"simple-vector-store","ollama-embedding"})
 //@ActiveProfiles({"redis-vector-store","ollama-embedding"})
-//@ActiveProfiles({"pg-vector-store","aws-cohere-embedding"})
+//@ActiveProfiles({"pg-vector-store","ollama-embedding"})
 public class OllamaServiceTests {
 
     //  TODO-14: Use the @Autowired annotation to inject an instance of the ProductService.

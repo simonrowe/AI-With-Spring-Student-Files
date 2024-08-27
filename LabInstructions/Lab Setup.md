@@ -395,7 +395,7 @@ docker start ollama
 docker exec -it ollama ollama pull mistral
 ```
 
-Warning - these models are LARGE; the llama2 model will be a 4GB download.  Llama3 is closer to 40!
+Warning - these models are LARGE; the mistal model will be a 4GB download.  Llama3 is closer to 40!
 
 
 If Docker does not work for any reason, you can also download local software for Windows, Mac, and Linux, see https://github.com/ollama/ollama/blob/main/README.md.  Once this is done, you can run a command like: `ollama run llama2`.  You can pull models with commands like `ollama pull <modelname>`.
