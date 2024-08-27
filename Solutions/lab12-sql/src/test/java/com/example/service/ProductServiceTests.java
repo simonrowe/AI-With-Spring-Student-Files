@@ -10,16 +10,16 @@ import org.springframework.test.context.ActiveProfiles;
 //  TODO-15: Define this test class as a Spring Boot test.
 //  Use the @ActiveProfiles annotation to activate the "aws" profile.
 @SpringBootTest
-@ActiveProfiles("openai")  // Working.
+//@ActiveProfiles("openai")  // Working.
 //@ActiveProfiles("azure")   // Working.
 //@ActiveProfiles("aws")     // Working.
-//@ActiveProfiles("ollama")    // Fails due to extra words in the response.
+@ActiveProfiles("ollama")    // Fails due to extra words in the response.
 public class ProductServiceTests {
 
     //  TODO-16: Use the @Autowired annotation to inject an instance of the ProductService.
     @Autowired ProductService productService;
 
-    private String samplePrompt = "List the sales of the top 3 products by revenue during the last 30 days.";
+    private String samplePrompt = "List the sales of the top 3 product names by revenue during the last 30 days.";
     private String[] sampleResults = {"Smart Watch", "149.85", "Gaming Console", "121.50", "Digital SLR Camera", "120.00"};
 
 

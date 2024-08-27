@@ -33,7 +33,9 @@ The instructions below are for VS Code. If you wish to use IntelliJ or Eclipse a
 ---
 **Part 2 - Complete Ollama Local Setup**
 
-3. **TODO-01**:  Complete the instructions for running Ollama in your local environment.  See the "Setup Process for Docker" and "Setup Process for Ollama" section in the **Lab Setup** guide.  Make sure your Ollama container is running.
+3. **TODO-01**:  Complete the instructions for running Ollama in your local environment.  See the "Setup Process for Docker" and "Setup Process for Ollama" section in the **Lab Setup** guide.  
+
+    Make sure your Ollama container is running.  For this lab we will use the **mistral** model, but your can also try **llama2**.
 
 ---
 **Part 3 - Initial Configuration and Test**

@@ -49,7 +49,7 @@ The instructions below are for VS Code. If you wish to use IntelliJ or Eclipse a
     1. If you plan to use **Ollama**:
         * Adjust the base-url and model settings if needed.  Use your previous lab settings for guidance.
         * Make sure you have followed the **Lab Setup** document for Ollama.
-        * Make sure your Ollama Docker container is running.
+        * Make sure your Ollama Docker container is running. For this lab we will use the **mistral** model, but your can also try **llama2**.
 
 1. Save your work.
 

@@ -101,7 +101,7 @@ The first method to implement will need to generate an SQL statement based on us
 
 13. **TODO-06:** Observe the system message that will be provided to the model.
     * It provides direct instructions for the model to generate SQL queries, plus guidance regarding the database dialect.
-    * It directs the model to place generated SQL within \<SQL-START> and \<SQL-END> tags.
+    * It directs the model to place generated SQL within \<SQL> and \</SQL> tags.
     * The database schema will be provided within the message.
     * The schema file will be read by a private method and injected into this message.
 
@@ -111,7 +111,7 @@ String systemMessage =
 You are an SQL generating web service.
 Responses must be valid, HyperSQL-compatible, executable SQL statements.  
 HyperSQL uses DATE_ADD ( xxxx, INTERVAL X DAY ) for date arithmetic, and CURRENT_DATE to get today's date.
-The SQL statement must be placed between <SQL-START> and <SQL-END> tags.
+The SQL statement must be placed between <SQL> and </SQL> tags.
 Use the following database schema to generate SQL queries: %s
 """;        
 ```
@@ -133,7 +133,7 @@ Use the following database schema to generate SQL queries: %s
     * The .content() method will return the content of the response.
     * Capture the response in a String variable.
     * Pass the String response to the extractSql() method and return the results.
-        * This method extracts the SQL statement found within the \<SQL-START> and \<SQL-END> tags. 
+        * This method extracts the SQL statement found within the \<SQL> and \</SQL> tags. 
 
 ```
     String response =  

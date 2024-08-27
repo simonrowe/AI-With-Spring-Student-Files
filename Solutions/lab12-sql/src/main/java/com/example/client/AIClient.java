@@ -24,14 +24,14 @@ public class AIClient {
 
         //  TODO-06: Observe the system message below.
         //  It provides direct instructions for the model to generate SQL queries.
-        //  Notice that the SQL statement is expected to be returned within <SQL-START> and <SQL-END> tags.
+        //  Notice that the SQL statement is expected to be returned within <SQL> and </SQL> tags.
         //  Notice the database schema is provided within the message.
         String systemMessage = 
         """
         You are an SQL generating web service.
         Responses must be valid, HyperSQL-compatible, executable SQL statements.  
         HyperSQL uses DATE_ADD ( xxxx, INTERVAL X DAY ) for date arithmetic, and CURRENT_DATE to get today's date.
-        The SQL statement must be placed between <SQL-START> and <SQL-END> tags.
+        The SQL statement must be placed between <SQL> and </SQL> tags.
         Use the following database schema to generate SQL queries: %s
         """;        
 
@@ -96,12 +96,12 @@ public class AIClient {
 
 
     private String extractSql(String response) {
-        assert response.contains("<SQL-START>") && response.contains("<SQL-END>");
+        assert response.contains("<SQL>") && response.contains("</SQL>");
 
         // Extract the SQL statement from the response:
         return response.substring(
-                response.indexOf("<SQL-START>") + "<SQL-START>".length(),
-                response.indexOf("<SQL-END>"));
+                response.indexOf("<SQL>") + "<SQL>".length(),
+                response.indexOf("</SQL>"));
     }
 
 

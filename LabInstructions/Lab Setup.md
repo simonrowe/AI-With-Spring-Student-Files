@@ -362,37 +362,49 @@ For images, no free offer is available.  Images are roughly $0.03 each.  Since Z
 
 Ollama is a locally hosted Large Language Model.  Official installation instructions can be found at https://ollama.com/.  
 
+#### Docker Installation.
+
 One easy way to run Ollama is via Docker container.  Follow the instructions below to install Docker and make sure it is running.  Running `docker ps` should result in no error.
 
-Run the following Docker commands:
+**Install:** Run the following Docker commands:
 
 ```
 docker pull ollama/ollama
 docker run -d -v ollama:/root/.ollama -p 11434:11434 --name ollama ollama/ollama
-docker exec -it ollama ollama run llama2
 ```
 
 * The first command downloads the official ollama image from Dockerhub.
-* The second runs ollama in the background, setting up a folder on your home directory called ".ollama" for storage.  It listens for traffic on port 11434, which is exactly what the SpringAI model expects by default.
-* The third command instructs ollama to download the llama2 model.  Once this is done the container will respond to requests targeting the given model. 
+* The second runs ollama in the background, setting up a folder on your home directory called ".ollama" for storage.  It listens for traffic on port 11434, which is exactly what the SpringAI model expects by default.  The container is named "ollama", making it easy to stop and start later.
+
+The run command starts Ollama in a Docker container.  You can stop and start the container using `docker start` and `docker stop` commands.
+
+**Stop** Ollama:
+```
+docker stop ollama
+```
+
+**Start** Ollama:
+
+```
+docker start ollama
+```
+    
+**Installing Models** After Ollama is installed and running, you will need to pull a model for it to host.  Run the `docker exec -it ollama` command together with `ollama pull <modelname>` to pull a model.  For example, to pull the _mistral_ model, you can run:
+
+```
+docker exec -it ollama ollama pull mistral
+```
 
 Warning - these models are LARGE; the llama2 model will be a 4GB download.  Llama3 is closer to 40!
 
-Once the model is downloaded and running, you can start and stop the container using `docker start` and `docker stop` commands.  If you want to try a different model, you'll need to run the `docker exec ...` command specifying the model you want.
 
-If Docker does not work for any reason, you can also download local software for Windows, Mac, and Linux, see https://github.com/ollama/ollama/blob/main/README.md.  Once this is done, you can run a command like: `ollama run llama2`
+If Docker does not work for any reason, you can also download local software for Windows, Mac, and Linux, see https://github.com/ollama/ollama/blob/main/README.md.  Once this is done, you can run a command like: `ollama run llama2`.  You can pull models with commands like `ollama pull <modelname>`.
 
-EMBEDDINGS:  When you get to the lab on embeddings, if you wish to use Ollama, you'll need to download and install the "mistral" model first.
-I found again that the docker container isn't doing anything.  ollama runs in the background as a service.
-run this: 
+EMBEDDINGS:  When you get to the lab on embeddings, if you wish to use Ollama, you'll need to download and install one of the "embeddings" models, such as "mxbai-embed-large", "nomic-embed-text", or "all-minilm".  When running Ollama in Docker, this can be done by running:
 
 ```
-ollama pull mistral
-ollama run mistral
+docker exec -it ollama ollama pull mxbai-embed-large
 ```
-
-
-
 
 
 
