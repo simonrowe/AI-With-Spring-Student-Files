@@ -61,17 +61,18 @@ The instructions below are for VS Code. If you wish to use IntelliJ or Eclipse a
 
 ```
 spring:
-  application.name: lab2-aws
+  application.name: Lab02 Chat AWS
   main.web-application-type: none     # Do not start a web server.
-
   ai:
     retry:
-      max-attempts: 1      # Maximum number of retry attempts.
+      max-attempts: 1           # Maximum number of retry attempts.
     bedrock:
       aws.region: us-west-2
       titan:
         chat:
           enabled: true
+
+
 ```
 
   - Adjust the [region](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-regions-availability-zones.html#concepts-regions) code to match the region where you enabled the Bedrock model.
