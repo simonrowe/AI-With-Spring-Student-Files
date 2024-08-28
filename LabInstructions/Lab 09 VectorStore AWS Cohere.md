@@ -14,7 +14,7 @@ Let's jump in.
 ---
 **Part 1 - Obtain an AWS Account, Set Credentials, Enable Bedrock Models**
 
-If you have not already done so, follow the instructions in the **Lab Setup guide** _Signup Process for Amazon / Bedrock_ section to setup an AWS Account, IAM User, set credentials in your local environment, and enable Bedrock models.
+If you have not already done so, follow the instructions in the **[Lab Setup guide](https://github.com/kennyk65/AI-With-Spring-Student-Files/blob/main/LabInstructions/Lab%20Setup.md)** _Signup Process for Amazon / Bedrock_ section to setup an AWS Account, IAM User, set credentials in your local environment, and enable Bedrock models.
 
 Specifically, this lab will utilize the Cohere embedding model.
 
@@ -238,7 +238,7 @@ The existing implementation uses an in-memory Vector Store, which is not appropr
 
 26. Open the **pom.xml** file.
 
-27. **TODO-20** Replace the simple in-memory vector store with Redis.  Remove the comment to include the starter for Redis.  Follow the instructions in the lab setup guide to installing and run Redis as a Docker container
+27. **TODO-20** Replace the simple in-memory vector store with Redis.  Remove the comment to include the starter for Redis.  Follow the instructions in the **[Lab Setup guide](https://github.com/kennyk65/AI-With-Spring-Student-Files/blob/main/LabInstructions/Lab%20Setup.md)** to installing and run Redis as a Docker container
 
 ```
 		<dependency>
@@ -281,7 +281,7 @@ Another alternative to the in-memory and Redis vector stores is the PGVector sto
 
 34. Open the **pom.xml** file.
 
-35. **TODO-24** Replace the simple in-memory vector store with PGVector.  Remove the comment to include the starter for PGVector.  Follow the instructions in the lab setup guide to installing and run PGVector as a Docker container
+35. **TODO-24** Replace the simple in-memory vector store with PGVector.  Remove the comment to include the starter for PGVector.  Follow the instructions in the **[Lab Setup guide](https://github.com/kennyk65/AI-With-Spring-Student-Files/blob/main/LabInstructions/Lab%20Setup.md)** to installing and run PGVector as a Docker container
 
 ```
 		<dependency>

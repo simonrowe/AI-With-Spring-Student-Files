@@ -33,7 +33,7 @@ The instructions below are for VS Code. If you wish to use IntelliJ or Eclipse a
 ---
 **Part 2 - Establish an OpenAI Account**
 
-1. **TODO-01**: If you have not already done so, setup an account with OpenAI.  The instructions are in the **Lab Setup** document. 
+1. **TODO-01**: If you have not already done so, setup an account with OpenAI.  The instructions are in the **[Lab Setup guide](https://github.com/kennyk65/AI-With-Spring-Student-Files/blob/main/LabInstructions/Lab%20Setup.md)**. 
 
 ---
 **Part 3 - Initial Configuration and Test**

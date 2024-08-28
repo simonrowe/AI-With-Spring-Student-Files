@@ -13,7 +13,7 @@ Let's jump in.
 ---
 **Part 1 - Obtain an AWS Account, Set Credentials, Enable Bedrock Models**
 
-If you have not already done so, follow the instructions in the **Lab Setup guide** _Signup Process for Amazon / Bedrock_ section to setup an AWS Account, IAM User, set credentials in your local environment, and enable Bedrock models.
+If you have not already done so, follow the instructions in the **[Lab Setup guide](https://github.com/kennyk65/AI-With-Spring-Student-Files/blob/main/LabInstructions/Lab%20Setup.md)** _Signup Process for Amazon / Bedrock_ section to setup an AWS Account, IAM User, set credentials in your local environment, and enable Bedrock models.
 
 ---
 **Part 2 - Setup the Project**
@@ -195,7 +195,7 @@ public class AwsClientTests {
 
 Our existing implementation uses an in-memory vector store; fine for testing but not intended for production.  Redis is a popular data storage technology which can be used as a production-quality vector store.
 
-Be sure you have completed the "Setup Process for Redis Docker Container" instructions found in the **Lab Setup** guide. 
+Be sure you have completed the "Setup Process for Redis Docker Container" instructions found in the **[Lab Setup guide](https://github.com/kennyk65/AI-With-Spring-Student-Files/blob/main/LabInstructions/Lab%20Setup.md)**. 
 
 25. Open the **pom.xml** file.
 
@@ -244,7 +244,7 @@ public class AwsClientTests {
 
 Our existing implementation uses an in-memory vector store; fine for testing but not intended for production.  PGVector is a popular data storage technology based on the Postgres database.  
 
-Be sure you have completed the "Setup Process for PostgreSQL Docker Container" and "Setup Process for PGVector Docker Container" instructions found in the **Lab Setup** guide. 
+Be sure you have completed the "Setup Process for PostgreSQL Docker Container" and "Setup Process for PGVector Docker Container" instructions found in the **[Lab Setup guide](https://github.com/kennyk65/AI-With-Spring-Student-Files/blob/main/LabInstructions/Lab%20Setup.md)**. 
 
 33. Open the **pom.xml** file.
 

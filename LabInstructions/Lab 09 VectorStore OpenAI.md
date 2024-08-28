@@ -14,7 +14,7 @@ Let's jump in.
 ---
 **Part 1 - Establish an OpenAI Account**
 
-If you have not already done so, setup an account with OpenAI.  The instructions are in the **Lab Setup** document. 
+If you have not already done so, setup an account with OpenAI.  The instructions are in the ***[Lab Setup guide](https://github.com/kennyk65/AI-With-Spring-Student-Files/blob/main/LabInstructions/Lab%20Setup.md)**. 
 
 ---
 **Part 2 - Setup the Project**
@@ -237,7 +237,7 @@ The existing implementation uses an in-memory Vector Store, which is not appropr
 
 26. Open the **pom.xml** file.
 
-27. **TODO-20** Replace the simple in-memory vector store with Redis.  Remove the comment to include the starter for Redis.  Follow the instructions in the lab setup guide to installing and run Redis as a Docker container
+27. **TODO-20** Replace the simple in-memory vector store with Redis.  Remove the comment to include the starter for Redis.  Follow the instructions in the **[Lab Setup guide](https://github.com/kennyk65/AI-With-Spring-Student-Files/blob/main/LabInstructions/Lab%20Setup.md)** to installing and run Redis as a Docker container
 
 ```
 		<dependency>
@@ -280,7 +280,7 @@ Another alternative to the in-memory and Redis vector stores is the PGVector sto
 
 34. Open the **pom.xml** file.
 
-35. **TODO-24** Replace the simple in-memory vector store with PGVector.  Remove the comment to include the starter for PGVector.  Follow the instructions in the lab setup guide to installing and run PGVector as a Docker container
+35. **TODO-24** Replace the simple in-memory vector store with PGVector.  Remove the comment to include the starter for PGVector.  Follow the instructions in the **[Lab Setup guide](https://github.com/kennyk65/AI-With-Spring-Student-Files/blob/main/LabInstructions/Lab%20Setup.md)** to installing and run PGVector as a Docker container
 
 ```
 		<dependency>

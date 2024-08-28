@@ -24,7 +24,7 @@ The instructions below are for VS Code. If you wish to use IntelliJ or Eclipse a
 ---
 **Part 2 - Obtain an AWS Account, Set Credentials, Enable Bedrock Models**
 
-3. If you have not already done so, follow the instructions in the **Lab Setup guide** _Signup Process for Amazon / Bedrock_ section to setup an AWS Account, IAM User, set credentials in your local environment, and enable Bedrock models.
+3. If you have not already done so, follow the instructions in the **[Lab Setup guide](https://github.com/kennyk65/AI-With-Spring-Student-Files/blob/main/LabInstructions/Lab%20Setup.md)** _Signup Process for Amazon / Bedrock_ section to setup an AWS Account, IAM User, set credentials in your local environment, and enable Bedrock models.
 
 At the time of this writing, we've found the **Anthropic Claude** models generate SQL more reliably that **Amazon Titan** models.
 

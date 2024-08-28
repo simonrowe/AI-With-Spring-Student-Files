@@ -14,7 +14,7 @@ Let's jump in.
 ---
 **Part 1 - Complete Ollama Local Setup**
 
-If you have not already done so, complete the instructions for running Ollama in your local environment.  See the "Setup Process for Docker" and "Setup Process for Ollama" section in the **Lab Setup** guide.  Make sure your Ollama container is running.
+If you have not already done so, complete the instructions for running Ollama in your local environment.  See the "Setup Process for Docker" and "Setup Process for Ollama" section in the **[Lab Setup guide](https://github.com/kennyk65/AI-With-Spring-Student-Files/blob/main/LabInstructions/Lab%20Setup.md)**.  Make sure your Ollama container is running.
 
 ---
 **Part 2 - Setup the Project**
@@ -236,7 +236,7 @@ The existing implementation uses an in-memory Vector Store, which is not appropr
 
 26. Open the **pom.xml** file.
 
-27. **TODO-20** Replace the simple in-memory vector store with Redis.  Remove the comment to include the starter for Redis.  Follow the instructions in the lab setup guide to installing and run Redis as a Docker container
+27. **TODO-20** Replace the simple in-memory vector store with Redis.  Remove the comment to include the starter for Redis.  Follow the instructions in the **[Lab Setup guide](https://github.com/kennyk65/AI-With-Spring-Student-Files/blob/main/LabInstructions/Lab%20Setup.md)** to installing and run Redis as a Docker container
 
 ```
 		<dependency>
@@ -279,7 +279,7 @@ Another alternative to the in-memory and Redis vector stores is the PGVector sto
 
 34. Open the **pom.xml** file.
 
-35. **TODO-24** Replace the simple in-memory vector store with PGVector.  Remove the comment to include the starter for PGVector.  Follow the instructions in the lab setup guide to installing and run PGVector as a Docker container
+35. **TODO-24** Replace the simple in-memory vector store with PGVector.  Remove the comment to include the starter for PGVector.  Follow the instructions in the **[Lab Setup guide](https://github.com/kennyk65/AI-With-Spring-Student-Files/blob/main/LabInstructions/Lab%20Setup.md)** to installing and run PGVector as a Docker container
 
 ```
 		<dependency>

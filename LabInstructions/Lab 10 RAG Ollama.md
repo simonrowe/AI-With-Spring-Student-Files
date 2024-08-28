@@ -13,7 +13,7 @@ Let's jump in.
 ---
 **Part 1 - Complete Ollama Local Setup**
 
-If you have not already done so, complete the instructions for running Ollama in your local environment.  See the "Setup Process for Docker" and "Setup Process for Ollama" section in the **Lab Setup** guide.  
+If you have not already done so, complete the instructions for running Ollama in your local environment.  See the "Setup Process for Docker" and "Setup Process for Ollama" section in the **[Lab Setup guide](https://github.com/kennyk65/AI-With-Spring-Student-Files/blob/main/LabInstructions/Lab%20Setup.md)**.  
 
     Make sure your Ollama container is running.  For this lab we will use the **mxbai-embed-large** model.  Pull it if you have not already done so.  You can experiment with other embedding models.
 
@@ -197,7 +197,7 @@ public class OllamaClientTests {
 
 Our existing implementation uses an in-memory vector store; fine for testing but not intended for production.  Redis is a popular data storage technology which can be used as a production-quality vector store.
 
-Be sure you have completed the "Setup Process for Redis Docker Container" instructions found in the **Lab Setup** guide. 
+Be sure you have completed the "Setup Process for Redis Docker Container" instructions found in the **[Lab Setup guide](https://github.com/kennyk65/AI-With-Spring-Student-Files/blob/main/LabInstructions/Lab%20Setup.md)**. 
 
 25. Open the **pom.xml** file.
 
@@ -246,7 +246,7 @@ public class OllamaClientTests {
 
 Our existing implementation uses an in-memory vector store; fine for testing but not intended for production.  PGVector is a popular data storage technology based on the Postgres database.  
 
-Be sure you have completed the "Setup Process for PostgreSQL Docker Container" and "Setup Process for PGVector Docker Container" instructions found in the **Lab Setup** guide. 
+Be sure you have completed the "Setup Process for PostgreSQL Docker Container" and "Setup Process for PGVector Docker Container" instructions found in the **[Lab Setup guide](https://github.com/kennyk65/AI-With-Spring-Student-Files/blob/main/LabInstructions/Lab%20Setup.md)**. 
 
 33. Open the **pom.xml** file.
 

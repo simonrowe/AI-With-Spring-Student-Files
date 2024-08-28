@@ -13,7 +13,7 @@ Let's jump in.
 ---
 **Part 1 - Establish an OpenAI Account**
 
-If you have not already done so, setup an account with OpenAI.  The instructions are in the **Lab Setup** document. 
+If you have not already done so, setup an account with OpenAI.  The instructions are in the **[Lab Setup guide](https://github.com/kennyk65/AI-With-Spring-Student-Files/blob/main/LabInstructions/Lab%20Setup.md)**. 
 
 ---
 **Part 2 - Setup the Project**
@@ -195,7 +195,7 @@ public class OpenAIClientTests {
 
 Our existing implementation uses an in-memory vector store; fine for testing but not intended for production.  Redis is a popular data storage technology which can be used as a production-quality vector store.
 
-Be sure you have completed the "Setup Process for Redis Docker Container" instructions found in the **Lab Setup** guide. 
+Be sure you have completed the "Setup Process for Redis Docker Container" instructions found in the **[Lab Setup guide](https://github.com/kennyk65/AI-With-Spring-Student-Files/blob/main/LabInstructions/Lab%20Setup.md)**. 
 
 25. Open the **pom.xml** file.
 
@@ -244,7 +244,7 @@ public class OpenAIClientTests {
 
 Our existing implementation uses an in-memory vector store; fine for testing but not intended for production.  PGVector is a popular data storage technology based on the Postgres database.  
 
-Be sure you have completed the "Setup Process for PostgreSQL Docker Container" and "Setup Process for PGVector Docker Container" instructions found in the **Lab Setup** guide. 
+Be sure you have completed the "Setup Process for PostgreSQL Docker Container" and "Setup Process for PGVector Docker Container" instructions found in the **[Lab Setup guide](https://github.com/kennyk65/AI-With-Spring-Student-Files/blob/main/LabInstructions/Lab%20Setup.md)**. 
 
 33. Open the **pom.xml** file.
 

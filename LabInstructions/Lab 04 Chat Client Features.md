@@ -39,16 +39,16 @@ The instructions below are for VS Code. If you wish to use IntelliJ or Eclipse a
 
     1. If you plan to use **Amazon Bedrock**:
         * Adjust the region setting if needed.  Use your previous lab settings for guidance.
-        * Make sure you have followed the **Lab Setup** document for AWS / Amazon Bedrock.
+        * Make sure you have followed the **[Lab Setup guide](https://github.com/kennyk65/AI-With-Spring-Student-Files/blob/main/LabInstructions/Lab%20Setup.md)** for AWS / Amazon Bedrock.
     1. If you plan to use **Azure OpenAI**:
         * Adjust the endpoint, deployment-name, and model settings as needed.  Use your previous lab settings for guidance.
-        * Make sure you have followed the **Lab Setup** document for Azure.
+        * Make sure you have followed the **[Lab Setup guide](https://github.com/kennyk65/AI-With-Spring-Student-Files/blob/main/LabInstructions/Lab%20Setup.md)** document for Azure.
     1. If you plan to use **OpenAI**:
         * Adjust the model setting if needed.  Use your previous lab settings for guidance.
-        * Make sure you have followed the **Lab Setup** document for OpenAI.
+        * Make sure you have followed the **[Lab Setup guide](https://github.com/kennyk65/AI-With-Spring-Student-Files/blob/main/LabInstructions/Lab%20Setup.md)** document for OpenAI.
     1. If you plan to use **Ollama**:
         * Adjust the base-url and model settings if needed.  Use your previous lab settings for guidance.
-        * Make sure you have followed the **Lab Setup** document for Ollama.
+        * Make sure you have followed the **[Lab Setup guide](https://github.com/kennyk65/AI-With-Spring-Student-Files/blob/main/LabInstructions/Lab%20Setup.md)** for Ollama.
         * Make sure your Ollama Docker container is running. For this lab we will use the **mistral** model, but your can also try **llama2**.
 
 1. Save your work.
@@ -164,7 +164,7 @@ Note that the prompt did not request the additional data fields.  The foundation
 
 If you would like to try this lab code with other models, you only need to adjust two points.
 
-1. Return to **TODO-01** in `application.yml` and adjust the settings for the model you wish to use.  Refer to the **Lab Setup** guide as needed.
+1. Return to **TODO-01** in `application.yml` and adjust the settings for the model you wish to use.  Refer to the **[Lab Setup guide](https://github.com/kennyk65/AI-With-Spring-Student-Files/blob/main/LabInstructions/Lab%20Setup.md)** as needed.
 1. Return to `AIClientImplTests`.  Adjust the `@ActiveProfiles` annotation to activate the profile matching the model you wish to use.
 
 You may observe different behavior in different models.  Nothing guarantees that different models will behave in deterministic or consistent ways.

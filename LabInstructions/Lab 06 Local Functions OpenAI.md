@@ -25,7 +25,7 @@ An example is combining general knowlege about a given company with its current 
 ---
 **Part 2 - Establish an OpenAI Account**
 
-1. **TODO-01**: If you have not already done so, setup an account with OpenAI.  The instructions are in the **Lab Setup** document. 
+1. **TODO-01**: If you have not already done so, setup an account with OpenAI.  The instructions are in the **[Lab Setup guide](https://github.com/kennyk65/AI-With-Spring-Student-Files/blob/main/LabInstructions/Lab%20Setup.md)**. 
 
 
 

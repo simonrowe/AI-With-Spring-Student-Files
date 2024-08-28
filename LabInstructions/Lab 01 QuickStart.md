@@ -6,7 +6,7 @@
 ---
 **Part 1 - Obtain an Account with OpenAI**
 
-Begin by establishing an account with OpenAI. Follow the instructions in the **Lab Setup guide** _Setup Process for OpenAI_ section to establish an account and set credentials in your local environment
+Begin by establishing an account with OpenAI. Follow the instructions in the **[Lab Setup guide](https://github.com/kennyk65/AI-With-Spring-Student-Files/blob/main/LabInstructions/Lab%20Setup.md)** _Setup Process for OpenAI_ section to establish an account and set credentials in your local environment
 
 WARNING: Do not use the instructions for "Azure OpenAI" at this point; they will not match the instructions below.  We will see some Azure examples later in the course.
 

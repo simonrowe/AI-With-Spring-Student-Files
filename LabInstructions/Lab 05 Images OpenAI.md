@@ -7,7 +7,7 @@ Within the project code, you will find comments containing **TODO** instructions
 ---
 **Part 1 - Signup for OpenAI Account**
 
-If you have not already done so, setup an account with OpenAI.  The instructions are in the **Lab Setup** document. 
+If you have not already done so, setup an account with OpenAI.  The instructions are in the **[Lab Setup guide](https://github.com/kennyk65/AI-With-Spring-Student-Files/blob/main/LabInstructions/Lab%20Setup.md)**. 
 
 ---
 **Part 2 - Setup the Project**

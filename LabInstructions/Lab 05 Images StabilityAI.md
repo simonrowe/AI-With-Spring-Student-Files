@@ -7,7 +7,7 @@ Within the project code, you will find comments containing **TODO** instructions
 ---
 **Part 1 - Setup StabilityAI Account**
 
-If you have not already done so, setup an account with StabilityAI.  The instructions are in the **Lab Setup** document.  When you are finished, you should have an environment variable established with your API key.
+If you have not already done so, setup an account with StabilityAI.  The instructions are in the **[Lab Setup guide](https://github.com/kennyk65/AI-With-Spring-Student-Files/blob/main/LabInstructions/Lab%20Setup.md)**.  When you are finished, you should have an environment variable established with your API key.
 * Restart your IDE after setting an environment variables.
 
 

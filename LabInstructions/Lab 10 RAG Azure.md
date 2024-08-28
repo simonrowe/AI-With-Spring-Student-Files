@@ -13,7 +13,7 @@ Let's jump in.
 ---
 **Part 1 - Establish Azure Account, OpenAI _resource_, Endpoint, Keys, Deployment**
 
-If you have not already done so, follow the instructions in the **Lab Setup guide** and find the _Signup Process for Azure OpenAI_ section.  Walk through these instructions to establish an Azure Account, OpenAI _resource_, Endpoint, Keys, and Deployment.
+If you have not already done so, follow the instructions in the **[Lab Setup guide](https://github.com/kennyk65/AI-With-Spring-Student-Files/blob/main/LabInstructions/Lab%20Setup.md)** and find the _Signup Process for Azure OpenAI_ section.  Walk through these instructions to establish an Azure Account, OpenAI _resource_, Endpoint, Keys, and Deployment.
 
 ---
 **Part 2 - Setup the Project**
@@ -201,7 +201,7 @@ public class AzureClientTests {
 
 Our existing implementation uses an in-memory vector store; fine for testing but not intended for production.  Redis is a popular data storage technology which can be used as a production-quality vector store.
 
-Be sure you have completed the "Setup Process for Redis Docker Container" instructions found in the **Lab Setup** guide. 
+Be sure you have completed the "Setup Process for Redis Docker Container" instructions found in the **[Lab Setup guide](https://github.com/kennyk65/AI-With-Spring-Student-Files/blob/main/LabInstructions/Lab%20Setup.md)**. 
 
 25. Open the **pom.xml** file.
 
@@ -250,7 +250,7 @@ public class AzureClientTests {
 
 Our existing implementation uses an in-memory vector store; fine for testing but not intended for production.  PGVector is a popular data storage technology based on the Postgres database.  
 
-Be sure you have completed the "Setup Process for PostgreSQL Docker Container" and "Setup Process for PGVector Docker Container" instructions found in the **Lab Setup** guide. 
+Be sure you have completed the "Setup Process for PostgreSQL Docker Container" and "Setup Process for PGVector Docker Container" instructions found in the **[Lab Setup guide](https://github.com/kennyk65/AI-With-Spring-Student-Files/blob/main/LabInstructions/Lab%20Setup.md)**. 
 
 33. Open the **pom.xml** file.
 
