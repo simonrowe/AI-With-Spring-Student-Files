@@ -19,7 +19,12 @@
 	</properties>
 	<dependencies>
 
-				
+		<!-- 
+		TODO-01: Follow the lab setup instructions to install Docker and 
+		Run Ollama in a Docker container.  Once complete, move on to the next step. 
+		-->
+		
+		
 		<!-- 
 		TODO-02: Add the dependency for ollama.  
 		The groupId value will be org.springframework.ai
