@@ -61,17 +61,17 @@ The instructions below are for VS Code. If you wish to use IntelliJ or Eclipse a
 
 ```
 spring:
-  application.name: Lab2 OpenAI Chat
+  application.name: Lab02 Chat OpenAI
   main.web-application-type: none     # Do not start a web server.
-    retry:
-      max-attempts: 1      # Maximum number of retry attempts.
   ai:
+    retry:
+      max-attempts: 1           # Maximum number of retry attempts.
     openai:
       api-key: NEVER-PLACE-SECRET-KEY-IN-CONFIG-FILE
-      chat.enabled: true          
+      chat.enabled: true             
 ```
 
-  - The `openai.chat.enabled` setting tells Spring Boot to specifically autoconfigure objects supporting OpenAI.
+  - The `spring.ai.openai.chat.enabled` setting tells Spring Boot to specifically autoconfigure objects supporting OpenAI.
   - SpringAI applications can run as part of a web application, but these exercises are built to avoid that extra step.
   - Note: The retry settings will override the `ChatClient`'s default settings.  You are likely to experience errors while you learn the API's usage, and we don't want you to experience unnecessary delays or expense.  
   - We could store the API key value in this file, but this would be a security risk if we were to ever distribute this file.  Setting this value by environment variable is safer.
