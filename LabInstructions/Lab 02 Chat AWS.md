@@ -33,7 +33,7 @@ The instructions below are for VS Code. If you wish to use IntelliJ or Eclipse a
 ---
 **Part 2 - Obtain an AWS Account, Set Credentials, Enable Bedrock Models**
 
-1. **TODO-01**: Establish an AWS account. Follow the instructions in the **Lab Setup guide** _Signup Process for Amazon / Bedrock_ section to setup an AWS Account, IAM User, set credentials in your local environment, and enable Bedrock models.
+1. **TODO-01**: Establish an AWS account. Follow the instructions in the **[Lab Setup guide](https://github.com/kennyk65/AI-With-Spring-Student-Files/blob/main/LabInstructions/Lab%20Setup.md)** _Signup Process for Amazon / Bedrock_ section to setup an AWS Account, IAM User, set credentials in your local environment, and enable Bedrock models.
 
 
 ---
