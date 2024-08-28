@@ -69,8 +69,8 @@ spring:
   # Set the spring.ai.retry.max-attempts to 1 to limit the number of retry attempts.
   # Set the spring.ai.azure.openai.chat.enabled to true to enable the chatModel.
   # Set the spring.ai.azure.openai.endpoint to the value you established during Azure setup.
-  # Set the spring.ai.azure.openai.chat.options.deployment-name to the value you establised during setup.
-  # Set the spring.ai.azure.openai.chat.options.model to "gpt-35-turbo" to use the GPT-3.5 model.
+  # Set the spring.ai.azure.openai.chat.options.deployment-name to the value you establised during setup (probably "gpt-35-turbo").
+  # Set the spring.ai.azure.openai.chat.options.model to the value you established during setup (probably "gpt-35-turbo").
 
   application.name: Lab02 Chat Azure
   ai:

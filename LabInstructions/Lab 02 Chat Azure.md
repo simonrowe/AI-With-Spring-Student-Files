@@ -63,11 +63,11 @@ The instructions below are for VS Code. If you wish to use IntelliJ or Eclipse a
 
 ```
 spring:
-  application.name: Lab2 Azure OpenAI Chat
+  application.name: Lab2 Chat Azure
   main.web-application-type: none     # Do not start a web server.
-    retry:
-      max-attempts: 1      # Maximum number of retry attempts.
   ai:
+    retry:
+      max-attempts: 1           # Maximum number of retry attempts.
     azure:
       openai:
         api_key: NEVER-PLACE-SECRET-KEY-IN-CONFIG-FILE
@@ -77,6 +77,7 @@ spring:
           options:
             deployment-name: DEPLOYMENT-NAME-GOES-HERE
             model: gpt-35-turbo
+
 ```
   * Set the `spring.ai.azure.openai.endpoint` to the value you established during Azure setup. If you forgot the value, it can be found in the Azure Portal / Azure OpenAI. Open your resource and select click here to view endpoints.
   * Set the `spring.ai.azure.openai.chat.options.deployment-name` to the value you established during setup.  

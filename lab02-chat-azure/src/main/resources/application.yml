@@ -1,0 +1,12 @@
+# TODO-04: Set the spring.application.name to "Lab02 Chat Azure" or something similar.
+# Set the spring.main.web-application-type to none to avoid starting a web server.
+# Set the spring.ai.retry.max-attempts to 1 to limit the number of retry attempts.
+# Set the spring.ai.azure.openai.chat.enabled to true to enable the chatModel.
+# Set the spring.ai.azure.openai.endpoint to the value you established during Azure setup.
+# Set the spring.ai.azure.openai.chat.options.deployment-name to the value you establised during setup (probably "gpt-35-turbo").
+# Set the spring.ai.azure.openai.chat.options.model to the value you established during setup (probably "gpt-35-turbo").
+
+spring:
+  application.name: Lab02 Chat 
+  main.web-application-type: none     # Do not start a web server.
+
