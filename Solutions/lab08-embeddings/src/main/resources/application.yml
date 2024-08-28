@@ -1,5 +1,5 @@
 spring:
-  application.name: Lab6 Embedding
+  application.name: Lab08 Embedding
   main.web-application-type: none     # Do not start a web server.
 
   ai:
