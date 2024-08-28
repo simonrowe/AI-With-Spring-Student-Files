@@ -62,11 +62,11 @@ The instructions below are for VS Code. If you wish to use IntelliJ or Eclipse a
 
 ```
 spring:
-  application.name: Lab2 Ollama Chat
+  application.name: Lab02 Chat Ollama
   main.web-application-type: none     # Do not start a web server.
-    retry:
-      max-attempts: 1      # Maximum number of retry attempts.
   ai:
+    retry:
+      max-attempts: 1           # Maximum number of retry attempts.
     ollama:
       base-url: http://localhost:11434  # Default base URL when you run Ollama from Docker
       chat:
