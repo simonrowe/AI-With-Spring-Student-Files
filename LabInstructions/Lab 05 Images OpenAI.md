@@ -34,7 +34,7 @@ A half-completed skeleton project has been created for you to relieve you from t
           enabled: true
           options:
             n: 1                  # number of images to generate.
-            response_format: URL  # or b64_json
+            response_format: url  # or b64_json
             size: 1792x1024       # or 1024x1024, 1024x1792
             style: natural        # or vivid
 

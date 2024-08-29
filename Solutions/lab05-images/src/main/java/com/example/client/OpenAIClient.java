@@ -49,7 +49,7 @@ public class OpenAIClient implements AIClient {
     public String createImageB64(String request) {
 
         //  TODO-13 (Optional): Create an OpenAiImageOptions object named B64_OPTIONS.
-        //  Use the builder pattern to set the "responseFormat" property to "b64" (Base-64 encoded String):
+        //  Use the builder pattern to set the "responseFormat" property to "b64_json" (Base-64 encoded String):
         OpenAiImageOptions B64_OPTIONS = OpenAiImageOptions.builder().withResponseFormat("b64_json").build();
 
         //  TODO-14 (Optional): Using your earlier code as a guide, create an
