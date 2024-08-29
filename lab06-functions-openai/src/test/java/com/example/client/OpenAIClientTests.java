@@ -10,7 +10,6 @@ import org.springframework.test.context.ActiveProfiles;
 import com.example.service.StockService;
 
 //  TODO-13: Define this test class as a Spring Boot test.
-//  Use the @ActiveProfiles annotation to activate the "openai" profile.
 
 public class OpenAIClientTests {
 
@@ -27,8 +26,6 @@ public class OpenAIClientTests {
     //  Print the response string that is returned.
 
 
-
-    
     //  TODO-16: Organize imports and save all work.
     //  Run this test, it should pass.
     //  Notice the output contains specific data obtained from the StockService.
