@@ -25,7 +25,7 @@ public class AzureClient implements AIClient {
     public String createImageUrl(String request) {
 
         //  TODO-06: Create an ImagePrompt object using the request and the DEFAULT_OPTIONS:
-        //  (Feel free to experiment with your own custom-defined OpenAiImageOptions later).
+        //  (Feel free to experiment with your own custom-defined AzureOpenAiImageOptions later).
         ImagePrompt prompt = new ImagePrompt(
                 request,
                 DEFAULT_OPTIONS
