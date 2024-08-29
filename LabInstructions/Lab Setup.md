@@ -290,7 +290,9 @@ Note that the exact screen flow to perform these steps may vary over time as AWS
     * **Amazon - Titan Text G1 - Express**
     * **Amazon - Titan Embeddings G1 - Text**
     * **Anthropic - Claude V2**
+    * **Anthropic - Claude 3 Sonnet**  (anthropic.claude-3-sonnet-20240229-v1:0)
     - Note: you may enable other models if you like.  Generally there is little or no charge to enable a specific model, only acceptance of a license agreement.  The _Titan_ models from Amazon are relatively inexpensive.
+    - Over time, the available Bedrock models and the defaults used in Spring AI change.  You may encounter cases where you need to enable and specify models not on this list.
     10. Click **Submit**.  It may take a few moments for the model to become active.
 
     Note:  [Amazon Bedrock pricing](https://aws.amazon.com/bedrock/pricing/) for chat/text is based on input and output tokens, and varies depending on the model chosen.  Tokens currently cost between $0.00015 and $0.02 per thousand input tokens, $0.00125 and $0.024 per thousand output tokens.  It is always a good idea to double-check the pricing page when using a cloud provider.

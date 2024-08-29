@@ -5,10 +5,10 @@ spring:
   ai:
     retry:
       max-attempts: 1           # Maximum number of retry attempts.
-    bedrock.anthropic.chat.enabled: false # Disable all models by default.
-    ollama.chat.enabled: false        # Disable all models by default.
-    openai.chat.enabled: false        # Disable all models by default.
-    azure.openai.chat.enabled: false  # Disable all models by default.
+    bedrock.anthropic3.chat.enabled: false # Disable all models by default.
+    ollama.chat.enabled:            false # Disable all models by default.
+    openai.chat.enabled:            false # Disable all models by default.
+    azure.openai.chat.enabled:      false # Disable all models by default.
 
     # TODO-01: Adjust the settings below based on the chat model you plan to use.
     # If you plan to use Amazon Bedrock: 
@@ -33,7 +33,7 @@ spring:
         region: us-west-2 # Adjust as needed.
         access-key: NEVER-PLACE-SECRET-KEY-IN-CONFIG-FILE
         secret-key: NEVER-PLACE-SECRET-KEY-IN-CONFIG-FILE
-      titan:
+      anthropic3:
         chat:
           enabled: true
 

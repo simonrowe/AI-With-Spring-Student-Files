@@ -61,10 +61,11 @@ public class AIClientImplTests {
     }
 
     //  TODO-10: Examine the test logic below.  It retrieves data about a US State (or any state).
-    //  Run the test.  It should pass. 
+    //  Remove the @Disabled annotation.  Run the test.  It should pass. 
     //  Move on to the next step to add to the information retrieved about each state. 
 
     @Test
+    @Disabled
     public void testRetrieve() {
 
         StateData stateData = client.retrieve("Michigan");

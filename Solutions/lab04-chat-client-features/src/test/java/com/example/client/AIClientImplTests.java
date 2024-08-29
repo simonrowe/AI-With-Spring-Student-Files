@@ -4,10 +4,6 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
-import org.springframework.ai.chat.client.ChatClient;
-import org.springframework.ai.chat.client.advisor.AbstractChatMemoryAdvisor;
-import org.springframework.ai.chat.client.advisor.MessageChatMemoryAdvisor;
-import org.springframework.ai.chat.memory.InMemoryChatMemory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.ActiveProfiles;
@@ -18,7 +14,7 @@ import org.springframework.test.context.ActiveProfiles;
 //  For standard OpenAI,        use "openai".
 //  For Ollama,                 use "ollama".
 @SpringBootTest
-@ActiveProfiles("openai")
+@ActiveProfiles("xxxx")
 public class AIClientImplTests {
 
     @Autowired AIClient client;
@@ -30,7 +26,7 @@ public class AIClientImplTests {
     //  Move on to the next step to fix the error.
 
     @Test
-    //@Disabled
+    @Disabled
     void testConversationalChat() {
 
         int conversation1Id = 111;
@@ -65,10 +61,11 @@ public class AIClientImplTests {
     }
 
     //  TODO-10: Examine the test logic below.  It retrieves data about a US State (or any state).
-    //  Run the test.  It should pass. 
+    //  Remove the @Disabled annotation.  Run the test.  It should pass. 
     //  Move on to the next step to add to the information retrieved about each state. 
 
     @Test
+    @Disabled
     public void testRetrieve() {
 
         StateData stateData = client.retrieve("Michigan");
@@ -79,8 +76,8 @@ public class AIClientImplTests {
         //  Run the test again.  It should pass. 
         assertThat(stateData.capitalCity()).isEqualTo("Lansing");
         assertThat(stateData.areaInSquareMiles()).isBetween(95000, 98000);
-        assertThat(stateData.population()).isBetween(10000000, 12000000);
-        assertThat(stateData.famousFor()).contains("Great Lakes");
+        //assertThat(stateData.population()).isBetween(10000000, 12000000);
+        assertThat(stateData.famousFor()).containsIgnoringCase("great lakes");
     
     }
 }

@@ -40,6 +40,7 @@ The instructions below are for VS Code. If you wish to use IntelliJ or Eclipse a
     1. If you plan to use **Amazon Bedrock**:
         * Adjust the region setting if needed.  Use your previous lab settings for guidance.
         * Make sure you have followed the **[Lab Setup guide](https://github.com/kennyk65/AI-With-Spring-Student-Files/blob/main/LabInstructions/Lab%20Setup.md)** for AWS / Amazon Bedrock.
+        * At present, this lab requires Bedrock Anthropic's _Claude 3 Sonnet_ (anthropic.claude-3-sonnet-20240229-v1:0) model enabled.  This may change over time as different Bedrock models become available and Spring AI selects different defaults. 
     1. If you plan to use **Azure OpenAI**:
         * Adjust the endpoint, deployment-name, and model settings as needed.  Use your previous lab settings for guidance.
         * Make sure you have followed the **[Lab Setup guide](https://github.com/kennyk65/AI-With-Spring-Student-Files/blob/main/LabInstructions/Lab%20Setup.md)** document for Azure.
@@ -127,6 +128,7 @@ Sometimes it can be useful to receive a strongly-typed Java object in response t
 
 1. **TODO-10:** Examine the test logic in the `testRetrieve()` method.  It retrieves data about a US State (or any state).
     * Notice that the prompt contains only the name of the state.
+    * Remove the `@Disabled` annotation.
     * Run the test.  It should pass. 
  
 1. Open `src/main/java/com.example.client.StateData`.
