@@ -84,11 +84,10 @@ An example is combining general knowlege about a given company with its current 
 
 8. Open `src/main/java/com.example.client.OpenAIClientImpl`.
 
-1. **TODO-05:** Use an annotation to mark this class as a Spring bean.  Use an annotation to assign it to the "openai" profile.
+1. **TODO-05:** Use an annotation to mark this class as a Spring bean.  
 
     ```
     @Component
-    @Profile("openai")
     public class OpenAIClientImpl implements AIClient {
     ```
 1. **TODO-06:** Within the class, create a constructor for this bean.
@@ -178,11 +177,10 @@ Anything we code, we should test.  We will make a `@Test` class to ensure our Cl
 
 18. Open `src/test/java/com/example/client/OpenAIClientTests.java`.
 
-1. **TODO-13:** Define this test class as a Spring Boot test.  Use the `@ActiveProfiles` annotation to activate the "openai" profile.
+1. **TODO-13:** Define this test class as a Spring Boot test.  
 
     ```
     @SpringBootTest
-    @ActiveProfiles("openai")
     public class OpenAIClientTests {
     ```
 
