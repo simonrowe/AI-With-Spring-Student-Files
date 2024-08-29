@@ -8,7 +8,6 @@ import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Component;
 
 //  TODO-04: Use a stereotype annotation to mark this class as a Spring bean.
-//  Use an annotation to assign it to the "openai" profile.
 @Component
 @Profile("stabilityai")
 public class StabilityAIClient implements AIClient {

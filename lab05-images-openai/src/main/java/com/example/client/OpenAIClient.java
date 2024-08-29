@@ -4,12 +4,10 @@ import org.springframework.ai.image.ImageModel;
 import org.springframework.ai.image.ImagePrompt;
 import org.springframework.ai.image.ImageResponse;
 import org.springframework.ai.openai.OpenAiImageOptions;
-import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Component;
 
 //  TODO-04: Use a stereotype annotation to mark this class as a Spring bean.
 //  Provide an explicit bean name to avoid naming conflicts with internal SpringAI beans.
-//  Use an annotation to assign it to the "openai" profile.
 
 
 public class OpenAIClient implements AIClient {

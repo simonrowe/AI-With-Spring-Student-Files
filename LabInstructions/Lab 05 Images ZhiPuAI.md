@@ -48,11 +48,10 @@ A half-completed skeleton project has been created for you to relieve you from t
 
 Now we can create a client object to make the image generation API calls. 
 
-5. **TODO-04**: Open `src/main/java/com/example/client/ZhiPuAIClient.java`. Establish the class as a Spring bean with the `@Component`annotation.  Make the bean a member of the **zhipuai** profile:
+5. **TODO-04**: Open `src/main/java/com/example/client/ZhiPuAIClient.java`. Establish the class as a Spring bean with the `@Component`annotation.  
 
     ```
     @Component
-    @Profile("zhipuai")
     public class ZhiPuAIAIClient implements AIClient {
     ```
 
@@ -95,11 +94,10 @@ Now we can create a client object to make the image generation API calls.
 
 Anything we code, we should test.  We will make a `@Test` method to ensure our Client object works as expected.
 
-11. **TODO-09**: Open `src/test/java/com/example/client/ZhiPuAIClientTests.java`. Use `@SpringBootTest` to define this test class as a Spring Boot test.  Use the `@ActiveProfiles` annotation to set **zhipuai** as the active profile.
+11. **TODO-09**: Open `src/test/java/com/example/client/ZhiPuAIClientTests.java`. Use `@SpringBootTest` to define this test class as a Spring Boot test.  
 
     ```
     @SpringBootTest
-    @ActiveProfiles("zhipuai")
     public class ZhiPuAIClientTests {
     ```
 

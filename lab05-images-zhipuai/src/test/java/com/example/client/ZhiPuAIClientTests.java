@@ -4,14 +4,12 @@ import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.context.ActiveProfiles;
 
 import static com.example.client.Utilities.saveBase64Image;
 import static com.example.client.Utilities.testValidBase64Image;
 import static org.assertj.core.api.Assertions.assertThat;
 
 //  TODO-09: Define this test class as a Spring Boot test.
-//  Use the @ActiveProfiles annotation to activate the "stabilityai" profile.
 
 
 public class ZhiPuAIClientTests {

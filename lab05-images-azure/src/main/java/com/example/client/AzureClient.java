@@ -4,11 +4,10 @@ import org.springframework.ai.azure.openai.AzureOpenAiImageOptions;
 import org.springframework.ai.image.ImageModel;
 import org.springframework.ai.image.ImagePrompt;
 import org.springframework.ai.image.ImageResponse;
-import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Component;
 
 //  TODO-04: Use a stereotype annotation to mark this class as a Spring bean.
-//  Use an annotation to assign it to the "azure" profile.
+
 
 
 public class AzureClient implements AIClient {
@@ -22,7 +21,7 @@ public class AzureClient implements AIClient {
     public String createImageUrl(String request) {
 
         //  TODO-06: Create an ImagePrompt object using the request and the DEFAULT_OPTIONS:
-        //  (Feel free to experiment with your own custom-defined OpenAiImageOptions later).
+        //  (Feel free to experiment with your own custom-defined AzureOpenAiImageOptions later).
 
 
         //  TODO-07: Create a variable of type ImageResponse.

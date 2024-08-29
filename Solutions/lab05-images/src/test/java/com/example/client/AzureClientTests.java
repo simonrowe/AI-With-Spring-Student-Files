@@ -10,7 +10,6 @@ import static com.example.client.Utilities.testValidBase64Image;
 import static org.assertj.core.api.Assertions.assertThat;
 
 //  TODO-09: Define this test class as a Spring Boot test.
-//  Use the @ActiveProfiles annotation to activate the "azure" profile.
 @SpringBootTest
 @ActiveProfiles("azure")
 public class AzureClientTests {

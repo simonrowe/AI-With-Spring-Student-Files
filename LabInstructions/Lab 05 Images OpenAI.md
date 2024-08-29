@@ -51,11 +51,10 @@ A half-completed skeleton project has been created for you to relieve you from t
 
 Now we can create a client object to make the image generation API calls. 
 
-5. **TODO-04**: Open `src/main/java/com/example/client/OpenAIClient.java`. Establish the class as a Spring bean with the `@Component`annotation.  Provide an explicit bean name of "openAIClientBean" to avoid naming conflicts with internal SpringAI bean names.  Make the bean a member of the **openai** profile:
+5. **TODO-04**: Open `src/main/java/com/example/client/OpenAIClient.java`. Establish the class as a Spring bean with the `@Component`annotation.  Provide an explicit bean name of "openAIClientBean" to avoid naming conflicts with internal SpringAI bean names.  
 
     ```
     @Component("openAIClientBean")
-    @Profile("openai")
     public class OpenAIClient implements AIClient {
     ```
 
@@ -98,11 +97,10 @@ Now we can create a client object to make the image generation API calls.
 
 Anything we code, we should test.  We will make a `@Test` method to ensure our Client object works as expected.
 
-11. **TODO-09**: Open `src/test/java/com/example/client/OpenAIClientTests.java`. Use `@SpringBootTest` to define this test class as a Spring Boot test.  Use the `@ActiveProfiles` annotation to set **openai** as the active profile.
+11. **TODO-09**: Open `src/test/java/com/example/client/OpenAIClientTests.java`. Use `@SpringBootTest` to define this test class as a Spring Boot test.  
 
     ```
     @SpringBootTest
-    @ActiveProfiles("openai")
     public class OpenAIClientTests {
     ```
 

@@ -8,7 +8,7 @@ import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Component;
 
 //  TODO-04: Use a stereotype annotation to mark this class as a Spring bean.
-//  Use an annotation to assign it to the "azure" profile.
+
 @Component
 @Profile("azure")
 public class AzureClient implements AIClient {

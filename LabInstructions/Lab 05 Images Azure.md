@@ -51,11 +51,10 @@ If you have not already done so, Establish an Azure account.  Follow the instruc
 
 Now we can create a client object to make the image generation API calls. 
 
-5. **TODO-04**: Open `src/main/java/com/example/client/AzureClient.java`. Establish the class as a Spring bean with the `@Component`annotation.  Make the bean a member of the **azure** profile:
+5. **TODO-04**: Open `src/main/java/com/example/client/AzureClient.java`. Establish the class as a Spring bean with the `@Component`annotation.  
 
     ```
     @Component
-    @Profile("azure")
     public class AzureClient implements AIClient {
     ```
 
@@ -98,11 +97,10 @@ Now we can create a client object to make the image generation API calls.
 
 Anything we code, we should test.  We will make a `@Test` method to ensure our Client object works as expected.
 
-11. **TODO-09**: Open `src/test/java/com/example/client/AzureClientTests.java`. Use `@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.NONE)` to define this test class as a Spring Boot test without a web environment.  Use the `@ActiveProfiles` annotation to set **azure** as the active profile.
+11. **TODO-09**: Open `src/test/java/com/example/client/AzureClientTests.java`. Use `@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.NONE)` to define this test class as a Spring Boot test without a web environment.  
 
     ```
     @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.NONE)
-    @ActiveProfiles("azure")
     public class AzureClientTests {
     ```
 

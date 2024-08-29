@@ -4,11 +4,9 @@ import org.springframework.ai.image.ImageModel;
 import org.springframework.ai.image.ImagePrompt;
 import org.springframework.ai.image.ImageResponse;
 import org.springframework.ai.zhipuai.ZhiPuAiImageOptions;
-import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Component;
 
 //  TODO-04: Use a stereotype annotation to mark this class as a Spring bean.
-//  Use an annotation to assign it to the "zhipuai" profile.
 
 
 public class ZhiPuAIClient implements AIClient {

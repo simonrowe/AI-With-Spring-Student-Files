@@ -9,7 +9,6 @@ import org.springframework.stereotype.Component;
 
 //  TODO-04: Use a stereotype annotation to mark this class as a Spring bean.
 //  Provide an explicit bean name to avoid naming conflicts with internal SpringAI beans.
-//  Use an annotation to assign it to the "openai" profile.
 @Component("openAIClientBean")
 @Profile("openai")
 public class OpenAIClient implements AIClient {
