@@ -1,4 +1,4 @@
-## Lab 4 - OpenAI Local Functions
+## Lab 06 - OpenAI Local Functions
 
 In this exercise you will configure SpringAI's ChatClient with a local function.  This function will be used to embellish the response from the API with external knowledge not known to the model.
 
