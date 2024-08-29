@@ -4,7 +4,6 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
-import org.springframework.ai.model.function.FunctionCallbackWrapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.ActiveProfiles;
@@ -12,7 +11,7 @@ import org.springframework.test.context.ActiveProfiles;
 import com.example.service.StockService;
 
 //  TODO-13: Define this test class as a Spring Boot test.
-//  Use the @ActiveProfiles annotation to activate the "azure" profile.
+
 @SpringBootTest
 @ActiveProfiles("azure")
 public class AzureClientTests {

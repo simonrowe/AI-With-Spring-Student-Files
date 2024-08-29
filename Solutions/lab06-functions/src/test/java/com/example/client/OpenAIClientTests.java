@@ -10,7 +10,7 @@ import org.springframework.test.context.ActiveProfiles;
 import com.example.service.StockService;
 
 //  TODO-13: Define this test class as a Spring Boot test.
-//  Use the @ActiveProfiles annotation to activate the "openai" profile.
+
 @SpringBootTest
 @ActiveProfiles("openai")
 public class OpenAIClientTests {

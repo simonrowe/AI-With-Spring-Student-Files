@@ -9,7 +9,6 @@ import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Component;
 
 //  TODO-05: Use @Component to mark this class as a Spring bean.
-//  Use an annotation to assign it to the "openai" profile.
 
 @Component
 @Profile("openai")
