@@ -69,6 +69,7 @@ public class AIClientImplTests {
     public void testRetrieve() {
 
         StateData stateData = client.retrieve("Michigan");
+        System.out.println("State data is: " + stateData );
         assertThat(stateData.stateName()).isEqualTo("Michigan");
         assertThat(stateData.capitalCity()).isEqualTo("Lansing");
 

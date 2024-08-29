@@ -69,12 +69,13 @@ public class AIClientImplTests {
     public void testRetrieve() {
 
         StateData stateData = client.retrieve("Michigan");
+        System.out.println("State data is: " + stateData );
         assertThat(stateData.stateName()).isEqualTo("Michigan");
+        assertThat(stateData.capitalCity()).isEqualTo("Lansing");
 
         //  TODO-12: Add additional assertions to this method to verify that 
         //  the entity object is populated with the extra fields you established in the last step.
         //  Run the test again.  It should pass. 
-        assertThat(stateData.capitalCity()).isEqualTo("Lansing");
         assertThat(stateData.areaInSquareMiles()).isBetween(95000, 98000);
         //assertThat(stateData.population()).isBetween(10000000, 12000000);
         assertThat(stateData.famousFor()).containsIgnoringCase("great lakes");
