@@ -23,6 +23,7 @@
 		 Notice the starters for OpenAI, Ollama, and Bedrock are present.	
 		 Only one of these will be active at a time. 
 		 If using Bedrock, make sure you have enabled the "Cohere" embedding model.
+		 If using Ollama, make sure you have pulled the "mxbai-embed-large" model.
 		 -->
 		<dependency>
 			<groupId>org.springframework.ai</groupId>

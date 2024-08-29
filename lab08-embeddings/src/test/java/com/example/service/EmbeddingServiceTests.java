@@ -17,6 +17,9 @@ import org.springframework.test.context.ActiveProfiles;
 
 public class EmbeddingServiceTests {
 
+    
+    //  TODO-11: Use the @Autowired annotation to inject an instance of our EmbeddingService.
+
 
     //  Sample product catalog:
     List<String> products = List.of(
