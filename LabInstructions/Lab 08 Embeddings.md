@@ -1,5 +1,4 @@
-TODO
-## Lab 8 - Embeddings and Semantic Search
+## Lab 08 - Embeddings and Semantic Search
 
 In this exercise you will explore the concept of Embeddings and Semantic Search.
 
