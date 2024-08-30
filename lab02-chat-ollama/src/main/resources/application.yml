@@ -1,7 +1,8 @@
 # TODO-04: Set the spring.application.name to "Lab02 Chat Ollama" or something similar.
-# Set the spring.main.web-application-type to none to avoid starting a web server.
-# Set the spring.ai.retry.max-attempts to 1 to limit the number of retry attempts.
-# Set the spring.ai.ollama.base-url to http://localhost:11434, unless your container is running on a different URL.
+# Set spring.main.web-application-type to none to run as a non-web application.
+# Set spring.ai.retry.max-attempts to 1 to fail fast.
+# Set spring.ai.retry.on-client-errors to false since there is typically no point in retrying such a request.
+# Set spring.ai.ollama.base-url to http://localhost:11434, unless your container is running on a different URL.
 
 spring:
   application.name: Lab2 Chat

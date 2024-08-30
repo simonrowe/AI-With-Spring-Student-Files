@@ -1,7 +1,8 @@
   # TODO-04: Set the spring.application.name to "Lab02 Chat OpenAI" or something similar.
-  # Set the spring.main.web-application-type to none to avoid starting a web server.
-  # Set the spring.ai.retry.max-attempts to 1 to limit the number of retry attempts.
-  # Set the spring.ai.openai.chat.enabled property to true to enable this chatModel.
+  # Set spring.main.web-application-type to none to run as a non-web application.
+  # Set spring.ai.retry.max-attempts to 1 to fail fast.
+  # Set spring.ai.retry.on-client-errors to false since there is typically no point in retrying such a request.
+  # Set spring.ai.openai.chat.enabled property to true to enable this chatModel.
 
 spring:
   application.name: Lab2 Chat
