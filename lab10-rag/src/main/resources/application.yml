@@ -1,0 +1,163 @@
+spring:
+  application.name: Lab9 RAG
+  main.web-application-type: none     # Do not start a web server.
+
+  ai:
+    retry:
+      max-attempts: 1      # Maximum number of retry attempts.
+      on-client-errors: false   # If false, throw a NonTransientAiException, and do not attempt retry for 4xx client error codes.
+    openai.embedding.enabled: false   # Allow profile to enable this if needed.
+    ollama.embedding.enabled: false   # Allow profile to enable this if needed.
+    bedrock.titan.chat.enabled: false # Allow profile to enable this if needed.
+    openai.chat.enabled: false        # Allow profile to enable this if needed.
+    azure.openai.chat.enabled:  false # Allow profile to enable this if needed.
+    ollama.chat.enabled: false        # Allow profile to enable this if needed.
+
+
+---
+spring:
+  config.activate.on-profile: ollama
+
+  # TODO-03: Establish the following configuration entries:
+  # Set spring.application.name to "Lab9 RAG with Ollama" or something similar.
+  # Set spring.main.web-application-type to none to run as a non-web application.
+  # Set spring.ai.retry.max-attempts to 1 to fail fast.
+  # Set spring.ai.retry.on-client-errors to false since there is typically no point in retrying such a request.
+  # Set the spring.ai.ollama.chat.enabled to true to enable the Ollama chat model.
+  # Set the spring.ai.ollama.base-url to http://localhost:11434, unless your container is running on a different URL.
+  ai:
+    ollama:
+      base-url: http://localhost:11434  # Default base URL when you run Ollama from Docker
+      chat:
+        enabled: true
+
+---
+spring:
+  config.activate.on-profile: aws
+
+  # TODO-03: Establish the following configuration entries:
+  # Set spring.application.name to "Lab9 RAG with OpenAI" or something similar.
+  # Set spring.main.web-application-type to none to run as a non-web application.
+  # Set spring.ai.retry.max-attempts to 1 to fail fast.
+  # Set spring.ai.retry.on-client-errors to false since there is typically no point in retrying such a request.
+  # Set the spring.ai.bedrock.titan.chat.enabled to true to specify use of the Titan chat model.
+  # Set the spring.ai.bedrock.aws.region to "us-west-2", or whichever region you have enabled the titan model in.
+
+  ai:
+    bedrock:
+      aws.region: us-west-2
+      titan:
+        chat:
+          enabled: true
+
+---
+spring:
+  config.activate.on-profile: openai
+
+  # TODO-03: Establish the following configuration entries:
+  # Set spring.application.name to "Lab9 RAG with OpenAI" or something similar.
+  # Set spring.main.web-application-type to none to run as a non-web application.
+  # Set spring.ai.retry.max-attempts to 1 to fail fast.
+  # Set spring.ai.retry.on-client-errors to false since there is typically no point in retrying such a request.
+  # Set spring.ai.openai.chat.enabled to true to enable the chat model.
+  # Set spring.ai.openai.chat.options.model to "gpt-35-turbo" to use the GPT-3.5 model.
+
+  ai:
+    openai:
+      api-key: NEVER-PLACE-SECRET-KEY-IN-CONFIG-FILE
+      chat:
+        enabled: true
+
+---
+spring:
+  config.activate.on-profile: azure
+
+  # TODO-03: Establish the following configuration entries:
+  # Set spring.application.name to "Lab9 RAG with OpenAI" or something similar.
+  # Set spring.main.web-application-type to none to run as a non-web application.
+  # Set spring.ai.retry.max-attempts to 1 to fail fast.
+  # Set spring.ai.retry.on-client-errors to false since there is typically no point in retrying such a request.
+  # Set spring.ai.azure.openai.chat.enabled to true.
+  # Set spring.ai.azure.openai.endpoint to the value you established during Azure setup.
+  # Set spring.ai.azure.openai.chat.options.deployment-name to the value you establised during setup.
+  # Set spring.ai.azure.openai.chat.options.model to "gpt-35-turbo", or whichever model you have enabled.
+
+  ai:
+    azure:
+      openai:
+        api_key: NEVER-PLACE-SECRET-KEY-IN-CONFIG-FILE
+        endpoint: ENDPOINT-GOES-HERE
+        chat:
+          enabled: true
+          options:
+            deployment-name: DEPLOYMENT-NAME-GOES-HERE
+            model: gpt-35-turbo
+
+
+---
+spring:
+  config.activate.on-profile: simple-vector-store
+  
+  # If running a simple vector store, exclude the Redis, PGVector, and DataSource autoconfigurations.
+  autoconfigure.exclude: 
+  - org.springframework.ai.autoconfigure.vectorstore.redis.RedisVectorStoreAutoConfiguration
+  - org.springframework.ai.autoconfigure.vectorstore.pgvector.PgVectorStoreAutoConfiguration
+  - org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration
+
+---
+spring:
+  config.activate.on-profile: redis-vector-store
+
+  # TODO-22 (OPTIONAL): Set properties for the Redis vector store.
+  # Note that these will only be used if the "redis-vector-store" profile is active.
+  # Set spring.ai.vectorstore.redis.uri to redis://localhost:6379, unless your redis is running elsewhere.
+  # Set spring.ai.vectorstore.redis.initializeSchema to true to create the necessary schema.
+  # (You may not want to do this in a production environment.)
+  ai:
+    vectorstore:
+      redis:
+        uri: redis://localhost:6379  # Default.
+        index: default-index         # Default.
+        prefix: "default:"           # Default.
+        initializeSchema: true       # Potentially destructive.
+
+  # If running a redis vector store, exclude the PGVector and DataSource autoconfigurations.
+  autoconfigure.exclude: 
+  - org.springframework.ai.autoconfigure.vectorstore.pgvector.PgVectorStoreAutoConfiguration
+  - org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration
+
+---
+spring:
+  config.activate.on-profile: pg-vector-store
+
+  # TODO-25 (OPTIONAL): Set properties for the Postgres vector store.
+  # Note that these will only be used if the "pg-vector-store" profile is active.
+  # Set spring.datasource.url to jdbc:postgresql://localhost:5432/postgres, unless your Postgres is running elsewhere.
+  # Set spring.datasource.username and spring.datasource.password the username and password set when running the container.
+  # Set the spring.ai.vectorstore.pgvector.initialize-schema to true to create the necessary schema.
+  # (You may not want to do this in a production environment.)
+  # Set the spring.ai.vectorstore.pgvector.index-type to HNSW.
+  # Set the spring.ai.vectorstore.pgvector.distance-type to COSINE_DISTANCE.
+  # Set the spring.ai.vectorstore.pgvector.dimensions based on the the underlying model you are using
+  #    For AWS/Bedrock/Cohere, use 384
+  #    For OpenAI's text-embedding-ada-002, use 1536
+  #    If you make a mistake here, don't worry.  The error message will tell you the correct #.  Delete and restart the DB with the revised number.
+
+  datasource:
+    url: jdbc:postgresql://localhost:5432/postgres
+    username: postgres
+    password: postgres
+  ai:
+    vectorstore:
+      pgvector:
+        initialize-schema: true
+        index-type: HNSW                # Hierarchical Navigable Small World (HNSW) algorithm, Alternatives: Annoy, LSH, KD-Tree, Ball Tree, Product Quantization, FAISS
+        distance-type: COSINE_DISTANCE  # How it determines if one vector is similar to another.
+        # CRITICAL: The PGVectorStore database must be initialized to the # of dimensions in the model you are using.
+        dimensions: 1536                # OpenAI's text-embedding-ada-002 model uses 1536 dimensions.
+        #dimensions: 384                 # AWS/Bedrock/Cohere uses 384 dimensions.
+
+  # If running a simple vector store, exclude the Redis auto configuration.
+  autoconfigure.exclude: 
+  - org.springframework.ai.autoconfigure.vectorstore.redis.RedisVectorStoreAutoConfiguration
+
