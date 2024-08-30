@@ -20,10 +20,6 @@ public class Application {
 	//  The method should accept an EmbeddingModel parameter
 	//	Have it instantiate and return a new SimpleVectorStore injected with the given EmbeddingModel.
 	//  Use @Profile to assign this bean to the "simple-vector-store" profile.
-	@Bean
-	@Profile("simple-vector-store")
-	public VectorStore vectorStore(EmbeddingModel embeddingModel) {
-		return new SimpleVectorStore(embeddingModel);
-	}
+
 	
 }
