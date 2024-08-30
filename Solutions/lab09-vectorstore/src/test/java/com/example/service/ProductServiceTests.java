@@ -11,15 +11,13 @@ import org.springframework.test.context.ActiveProfiles;
 //  Use the @ActiveProfiles annotation to activate: 
 //  1) the "simple-vector-store" profile  AND
 //  2) the matching embedding model you plan to use:
-//      For Amazon Bedrock, Cohere,     use "aws-cohere-embedding".
-//      For Amazon Bedrock, Titan,      use "aws-titan-embedding".
-//      For standard OpenAI,            use "openai-embedding".
-//      For Ollama,                     use "ollama-embedding".
+//      For Amazon Bedrock     use "aws-embedding".
+//      For standard OpenAI,   use "openai-embedding".
+//      For Ollama,            use "ollama-embedding".
 
 
 @SpringBootTest
-// @ActiveProfiles({"simple-vector-store","aws-cohere-embedding"})
-// @ActiveProfiles({"simple-vector-store","aws-titan-embedding"})
+@ActiveProfiles({"simple-vector-store","aws-embedding"})
 // @ActiveProfiles({"simple-vector-store","openai-embedding"})
 // @ActiveProfiles({"simple-vector-store","ollama-embedding"})
 public class ProductServiceTests {

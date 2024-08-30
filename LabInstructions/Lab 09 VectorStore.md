@@ -1,7 +1,7 @@
 
 ## Lab 09 - VectorStore
 
-In this exercise you will create a Spring Boot application which utilizes a Vector Store.  You'll gain experience in loading a Vector Store with documents and performing semantic searches.  We will use an Amazon Bedrock hosed Cohere model for our embedding model.
+In this exercise you will create a Spring Boot application which utilizes a Vector Store.  You'll gain experience in loading a Vector Store with documents and performing semantic searches.  We will have a choice of which embedding model to use; Amazon Bedrock, OpenAI, or Ollama.
 
 Within the codebase you will find ordered *TODO* comments that describe what actions to take for each step.  By finding all files containing *TODO*, and working on the steps in numeric order, it is possible to complete this exercise without looking at the instructions.  If you do need guidance, you can always look at these instructions for full information.  Just be sure to perform the *TODO* steps in order.
 
@@ -22,14 +22,9 @@ Let's jump in.
 
 1. **TODO-01:** The lab project is already setup with dependencies for Bedrock, Ollama, and OpenAI.  However, you may need to adjust the settings based on your own accounts / environments.  Adjust the settings to correspond to the model(s) you plan on using:
 
-    1. If you plan to use **Amazon Bedrock** with the **Cohere** embedding model:
+    1. If you plan to use **Amazon Bedrock** :
         * Adjust the region setting if needed.  Use your previous lab settings for guidance.
         * Set the spring.ai.bedrock.cohere.embedding.model to **cohere.embed-english-v3**
-        * Make sure you have followed the **[Lab Setup guide](https://github.com/kennyk65/AI-With-Spring-Student-Files/blob/main/LabInstructions/Lab%20Setup.md)** for AWS / Amazon Bedrock.
-        
-    1. If you plan to use **Amazon Bedrock** with the **Titan** embedding model:
-        * Adjust the region setting if needed.  Use your previous lab settings for guidance.
-        * Set the spring.ai.bedrock.titan.embedding.model to **amazon.titan-embed-text-v1**, or see the **[latest list](https://docs.aws.amazon.com/bedrock/latest/userguide/models-supported.html)**.
         * Make sure you have followed the **[Lab Setup guide](https://github.com/kennyk65/AI-With-Spring-Student-Files/blob/main/LabInstructions/Lab%20Setup.md)** for AWS / Amazon Bedrock.
         
     1. If you plan to use **OpenAI**:
@@ -193,15 +188,14 @@ Anything that we code, we should test.  Create a test which loads the Vector Sto
 1. **TODO-13:** Define this test class as a Spring Boot test.  Use the `@ActiveProfiles` annotation to activate TWO profiles:
     1. The first profile will be **simple-vector-store**.
     2. The second profile will match the embedding model you plan to use:
-        * For Amazon Bedrock, Cohere,     use **aws-cohere-embedding**.
-        * For Amazon Bedrock, Titan,      use **aws-titan-embedding**.
-        * For standard OpenAI,            use **openai-embedding**.
-        * For Ollama,                     use **ollama-embedding**.    
+        * For Amazon Bedrock,     use **aws-embedding**.
+        * For standard OpenAI,    use **openai-embedding**.
+        * For Ollama,             use **ollama-embedding**.    
 
     * Example:
     ```
     @SpringBootTest
-    @ActiveProfiles({"simple-vector-store","aws-cohere-embedding"})
+    @ActiveProfiles({"simple-vector-store","aws-embedding"})
     public class ProductServiceTests {
     ```
 
@@ -271,7 +265,7 @@ The existing implementation uses an in-memory Vector Store, which is not appropr
 1. **TODO-22**:  Adjust the `@ActiveProfiles` annotation at the top of this class.  Replace "simple-vector-store" with "redis-vector-store".
 
     ```
-    @ActiveProfiles({"redis-vector-store","aws-cohere-embedding"})
+    @ActiveProfiles({"redis-vector-store","aws-embedding"})
     ```
 1. Save your work and run the test.  It should pass.
 
@@ -328,7 +322,7 @@ Another alternative to the in-memory and Redis vector stores is the PGVector sto
 
 
 ```
-@ActiveProfiles({"pg-vector-store","aws-cohere-embedding"})
+@ActiveProfiles({"pg-vector-store","aws-embedding"})
 ```
 41. Save your work and run the test.  It should pass.
 

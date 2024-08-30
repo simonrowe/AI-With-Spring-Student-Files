@@ -10,13 +10,9 @@ spring:
     ollama.embedding.enabled: false   # Allow profile to enable this if needed.
 
 # TODO-01: Adjust the settings below based on the embedding model you plan to use.
-# If you plan to use Bedrock with Cohere embeddings: 
+# If you plan to use AWS Bedrock: 
 #   - Adjust the region setting if needed.
 #   - Adjust the spring.ai.bedrock.cohere.embedding.model to cohere.embed-english-v3, or see https://docs.aws.amazon.com/bedrock/latest/userguide/models-supported.html for latest list.
-#
-# If you plan to use Bedrock with Titan embeddings: 
-#   - Adjust the region setting if needed.
-#   - Adjust the spring.ai.bedrock.titan.embedding.model to amazon.titan-embed-text-v1, or see https://docs.aws.amazon.com/bedrock/latest/userguide/models-supported.html for latest list.
 #
 # If you plan to use OpenAI:
 #   - Set spring.ai.openai.embedding.options.model to text-embedding-ada-002, or see https://platform.openai.com/docs/models/embeddings for latest list.
@@ -28,6 +24,17 @@ spring:
 #
 # Note that only one model will be active at a time.  The active model is determined by the active profile.
 
+---
+spring:
+  config.activate.on-profile: aws-embedding
+
+
+  ai:
+    bedrock:
+      cohere:
+        embedding:
+          enabled: true
+          model: cohere.embed-english-v3
 
 ---
 spring:
@@ -40,28 +47,6 @@ spring:
         enabled: true
         options:
           model: text-embedding-ada-002
-
----
-spring:
-  config.activate.on-profile: aws-cohere-embedding
-
-  ai:
-    bedrock:
-      cohere:
-        embedding:
-          enabled: true
-          model: cohere.embed-english-v3
-
----
-spring:
-  config.activate.on-profile: aws-titan-embedding
-
-  ai:
-    bedrock:
-      titan:
-        embedding:
-          enabled: true
-          model: amazon.titan-embed-text-v1
 
 ---
 spring:
