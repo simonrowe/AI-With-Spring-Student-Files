@@ -38,8 +38,6 @@
 		<!-- 
 		TODO-02: Notice the starters for OpenAI, Azure, Ollama, and Bedrock are present.	
 		 Only one of these will be active at a time. 
-		 If using Bedrock, make sure you have enabled the "Titan" embedding model.
-		 If using Ollama, make sure you have pulled the "mistral" model.
 		 -->
 
 
@@ -71,20 +69,24 @@
 		Remove the comment below to include the starter for Redis.
 		Follow the instructions in the lab setup guide to installing and running Redis as a Docker container
 		-->
+		<!-- 
 		<dependency>
 			<groupId>org.springframework.ai</groupId>
 			<artifactId>spring-ai-redis-store-spring-boot-starter</artifactId>
-		</dependency> 
+		</dependency>  
+		-->
 
 		<!-- 
 		TODO-24 (OPTIONAL): Replace the simple in-memory vector store with PGVector.
 		Remove the comment below to include the starter for PGVector.
 		Follow the instructions in the lab setup guide to installing and running PGVector as a Docker container
 		-->
+		<!-- 
 		<dependency>
 			<groupId>org.springframework.ai</groupId>
 			<artifactId>spring-ai-pgvector-store-spring-boot-starter</artifactId>
-		</dependency> 
+		</dependency>  
+		-->
 
 		<dependency>
 			<groupId>org.springframework.boot</groupId>

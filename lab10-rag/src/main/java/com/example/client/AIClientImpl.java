@@ -13,11 +13,11 @@ import org.springframework.stereotype.Service;
 
 //  TODO-05: Annotate this class as a Spring Service.
 
-@Service
+
 public class AIClientImpl implements AIClient {
 
     //  TODO-06: Use the @Autowired annotation to inject an instance of our VectorStore bean.
-    @Autowired VectorStore vectorStore;
+
 
 
     private ChatClient client;
@@ -32,11 +32,7 @@ public class AIClientImpl implements AIClient {
     //  Pass the model to the ChatClient.builder to build a ChatClient object.
     //  Use defaultSystem() to set the default system message to the String defined above.
     //  Save the ChatClient object in the client field.
-    public AIClientImpl(ChatModel model) {
-        client = ChatClient.builder(model)
-                .defaultSystem(defaultSystemMessage)
-                .build();
-    }
+
 
 
     @Override
@@ -44,10 +40,7 @@ public class AIClientImpl implements AIClient {
         //   TODO-08: Convert the List<String> into a List<Document>,
         //   where each product description String is used to create a Document.
         //   Call the vectorStore's add() method with the List<Document> to add these descriptions to the VectorStore.
-        List<Document> documents = products.stream()
-            .map(product -> new Document(product))
-                .toList();
-        vectorStore.add(documents);
+
     }
 
 
@@ -56,7 +49,6 @@ public class AIClientImpl implements AIClient {
 
         //  TODO-09: Define a new QuestionAnswerAdvisor object.
         //  Inject it with the VectorStore object that was @Autowired earlier.
-        RequestResponseAdvisor advisor = new QuestionAnswerAdvisor(vectorStore);
 
         //  TODO-10: Use the client object to call the API.
         //  The .prompt() method can be used to define a prompt.
@@ -65,11 +57,7 @@ public class AIClientImpl implements AIClient {
         //  The .call() method will make the call to the model.
         //  The .content() method will return the content of the response.
         //  Have the method return the content of the response.
-        return
-            client
-                .prompt().user(query)
-                .advisors(advisor)
-                .call()
-                .content();
+        return null; // replace this line
+    
     }
 }
