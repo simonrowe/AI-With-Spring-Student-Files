@@ -5,18 +5,24 @@ import static org.assertj.core.api.Assertions.assertThat;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.boot.test.context.SpringBootTest.WebEnvironment;
 import org.springframework.test.context.ActiveProfiles;
 
 //  TODO-13: Define this test class as a Spring Boot test.
-//  Set the webEnvironment attribute to SpringBootTest.WebEnvironment.NONE.
-//  Use the @ActiveProfiles annotation to activate the "simple-vector-store" profile.
+//  Use the @ActiveProfiles annotation to activate: 
+//  1) the "simple-vector-store" profile  AND
+//  2) the matching embedding model you plan to use:
+//      For Amazon Bedrock, Cohere,     use "aws-cohere-embedding".
+//      For Amazon Bedrock, Titan,      use "aws-titan-embedding".
+//      For standard OpenAI,            use "openai-embedding".
+//      For Ollama,                     use "ollama-embedding".
 
-@SpringBootTest(webEnvironment = WebEnvironment.NONE)
-@ActiveProfiles({"simple-vector-store","aws-cohere-embedding"})
-//@ActiveProfiles({"redis-vector-store","aws-cohere-embedding"})
-//@ActiveProfiles({"pg-vector-store","aws-cohere-embedding"})
-public class AwsServiceTests {
+
+@SpringBootTest
+// @ActiveProfiles({"simple-vector-store","aws-cohere-embedding"})
+// @ActiveProfiles({"simple-vector-store","aws-titan-embedding"})
+// @ActiveProfiles({"simple-vector-store","openai-embedding"})
+// @ActiveProfiles({"simple-vector-store","ollama-embedding"})
+public class ProductServiceTests {
 
     //  TODO-14: Use the @Autowired annotation to inject an instance of the ProductService.
     @Autowired ProductService svc;
@@ -36,12 +42,12 @@ public class AwsServiceTests {
 
     //  TODO-16: Save all work.  Run this test, it should pass.
 
-    //  TODO-22 (OPTIONAL):  Comment out the @ActiveProfiles annotation at the top of this class.
-    //  Replace it with @ActiveProfiles("redis-vector-store")
+    //  TODO-22 (OPTIONAL):  Adjust the @ActiveProfiles annotation at the top of this class.
+    //  Replace "simple-vector-store" with "redis-vector-store"
     //  Save your work and run the test again.  It should pass.
 
-    //  TODO-26 (OPTIONAL):  Comment out the @ActiveProfiles annotation at the top of this class.
-    //  Replace it with @ActiveProfiles("pg-vector-store")
+    //  TODO-26 (OPTIONAL):  Adjust the @ActiveProfiles annotation at the top of this class.
+    //  Replace "simple-vector-store" with "pg-vector-store"
     //  Save your work and run the test again.  It should pass.
 
 }
