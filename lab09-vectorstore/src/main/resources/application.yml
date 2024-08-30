@@ -97,10 +97,9 @@ spring:
   ai:
     vectorstore:
       redis:
-        uri: redis://localhost:6379  # Default.
         index: default-index         # Default.
         prefix: "default:"           # Default.
-        initializeSchema: true       # Potentially destructive.
+
 
   # If running a redis vector store, exclude the PGVector and DataSource autoconfigurations.
   autoconfigure.exclude: 
@@ -125,18 +124,18 @@ spring:
   #    If you make a mistake here, don't worry.  The error message will tell you the correct #.  Delete and restart the DB with the revised number.
 
   datasource:
-    url: jdbc:postgresql://localhost:5432/postgres
-    username: postgres
-    password: postgres
+    url: 
+    username: 
+    password: 
   ai:
     vectorstore:
       pgvector:
-        initialize-schema: true
-        index-type: HNSW                # Hierarchical Navigable Small World (HNSW) algorithm, Alternatives: Annoy, LSH, KD-Tree, Ball Tree, Product Quantization, FAISS
-        distance-type: COSINE_DISTANCE  # How it determines if one vector is similar to another.
+        initialize-schema: 
+        index-type: 
+        distance-type: 
         # CRITICAL: The PGVectorStore database must be initialized to the # of dimensions in the model you are using.
-        dimensions: 1536                # OpenAI's text-embedding-ada-002 model uses 1536 dimensions.
-        #dimensions: 384                 # AWS/Bedrock/Cohere uses 384 dimensions.
+        dimensions:                 # OpenAI's text-embedding-ada-002 model uses 1536 dimensions.
+                                    # AWS/Bedrock/Cohere uses 384 dimensions.
 
   # If running a simple vector store, exclude the Redis auto configuration.
   autoconfigure.exclude: 

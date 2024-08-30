@@ -17,7 +17,7 @@ import org.springframework.test.context.ActiveProfiles;
 //      For Ollama,                     use "ollama-embedding".
 
 
-@SpringBootTest
+
 // @ActiveProfiles({"simple-vector-store","aws-cohere-embedding"})
 // @ActiveProfiles({"simple-vector-store","aws-titan-embedding"})
 // @ActiveProfiles({"simple-vector-store","openai-embedding"})
@@ -25,20 +25,14 @@ import org.springframework.test.context.ActiveProfiles;
 public class ProductServiceTests {
 
     //  TODO-14: Use the @Autowired annotation to inject an instance of the ProductService.
-    @Autowired ProductService svc;
+
    
     //  TODO-15: Write a @Test method to validate the ProductService.
     //  First, call the service's save() method with the Utilities.products list; this populates the test data.
     //  Next, call the service's findClosestMatch() method with the samplePrompt String.
     //  Use assertThat() to validate that the result starts with "Wireless Headphones:".
     //  Finally, print the result to the console.
-    @Test
-    public void testFindClosestMatch() {
-        svc.save(Utilities.products);
-        String result = svc.findClosestMatch(Utilities.samplePrompt);
-        assertThat(result).startsWith("Wireless Headphones:");
-        System.out.println(result);
-    }
+
 
     //  TODO-16: Save all work.  Run this test, it should pass.
 
