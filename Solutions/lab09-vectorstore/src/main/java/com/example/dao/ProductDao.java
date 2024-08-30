@@ -27,7 +27,7 @@ public class ProductDao {
         vectorStore.add(documents);
     }
 
-    //  TODO-07: Define a public List<String> findClosestMatches() method.
+    //  TODO-06: Define a public List<String> findClosestMatches() method.
     //  Define two parameters: a String query and an int numberOfMatches.
     //  Use SearchRequest.query() to create a new SearchRequest with the input String.
     //  Use the withTopK() method to set the numberOfMatches.

@@ -1,5 +1,5 @@
 
-## Lab 09 - VectorStore - AWS Cohere
+## Lab 09 - VectorStore
 
 In this exercise you will create a Spring Boot application which utilizes a Vector Store.  You'll gain experience in loading a Vector Store with documents and performing semantic searches.  We will use an Amazon Bedrock hosed Cohere model for our embedding model.
 
@@ -12,46 +12,40 @@ Solution code is provided for you in a separate folder, so you can compare your 
 Let's jump in.
 
 ---
-**Part 1 - Obtain an AWS Account, Set Credentials, Enable Bedrock Models**
+**Part 1 - Setup the Project**
 
-If you have not already done so, follow the instructions in the **[Lab Setup guide](https://github.com/kennyk65/AI-With-Spring-Student-Files/blob/main/LabInstructions/Lab%20Setup.md)** _Signup Process for Amazon / Bedrock_ section to setup an AWS Account, IAM User, set credentials in your local environment, and enable Bedrock models.
-
-Specifically, this lab will utilize the Cohere embedding model.
-
----
-**Part 2 - Setup the Project**
-
-1. Open the _/student-files/lab09-vectorstore-aws_ project in your IDE.   The project should be free of compiler errors at this point.  Address any issues you see before continuing.
+1. Open the _/student-files/lab09-vectorstore_ project in your IDE.   The project should be free of compiler errors at this point.  Address any issues you see before continuing.
 
 1. Find the TODO instructions.  Work through the TODO instructions in order!   
 
 1. Open the **application.yml** file.
 
-1. **TODO-01:** Establish the following configuration entries:
-  * Set `spring.application.name` to "Lab8 VectorStore with AWS Cohere" or something similar.
-  * Set `spring.main.web-application-type` to none to run as a non-web application.  Spring AI applications can run as web applications, but these exercises avoid this distraction.
-  * Set `spring.ai.retry.max-attempts` to 1 to fail fast to save time if you have errors.
-  * Set `spring.ai.retry.on-client-errors` to false since there is typically no point in retrying a client (vs server) error.
-  * Set `spring.ai.bedrock.cohere.embedding.enabled` to true to switch this embedding model on.
-  * Set `spring.ai.bedrock.cohere.embedding.model` to "cohere.embed-english-v3", or see https://docs.aws.amazon.com/bedrock/latest/userguide/models-supported.html for latest list.
+1. **TODO-01:** The lab project is already setup with dependencies for Bedrock, Ollama, and OpenAI.  However, you may need to adjust the settings based on your own accounts / environments.  Adjust the settings to correspond to the model(s) you plan on using:
 
-```
-spring:
-  application.name: Lab8 VectorStore with Ollama
-  main.web-application-type: none     # Do not start a web server.
-  ai:
-    retry:
-      max-attempts: 1      # Maximum number of retry attempts.
-      on-client-errors: false   # Do not retry 4xx errors. 
-    bedrock:
-      cohere:
-        embedding:
-          enabled: true
-          model: cohere.embed-english-v3
-```
+    1. If you plan to use **Amazon Bedrock** with the **Cohere** embedding model:
+        * Adjust the region setting if needed.  Use your previous lab settings for guidance.
+        * Set the spring.ai.bedrock.cohere.embedding.model to **cohere.embed-english-v3**
+        * Make sure you have followed the **[Lab Setup guide](https://github.com/kennyk65/AI-With-Spring-Student-Files/blob/main/LabInstructions/Lab%20Setup.md)** for AWS / Amazon Bedrock.
+        
+    1. If you plan to use **Amazon Bedrock** with the **Titan** embedding model:
+        * Adjust the region setting if needed.  Use your previous lab settings for guidance.
+        * Set the spring.ai.bedrock.titan.embedding.model to **amazon.titan-embed-text-v1**, or see the **[latest list](https://docs.aws.amazon.com/bedrock/latest/userguide/models-supported.html)**.
+        * Make sure you have followed the **[Lab Setup guide](https://github.com/kennyk65/AI-With-Spring-Student-Files/blob/main/LabInstructions/Lab%20Setup.md)** for AWS / Amazon Bedrock.
+        
+    1. If you plan to use **OpenAI**:
+        * Set spring.ai.openai.embedding.options.model to **text-embedding-ada-002**, or see the **[latest list](https://platform.openai.com/docs/models/embeddings)**.
+        * Make sure you have followed the **[Lab Setup guide](https://github.com/kennyk65/AI-With-Spring-Student-Files/blob/main/LabInstructions/Lab%20Setup.md)** for OpenAI.
+
+    1. If you plan to use **Ollama**:
+        * Make sure you have followed the **[Lab Setup guide](https://github.com/kennyk65/AI-With-Spring-Student-Files/blob/main/LabInstructions/Lab%20Setup.md)** for Ollama.
+        * Adjust the base-url if needed.  Use your previous lab settings for guidance.
+        * Set spring.ai.ollama.embedding.options.model to **mxbai-embed-large**, or experiment with another **[embedding model](https://ollama.com/blog/embedding-models)**
+        * Make sure your Ollama Docker container is running.
+        * Pull the model if you have not already done so.
+
 
 ---
-**Part 3 - Define a VectorStore Bean**
+**Part 2 - Define a VectorStore Bean**
 
 Next we will need to establish a VectorStore `@Bean`; the in-memory implementation that we want to use is not auto-configured.
 
@@ -63,18 +57,18 @@ Next we will need to establish a VectorStore `@Bean`; the in-memory implementati
 	* Use `@Profile` to assign this bean to the "simple-vector-store" profile.
         * This will allow us to easily substitute this `@Bean` later if we switch to Redis or PGVector.
 
-```        
-	@Bean
-	@Profile("simple-vector-store")
-	public VectorStore vectorStore(EmbeddingModel embeddingModel) {
-		return new SimpleVectorStore(embeddingModel);
-	}
-```
+    ```        
+        @Bean
+        @Profile("simple-vector-store")
+        public VectorStore vectorStore(EmbeddingModel embeddingModel) {
+            return new SimpleVectorStore(embeddingModel);
+        }
+    ```
 
-7. Organize your imports, save your work.
+1. Organize your imports, save your work.
 
 ---
-**Part 4 - Define a ProductDao Bean**
+**Part 3 - Define a ProductDao Bean**
 
 Next we will focus on a `ProductDao` Bean.  This bean will be used to populate and search the Vector Store.
 
@@ -82,32 +76,32 @@ Next we will focus on a `ProductDao` Bean.  This bean will be used to populate a
 
 1. **TODO-03:** Use a stereotype annotation to mark this DAO as a Spring bean.
 
-```
-@Repository
-public class ProductDao {
-```
+    ```
+    @Repository
+    public class ProductDao {
+    ```
 
-10. **TODO-04**: Within the class, define a member variable of type `VectorStore` and `@Autowire` it.
+1. **TODO-04**: Within the class, define a member variable of type `VectorStore` and `@Autowire` it.
 
-```
-    @Autowired VectorStore vectorStore;
-```
+    ```
+        @Autowired VectorStore vectorStore;
+    ```
 
-11. **TODO-05:** Define a public void `add()` method.
+1. **TODO-05:** Define a public void `add()` method.
     * Define a single parameter of type `List<String>` containing product descriptions.
     * Convert the `List<String>` into a `List<Document>`, where each product description String is used to create a `Document`.
     * Call the vectorStore's `add()` method with the `List<Document>` to add the product descriptions to the VectorStore.
 
-```
-    public void add(List<String> products) {
-        List<Document> documents = products.stream()
-            .map(product -> new Document(product))
-            .toList();
-        vectorStore.add(documents);
-    }
-```
+    ```
+        public void add(List<String> products) {
+            List<Document> documents = products.stream()
+                .map(product -> new Document(product))
+                .toList();
+            vectorStore.add(documents);
+        }
+    ```
 
-12. **TODO-06:** Define a `public List<String> findClosestMatches()` method.
+1. **TODO-06:** Define a `public List<String> findClosestMatches()` method.
     * Define two parameters: a `String` query and an `int` numberOfMatches.
     * Use `SearchRequest.query()` to create a new `SearchRequest` with the input `String`.
     * Use the `withTopK()` method to set the numberOfMatches.
@@ -115,30 +109,30 @@ public class ProductDao {
     * Capture the result in a `List<Document>`.
     * Convert the `List<Document>` into a `List<String>` and return.
 
-```    
-    public List<String> findClosestMatches(String query,int numberOfMatches) {
-        SearchRequest request = SearchRequest.query(query).withTopK(numberOfMatches);
-        List<Document> results = vectorStore.similaritySearch(request);
-        return results.stream()
-            .map(doc -> doc.getContent())
-            .toList();
-    }
-```
+    ```    
+        public List<String> findClosestMatches(String query,int numberOfMatches) {
+            SearchRequest request = SearchRequest.query(query).withTopK(numberOfMatches);
+            List<Document> results = vectorStore.similaritySearch(request);
+            return results.stream()
+                .map(doc -> doc.getContent())
+                .toList();
+        }
+    ```
 
-13. **TODO-07:** Define a `public String findClosestMatch()` method.
+1. **TODO-07:** Define a `public String findClosestMatch()` method.
     * Define a single parameter of type `String` containing a query.
     * Call the `findClosestMatches()` method with the query and 1 as the number of matches.
     
-```
-    public String findClosestMatch(String query) {
-        return findClosestMatches(query, 1).get(0);            
-    }
-```
+    ```
+        public String findClosestMatch(String query) {
+            return findClosestMatches(query, 1).get(0);            
+        }
+    ```
 
-14. Organize your imports, save your work.
+1. Organize your imports, save your work.
 
 ---
-**Part 5 - Define a ProductService Bean**
+**Part 4 - Define a ProductService Bean**
 
 Next we will focus on a `ProductService` Bean.  
 
@@ -146,107 +140,114 @@ Next we will focus on a `ProductService` Bean.
 
 1. **TODO-08:** Use a stereotype annotation to mark this service as a Spring bean.
 
-```
-@Service
-public class ProductService {
-```
+    ```
+    @Service
+    public class ProductService {
+    ```
 
-17. **TODO-09:** Autowire the `ProductDao` bean we defined earlier.
+1. **TODO-09:** Autowire the `ProductDao` bean we defined earlier.
 
-```
-    @Autowired ProductDao dao;
-```
+    ```
+        @Autowired ProductDao dao;
+    ```
 
-18. ** TODO-10:** Define a public void `save()` method which delegates to the DAO:
+1. ** TODO-10:** Define a public void `save()` method which delegates to the DAO:
     * Define a single parameter of type `List<String>` containing product descriptions.
     * Call the dao's `add()` method with the `List<String>` to save the product descriptions.
 
-```    
-    public void save(List<String> products) {
-        dao.add(products);
-    }
-```
+    ```    
+        public void save(List<String> products) {
+            dao.add(products);
+        }
+    ```
 
-19. **TODO-11:** Define a `public List<String> findClosestMatches()` method which delegates to the DAO:
+1. **TODO-11:** Define a `public List<String> findClosestMatches()` method which delegates to the DAO:
     * Define a single parameter of type `String` containing a query.
     * Call the dao's `findClosestMatches()` method with the query and 5 as the number of matches.
     * Return the resulting `List<String>`.
 
-```    
-    public List<String> findClosestMatches(String query) {
-        return dao.findClosestMatches(query,5);
-    }
-```
+    ```    
+        public List<String> findClosestMatches(String query) {
+            return dao.findClosestMatches(query,5);
+        }
+    ```
 
-20. **TODO-12:** Define a `public String findClosestMatch()` method which delegates to the DAO:
+1. **TODO-12:** Define a `public String findClosestMatch()` method which delegates to the DAO:
     * Define a single parameter of type `String` containing a query.
     * Call the dao's `findClosestMatch()` method with the query.
     * Return the resulting `String`.
 
-```
-    public String findClosestMatch(String query) {
-        return dao.findClosestMatch(query);
-    }
-```
+    ```
+        public String findClosestMatch(String query) {
+            return dao.findClosestMatch(query);
+        }
+    ```
 
 ---
-**Part 6 - Define a Test Bean**
+**Part 5 - Define a Test Bean**
 
 Anything that we code, we should test.  Create a test which loads the Vector Store with sample product descriptions.  They we will test semantic searches for a product idea, and expect to get a match.
 
-21. Open `src/test/java/com.example.service.AwsServiceTests.java`
+21. Open `src/test/java/com.example.service.ProductServiceTests.java`
 
-22. **TODO-13:** Define this test class as a Spring Boot test.  Use the `@ActiveProfiles` annotation to activate the **simple-vector-store** and **aws-cohere-embedding** profiles.
+1. **TODO-13:** Define this test class as a Spring Boot test.  Use the `@ActiveProfiles` annotation to activate TWO profiles:
+    1. The first profile will be **simple-vector-store**.
+    2. The second profile will match the embedding model you plan to use:
+        * For Amazon Bedrock, Cohere,     use **aws-cohere-embedding**.
+        * For Amazon Bedrock, Titan,      use **aws-titan-embedding**.
+        * For standard OpenAI,            use **openai-embedding**.
+        * For Ollama,                     use **ollama-embedding**.    
 
-```
-@SpringBootTest
-@ActiveProfiles({"simple-vector-store","aws-cohere-embedding"})
-public class AwsServiceTests {
-```
+    * Example:
+    ```
+    @SpringBootTest
+    @ActiveProfiles({"simple-vector-store","aws-cohere-embedding"})
+    public class ProductServiceTests {
+    ```
 
-23. **TODO-14:** Use the `@Autowired` annotation to inject an instance of the `ProductService`.
+1. **TODO-14:** Use the `@Autowired` annotation to inject an instance of the `ProductService`.
 
-```
-    @Autowired ProductService svc;
-```
+    ```
+        @Autowired ProductService svc;
+    ```
 
-24. **TODO-15:** Write a `@Test` method to validate the ProductService.
+1. **TODO-15:** Write a `@Test` method to validate the ProductService.
     *   First, call the service's `save()` method with the `Utilities.products` list; this populates the test data.
         * `Utilities.products` has been created for you to provide sample product test data.
     * Next, call the service's `findClosestMatch()` method with the `Utilities.samplePrompt` String.
     * Use AssertJ's `assertThat()` to validate that the result starts with "Wireless Headphones:".
     * Finally, print the result to the console.
 
-```
-    @Test
-    public void testFindClosestMatch() {
-        svc.save(Utilities.products);
-        String result = svc.findClosestMatch(Utilities.samplePrompt);
-        assertThat(result).startsWith("Wireless Headphones:");
-        System.out.println(result);
-    }
-```
+    ```
+        @Test
+        public void testFindClosestMatch() {
+            svc.save(Utilities.products);
+            String result = svc.findClosestMatch(Utilities.samplePrompt);
+            assertThat(result).startsWith("Wireless Headphones:");
+            System.out.println(result);
+        }
+    ```
 
-25. **TODO-16:** Save all work.  Run this test, it should pass, though it may run slowly.
+1. **TODO-16:** Save all work.  Run this test, it should pass.
 
 Congratulations!  You have successfully implemented an in-memory vector store, populated with embeddings of product descriptions, and performed semantic search to find matches.
 
 ---
-**Part 7 (OPTIONAL) - Implement a Redis-based Vector Store**
+**Part 6 (OPTIONAL) - Implement a Redis-based Vector Store**
 
 The existing implementation uses an in-memory Vector Store, which is not appropriate for production use.  Follow these optional instructions to implement a Vector Store using Redis.
 
 26. Open the **pom.xml** file.
 
-27. **TODO-20** Replace the simple in-memory vector store with Redis.  Remove the comment to include the starter for Redis.  Follow the instructions in the **[Lab Setup guide](https://github.com/kennyk65/AI-With-Spring-Student-Files/blob/main/LabInstructions/Lab%20Setup.md)** to installing and run Redis as a Docker container
+1. **TODO-20** Replace the simple in-memory vector store with Redis.  Remove the comment to include the starter for Redis.  Follow the instructions in the **[Lab Setup guide](https://github.com/kennyk65/AI-With-Spring-Student-Files/blob/main/LabInstructions/Lab%20Setup.md)** to installing and run Redis as a Docker container
 
-```
-		<dependency>
-			<groupId>org.springframework.ai</groupId>
-			<artifactId>spring-ai-redis-store-spring-boot-starter</artifactId>
-		</dependency> 
-```
-28.  Save your work.  You may need to prompt your IDE to refresh your project.
+    ```
+            <dependency>
+                <groupId>org.springframework.ai</groupId>
+                <artifactId>spring-ai-redis-store-spring-boot-starter</artifactId>
+            </dependency> 
+    ```
+1.  Save your work.  You may need to prompt your IDE to refresh your project.
 
 1. Open the **application.yml** file.
 
@@ -255,27 +256,27 @@ The existing implementation uses an in-memory Vector Store, which is not appropr
     * Set `spring.ai.vectorstore.redis.uri` to redis://localhost:6379, unless your redis is running elsewhere.
     * Set `spring.ai.vectorstore.redis.initializeSchema` to true to create the necessary schema.  (You may not want to do this in a production environment.)
 
-```    
-  ai:
-    vectorstore:
-      redis:
-        uri: redis://localhost:6379  # Default.
-        index: default-index         # Default.
-        prefix: "default:"           # Default.
-        initializeSchema: true       # Potentially destructive.
-```
+    ```    
+    ai:
+        vectorstore:
+        redis:
+            uri: redis://localhost:6379  # Default.
+            index: default-index         # Default.
+            prefix: "default:"           # Default.
+            initializeSchema: true       # Potentially destructive.
+    ```
 
-31. Open `src/test/java/com.example.service.AwsServiceTests.java`
+1. Open `src/test/java/com.example.service.ProductServiceTests.java`
 
-32. **TODO-22**:  Comment out the `@ActiveProfiles` annotation at the top of this class.  Replace it with `@ActiveProfiles({"redis-vector-store","aws-cohere-embedding"})`
+1. **TODO-22**:  Adjust the `@ActiveProfiles` annotation at the top of this class.  Replace "simple-vector-store" with "redis-vector-store".
 
-```
-@ActiveProfiles({"redis-vector-store","aws-cohere-embedding"})
-```
-33. Save your work and run the test.  It should pass.
+    ```
+    @ActiveProfiles({"redis-vector-store","aws-cohere-embedding"})
+    ```
+1. Save your work and run the test.  It should pass.
 
 ---
-**Part 8 (OPTIONAL) - Implement a PGVector-based Vector Store**
+**Part 7 (OPTIONAL) - Implement a PGVector-based Vector Store**
 
 Another alternative to the in-memory and Redis vector stores is the PGVector store, based on the Postgres database.  Follow these optional instructions to implement a Vector Store using PGVector.
 
@@ -321,9 +322,10 @@ Another alternative to the in-memory and Redis vector stores is the PGVector sto
         dimensions: ####
 ```
 
-39. Open `src/test/java/com.example.service.AwsServiceTests.java`
+39. Open `src/test/java/com.example.service.ProductServiceTests.java`
 
-40. **TODO-26**:  Comment out the `@ActiveProfiles` annotation at the top of this class.  Replace it with `@ActiveProfiles({"pg-vector-store","aws-cohere-embedding"})`
+40. **TODO-26**:  Adjust the `@ActiveProfiles` annotation at the top of this class.  Replace "simple-vector-store" / "redis-vector-store" with "pg-vector-store".
+
 
 ```
 @ActiveProfiles({"pg-vector-store","aws-cohere-embedding"})
@@ -332,6 +334,6 @@ Another alternative to the in-memory and Redis vector stores is the PGVector sto
 
 
 ---
-**Part 9 Summary**
+**Part 8 Summary**
 
 At this point, you have successfully implemented an in-memory vector store, populated with embeddings of product descriptions, and performed semantic search to find matches.  If you have performed the optional sections, you have replaced the in-memory vector store with either Redis or PGVector.  Congratulations!

@@ -9,17 +9,30 @@ spring:
     openai.embedding.enabled: false   # Allow profile to enable this if needed.
     ollama.embedding.enabled: false   # Allow profile to enable this if needed.
 
+# TODO-01: Adjust the settings below based on the chat model you plan to use.
+# If you plan to use Bedrock with Cohere embeddings: 
+#   - Adjust the region setting if needed.
+#   - Adjust the spring.ai.bedrock.cohere.embedding.model to cohere.embed-english-v3, or see https://docs.aws.amazon.com/bedrock/latest/userguide/models-supported.html for latest list.
+#
+# If you plan to use Bedrock with Titan embeddings: 
+#   - Adjust the region setting if needed.
+#   - Adjust the spring.ai.bedrock.titan.embedding.model to amazon.titan-embed-text-v1, or see https://docs.aws.amazon.com/bedrock/latest/userguide/models-supported.html for latest list.
+#
+# If you plan to use OpenAI:
+#   - Set spring.ai.openai.embedding.options.model to text-embedding-ada-002, or see https://platform.openai.com/docs/models/embeddings for latest list.
+#
+# If you plan to use Ollama:
+#   - Adjust the base-url if needed.
+#   - Set spring.ai.ollama.embedding.options.model to mxbai-embed-large, or experiment with another embedding model
+#   - Make sure you have pulled the model you wish to use, and that Ollama is running.
+#
+# Note that only one model will be active at a time.  The active model is determined by the active profile.
+
+
 ---
 spring:
   config.activate.on-profile: openai-embedding
   application.name: Lab8 VectorStore OpenAI
-
-  # TODO-01: Establish the following configuration entries:
-  # Set spring.application.name to "Lab8 VectorStore with OpenAI" or something similar.
-  # Set spring.main.web-application-type to none to run as a non-web application.
-  # Set spring.ai.retry.max-attempts to 1 to fail fast.
-  # Set spring.ai.retry.on-client-errors to false since there is typically no point in retrying such a request.
-  # Set spring.ai.openai.embedding.options.model to text-embedding-ada-002, or see https://platform.openai.com/docs/models/embeddings for latest list.
 
   ai:
     openai:
@@ -32,14 +45,6 @@ spring:
 spring:
   config.activate.on-profile: aws-cohere-embedding
 
-  # TODO-01: Establish the following configuration entries:
-  # Set spring.application.name to "Lab8 VectorStore with AWS Cohere" or something similar.
-  # Set spring.main.web-application-type to none to run as a non-web application.
-  # Set spring.ai.retry.max-attempts to 1 to fail fast.
-  # Set spring.ai.retry.on-client-errors to false since there is typically no point in retrying such a request.
-  # Set spring.ai.bedrock.cohere.embedding.enabled to true to switch this embedding model on.
-  # Set spring.ai.bedrock.cohere.embedding.model to cohere.embed-english-v3, or see https://docs.aws.amazon.com/bedrock/latest/userguide/models-supported.html for latest list.
-
   ai:
     bedrock:
       cohere:
@@ -51,14 +56,6 @@ spring:
 spring:
   config.activate.on-profile: aws-titan-embedding
 
-  # TODO-01: Establish the following configuration entries:
-  # Set spring.application.name to "Lab8 VectorStore with AWS Titan" or something similar.
-  # Set spring.main.web-application-type to none to run as a non-web application.
-  # Set spring.ai.retry.max-attempts to 1 to fail fast.
-  # Set spring.ai.retry.on-client-errors to false since there is typically no point in retrying such a request.
-  # Set spring.ai.bedrock.titan.embedding.enabled to true to switch this embedding model on.
-  # Set spring.ai.bedrock.titan.embedding.model to amazon.titan-embed-text-v1, or see https://docs.aws.amazon.com/bedrock/latest/userguide/models-supported.html for latest list.
-
   ai:
     bedrock:
       titan:
@@ -69,15 +66,6 @@ spring:
 ---
 spring:
   config.activate.on-profile: ollama-embedding
-
-  # TODO-01: Establish the following configuration entries:
-  # Set spring.application.name to "Lab8 VectorStore with Ollama" or something similar.
-  # Set spring.main.web-application-type to none to run as a non-web application.
-  # Set spring.ai.retry.max-attempts to 1 to fail fast.
-  # Set spring.ai.retry.on-client-errors to false since there is typically no point in retrying such a request.
-  # Set spring.ai.ollama.embedding.enabled to true to switch this embedding model on.
-  # Set spring.ai.ollama.base-url to http://localhost:11434 unless you are running Ollama from a different URL.
-  # Set spring.ai.ollama.embedding.options.model to mxbai-embed-large, or experiment with another embedding model
 
   ai:
     ollama:
