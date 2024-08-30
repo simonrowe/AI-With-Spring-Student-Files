@@ -147,7 +147,7 @@ Anything we code, we should test. We will make a `@Test` class to ensure our Cli
 
 1.  **TODO-11:** Define this test class as a Spring Boot test.  Use the `@ActiveProfiles` annotation to activate TWO profiles:
     1. The first profile will be **simple-vector-store**.
-    2. The second profile will match the embedding model you plan to use:
+    2. The second profile will match the chat model you plan to use:
         * For Amazon Bedrock,       use **aws**.
         * For Azure OpenAI,         use **azure**.
         * For standard OpenAI,      use **openai**.
@@ -214,12 +214,12 @@ Be sure you have completed the "Setup Process for Redis Docker Container" instru
 
     ```
     ai:
-        vectorstore:
+      vectorstore:
         redis:
-            uri: redis://localhost:6379  # Default.
-            index: default-index         # Default.
-            prefix: "default:"           # Default.
-            initializeSchema: true       # Potentially destructive.
+          uri: redis://localhost:6379  # Default.
+          index: default-index         # Default.
+          prefix: "default:"           # Default.
+          initializeSchema: true       # Potentially destructive.
     ```
 
 1.  Notice that there are autoconfigure instructions to exclude PgVectorStoreAutoConfiguration and DataSourceAutoConfiguration.  This is done to address the possibility that a student may enable both the redis-vector-store and pg-vector-store profiles.
@@ -264,7 +264,7 @@ Be sure you have completed the "Setup Process for PostgreSQL Docker Container" a
     * Set `spring.ai.vectorstore.pgvector.index-type` to **HNSW**.
     * Set `spring.ai.vectorstore.pgvector.distance-type` to **COSINE_DISTANCE**.
     * Set `spring.ai.vectorstore.pgvector.dimensions` based on the the underlying model you are using
-        * For AWS/Bedrock/Cohere, use 384
+        * For AWS/Bedrock/Cohere, use 1024
         * For OpenAI's text-embedding-ada-002, use 1536
     
     If you make a mistake here, don't worry.  The error message will tell you the correct #.  Delete and restart the DB with the revised number.
