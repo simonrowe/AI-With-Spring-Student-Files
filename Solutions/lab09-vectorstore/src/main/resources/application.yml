@@ -9,7 +9,7 @@ spring:
     openai.embedding.enabled: false   # Allow profile to enable this if needed.
     ollama.embedding.enabled: false   # Allow profile to enable this if needed.
 
-# TODO-01: Adjust the settings below based on the chat model you plan to use.
+# TODO-01: Adjust the settings below based on the embedding model you plan to use.
 # If you plan to use Bedrock with Cohere embeddings: 
 #   - Adjust the region setting if needed.
 #   - Adjust the spring.ai.bedrock.cohere.embedding.model to cohere.embed-english-v3, or see https://docs.aws.amazon.com/bedrock/latest/userguide/models-supported.html for latest list.

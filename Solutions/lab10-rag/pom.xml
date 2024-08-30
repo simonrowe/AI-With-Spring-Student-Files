@@ -35,49 +35,32 @@
 		</dependency>
 
 
-		<!--
-		TODO-02: Add the dependency for Amazon Bedrock.
-		The groupId value will be org.springframework.ai
-		The artifactId will be spring-ai-bedrock-ai-spring-boot-starter
-		Follow the lab setup instructions for establishing an AWS account
-		and permission to use the Titan chat model, if you have not done so already.
-		-->
+		<!-- 
+		TODO-02: Notice the starters for OpenAI, Azure, Ollama, and Bedrock are present.	
+		 Only one of these will be active at a time. 
+		 If using Bedrock, make sure you have enabled the "Titan" embedding model.
+		 If using Ollama, make sure you have pulled the "mistral" model.
+		 -->
+
+
 		<dependency>
 			<groupId>org.springframework.ai</groupId>
 			<artifactId>spring-ai-bedrock-ai-spring-boot-starter</artifactId>
 		</dependency>
 
-		<!--
-		TODO-02: Add the dependency for openai.
-		The groupId value will be org.springframework.ai
-		The artifactId will be spring-ai-openai-spring-boot-starter
-		Follow the lab setup instructions for establishing an OpenAI account if you have not done so already.
-		-->
+
 		<dependency>
 			<groupId>org.springframework.ai</groupId>
 			<artifactId>spring-ai-openai-spring-boot-starter</artifactId>
 		</dependency>
 
-		<!--
-		TODO-02: Add the dependency for azure openai.
-		The groupId value will be org.springframework.ai
-		The artifactId will be spring-ai-azure-openai-spring-boot-starter
-		Follow the lab instructions for establishing an Azure account,
-		permission to use Azure AI Services, OpenID resource, endpoint, keys,
-		and deployment if you have not already done so.
-		-->
+
 		<dependency>
 			<groupId>org.springframework.ai</groupId>
 			<artifactId>spring-ai-azure-openai-spring-boot-starter</artifactId>
 		</dependency>
 
-		<!--
-		TODO-02: Add the dependency for ollama.
-		The groupId value will be org.springframework.ai
-		The artifactId will be spring-ai-ollama-spring-boot-starter
-		Follow the lab setup instructions to install Docker and
-		Run Ollama in a Docker container, if you have not already done so.
-		-->
+
 		<dependency>
 			<groupId>org.springframework.ai</groupId>
 			<artifactId>spring-ai-ollama-spring-boot-starter</artifactId>
