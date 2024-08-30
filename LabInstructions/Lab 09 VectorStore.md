@@ -63,17 +63,17 @@ Next we will need to establish a VectorStore `@Bean`; the in-memory implementati
 1. Organize your imports, save your work.
 
 ---
-**Part 3 - Define a ProductDao Bean**
+**Part 3 - Define a ProductDaoImpl Bean**
 
-Next we will focus on a `ProductDao` Bean.  This bean will be used to populate and search the Vector Store.
+Next we will focus on a `ProductDaoImpl` Bean.  This bean will be used to populate and search the Vector Store.
 
-8. Open `src/main/java/com.example.dao.ProductDao.java`
+8. Open `src/main/java/com.example.dao.ProductDaoImpl.java`
 
-1. **TODO-03:** Use a stereotype annotation to mark this DAO as a Spring bean.
+1. **TODO-03:** Use a stereotype annotation to mark this DAO as a Spring bean.  Alter the class to implement the `ProductDao` interface.
 
     ```
     @Repository
-    public class ProductDao {
+    public class ProductDaoImpl implements ProductDao {
     ```
 
 1. **TODO-04**: Within the class, define a member variable of type `VectorStore` and `@Autowire` it.
@@ -127,17 +127,17 @@ Next we will focus on a `ProductDao` Bean.  This bean will be used to populate a
 1. Organize your imports, save your work.
 
 ---
-**Part 4 - Define a ProductService Bean**
+**Part 4 - Define a ProductServiceImpl Bean**
 
-Next we will focus on a `ProductService` Bean.  
+Next we will focus on a `ProductServiceImpl` Bean.  
 
-15. Open `src/main/java/com.example.service.ProductService.java`
+15. Open `src/main/java/com.example.service.ProductServiceImpl.java`
 
-1. **TODO-08:** Use a stereotype annotation to mark this service as a Spring bean.
+1. **TODO-08:** Use a stereotype annotation to mark this service as a Spring bean.  Alter the class to implement the `ProductService` interface.
 
     ```
     @Service
-    public class ProductService {
+    public class ProductServiceImpl implements ProductService {
     ```
 
 1. **TODO-09:** Autowire the `ProductDao` bean we defined earlier.
