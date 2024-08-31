@@ -1,8 +1,8 @@
-## Lab 12 - SQL Generation - AWS
+## Lab 12 - SQL Generation 
 
 One compelling generative AI use case is code generation.  The ability to generate SQL queries in response to user requests opens the door for rich possibilities.  
 
-In this exercise you will complete an SQL generation application able to respond to natural language query requests.  We will use Amazon Bedrock-hosted models to turn a user request into an SQL statement, and the SQL results into a text summary.
+In this exercise you will complete an SQL generation application able to respond to natural language query requests.  We will use a foundational model to turn a user request into an SQL statement, and the SQL results into a text summary.
 
 Within the project code, you will find comments containing **TODO** instructions.  These instructions match the order of instructions in this lab document.  If you find it easier, you can complete this lab by following the embedded **TODO** comments; just make sure you follow them in order.
 
@@ -15,63 +15,54 @@ Let's jump in.
 
 The instructions below are for VS Code. If you wish to use IntelliJ or Eclipse and need assistance, see the "IDE Tips" document.
 
-1. Open the _/student-files/lab11-sql-aws_ project folder.  
+1. Open the _/student-files/lab12-sql_ project folder.  
 
     The project should be free of compiler errors at this point.  Address any issues you see before continuing.
 
 1. Find the TODO instructions.  Work through the TODO instructions in order!   
 
 ---
-**Part 2 - Obtain an AWS Account, Set Credentials, Enable Bedrock Models**
+**Part 2 - Initial Configuration**
 
-3. If you have not already done so, follow the instructions in the **[Lab Setup guide](https://github.com/kennyk65/AI-With-Spring-Student-Files/blob/main/LabInstructions/Lab%20Setup.md)** _Signup Process for Amazon / Bedrock_ section to setup an AWS Account, IAM User, set credentials in your local environment, and enable Bedrock models.
+3. Open the **pom.xml** file.
 
-At the time of this writing, we've found the **Anthropic Claude** models generate SQL more reliably that **Amazon Titan** models.
-
----
-**Part 3 - Initial Configuration**
-
-4. Open the **pom.xml** file.
-
-5. **TODO-01**: Notice that the dependency for groupId `org.springframework.ai` artifactId `spring-ai-bedrock-ai-spring-boot-starter` is already present
+1. **TODO-01**: Observe that the starters for OpenAI, Ollama, and Bedrock are present.	
+    * The same lab code will be used if you are using any of these models.  We will ensure that only one of these models will be active at runtime.
+    * If using Bedrock, make sure you have enabled the "Anthropic 3" _Claude 3 Sonnet_ model.
     * You do not need to make any changes here.
-```
-<dependency>
-	<groupId>org.springframework.ai</groupId>
-	<artifactId>spring-ai-bedrock-ai-spring-boot-starter</artifactId>
-</dependency>
-```
 
-6.  Open the `src/main/resources/application.yml` file.  
+1.  Open the `src/main/resources/application.yml` file.  
 
-1.  **TODO-02**: Establish the following configuration entries:
-    - Set `spring.application.name` to "Lab11 SQL Generation with Bedrock" or something similar.
-    - SpringAI applications can run as part of a web application, but these exercises are built to avoid that extra step.
-    - Adjust the retry settings to fail fast.  
-    - A _client error_ indicates a problem with our request; there is typically no point in retrying such a request.
-    - Adjust the [region](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-regions-availability-zones.html#concepts-regions) code to match the region where you enabled the Bedrock model.
-    - The `spring.ai.bedrock.anthropic.chat.enabled` setting tells Spring Boot to specifically autoconfigure objects supporting the _Anthropic_ models.  
-    - Use `spring.ai.bedrock.anthropic.chat.model` = **anthropic.claude-v2**.  
-        * Feel free to experiment with other models.
-    
+1. **TODO-02:** You may need to adjust the settings based on your own accounts / environments, and the model(s) you plan on using:
 
-```  
-spring:
-  application.name: Lab11 SQL Generation with Bedrock
-  main.web-application-type: none     # Do not start a web server.
-  ai:
-    retry:
-      max-attempts: 1          # Maximum number of retry attempts.
-      on-client-errors: false   # Do not attempt retry for 4xx client error codes.
-    bedrock:
-      aws.region: us-west-2
-      anthropic:
-        chat:
-          enabled: true
-          model: anthropic.claude-v2
-```
+    1. If you plan to use **Amazon Bedrock**:
+        * Adjust the region setting if needed.  Use your previous lab settings for guidance.
+        * Set the spring.ai.bedrock.anthropic3.chat.enabled to true to enable the chat model.
+        * Adjust the model if desired or take the default (Anthropic Claude 3 Sonnet).  See the **[latest list](https://docs.aws.amazon.com/bedrock/latest/userguide/models-supported.html)**.
+        * Make sure the Anthropic Claude 3 Sonnet model is enabled.  Refer to the **[Lab Setup guide](https://github.com/kennyk65/AI-With-Spring-Student-Files/blob/main/LabInstructions/Lab%20Setup.md)** for AWS / Amazon Bedrock.
+        
+    1. If you plan to use **OpenAI**:
+        * Set spring.ai.openai.chat.enabled to true to enable the chat model.
+        * Adjust the model if desired or take the default.  See the **[latest list](https://platform.openai.com/docs/models/embeddings)**.
+        * Make sure you have followed the **[Lab Setup guide](https://github.com/kennyk65/AI-With-Spring-Student-Files/blob/main/LabInstructions/Lab%20Setup.md)** for OpenAI.
 
-8.  Save your work. 
+        
+    1. If you plan to use **Azure OpenAI**:
+        * Set spring.ai.azure.openai.chat.enabled to true to enable the chat model.
+        * Set spring.ai.azure.openai.endpoint to the value you established during Azure setup.
+        * Set spring.ai.azure.openai.chat.options.deployment-name to the value you establised during setup.
+        * Set spring.ai.azure.openai.chat.options.model to "gpt-35-turbo", or whichever model you have enabled.
+        * Make sure you have followed the **[Lab Setup guide](https://github.com/kennyk65/AI-With-Spring-Student-Files/blob/main/LabInstructions/Lab%20Setup.md)** for Azure.
+
+
+    1. If you plan to use **Ollama**:
+        * Set spring.ai.ollama.chat.enabled to true to enable the chat model.
+        * Make sure you have followed the **[Lab Setup guide](https://github.com/kennyk65/AI-With-Spring-Student-Files/blob/main/LabInstructions/Lab%20Setup.md)** for Ollama.
+        * Adjust the base-url if needed.  Use your previous lab settings for guidance.
+        * Adjust the spring.ai.ollama.chat.options.model if desired.  See the **[list of models](https://ollama.com/library?sort=popular)**
+        * Make sure your Ollama Docker container is running.
+
+1.  Save your work. 
 
 1.  Open `src/main/resources/schema.sql`.
 
@@ -85,54 +76,56 @@ spring:
 
 Now we can build a component which will use the `ChatClient` to generate SQL and summarize the returned results.
 
-11. **TODO-04**:  Open `src/main/java/com/example/client/AIClient.java`.  
+10. **TODO-04**:  Open `src/main/java/com/example/client/AIClient.java`.  
     - Use a stereotype annotation to mark this class as a Spring bean.  
 
-```
-@Component
-public class AIClient {
-```
+    ```
+    @Component
+    public class AIClient {
+    ```
 
-12. **TODO-05**: Dependency inject the `ChatModel` bean.
+1. **TODO-05**: Dependency inject the `ChatModel` bean.
     * The `ChatModel` will be autoconfigured for us based on the dependencies and enablement settings above.
 
-```
-    @Autowired ChatModel model;
-```
+    ```
+        @Autowired ChatModel model;
+    ```
 
 ---
 **Part 5 - Build the `generateSql()` method.**
 
 The first method to implement will need to generate an SQL statement based on user input and the database schema.
 
-13. **TODO-06:** Observe the system message that will be provided to the model.
+12. **TODO-06:** Observe the system message that will be provided to the model.
     * It provides direct instructions for the model to generate SQL queries.
     * It directs the model to place generated SQL within \<SQL> and \</SQL> tags.
     * The database schema will be provided within the message.
     * The schema file will be read by a private method and injected into this message.
 
-```
-String systemMessage = 
-"""
-You are an SQL generating web service.
-Responses must be valid, HyperSQL-compatible, executable SQL statements.  
-The SQL statement must be placed between <SQL> and </SQL> tags.
-Use the following database schema to generate SQL queries: %s
-""";        
-```
+    ```
+    String systemMessage = 
+    """
+    You are an SQL generating web service.
+    Responses must be valid, HyperSQL-compatible, executable SQL statements.  
+    HyperSQL uses DATE_ADD ( xxxx, INTERVAL X DAY ) for date arithmetic, and CURRENT_DATE to get today's date.
+    The SQL statement must be placed between <SQL> and </SQL> tags.
+    Do not include any other superflous text in the response.
+    Use the following database schema to generate SQL queries: %s
+    """;        
+    ```
 
-14. **TODO-07:** Create a chatClient.
+1. **TODO-07:** Create a chatClient.
     *   Pass the model to the ChatClient.builder to build a ChatClient object.
     *   Use .defaultSystem() to set the system-level prompt to "fullSystemPrompt" defined above.
 
-```
+    ```
         ChatClient client =
             ChatClient.builder(model)
                 .defaultSystem(fullSystemPrompt)
                 .build();
-```
+    ```
 
-15. **TODO-08:** Use the client object to call the foundational model.
+1. **TODO-08:** Use the client object to call the foundational model.
     * The .prompt().user() method can be used to set the user-level prompt from the input parameter.
     * The .call() method will make the call to the model.
     * The .content() method will return the content of the response.
@@ -140,7 +133,7 @@ Use the following database schema to generate SQL queries: %s
     * Pass the String response to the extractSql() method and return the results.
         * This method extracts the SQL statement found within the \<SQL> and \</SQL> tags. 
 
-```
+    ```
     String response =  
         client
             .prompt().user(input)
@@ -148,39 +141,39 @@ Use the following database schema to generate SQL queries: %s
             .content();
 
     return extractSql(response);
-```
+    ```
 
 ---
 **Part 6 - Build the `summarize()` method.**
 
 The second method will generate an executive summary for the user prompt based on the raw data returned from the database.
 
-16. **TODO-09:** Within the `summary()` method, observe the system message.  It provides direct instructions for the model to produce executive summaries.
+15. **TODO-09:** Within the `summary()` method, observe the system message.  It provides direct instructions for the model to produce executive summaries.
 
-```
+    ```
     String systemMessage =
         "You are a web service which specializes in executive summaries.";
-```
+    ```
 
-17. **TODO-10: Create a chatClient.
+1. **TODO-10: Create a chatClient.
     * Pass the model to the `ChatClient.builder` to build a `ChatClient` object.
     * Use .defaultSystem() to set the system-level prompt to "systemMessage" defined above.
 
-```
+    ```
     ChatClient client =
         ChatClient.builder(model)
             .defaultSystem(String.format(systemMessage))
                 .build();
-```
+    ```
 
-18. **TODO-11:** Use the `client` object to call the foundational model.
+1. **TODO-11:** Use the `client` object to call the foundational model.
     * The .prompt().user() method can be used to set the "fullUserMessage" defined earlier.
         * This variable combines the user-provided query with the raw data supplied by the earlier query.
     * The .call() method will make the call to the model.
     * The .content() method will return the content of the response.
     * Return the response.
 
-```
+    ```
         String response = client
             .prompt().user(fullUserMessage)
             .call()
@@ -188,62 +181,62 @@ The second method will generate an executive summary for the user prompt based o
 
         System.out.println(response);
         return response;
-```
+    ```
 
-19. Organize your imports.  Save your work.
+1. Organize your imports.  Save your work.
 
 ---
 **Part 7 - Implement the `ProductService`.**
 
-20. Open `src/main/java/com.example.service.ProductService.java`.
+19. Open `src/main/java/com.example.service.ProductService.java`.
 
 1. **TODO-12:** Implement the `productQuery()` method.  Begin by generating SQL based on the user-provided query String.
     * Call the `AIClient.generateSql()` method which you completed earlier.
     * Pass the user-provided query parameter to the `generateSql()` method.
     * Capture the return value in a String.
 
-```
+    ```
     String sql = aiClient.generateSql(userQuery);
-```
+    ```
 
-22. **TODO-13:** Call the `ProductDao.adHocQuery()` to execute the SQL query.
+1. **TODO-13:** Call the `ProductDao.adHocQuery()` to execute the SQL query.
     * Pass the SQL query generated from the last method.
     * Capture the results in a List<Map<String,Object>> variable.
         * Spring's `JdbcTemplate.queryForList()` method called within the `ProductDao` returns a List structure where each result set row is represented by a Map structure.
 
-```
+    ```
     List<Map<String,Object>> results = productDao.adHocQuery(sql);
-```
+    ```
 
-23. **TODO-14:** Call the `AIClient` once more, this time to summarize the results.
+1. **TODO-14:** Call the `AIClient` once more, this time to summarize the results.
     * Call the `summarize()` method you implemented earlier.
     * Pass 1) the original user-provided query parameter and 2) the results from the previous call, converted to String.
     * Return the results of the summarize() method.
     * Remove the temporary "return null;" statement. 
-```
+    ```
     return aiClient.summarize(userQuery, results.toString());
     //return null;
-```
+    ```
 
 ---
 **Part 8 - Create a `@Test` class**
 
 Anything we code, we should test.  We will make a `@Test` class to ensure our Client object works as expected.
 
-24. Open `src/test/java/com/example/service/ProductServiceTests.java`.  
+23. Open `src/test/java/com/example/service/ProductServiceTests.java`.  
 
 1. **TODO-15** Add an annotation to define the class as a Spring Boot test.  Annotate the class with the `@ActiveProfiles` annotation to activate the **aws** profile.
 
-```
-@SpringBootTest
-@ActiveProfiles("aws")
-public class ProductServiceTests {
-```
+    ```
+    @SpringBootTest
+    @ActiveProfiles("aws")
+    public class ProductServiceTests {
+    ```
 
-26. **TODO-16:** Use the `@Autowired` annotation to inject an instance of the `ProductService`.
-```
+1. **TODO-16:** Use the `@Autowired` annotation to inject an instance of the `ProductService`.
+    ```
     @Autowired ProductService productService;
-```
+    ```
 
 27. **TODO-17:** Define a `productQueryTest()` `@Test` method to test the `productQuery()` method of the productService.
     * A "samplePrompt" String has been provided as example test data to be provided to as the user-defined query.
@@ -251,7 +244,7 @@ public class ProductServiceTests {
     * Use AssertJ's `Assertions.assertThat().contains()` method to ensure that the content contains some expected results.  Use the "sampleResults" array as an example.
     //  Print the response List that is returned.
 
-```
+    ```
     @Test
     void productQueryTest() {
         String response =
@@ -264,15 +257,17 @@ public class ProductServiceTests {
 
         assertThat(response).contains(sampleResults);
     }
-```
+    ```
 
-28. **TODO-18:** Organize all imports. Save all work.  Run the test.  It should pass.
+1. **TODO-18:** Organize all imports. Save all work.  Run the test.  It should pass.
     * Note: There is a good possibility that the test may fail.  The behavior of the foundational models is not deterministic. If an error occurs, experiment with the various prompts to try to get the expected results.
 
 **Part 9 - Summary**
 
 At this point, you have used generative AI to:
-    1) generate SQL specific to a user query and database schema 2) summarize the results 
+1. Generate SQL specific to a user query and database schema 
+2. Summarize the results 
+
 Congratulations!
 
 The ability to utilize generative AI to generate SQL and summarize the results of a query is a compelling use case.  You can probably imagine other scenarios where generated code can be applied.  Just be aware that the generated code is not guaranteed to be accurate or safe in all cases.  
