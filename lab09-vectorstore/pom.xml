@@ -39,20 +39,24 @@
 		Remove the comment below to include the starter for Redis.
 		Follow the instructions in the lab setup guide to installing and run Redis as a Docker container
 		-->
+		<!-- 
 		<dependency>
 			<groupId>org.springframework.ai</groupId>
 			<artifactId>spring-ai-redis-store-spring-boot-starter</artifactId>
 		</dependency> 
+		-->
 
 		<!-- 
 		TODO-24 (OPTIONAL): Replace the simple in-memory vector store with PGVector.
 		Remove the comment below to include the starter for PGVector.
 		Follow the instructions in the lab setup guide to installing and run PGVector as a Docker container
 		-->
+		<!-- 
 		<dependency>
 			<groupId>org.springframework.ai</groupId>
 			<artifactId>spring-ai-pgvector-store-spring-boot-starter</artifactId>
 		</dependency> 
+		-->
 
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
