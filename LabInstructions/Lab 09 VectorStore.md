@@ -297,7 +297,8 @@ Another alternative to the in-memory and Redis vector stores is the PGVector sto
     * Set the `spring.ai.vectorstore.pgvector.index-type` to HNSW.
     * Set the `spring.ai.vectorstore.pgvector.distance-type` to COSINE_DISTANCE.
     * Set the `spring.ai.vectorstore.pgvector.dimensions` based on the the underlying model you are using
-        * For AWS/Bedrock/Cohere, use 384
+        * For Spring AI's internal embedding model, use 384.
+        * For AWS/Bedrock/Cohere, use 1024
         * For OpenAI's text-embedding-ada-002, use 1536
         * If you make a mistake here, don't worry.  The error message will tell you the correct #.  Delete and restart the DB with the revised number.
 
