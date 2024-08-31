@@ -10,7 +10,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 //  TODO-11: Define this test class as a Spring Boot test.
 //  Use the @ActiveProfiles annotation to activate: 
 //  1) the "simple-vector-store" profile  AND
-//  2) the matching embedding model you plan to use:
+//  2) the matching chat model you plan to use:
 //      For Amazon Bedrock,     use "aws".
 //      For Azure OpenAI,       use "azure".
 //      For standard OpenAI,    use "openai".
