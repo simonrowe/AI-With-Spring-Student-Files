@@ -6,54 +6,57 @@ spring:
     retry:
       max-attempts: 1           # Maximum number of retry attempts.
       on-client-errors: false   # If false, throw a NonTransientAiException, and do not attempt retry for 4xx client error codes.
-    bedrock.anthropic.chat.enabled: false # Disable all models by default.
-    ollama.chat.enabled: false        # Disable all models by default.
-    openai.chat.enabled: false        # Disable all models by default.
-    azure.openai.chat.enabled: false  # Disable all models by default.
 
----
-spring:
-  config.activate.on-profile: ollama
+    bedrock.anthropic3.chat.enabled: false # Disable all models by default.
+    ollama.chat.enabled:            false # Disable all models by default.
+    openai.chat.enabled:            false # Disable all models by default.
+    azure.openai.chat.enabled:      false # Disable all models by default.
 
-  # TODO-02: Set the spring.application.name to "Lab11 SQL Generation with Ollama" or something similar.
-  # Set the ai.ollama.base-url to http://localhost:11434, unless your container is running on a different URL.
+# TODO-02: Adjust the settings below based on the chat model you plan to use.
+# Use previous labs for guidance.
+#
+# If you plan to use Amazon Bedrock: 
+#   - Adjust the region setting if needed.
+#   - Set the spring.ai.bedrock.anthropic3.chat.enabled to true to enable the chat model.
+#   - Makes sure you have enabled the Anthropic Claude 3 Sonnet model
+#   - Adjust the model if desired or take the default.  See https://docs.aws.amazon.com/bedrock/latest/userguide/models-supported.html for latest list.
+#
+# If you plan to use OpenAI:
+#   - Set spring.ai.openai.chat.enabled to true to enable the chat model.
+#   - Set spring.ai.openai.chat.options.model to "gpt-35-turbo", or see https://platform.openai.com/docs/models/embeddings for latest list.
+#
+# If you plan to use Azure OpenAI:
+#   - Set spring.ai.azure.openai.chat.enabled to true to enable the chat model.
+#   - Set spring.ai.azure.openai.endpoint to the value you established during Azure setup.
+#   - Set spring.ai.azure.openai.chat.options.deployment-name to the value you establised during setup.
+#   - Set spring.ai.azure.openai.chat.options.model to "gpt-35-turbo", or whichever model you have enabled.
+#
+# If you plan to use Ollama:
+#   - Set spring.ai.ollama.chat.enabled to true to enable the chat model.
+#   - Adjust the base-url if needed.
+#   - Make sure Ollama is running.
+#
+# Note that only one model will be active at a time.  The active model is determined by the active profile.
 
-  application.name: Lab11 SQL Generation with Ollama
-  ai:
-    ollama:
-      base-url: http://localhost:11434  # Default base URL when you run Ollama from Docker
-      chat:
-        enabled: true
+
+
 ---
 spring:
   config.activate.on-profile: aws
 
-  # TODO-02: Set the spring.application.name to "Lab11 SQL Generation with Bedrock" or something similar.
-  # Set the ai.bedrock.aws.region to "us-west-2", or whichever region you have enabled the titan model in.
-  # Set the ai.bedrock.titan.chat.enabled to specify use of the Titan chat model.
-  # Take advantage of YAML's hierarchical structure (indenting) to set these values.
-  
-  application.name: Lab11 SQL Generation with Bedrock
   ai:
     bedrock:
       aws.region: us-west-2
-      anthropic:
+      anthropic3:
         chat:
           enabled: true
-          model: anthropic.claude-v2
 
 ---
 spring:
   config.activate.on-profile: openai
 
-  # TODO-02: Set the spring.application.name to "Lab11 SQL Generation with OpenAI" or something similar.
-  # Set spring.ai.openai.chat.enabled to true.
-  # Set spring.ai.openai.chat.options.model to "gpt-3.5-turbo" or the model of your choice.
-  
-  application.name: Lab11 SQL Generation with OpenAI
   ai:
     openai:
-      api-key: NEVER-PLACE-SECRET-KEY-IN-CONFIG-FILE
       chat:
         enabled: true
         options:
@@ -64,18 +67,9 @@ spring:
 spring:
   config.activate.on-profile: azure
 
-  # TODO-02: Set the spring.application.name to "Lab11 Azure OpenAI Chat" or something similar.
-  # Set the ai.azure.openai.endpoint to the value you established during Azure setup.
-  # Set the ai.azure.openai.chat.enabled to true to enable the chat model.
-  # Set the ai.azure.openai.chat.options.deployment-name to the value you establised during setup.
-  # Set the ai.azure.openai.chat.options.model to "gpt-35-turbo" to use the GPT-3.5 model.
-  # Take advantage of YAML's hierarchical structure (indenting) to set these values.
-
-  application.name: Lab11 SQL Generation with Azure
   ai:
     azure:
       openai:
-        api_key: NEVER-PLACE-SECRET-KEY-IN-CONFIG-FILE
         endpoint: ENDPOINT-GOES-HERE
         chat:
           enabled: true
@@ -83,3 +77,12 @@ spring:
             deployment-name: DEPLOYMENT-NAME-GOES-HERE
             model: gpt-35-turbo        
 
+---
+spring:
+  config.activate.on-profile: ollama
+
+  ai:
+    ollama:
+      base-url: http://localhost:11434  # Default base URL when you run Ollama from Docker
+      chat:
+        enabled: true

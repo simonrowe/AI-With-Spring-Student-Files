@@ -20,7 +20,7 @@
 	<dependencies>
 
 		<!-- 
-		TODO-01: Notice the spring-ai starter is already present.
+		TODO-01: Notice the spring-ai starters are already present for several models.
 		Also notice the jdbc starter and hsqldb dependencies.
 		-->
 
