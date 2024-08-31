@@ -34,6 +34,7 @@ The instructions below are for VS Code. If you wish to use IntelliJ or Eclipse a
 1. **TODO-01:** Observe that the starters for OpenAI, Ollama, and Bedrock are present.	
     * The same lab code will be used if you are using any of these models.  We will ensure that only one of these models will be active at runtime.
     * If using Bedrock, make sure you have enabled the "Cohere" embedding model.
+    * You do not need to make any changes here.
 
 1. Open `src/main/java/com.example.Application.java`.
 

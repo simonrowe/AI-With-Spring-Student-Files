@@ -20,7 +20,7 @@
 	<dependencies>
 
 		<!-- 
-		TODO-01: Notice the spring-ai starter is already present.
+		TODO-01: Notice the spring-ai starters are already present for several models.
 		Also notice the jdbc starter and hsqldb dependencies.
 		-->
 
@@ -54,12 +54,6 @@
 			<artifactId>hsqldb</artifactId>
 			<scope>runtime</scope>
 		  </dependency>
-
-
-		<!-- <dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-aop</artifactId>
-		  </dependency> -->
 
 		<dependency>
 			<groupId>org.springframework.boot</groupId>

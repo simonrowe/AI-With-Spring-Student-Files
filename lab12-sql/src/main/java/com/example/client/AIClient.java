@@ -13,11 +13,10 @@ import org.springframework.core.io.ResourceLoader;
 import org.springframework.stereotype.Component;
 
 //  TODO-04: Use a stereotype annotation to mark this class as a Spring bean.
-@Component
+
 public class AIClient {
 
     //  TODO-05: Autowire the ChatModel bean.
-    @Autowired ChatModel model;
 
 
     public String generateSql(String input) {
@@ -32,6 +31,7 @@ public class AIClient {
         Responses must be valid, HyperSQL-compatible, executable SQL statements.  
         HyperSQL uses DATE_ADD ( xxxx, INTERVAL X DAY ) for date arithmetic, and CURRENT_DATE to get today's date.
         The SQL statement must be placed between <SQL> and </SQL> tags.
+        Do not include any other superflous text in the response.
         Use the following database schema to generate SQL queries: %s
         """;        
 
@@ -41,10 +41,7 @@ public class AIClient {
         //  TODO-07: Create a chatClient.
         //  Pass the model to the ChatClient.builder to build a ChatClient object.
         //  Use .defaultSystem() to set the system-level prompt to "fullSystemPrompt" defined above.
-        ChatClient client =
-            ChatClient.builder(model)
-                .defaultSystem(fullSystemPrompt)
-                .build();
+
 
         //  TODO-08: Use the client object to call the API.
         //  The .prompt().user() method can be used to set the user-level prompt from the input parameter.
@@ -52,14 +49,10 @@ public class AIClient {
         //  The .content() method will return the content of the response.
         //  Capture the response in a String variable.
         //  Pass the String response to the extractSql() method and return the results.
-        String response =  
-            client
-                .prompt().user(input)
-                .call()
-                .content();
 
-        System.out.println(response);
-        return extractSql(response);
+
+
+        return null; // Replace this
     }
 
     public String summarize(String userMessage, String supportingData) {
@@ -72,10 +65,8 @@ public class AIClient {
         //  TODO-10: Create a chatClient.
         //  Pass the model to the ChatClient.builder to build a ChatClient object.
         //  Use .defaultSystem() to set the system-level prompt to "systemMessage" defined above.
-        ChatClient client =
-            ChatClient.builder(model)
-                .defaultSystem(String.format(systemMessage))
-                    .build();
+
+
 
         String fullUserMessage = userMessage + ".  Supporting data:  " + supportingData;
 
@@ -85,13 +76,8 @@ public class AIClient {
         //  The .content() method will return the content of the response.
         //  return the response.
 
-        String response = client
-            .prompt().user(fullUserMessage)
-            .call()
-            .content();
 
-        System.out.println(response);
-        return response;
+        return null; // Replace this
     }
 
 
