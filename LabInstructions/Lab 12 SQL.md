@@ -162,7 +162,7 @@ The second method will generate an executive summary for the user prompt based o
     ```
     ChatClient client =
         ChatClient.builder(model)
-            .defaultSystem(String.format(systemMessage))
+            .defaultSystem(systemMessage)
                 .build();
     ```
 
