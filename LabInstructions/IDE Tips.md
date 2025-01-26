@@ -33,7 +33,7 @@ VSCode, IntelliJ, and Eclipse (as well as other less-commonly known IDEs) unders
 * **Eclipse**
 
 1. Launch Eclipse.
-1. In the *Workspace Launcher* dialog, create a new namespace in some location you will remember, like **C:\workspace**. Click *Launch*.
+1. In the *Workspace Launcher* dialog, create a new workspace in some location you will remember, like **C:\workspace**. Click *Launch*.
 1. Close the *Welcome* panel if open.
 1. If using Gradle, you probably need to update it:
     1. From the menu, select *Help > Eclipse Marketplace*.
@@ -56,7 +56,7 @@ VSCode, IntelliJ, and Eclipse (as well as other less-commonly known IDEs) unders
 
 1. Launch IntelliJ.
 1. Use “Open” to open the project.
-1. Select thefolder containing your project files.  This is the folder containing your Maven `pom.xml` or `build.gradle` files.
+1. Select the folder containing your project files.  This is the folder containing your Maven `pom.xml` or `build.gradle` files.
 1. If prompted about which configuration to use, select either Gradle or Maven, depending on your preference.
 1. Give IntelliJ a moment to digest this project, especially if this is the first project worked with since a fresh installation.
 
