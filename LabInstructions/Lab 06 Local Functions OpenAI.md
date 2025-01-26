@@ -102,7 +102,7 @@ An example is combining general knowlege about a given company with its current 
     ```
 
 1. ***TODO-07:** Within the `callApi()` method, build a `ChatOptions` object using the `OpenAiChatOptions` builder.
-    * Use the `withFunction()` method to set the "stockService" bean name.
+    * Use the `function()` method to set the "stockService" bean name.
 
     ```
 		ChatOptions options = 

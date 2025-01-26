@@ -27,10 +27,10 @@ public class OpenAIClientImpl implements AIClient {
     public String callApi(String input ) {
 
 		//  TODO-07: Build a ChatOptions object using the OpenAiChatOptions builder.
-		//  Use the withFunction() method to set the "stockService" bean name.
+		//  Use the function() method to set the "stockService" bean name.
 		ChatOptions options = 
 			OpenAiChatOptions.builder()
-				.withFunction("stockService")
+				.function("stockService")
 				.build();
 
 		//  TODO-08: Build a Prompt object using the input and the ChatOptions object:
