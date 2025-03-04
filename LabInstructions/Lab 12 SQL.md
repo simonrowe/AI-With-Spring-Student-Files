@@ -28,7 +28,7 @@ The instructions below are for VS Code. If you wish to use IntelliJ or Eclipse a
 
 1. **TODO-01**: Observe that the starters for OpenAI, Ollama, and Bedrock are present.	
     * The same lab code will be used if you are using any of these models.  We will ensure that only one of these models will be active at runtime.
-    * If using Bedrock, make sure you have enabled the "Anthropic 3" _Claude 3 Sonnet_ model.
+    * If using Bedrock, make sure you have enabled the "Anthropic 3.5" _Claude 3.5 Sonnet_ model.
     * You do not need to make any changes here.
 
 1.  Open the `src/main/resources/application.yml` file.  
@@ -37,9 +37,9 @@ The instructions below are for VS Code. If you wish to use IntelliJ or Eclipse a
 
     1. If you plan to use **Amazon Bedrock**:
         * Adjust the region setting if needed.  Use your previous lab settings for guidance.
-        * Set the spring.ai.bedrock.anthropic3.chat.enabled to true to enable the chat model.
-        * Adjust the model if desired or take the default (Anthropic Claude 3 Sonnet).  See the **[latest list](https://docs.aws.amazon.com/bedrock/latest/userguide/models-supported.html)**.
-        * Make sure the Anthropic Claude 3 Sonnet model is enabled.  Refer to the **[Lab Setup guide](https://github.com/kennyk65/AI-With-Spring-Student-Files/blob/main/LabInstructions/Lab%20Setup.md)** for AWS / Amazon Bedrock.
+        * Set the spring.ai.bedrock.converse.chat.enabled to true to enable the chat model.
+        * Set spring.ai.bedrock.converse.chat.options.model to "anthropic.claude-3-5-sonnet-20240620-v1:0" or equivalent.  See the **[latest list](https://docs.aws.amazon.com/bedrock/latest/userguide/models-supported.html)**.
+        * Make sure the Anthropic Claude 3.5 Sonnet model is enabled.  Refer to the **[Lab Setup guide](https://github.com/kennyk65/AI-With-Spring-Student-Files/blob/main/LabInstructions/Lab%20Setup.md)** for AWS / Amazon Bedrock.
         
     1. If you plan to use **OpenAI**:
         * Set spring.ai.openai.chat.enabled to true to enable the chat model.

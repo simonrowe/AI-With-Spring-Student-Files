@@ -7,7 +7,7 @@ spring:
       max-attempts: 1           # Maximum number of retry attempts.
       on-client-errors: false   # If false, throw a NonTransientAiException, and do not attempt retry for 4xx client error codes.
 
-    bedrock.anthropic3.chat.enabled: false # Disable all models by default.
+    bedrock.converse.chat.enabled:  false # Disable all models by default.
     ollama.chat.enabled:            false # Disable all models by default.
     openai.chat.enabled:            false # Disable all models by default.
     azure.openai.chat.enabled:      false # Disable all models by default.
@@ -17,8 +17,9 @@ spring:
 #
 # If you plan to use Amazon Bedrock: 
 #   - Adjust the region setting if needed.
-#   - Set the spring.ai.bedrock.anthropic3.chat.enabled to true to enable the chat model.
-#   - Makes sure you have enabled the Anthropic Claude 3 Sonnet model
+#   - Set the spring.ai.bedrock.converse.chat.enabled to true to enable the chat model.
+#   - Makes sure you have enabled the Anthropic Claude 3.5 Sonnet model
+#   - Set spring.ai.bedrock.converse.chat.options.model to "anthropic.claude-3-5-sonnet-20240620-v1:0" or equivalent (make sure it is enabled)
 #   - Adjust the model if desired or take the default.  See https://docs.aws.amazon.com/bedrock/latest/userguide/models-supported.html for latest list.
 #
 # If you plan to use OpenAI:
@@ -46,10 +47,12 @@ spring:
 
   ai:
     bedrock:
-      aws.region: us-west-2
-      anthropic3:
+      aws.region: us-west-2 # Adjust as needed.
+      converse:
         chat:
           enabled: true
+          options:
+            model: anthropic.claude-3-5-sonnet-20240620-v1:0 # Adjust as needed.
 
 ---
 spring:
