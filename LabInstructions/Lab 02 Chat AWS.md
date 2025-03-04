@@ -39,12 +39,12 @@ The instructions below are for VS Code. If you wish to use IntelliJ or Eclipse a
 ---
 **Part 3 - Initial Configuration and Test**
 
-4. **TODO-02**: Open the **pom.xml** file.  Add the dependency for Amazon Bedrock.  The groupId value will be `org.springframework.ai`.  The artifactId will be `spring-ai-bedrock-ai-spring-boot-starter`.  Save your work.
+4. **TODO-02**: Open the **pom.xml** file.  Add the dependency for Amazon Bedrock.  The groupId value will be `org.springframework.ai`.  The artifactId will be `spring-ai-bedrock-converse-spring-boot-starter`.  Save your work.
 
 ```
 <dependency>
 	<groupId>org.springframework.ai</groupId>
-	<artifactId>spring-ai-bedrock-ai-spring-boot-starter</artifactId>
+	<artifactId>spring-ai-bedrock-converse-spring-boot-starter</artifactId>
 </dependency>
 ```
 - Note: Some IDEs may require you to "refresh" your project after altering dependencies in Maven/Gradle.
@@ -67,16 +67,18 @@ spring:
     retry:
       max-attempts: 1           # Maximum number of retry attempts.
     bedrock:
-      aws.region: us-west-2
-      titan:
+      aws.region: us-west-2 # Adjust as needed.
+      converse:
         chat:
           enabled: true
-
+          options:
+            model: amazon.titan-text-lite-v1  # Adjust as needed
 
 ```
 
   - Adjust the [region](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-regions-availability-zones.html#concepts-regions) code to match the region where you enabled the Bedrock model.
-  - The `bedrock.titan.chat.enabled` setting tells Spring Boot to specifically autoconfigure objects supporting the _Titan_ model.  
+  - The `bedrock.converse.chat.enabled` setting tells Spring Boot to autoconfigure a Bedrock-capable ChatModel.  But which specific model should it use??
+  - The `bedrock.converse.chat.options.model` setting indicates the specific Bedrock model to use. This setting may change over time as new, improved models are introduced and older models are retired.  See the [latest model list](https://docs.aws.amazon.com/bedrock/latest/userguide/models-supported.html) for details.   
   - SpringAI applications can run as part of a web application, but these exercises are built to avoid that extra step.
   - Note: The retry settings will override the `ChatClient`'s default settings.  You are likely to experience errors while you learn the API's usage, and we don't want you to experience unnecessary delays or expense.
   - We could store the access key ID and secret key values in this file, but this would be a security risk if we were to ever distribute this file.  Setting these values in environment variables is safer.

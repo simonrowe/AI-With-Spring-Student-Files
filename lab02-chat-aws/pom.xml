@@ -28,7 +28,7 @@
 		<!-- 
 		TODO-02: Add the dependency for Amazon Bedrock.  
 		The groupId value will be org.springframework.ai
-		The artifactId will be spring-ai-bedrock-ai-spring-boot-starter
+		The artifactId will be spring-ai-bedrock-converse-spring-boot-starter
 		-->
 
 		<dependency>
@@ -75,9 +75,9 @@
 			<id>spring-snapshots</id>
 			<name>Spring Snapshots</name>
 			<url>https://repo.spring.io/snapshot</url>
-			<snapshots>
+			<releases>
 				<enabled>false</enabled>
-			</snapshots>
+			</releases>
 		</repository>
 	</repositories>
 

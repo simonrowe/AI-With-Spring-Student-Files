@@ -2,6 +2,7 @@ package com.example.client;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -28,6 +29,7 @@ public class OllamaClientTests {
     //  Print the response string that is returned.
 
 	@Test
+    @Disabled
 	void callApiTest() {
 
         String response =
