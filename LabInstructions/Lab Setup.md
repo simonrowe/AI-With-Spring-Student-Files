@@ -288,10 +288,9 @@ Note that the exact screen flow to perform these steps may vary over time as AWS
     1. Click **Modify model access**.
     1. For the labs presented in this course, we recommend you select and enable the following models:
     * **Amazon - Titan Text G1 - Express**
-    * **Amazon - Titan Embeddings G1 - Text**
-    * **Anthropic - Claude V2**
-    * **Anthropic - Claude 3 Sonnet**  (anthropic.claude-3-sonnet-20240229-v1:0)
-    - Note: you may enable other models if you like.  Generally there is little or no charge to enable a specific model, only acceptance of a license agreement.  The _Titan_ models from Amazon are relatively inexpensive.
+    * **Cohere Embed 3 (English)** (cohere.embed-english-v3, used in the embeddings and vector store labs)
+    * **Anthropic - Claude 3.5 Sonnet**  (anthropic.claude-3-5-sonnet-20240620-v1:0)
+    - Note: you may enable other models if you like.  Generally there is little or no charge to enable a specific model, only acceptance of a license agreement.  The _Titan_ and _Nova_ models from Amazon are relatively inexpensive.
     - Over time, the available Bedrock models and the defaults used in Spring AI change.  You may encounter cases where you need to enable and specify models not on this list.
     10. Click **Submit**.  It may take a few moments for the model to become active.
 
