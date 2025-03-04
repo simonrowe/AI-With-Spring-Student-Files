@@ -6,7 +6,7 @@ spring:
     retry:
       max-attempts: 1           # Maximum number of retry attempts.
 
-    bedrock.anthropic3.chat.enabled: false # Disable all models by default.
+    bedrock.converse.chat.enabled:  false # Disable all models by default.
     ollama.chat.enabled:            false # Disable all models by default.
     openai.chat.enabled:            false # Disable all models by default.
     azure.openai.chat.enabled:      false # Disable all models by default.
@@ -32,10 +32,11 @@ spring:
         region: us-west-2 # Adjust as needed.
         access-key: NEVER-PLACE-SECRET-KEY-IN-CONFIG-FILE
         secret-key: NEVER-PLACE-SECRET-KEY-IN-CONFIG-FILE
-      anthropic3:
+      converse:
         chat:
           enabled: true
-
+          options:
+            model: anthropic.claude-3-5-sonnet-20240620-v1:0  # Adjust as needed.
 ---
 spring:
   config.activate.on-profile: openai
