@@ -40,7 +40,7 @@ spring:
   # Amazon Bedrock Cohere Settings:
   ai:
     bedrock:
-      aws.region: us-west-2   
+      aws.region: us-west-2 # Adjust as needed.
       cohere:
         embedding:
           enabled: true
