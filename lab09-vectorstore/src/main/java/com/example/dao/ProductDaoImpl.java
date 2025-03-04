@@ -17,12 +17,12 @@ public class ProductDaoImpl {
 
     //  TODO-06: Define the public List<String> findClosestMatches() method.
     //  Define two parameters: a String query and an int numberOfMatches.
-    //  Use SearchRequest.query() to create a new SearchRequest with the input String.
-    //  Use the withTopK() method to set the numberOfMatches.
+    //  Use the SearchRequest.builder() method to create a new SearchRequest.
+    //    Use the builder's query() method to set the input query String.
+    //    Use the builder's topK() method to set the input numberOfMatches.
     //  Call the vectorStore's similaritySearch() method with the SearchRequest to find the closest matches.
     //  Capture the result in a List<Document>.
     //  Convert the List<Document> into a List<String> and return.
-
 
 
     //  TODO-07: Define the public String findClosestMatch() method.

@@ -17,13 +17,13 @@ public class Application {
 	}
 
 	//	TODO-02: Define a bean method named "vectorStore" of type VectorStore.
-	//  The method should accept an EmbeddingModel parameter
-	//	Have it instantiate and return a new SimpleVectorStore injected with the given EmbeddingModel.
+	//  The method should accept an EmbeddingModel parameter.
+	//	Have it use the SimpleVectorStore's builder method to inject the given EmbeddingModel.
 	//  Use @Profile to assign this bean to the "simple-vector-store" profile.
 	@Bean
 	@Profile("simple-vector-store")
 	public VectorStore vectorStore(EmbeddingModel embeddingModel) {
-		return new SimpleVectorStore(embeddingModel);
+		return SimpleVectorStore.builder(embeddingModel).build();
 	}
 	
 }
