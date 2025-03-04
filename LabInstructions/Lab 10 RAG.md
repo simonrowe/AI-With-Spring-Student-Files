@@ -27,9 +27,9 @@ Let's jump in.
 
     1. If you plan to use **Amazon Bedrock**:
         * Adjust the region setting if needed.  Use your previous lab settings for guidance.
-        * Set the spring.ai.bedrock.titan.chat.enabled to true to enable the chat model.
-        * Adjust the model if desired or take the default.  See the **[latest list](https://docs.aws.amazon.com/bedrock/latest/userguide/models-supported.html)**.
-        * Make sure you have followed the **[Lab Setup guide](https://github.com/kennyk65/AI-With-Spring-Student-Files/blob/main/LabInstructions/Lab%20Setup.md)** for AWS / Amazon Bedrock.
+        * Set the spring.ai.bedrock.converse.chat.enabled to true to enable the chat model.
+        * Set spring.ai.bedrock.converse.chat.options.model to "anthropic.claude-3-5-sonnet-20240620-v1:0" or equivalent.  See the **[latest list](https://docs.aws.amazon.com/bedrock/latest/userguide/models-supported.html)**.
+        * Make sure the Anthropic Claude 3.5 Sonnet model is enabled.  Refer to the **[Lab Setup guide](https://github.com/kennyk65/AI-With-Spring-Student-Files/blob/main/LabInstructions/Lab%20Setup.md)** for AWS / Amazon Bedrock.
         
     1. If you plan to use **OpenAI**:
         * Set spring.ai.openai.chat.enabled to true to enable the chat model.
@@ -55,13 +55,13 @@ Let's jump in.
 
 1. Open `src/main/java/com.example.Application`.
 
-1. **TODO-04:** Define a bean method named "vectorStore" of type `VectorStore`. The method should accept an `EmbeddingModel` parameter.  Have it instantiate and return a `new SimpleVectorStore` injected with the given `EmbeddingModel`.  Use `@Profile` to assign this bean to the **simple-vector-store** profile.
+1. **TODO-04:** Define a bean method named "vectorStore" of type `VectorStore`. The method should accept an `EmbeddingModel` parameter.  Have it use the `SimpleVectorStore`s `builder()` method to inject the given `EmbeddingModel`.  Return the result of the `.build()` method.  Use `@Profile` to assign this bean to the **simple-vector-store** profile.
 
     ```
         @Bean
         @Profile("simple-vector-store")
         public VectorStore vectorStore(EmbeddingModel embeddingModel) {
-            return new SimpleVectorStore(embeddingModel);
+            return SimpleVectorStore.builder(embeddingModel).build();
         }
     ```
 1.  Organize your imports.  Save your work.

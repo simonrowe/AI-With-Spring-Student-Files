@@ -7,20 +7,21 @@ spring:
       max-attempts: 1      # Maximum number of retry attempts.
       on-client-errors: false   # If false, throw a NonTransientAiException, and do not attempt retry for 4xx client error codes.
 
-    openai.embedding.enabled:   false # Allow profile to enable this if needed.
-    ollama.embedding.enabled:   false # Allow profile to enable this if needed.
-    bedrock.titan.chat.enabled: false # Allow profile to enable this if needed.
-    openai.chat.enabled:        false # Allow profile to enable this if needed.
-    azure.openai.chat.enabled:  false # Allow profile to enable this if needed.
-    ollama.chat.enabled:        false # Allow profile to enable this if needed.
+    openai.embedding.enabled:      false # Allow profile to enable this if needed.
+    ollama.embedding.enabled:      false # Allow profile to enable this if needed.
+    bedrock.converse.chat.enabled: false # Allow profile to enable this if needed.
+    openai.chat.enabled:           false # Allow profile to enable this if needed.
+    azure.openai.chat.enabled:     false # Allow profile to enable this if needed.
+    ollama.chat.enabled:           false # Allow profile to enable this if needed.
 
 # TODO-03: Adjust the settings below based on the chat model you plan to use.
 # Use previous labs for guidance.
 #
 # If you plan to use Amazon Bedrock: 
 #   - Adjust the region setting if needed.
-#   - Set the spring.ai.bedrock.titan.chat.enabled to true to specify use of the Titan chat model.
-#   - Use the default model or experiment with alternatives.  See https://docs.aws.amazon.com/bedrock/latest/userguide/models-supported.html for latest list.
+#   - Set the spring.ai.bedrock.converse.chat.enabled to true to enable the chat model.
+#   - Set the spring.ai.bedrock.converse.chat.options.model to "anthropic.claude-3-5-sonnet-20240620-v1:0" or equivalent (make sure it is enabled)
+#   - Feel free to experiment with other models.  See https://docs.aws.amazon.com/bedrock/latest/userguide/models-supported.html for latest list.
 #
 # If you plan to use OpenAI:
 #   - Set spring.ai.openai.chat.enabled to true to enable the chat model.
@@ -48,10 +49,10 @@ spring:
 
   ai:
     bedrock:
-      titan:
+      converse:
         chat:
           enabled: true
-
+  
 ---
 spring:
   config.activate.on-profile: openai

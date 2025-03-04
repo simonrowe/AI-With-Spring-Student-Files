@@ -3,7 +3,6 @@ package com.example.client;
 import java.util.List;
 
 import org.springframework.ai.chat.client.ChatClient;
-import org.springframework.ai.chat.client.RequestResponseAdvisor;
 import org.springframework.ai.chat.client.advisor.QuestionAnswerAdvisor;
 import org.springframework.ai.chat.model.ChatModel;
 import org.springframework.ai.document.Document;
@@ -56,7 +55,7 @@ public class AIClientImpl implements AIClient {
 
         //  TODO-09: Define a new QuestionAnswerAdvisor object.
         //  Inject it with the VectorStore object that was @Autowired earlier.
-        RequestResponseAdvisor advisor = new QuestionAnswerAdvisor(vectorStore);
+        QuestionAnswerAdvisor advisor = new QuestionAnswerAdvisor(vectorStore);
 
         //  TODO-10: Use the client object to call the API.
         //  The .prompt() method can be used to define a prompt.
