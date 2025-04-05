@@ -26,7 +26,7 @@ public class ZhiPuAIClientTests {
     //  Call the provided testValidBase64Image() method to check that the returned string appears to be a valid image.
     //  Call the provided saveBase64Image() to save a copy of your image.
     @Test
-    @Disabled
+    //@Disabled
     public void testCreateImageB64() {
         String imageB64 = client.createImageB64("Crescent moon over the Shanghai skyline.");
         assertThat(imageB64).isNotBlank();

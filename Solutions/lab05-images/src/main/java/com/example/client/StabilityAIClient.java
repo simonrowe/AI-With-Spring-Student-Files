@@ -20,7 +20,7 @@ public class StabilityAIClient implements AIClient {
     }
 
     private static final StabilityAiImageOptions DEFAULT_OPTIONS =
-            StabilityAiImageOptions.builder().withN(1).build();
+            StabilityAiImageOptions.builder().build();
 
     public String createImageB64(String request) {
 
