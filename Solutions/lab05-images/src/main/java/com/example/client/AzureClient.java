@@ -20,7 +20,7 @@ public class AzureClient implements AIClient {
         this.model = model;
     }
 
-    private static final AzureOpenAiImageOptions DEFAULT_OPTIONS = AzureOpenAiImageOptions.builder().withN(1).build();
+    private static final AzureOpenAiImageOptions DEFAULT_OPTIONS = AzureOpenAiImageOptions.builder().build();
 
     public String createImageUrl(String request) {
 
@@ -50,7 +50,7 @@ public class AzureClient implements AIClient {
 
         //  TODO-13 (Optional): Create an AzureOpenAiImageOptions object named B64_OPTIONS.
         //  Use the builder pattern to set the "responseFormat" property to "b64_json" (Base-64 encoded String):
-        AzureOpenAiImageOptions B64_OPTIONS = AzureOpenAiImageOptions.builder().withResponseFormat("b64_json").build();
+        AzureOpenAiImageOptions B64_OPTIONS = AzureOpenAiImageOptions.builder().responseFormat("b64_json").build();
 
         //  TODO-14 (Optional): Using your earlier code as a guide, create an
         //  ImagePrompt object using the request and the B64_OPTIONS:
