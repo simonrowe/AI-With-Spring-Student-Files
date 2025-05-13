@@ -80,8 +80,8 @@ spring:
 
 ```
   * Set the `spring.ai.azure.openai.endpoint` to the value you established during Azure setup. If you forgot the value, it can be found in the Azure Portal / Azure OpenAI. Open your resource and select click here to view endpoints.
-  * Set the `spring.ai.azure.openai.chat.options.deployment-name` to the value you established during setup.  
-  * Set the `spring.ai.azure.openai.chat.options.model` to "gpt-35-turbo", or whichever model you have enabled.
+  * Set the `spring.ai.azure.openai.chat.options.deployment-name` to the value you established during setup, such as **gpt-35-turbo**.  
+  * Set the `spring.ai.azure.openai.chat.options.model` to **gpt-35-turbo**, or whichever model you have deployed.
   * The `spring.ai.azure.openai.chat.enabled` setting tells Spring Boot to specifically autoconfigure objects supporting Azure OpenAI.
   * SpringAI applications can run as part of a web application, but these exercises are built to avoid that extra step.
   * Note: The retry settings will override the `ChatClient`'s default settings.  You are likely to experience errors while you learn the API's usage, and we don't want you to experience unnecessary delays or expense.

@@ -177,33 +177,32 @@ Login or signup for an account.  We recommend the signup option using Google, Mi
 ---
 ### Setup Process for Azure OpenAI
 
-If you wish to work on any of the Azure OpenAI labs, you will need to establish an Azure account, sign up for Azure AI services, and create a resource and a deployment.
+If you wish to work on any of the Azure OpenAI labs, you will need to establish an Azure account, sign up for Azure Open AI, and create a resource and a deployment.
 
 Microsoft Azure provides the means to host OpenAI models within an Azure account.  This allows easier access from within Azure-hosted workloads.  
 
 NOTE:  Cloud providers such as Azure change their procedures from time to time without warning.  The instructions here were valid as of June 2024.  You may find the screens and terminology have updated since these instructions were recorded.
 
-1. **Setup an Azure account**:  Go to https://portal.azure.com/#home (If you already have an account, you can skip to the next steps on signing up for Azure AI services.)
+1. **Setup an Azure account**:  Go to https://portal.azure.com/#home (If you already have an account, you can skip to the next steps on signing up for Azure Open AI.)
 
     - The signup process typically asks your a few questions on what you plan to do with Azure.  This is mainly to customize your experience and it is not necessary to answer these with precision.  We used "Use AI and ML to add intelligent features to apps".
-    - You may have to enter a payment method if you do not qualify for a trial.  The labs in this course should cost less than $5.
+    - You may have to enter a payment method if you do not qualify for a free trial.  The labs in this course should cost less than $5.
     - You may be taken on a short tour of the Azure portal.
 
-1. **Signup for Azure AI Services**: From the Azure main console, find the search field on the top.  Type "Azure AI Services".
+1. **Signup for Azure Open AI**: From the Azure main console, find the search field on the top.  Type "Azure Open AI".
 
-    * At present, even if you have an Azure account, you must specifically enable the use of Azure OpenAI: https://customervoice.microsoft.com/Pages/ResponsePage.aspx?id=v4j5cvGGr0GRqy180BHbR7en2Ais5pxKtso_Pz4b1_xUNTZBNzRKNlVQSFhZMU9aV09EVzYxWFdORCQlQCN0PWcu .  This requires a work email address (not a personal email address) and a subscription.  
-    * It can take over 24 hours to receive a response.
+    * Even with an Azure account, access to Azure OpenAI must be explicitly requested via [this form](https://learn.microsoft.com/en-us/legal/cognitive-services/openai/limited-access). Approval requires a work or school account and a valid Azure subscription. Approval time may vary from a few hours to a few days.
 
 1. **Create an Azure OpenAI _resource_**: Once you have an Azure account and Azure OpenAI is enabled, create an Azure OpenAI resource:
 
-    1.  From the Azure main console, search for "Azure AI Services".
-    1. From the Azure AI Services page, select "Azure OpenAI".
+    1. From the Azure main console, search for "Azure Open AI".
+    1. From the Azure Open AI page, select "Azure OpenAI".
     1. Click "Create Azure OpenAI".
     1. Select any subscription, resource group, and region you like.
     1. Resource names must be unique.  I suggest creating one based on your full name plus a unique number, like the year.  
     1. Select the standard pricing tier.  If you have more than one option you may explore which one is the best deal for your situation.
     1. Click "Next"
-    1. For network, select "All Networks..." for this exercise.  In a production situation we would usually restrict this to a private network on our Azure account.
+    1. For network, select "All Networks..." for training purposes.  In a production situation we would usually restrict this to a private network on our Azure account.
     1. Next.
     1. You may leave the tags empty.  Next.
     1. Take a moment to review terms, and click Create.
@@ -211,8 +210,8 @@ NOTE:  Cloud providers such as Azure change their procedures from time to time w
 
 1. **Obtain endpoint and keys**:
 
-    1. From the Azure main console, find the search field on the top.  Type "Azure AI Services".
-    1. From the Azure AI Services page, select "Azure OpenAI".
+    1. From the Azure main console, find the search field on the top.  Type "Azure Open AI".
+    1. From the Azure Open AI page, select "Azure OpenAI".
     1. From the selection list, choose the resource you just created.
     1. From the resource details page, select "click here to view endpoints". 
     1. Click "Show Keys".  Record the values for key 1, key 2, and endpoint in a temporary file.  **SECURITY WARNING: DO NOT STORE THE KEY IN A PUBLIC REPOSITORY** 
@@ -230,13 +229,20 @@ NOTE:  Cloud providers such as Azure change their procedures from time to time w
 1. Restart your IDE after setting an environment variable this way.
 
 
-1. **Create a _Deployment_**: Open https://oai.azure.com/portal in a new browser tab.  Go to Management / Deployments / Create new deployment.
-    1. Select a model to use.  _gpt-35-turbo_ has the lowest price at the time of this writing.
-    1.  Choose the default version and standard deployment type.
-    1.  Provide a name for the deployment.  We suggest using the same name as the model you've just selected (there is generally a 1 to 1 relationship with model and deployment).  Record the name, you will need it later.
-    1. Adjust advanced options if you like. Create. 
+1. **Create _Deployments_**  You will need to create deployments of chat-completion and text-to-image models to complete the labs: 
+    1. Open https://oai.azure.com/ in a new browser tab.  
+    1. Ensure you are in the correct directory and subscription (shown at the top-right).
+    1. On the left-hand menu, select Deployments.
+    1. In the Model deployments page, click "+ Deploy model" / "Deploy base model".
+    1. Choose a chat completion model.  The most cost effective, widely distributed model at the time of this writing (May, 2025) is **GPT-3.5-Turbo**, though **GPT-4o Mini** may be available in your chosen region.  You can repeat this process to setup and experiment with multiple models.  Specific models are not always available in your desired region.  
+    1. Leave the other settings as they are.  Double-check the model's region to verify that it resides in the same region as your resource group.
+    1. Click "Create resource and deploy".
 
-Note:  [Azure OpenAI pricing](https://azure.microsoft.com/en-us/pricing/details/cognitive-services/openai-service/) for chat/text is based on input and output tokens, and varies depending on the model chosen.  Tokens currently cost between $0.0005 and $0.06 per thousand input tokens, $0.002 and $0.12 per thousand output tokens.  It is always a good idea to double-check the pricing page when using a cloud provider.
+* Once the deployment is created, it will appear in the list. You can test the deployment interactively from the Studio UI.
+
+    1. If you plan on completing the Azure image creation lab, repeat the steps above to create and deploy the **dall-e-3** text-to-image model.
+
+Note:  [Azure OpenAI pricing](https://azure.microsoft.com/en-us/pricing/details/cognitive-services/openai-service/) for chat/text is based on input and output tokens, and varies depending on the model chosen.  Tokens currently cost between $0.0005 and $0.06 per thousand input tokens, $0.002 and $0.12 per thousand output tokens.  All prices are model dependent and subject to change.  It is always a good idea to double-check the pricing page when using a cloud provider.
 
 ---
 ### Setup Process for Amazon Bedrock

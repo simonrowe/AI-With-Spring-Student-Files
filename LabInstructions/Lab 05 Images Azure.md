@@ -7,7 +7,7 @@ Within the project code, you will find comments containing **TODO** instructions
 ---
 **Part 1 - Setup Azure Deployment**
 
-If you have not already done so, Establish an Azure account.  Follow the instructions in the **[Lab Setup guide](https://github.com/kennyk65/AI-With-Spring-Student-Files/blob/main/LabInstructions/Lab%20Setup.md)** and find the _Signup Process for Azure OpenAI_ section.  Walk through these instructions to establish an Azure Account, OpenAI _resource_, Endpoint, Keys, and Deployment. 
+If you have not already done so, Establish an Azure account.  Follow the instructions in the **[Lab Setup guide](https://github.com/kennyk65/AI-With-Spring-Student-Files/blob/main/LabInstructions/Lab%20Setup.md)** and find the _Signup Process for Azure OpenAI_ section.  Walk through these instructions to establish an Azure Account, OpenAI _resource_, Endpoint, Keys, and Deployment. Be sure that you have deployed the **dall-e-3** text-to-image model.
 
 ---
 **Part 2 - Setup the Project**
@@ -40,7 +40,7 @@ If you have not already done so, Establish an Azure account.  Follow the instruc
     * SpringAI applications can run as part of a web application, but these exercises are built to avoid that extra step.
     * The retry* settings will override the `*ImageModel`'s default settings.  You are likely to experience errors while you learn the API's usage, and we don't want you to experience unnecessary expenses.  
     * If you forgot your _endpoint_, the value can be found in the [Azure Portal](https://portal.azure.com/) / _Azure OpenAI_. Open your resource and select _click here to view endpoints_.
-    * The deployment name is the same value you defined during setup.
+    * The deployment name should match the model deployment name from the setup instructions, such as **dall-e-3** or a similar image generation model.
     * You can experiment with some of the image settings later.  Remember that larger, higher-quality images incur greater costs.  
 
 1. **TODO-03** Open the main application class in `src/main/java/com/example/Application.java`.  Run the application. We expect the application to start, then stop, without errors.  If you have any errors related to tooling, be sure to address them now before proceeding.
