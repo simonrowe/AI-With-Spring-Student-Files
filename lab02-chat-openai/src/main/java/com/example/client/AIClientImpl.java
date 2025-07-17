@@ -1,7 +1,5 @@
 package com.example.client;
 
-import org.springframework.ai.chat.client.ChatClient;
-import org.springframework.ai.chat.model.ChatModel;
 import org.springframework.stereotype.Component;
 
 //  TODO-05: Use a stereotype annotation to mark this class as a Spring bean.
@@ -9,9 +7,9 @@ import org.springframework.stereotype.Component;
 
 public class AIClientImpl implements AIClient {
     
-    private ChatClient client;
 
-    //  TODO-06: Create a constructor for this bean.
+    //  TODO-06: Define a private member variable of type ChatClient named client.
+    //  Create a constructor for this bean.
     //  Inject a ChatModel object into the constructor.
     //  Pass the model to the ChatClient.builder to build a ChatClient object.
     //  Save the ChatClient object in the client field.

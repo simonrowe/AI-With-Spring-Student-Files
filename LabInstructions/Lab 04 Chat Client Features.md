@@ -38,16 +38,20 @@ The instructions below are for VS Code. If you wish to use IntelliJ or Eclipse a
 1. **TODO-01**: The lab project is already setup with dependencies for Bedrock, Azure, Ollama, and OpenAI.  However, you may need to adjust the settings based on your own accounts / environments.  Adjust the settings to correspond to the model(s) you plan on using:
 
     1. If you plan to use **Amazon Bedrock**:
+        * Set spring.ai.model.chat to bedrock-converse to tell SpringAI which autoconfigure class to use.
         * Adjust the region setting if needed.  Use your previous lab settings for guidance.
         * Make sure you have followed the **[Lab Setup guide](https://github.com/kennyk65/AI-With-Spring-Student-Files/blob/main/LabInstructions/Lab%20Setup.md)** for AWS / Amazon Bedrock.
         * At present, this lab requires Bedrock Anthropic's _Claude 3.5 Sonnet_ (anthropic.claude-3-5-sonnet-20240620-v1:0) model enabled.  This may change over time as different Bedrock models become available and Spring AI selects different defaults. 
     1. If you plan to use **Azure OpenAI**:
+        * Set spring.ai.model.chat to azure-openai to tell SpringAI which autoconfigure class to use.
         * Adjust the endpoint, deployment-name, and model settings as needed.  Use your previous lab settings for guidance.
         * Make sure you have followed the **[Lab Setup guide](https://github.com/kennyk65/AI-With-Spring-Student-Files/blob/main/LabInstructions/Lab%20Setup.md)** document for Azure.
     1. If you plan to use **OpenAI**:
+        * Set spring.ai.model.chat to openai to tell SpringAI which autoconfigure class to use.
         * Adjust the model setting if needed.  Use your previous lab settings for guidance.
         * Make sure you have followed the **[Lab Setup guide](https://github.com/kennyk65/AI-With-Spring-Student-Files/blob/main/LabInstructions/Lab%20Setup.md)** document for OpenAI.
     1. If you plan to use **Ollama**:
+        * Set spring.ai.model.chat to ollama to tell SpringAI which autoconfigure class to use.
         * Adjust the base-url and model settings if needed.  Use your previous lab settings for guidance.
         * Make sure you have followed the **[Lab Setup guide](https://github.com/kennyk65/AI-With-Spring-Student-Files/blob/main/LabInstructions/Lab%20Setup.md)** for Ollama.
         * Make sure your Ollama Docker container is running. For this lab we will use the **mistral** model, but your can also try **llama2**.

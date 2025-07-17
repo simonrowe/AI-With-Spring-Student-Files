@@ -75,9 +75,9 @@ spring:
           model: mistral
 
 ```
-  * The `base-url` setting assumes a locally running Docker container.  You can omit this if you have not altered any default settings.
-  * The `model` setting should align with the Ollama model which you have pulled and run.  You may need to switch this to "llama2" or another model.
   * The `spring.ai.model.chat` set to `ollama` tells SpringAI which autoconfigure class to use.
+  * The `base-url` setting assumes a locally running Docker container.  You can omit this if you have not altered any default settings.
+  * The `spring.ai.ollama.chat.options.model` setting should align with the Ollama model which you have pulled and run.  You may need to switch this to "llama2" or another model.
   * SpringAI applications can run as part of a web application, but these exercises are built to avoid that extra step.
   * Note: The retry settings will override the `ChatClient`'s default settings.  You are likely to experience errors while you learn the API's usage, and we don't want you to experience unnecessary delays.
   
