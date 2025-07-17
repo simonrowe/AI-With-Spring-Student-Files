@@ -57,7 +57,7 @@ spring:
     retry:
       max-attempts: 1           # Maximum number of retry attempts.
 ```
-- We could store OpenAI's API key value here in `application.yml`, but this would be a security risk if we were to ever distribute this file.  Setting this value in an environment variable is safer.
+- Be sure you have completed the Lab Setup steps for obtaining OpenAI API key and setting it as an environment variable.  We could store the API key value here in `application.yml`, but this would be a security risk if we were to ever distribute this file.  Setting this value in an environment variable is safer.
 - Note: The retry* settings will override the `ChatClient`'s default settings.  You are likely to experience errors while you learn the API's usage, and we don't want you to experience unnecessary delay or expense.
 6.  Save your work.  
 
@@ -137,7 +137,7 @@ public class MyClientTests {
 17. Add code to automatically provide a reference to the `MyClient`:
 ```
     @Autowired 
-	MyClient myClient;
+	MyClient client;
 ```
 Add a `@Test` method to use the `openAIClient` to make an example API call:
 ```
