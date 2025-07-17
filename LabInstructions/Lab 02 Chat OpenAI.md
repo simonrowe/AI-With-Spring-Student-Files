@@ -38,12 +38,12 @@ The instructions below are for VS Code. If you wish to use IntelliJ or Eclipse a
 ---
 **Part 3 - Initial Configuration and Test**
 
-4. **TODO-02**: Open the **pom.xml** file.  Add the dependency for OpenAI.  The groupId value will be `org.springframework.ai`.  The artifactId will be `spring-ai-openai-spring-boot-starter`.  Save your work.
+4. **TODO-02**: Open the **pom.xml** file.  Add the dependency for OpenAI.  The groupId value will be `org.springframework.ai`.  The artifactId will be `spring-ai-starter-model-openai`.  Save your work.
 
 ```
 <dependency>
 	<groupId>org.springframework.ai</groupId>
-	<artifactId>spring-ai-openai-spring-boot-starter</artifactId>
+	<artifactId>spring-ai-starter-model-openai</artifactId>
 </dependency>
 ```
 - Warning: Do NOT use the dependency for _azure_ OpenAI in this lab. 
@@ -66,12 +66,12 @@ spring:
   ai:
     retry:
       max-attempts: 1           # Maximum number of retry attempts.
+    model.chat: openai
     openai:
       api-key: NEVER-PLACE-SECRET-KEY-IN-CONFIG-FILE
-      chat.enabled: true             
 ```
 
-  - The `spring.ai.openai.chat.enabled` setting tells Spring Boot to specifically autoconfigure objects supporting OpenAI.
+  - The `spring.ai.model.chat` set to `openai` tells SpringAI which autoconfigure class to use.
   - SpringAI applications can run as part of a web application, but these exercises are built to avoid that extra step.
   - Note: The retry settings will override the `ChatClient`'s default settings.  You are likely to experience errors while you learn the API's usage, and we don't want you to experience unnecessary delays or expense.  
   - We could store the API key value in this file, but this would be a security risk if we were to ever distribute this file.  Setting this value by environment variable is safer.

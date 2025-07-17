@@ -1,10 +1,10 @@
   # TODO-04: 
-  # Set `spring.application.name` to "Lab06 OpenAI Functions" or something similar.
-  # Set `spring.main.web-application-type` to none to run as a non-web application.  Spring AI applications can run as web applications, but these exercises avoid this distraction.
-  # Set `spring.ai.retry.max-attempts` to 1 to fail fast to save time if you have errors.
-  # Set `spring.ai.retry.on-client-errors` to false since there is typically no point in retrying a client (vs server) error.
-  # Set `spring.ai.openai.chat.enabled` to true to enable the chat model.
-  # Set `spring.ai.openai.chat.options.model` to "gpt-35-turbo" to use the GPT-3.5 model, or allow it to default.
+  # Set spring.application.name to "Lab06 OpenAI Functions" or something similar.
+  # Set spring.main.web-application-type to none to run as a non-web application.  Spring AI applications can run as web applications, but these exercises avoid this distraction.
+  # Set spring.ai.retry.max-attempts to 1 to fail fast to save time if you have errors.
+  # Set spring.ai.retry.on-client-errors to false since there is typically no point in retrying a client (vs server) error.
+  # Set spring.ai.model.chat to openai to tell SpringAI which autoconfigure class to use.
+  # Set spring.ai.openai.chat.options.model to "gpt-35-turbo" to use the GPT-3.5 model, or allow it to default.
   
 spring:
   application.name: Lab06 Local Functions

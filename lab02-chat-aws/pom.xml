@@ -21,14 +21,14 @@
 
 		<!-- 
 		TODO-01: Follow the lab setup instructions for establishing an AWS account
-		and permission to use the Titan chat model.  Once this is finished,
+		and permission to use the Nova chat model.  Once this is finished,
 		move on to the next step. 
 		-->
 		
 		<!-- 
 		TODO-02: Add the dependency for Amazon Bedrock.  
 		The groupId value will be org.springframework.ai
-		The artifactId will be spring-ai-bedrock-converse-spring-boot-starter
+		The artifactId will be spring-ai-starter-model-bedrock-converse
 		-->
 
 		<dependency>

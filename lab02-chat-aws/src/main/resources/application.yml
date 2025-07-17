@@ -2,9 +2,9 @@
   # Set spring.main.web-application-type to none to run as a non-web application.
   # Set spring.ai.retry.max-attempts to 1 to fail fast.
   # Set spring.ai.retry.on-client-errors to false since there is typically no point in retrying such a request.
-  # Set spring.ai.bedrock.aws.region to "us-west-2", or whichever region you have enabled the titan model in.
-  # Set spring.ai.bedrock.converse.chat.enabled to enable the chat model.
-  # Set spring.ai.bedrock.converse.chat.options.model to "amazon.titan-text-lite-v1" or equivalent (make sure it is enabled)
+  # Set spring.ai.model.chat to bedrock-converse to tell SpringAI which autoconfigure class to use.
+  # Set spring.ai.bedrock.aws.region to "us-west-2", or whichever region you have enabled the model in.
+  # Set spring.ai.bedrock.converse.chat.options.model to "amazon.nova-micro-v1:0" or equivalent (make sure it is enabled)
 
 spring:
   application.name: Lab02 

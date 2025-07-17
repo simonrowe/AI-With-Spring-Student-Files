@@ -28,7 +28,7 @@
 		<!-- 
 		TODO-02: Add the dependency for openai.  
 		The groupId value will be org.springframework.ai
-		The artifactId will be spring-ai-openai-spring-boot-starter
+		The artifactId will be spring-ai-starter-model-openai
 		-->
 
 

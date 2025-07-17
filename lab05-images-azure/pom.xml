@@ -24,7 +24,7 @@
 		<!-- TODO-01: Notice the starter for Azure OpenAI is present.	-->
 		<dependency>
 			<groupId>org.springframework.ai</groupId>
-			<artifactId>spring-ai-azure-openai-spring-boot-starter</artifactId>
+			<artifactId>spring-ai-starter-model-azure-openai</artifactId>
 		</dependency>
 
 

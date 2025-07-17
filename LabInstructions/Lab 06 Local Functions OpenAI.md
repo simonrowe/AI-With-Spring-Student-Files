@@ -39,7 +39,7 @@ An example is combining general knowlege about a given company with its current 
     ```
     <dependency>
         <groupId>org.springframework.ai</groupId>
-        <artifactId>spring-ai-openai-spring-boot-starter</artifactId>
+        <artifactId>spring-ai-starter-model-openai</artifactId>
     </dependency>
     ```
     - Warning: Do NOT use the dependency for _azure_ OpenAI in this lab. 
@@ -59,7 +59,7 @@ An example is combining general knowlege about a given company with its current 
     * Set `spring.main.web-application-type` to none to run as a non-web application.  Spring AI applications can run as web applications, but these exercises avoid this distraction.
     * Set `spring.ai.retry.max-attempts` to 1 to fail fast to save time if you have errors.
     * Set `spring.ai.retry.on-client-errors` to false since there is typically no point in retrying a client (vs server) error.
-    * Set `spring.ai.openai.chat.enabled` to true to enable the chat model.
+    * Set `spring.ai.model.chat` to `openai` to tell SpringAI which autoconfigure class to use.
     * Set `spring.ai.openai.chat.options.model` to "gpt-35-turbo" to use the GPT-3.5 model, or allow it to default.
 
     ```
@@ -70,9 +70,9 @@ An example is combining general knowlege about a given company with its current 
         retry:
           max-attempts: 1      # Maximum number of retry attempts.
           on-client-errors: false   # Do not retry for 4xx errors.
+        model.chat: openai
         openai:
           api-key: NEVER-PLACE-SECRET-KEY-IN-CONFIG-FILE
-          chat.enabled: true          
     ```
 
 1.  Save your work.  

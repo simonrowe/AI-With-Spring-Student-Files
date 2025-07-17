@@ -7,33 +7,30 @@ spring:
       max-attempts: 1           # Maximum number of retry attempts.
       on-client-errors: false   # If false, throw a NonTransientAiException, and do not attempt retry for 4xx client error codes.
 
-    bedrock.converse.chat.enabled:  false # Disable all models by default.
-    ollama.chat.enabled:            false # Disable all models by default.
-    openai.chat.enabled:            false # Disable all models by default.
-    azure.openai.chat.enabled:      false # Disable all models by default.
+    model.chat: none            # Disable all chat models by default. Models will be explicitly enabled below.
 
 # TODO-02: Adjust the settings below based on the chat model you plan to use.
 # Use previous labs for guidance.
 #
 # If you plan to use Amazon Bedrock: 
 #   - Adjust the region setting if needed.
-#   - Set the spring.ai.bedrock.converse.chat.enabled to true to enable the chat model.
+#   - Set spring.ai.model.chat to bedrock-converse to tell SpringAI which autoconfigure class to use.
 #   - Makes sure you have enabled the Anthropic Claude 3.5 Sonnet model
 #   - Set the spring.ai.bedrock.converse.chat.options.model to "anthropic.claude-3-5-sonnet-20240620-v1:0" or equivalent (make sure it is enabled)
 #   - Adjust the model if desired.  See https://docs.aws.amazon.com/bedrock/latest/userguide/models-supported.html for latest list.
 #
 # If you plan to use OpenAI:
-#   - Set spring.ai.openai.chat.enabled to true to enable the chat model.
+#   - Set spring.ai.model.chat to openai to tell SpringAI which autoconfigure class to use.
 #   - Set spring.ai.openai.chat.options.model to "gpt-35-turbo", or see https://platform.openai.com/docs/models/embeddings for latest list.
 #
 # If you plan to use Azure OpenAI:
-#   - Set spring.ai.azure.openai.chat.enabled to true to enable the chat model.
+#   - Set spring.ai.model.chat to azure-openai to tell SpringAI which autoconfigure class to use.
 #   - Set spring.ai.azure.openai.endpoint to the value you established during Azure setup.
 #   - Set spring.ai.azure.openai.chat.options.deployment-name to the value you establised during setup.
 #   - Set spring.ai.azure.openai.chat.options.model to "gpt-35-turbo", or whichever model you have enabled.
 #
 # If you plan to use Ollama:
-#   - Set spring.ai.ollama.chat.enabled to true to enable the chat model.
+#   - Set spring.ai.model.chat to ollama to tell SpringAI which autoconfigure class to use.
 #   - Adjust the base-url if needed.
 #   - Make sure Ollama is running.
 #
@@ -46,12 +43,12 @@ spring:
   config.activate.on-profile: aws
 
   ai:
+    model.chat: bedrock-converse
     bedrock:
       aws:
         region: us-west-2 # Adjust as needed.
       converse:
         chat:
-          enabled: true
           options:
             model: anthropic.claude-3-5-sonnet-20240620-v1:0  # Adjust as needed.
 ---
@@ -59,9 +56,7 @@ spring:
   config.activate.on-profile: openai
 
   ai:
-    openai:
-      chat:
-        enabled: true
+    model.chat: openai
 
 
 ---
@@ -69,11 +64,10 @@ spring:
   config.activate.on-profile: azure
 
   ai:
+    model.chat: azure-openai
     azure:
       openai:
         endpoint: ENDPOINT-GOES-HERE
-        chat:
-          enabled: true
           options:
             deployment-name: DEPLOYMENT-NAME-GOES-HERE
 
@@ -83,6 +77,4 @@ spring:
   config.activate.on-profile: ollama
 
   ai:
-    ollama:
-      chat:
-        enabled: true
+    model.chat: ollama

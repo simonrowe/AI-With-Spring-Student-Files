@@ -27,18 +27,18 @@ Let's jump in.
 
     1. If you plan to use **Amazon Bedrock**:
         * Adjust the region setting if needed.  Use your previous lab settings for guidance.
-        * Set the spring.ai.bedrock.converse.chat.enabled to true to enable the chat model.
+        * Set spring.ai.model.chat to bedrock-converse to tell SpringAI which autoconfigure class to use.
         * Set spring.ai.bedrock.converse.chat.options.model to "anthropic.claude-3-5-sonnet-20240620-v1:0" or equivalent.  See the **[latest list](https://docs.aws.amazon.com/bedrock/latest/userguide/models-supported.html)**.
         * Make sure the Anthropic Claude 3.5 Sonnet model is enabled.  Refer to the **[Lab Setup guide](https://github.com/kennyk65/AI-With-Spring-Student-Files/blob/main/LabInstructions/Lab%20Setup.md)** for AWS / Amazon Bedrock.
         
     1. If you plan to use **OpenAI**:
-        * Set spring.ai.openai.chat.enabled to true to enable the chat model.
+        * Set spring.ai.model.chat to openai to tell SpringAI which autoconfigure class to use.
         * Adjust the model if desired or take the default.  See the **[latest list](https://platform.openai.com/docs/models/embeddings)**.
         * Make sure you have followed the **[Lab Setup guide](https://github.com/kennyk65/AI-With-Spring-Student-Files/blob/main/LabInstructions/Lab%20Setup.md)** for OpenAI.
 
         
     1. If you plan to use **Azure OpenAI**:
-        * Set spring.ai.azure.openai.chat.enabled to true to enable the chat model.
+        * Set spring.ai.model.chat to azure-openai to tell SpringAI which autoconfigure class to use.
         * Set spring.ai.azure.openai.endpoint to the value you established during Azure setup.
         * Set spring.ai.azure.openai.chat.options.deployment-name to the value you establised during setup.
         * Set spring.ai.azure.openai.chat.options.model to "gpt-35-turbo", or whichever model you have enabled.
@@ -46,7 +46,7 @@ Let's jump in.
 
 
     1. If you plan to use **Ollama**:
-        * Set spring.ai.ollama.chat.enabled to true to enable the chat model.
+        * Set spring.ai.model.chat to ollama to tell SpringAI which autoconfigure class to use.
         * Make sure you have followed the **[Lab Setup guide](https://github.com/kennyk65/AI-With-Spring-Student-Files/blob/main/LabInstructions/Lab%20Setup.md)** for Ollama.
         * Adjust the base-url if needed.  Use your previous lab settings for guidance.
         * Adjust the spring.ai.ollama.chat.options.model if desired.  See the **[list of models](https://ollama.com/library?sort=popular)**

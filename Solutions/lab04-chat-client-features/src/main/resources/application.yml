@@ -5,22 +5,25 @@ spring:
   ai:
     retry:
       max-attempts: 1           # Maximum number of retry attempts.
-    bedrock.converse.chat.enabled:  false # Disable all models by default.
-    ollama.chat.enabled:            false # Disable all models by default.
-    openai.chat.enabled:            false # Disable all models by default.
-    azure.openai.chat.enabled:      false # Disable all models by default.
+    model.chat: none            # Disable all chat models by default. Models will be explicitly enabled below.
 
     # TODO-01: Adjust the settings below based on the chat model you plan to use.
     # If you plan to use Amazon Bedrock: 
+    #   - Set spring.ai.model.chat to bedrock-converse to tell SpringAI which autoconfigure class to use.
     #   - Adjust the region setting if needed.
+    #   - Adjust the spring.ai.bedrock.converse.chat.options.model if you like.
     # If you plan to use Azure OpenAI:
+    #   - Set spring.ai.model.chat to azure-openai to tell SpringAI which autoconfigure class to use.
     #   - Adjust the endpoint, deployment-name, and model settings as needed.
     # If you plan to use OpenAI:
-    #   - Adjust the model setting if needed.
+    #   - Set spring.ai.model.chat to openai to tell SpringAI which autoconfigure class to use.
+    #   - Adjust the spring.ai.openai.chat.options.model setting if needed.
     # If you plan to use Ollama:
+    #   - Set spring.ai.model.chat to ollama to tell SpringAI which autoconfigure class to use.
     #   - Adjust the base-url and model settings if needed.
     #   - We've found the best results with the llama2 model.
     #   - Make sure you have pulled the model you wish to use, and that Ollama is running.
+
 
 ---
 spring:
@@ -28,6 +31,7 @@ spring:
 
   application.name: Lab04 Chat Client Features - Bedrock
   ai:
+    model.chat: bedrock-converse
     bedrock:
       aws:
         region: us-west-2 # Adjust as needed.
@@ -35,7 +39,6 @@ spring:
         secret-key: NEVER-PLACE-SECRET-KEY-IN-CONFIG-FILE
       converse:
         chat:
-          enabled: true
           options:
             model: anthropic.claude-3-5-sonnet-20240620-v1:0  # Adjust as needed
 
@@ -45,9 +48,9 @@ spring:
 
   application.name: Lab04 Chat Client Features - OpenAI
   ai:
+    model.chat: openai
     openai:
       api-key: NEVER-PLACE-SECRET-KEY-IN-CONFIG-FILE
-      chat.enabled: true
 
 ---
 spring:
@@ -55,12 +58,12 @@ spring:
 
   application.name: Lab04 Chat Client Features - Azure OpenAI
   ai:
+    model.chat: azure-openai
     azure:
       openai:
         api_key: NEVER-PLACE-SECRET-KEY-IN-CONFIG-FILE
         endpoint: ENDPOINT-GOES-HERE                      # Adjust as needed.
         chat:
-          enabled: true
           options:
             deployment-name: DEPLOYMENT-NAME-GOES-HERE    # Adjust as needed.
             model: gpt-35-turbo                           # Adjust as needed.
@@ -71,10 +74,10 @@ spring:
 
   application.name: Lab04 Chat Client Features - Ollama
   ai:
+    model.chat: ollama
     ollama:
       base-url: http://localhost:11434  # Adjust as needed.
       chat:
-        enabled: true
         options:
           model: llama2  # Adjust as needed.
 

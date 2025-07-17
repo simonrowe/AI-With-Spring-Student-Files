@@ -14,7 +14,7 @@ If you have not already done so, Establish an Azure account.  Follow the instruc
 
 1. From within VS Code, open the _/student-files/lab05-images-azure_ folder.  
 
-1. **TODO-01**: Open the **pom.xml** file.  Notice that the  `spring-ai-azure-openai-spring-boot-starter` dependency has already been added.
+1. **TODO-01**: Open the **pom.xml** file.  Notice that the  `spring-ai-starter-model-azure-openai` dependency has already been added.
 
 1. **TODO-02**: Open `src/main/resources/application.yml` and establish the following entries:
     ```

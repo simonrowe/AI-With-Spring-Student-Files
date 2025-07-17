@@ -18,7 +18,7 @@ A half-completed skeleton project has been created for you to relieve you from t
     * See the **IDE Tips** document to troubleshoot any issues when opening this project.
 
 
-1. **TODO-01**: Open the **pom.xml** file.  Notice that the  `spring-ai-openai-spring-boot-starter` dependency has already been added.
+1. **TODO-01**: Open the **pom.xml** file.  Notice that the  `spring-ai-starter-model-openai` dependency has already been added.
 
 1. **TODO-02**: Open `src/main/resources/application.yml` and establish the following entries:
     ```
