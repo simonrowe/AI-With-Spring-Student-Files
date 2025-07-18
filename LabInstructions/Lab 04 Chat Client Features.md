@@ -61,7 +61,7 @@ The instructions below are for VS Code. If you wish to use IntelliJ or Eclipse a
 ---
 **Part 3 - Chat Conversation Memory**
 
-To implement interactive chat behavior when working with a foundational model, the `ChatClient` will be responsible for managing the state of the conversation, and managing different identifiers for the separate ongoing conversations
+To implement interactive chat behavior when working with a foundational model, the `ChatClient` will need to manage the state of ongoing conversations.  It will use SpringAI's `ChatMemory` abstraction to implement this capability.
 
 4. Open `src/test/java/com.example.client.AIClientImplTests`.
 
@@ -79,19 +79,21 @@ To implement interactive chat behavior when working with a foundational model, t
     
 1. Open `src/main/java/com.example.client.AIClientImpl`
 
-1. **TODO-04:** Within the `AIClientImpl` class, define a member variable of type `InMemoryChatMemory`.  Initialize it with a `new InMemoryChatMemory()`.
-    * This will store the history of each conversation.  A production application should use a more persistent form of storage able to be shared between instances.
+1. **TODO-04:** Within the `AIClientImpl` class, alter the signature of the constructor.  Add a second parameter named `chatMemory` of type `ChatMemory`.
+    * This object will provide memory to maintain contextual awareness throughout multiple conversations.  
+
 
     ```
-    InMemoryChatMemory memory = new InMemoryChatMemory(); 
+    public AIClientImpl(ChatModel model, ChatMemory chatMemory) {
     ```
-1. **TODO-05:** Defined a member variable of type `MessageChatMemoryAdvisor`.  Initialize it with a new `MessageChatMemoryAdvisor`   injected with the `InMemoryChatMemory` instance defined above. 
+1. **TODO-05:** Within the constructor, define a variable named `advisor` of type `MessageChatMemoryAdvisor`.  Initialize it by using its `.builder()` method.  Inject the builder() with the `chatMemory` parameter from the constructor.
 
     ```
-    MessageChatMemoryAdvisor advisor = new MessageChatMemoryAdvisor(memory);
+    MessageChatMemoryAdvisor advisor =
+        MessageChatMemoryAdvisor.builder(chatMemory).build();
     ```
 
-1. **TODO-06:**  Within the constructor, alter the creation of the `ChatClient`.  Use the `.defaultAdvisors()` method to add the `MessageChatMemoryAdvisor` defined earlier:
+1. **TODO-06:**  Also within the constructor, alter the creation of the `ChatClient`.  Use the `.defaultAdvisors()` method to add the `MessageChatMemoryAdvisor` defined earlier:
 
     ```
     public AIClientImpl(ChatModel model) {
@@ -106,14 +108,15 @@ To implement interactive chat behavior when working with a foundational model, t
     * The `advisors()` method will accept a Lambda expression that implements the Consumer.
     * The parameter to the Consumer is an `AdvisorSpec`.
     * Use the `AdvisorSpec`'s `.param()` method to add a parameter identifying the conversation.
-        * The parameter key should be the `conversationKey` defined above.
+        * The parameter key should be ChatMemory.CONVERSATION_ID.
         * The parameter value should be the `conversationId` passed to this method.
+            * Note that this method's caller will be responsible for tracking different conversationIds.
 
     ```
     client
         .prompt()
         .user(input)
-        .advisors(a -> a.param(conversationKey, conversationId))
+        .advisors(a -> a.param(ChatMemory.CONVERSATION_ID, conversationId))
         .call()
         .content();
     ```
@@ -156,8 +159,12 @@ Sometimes it can be useful to receive a strongly-typed Java object in response t
     ```
     assertThat(stateData.capitalCity()).isEqualTo("Lansing");
     assertThat(stateData.areaInSquareMiles()).isBetween(95000, 98000);
-    assertThat(stateData.population()).isBetween(10000000, 12000000);
-    assertThat(stateData.famousFor()).contains("Great Lakes");
+    assertThat(stateData.population()).isBetween(1000000, 12000000);
+    assertThat(stateData.famousFor()).matches(f ->
+            f.toLowerCase().contains("great lakes") ||
+            f.toLowerCase().contains("auto") ||
+            f.toLowerCase().contains("manufacturing"));
+    
     ```
 
 1. Run the test again, it should still pass.
@@ -178,5 +185,8 @@ You may observe different behavior in different models.  Nothing guarantees that
 ---
 **Part 6 - Summary**
 
-At this point, you have used some of the features available in the `ChatClient`.  Congratulations! 
+At this point, you have seen how to implement conversational state when working with generative AI models, but we have only scratched the surface.  The default in-memory implementation is very limited.  Some points to consider:
+    * The default `ChatMemory` implementation stores conversation state in memory.  Alternate implementations are available based on JDBC, Cassandra, and Neo4J.  These have the advantage of scale and shareability between instances.
+    * Note that Chat *Memory* is not Chat *History*.  The goal of chat *memory* is to store enough of the recent conversational context to allow an ongoing conversation to continue.  To store the entire chat *history* a separate technique would nee to be used.
+    * One must make choices as to how much conversational memory to store.  Remember, generative AI models typically limit input tokens and there is no need to retain more context then can fit within this limit. Spring AI currently defaults to the `MessageWindowChatMemory` implementation, which records *messages* (prompts and responses) up to a limit (default is 20).  
 

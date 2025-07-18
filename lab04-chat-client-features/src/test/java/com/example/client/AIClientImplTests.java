@@ -23,6 +23,7 @@ public class AIClientImplTests {
     //  One conversation discusses the Great Lakes.  The other discusses planets.
     //  Remove the @Disabled annotation from the test method.  Run the test.
     //  We expect the test to FAIL.  Do you understand why?
+    //  (Hint: The foundational model is not aware of the ongoing conversation.)
     //  Move on to the next step to fix the error.
 
     @Test
@@ -77,7 +78,6 @@ public class AIClientImplTests {
         //  the entity object is populated with the extra fields you established in the last step.
         //  Run the test again.  It should pass. 
 
-        
-        
+    
     }
 }
