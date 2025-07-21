@@ -1,4 +1,4 @@
-## Lab 06 - OpenAI Local Functions
+## Lab 06 - Tool Calling
 
 In this exercise you will configure SpringAI's ChatClient with locally defined "tools".  These tools will be used to embellish the response from the API with external knowledge not known to the model.
 
