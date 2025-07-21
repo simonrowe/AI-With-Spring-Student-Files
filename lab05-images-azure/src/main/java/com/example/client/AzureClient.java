@@ -16,7 +16,7 @@ public class AzureClient implements AIClient {
     //   Define a constructor which dependency injects this field:
 
 
-    private static final AzureOpenAiImageOptions DEFAULT_OPTIONS = AzureOpenAiImageOptions.builder().withN(1).build();
+    private static final AzureOpenAiImageOptions DEFAULT_OPTIONS = AzureOpenAiImageOptions.builder().N(1).build();
 
     public String createImageUrl(String request) {
 
