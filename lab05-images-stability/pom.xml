@@ -23,7 +23,7 @@
 		<!-- TODO-01: Notice the starter for Stability AI is present.	-->
 		<dependency>
 			<groupId>org.springframework.ai</groupId>
-			<artifactId>spring-ai-stability-ai-spring-boot-starter</artifactId>
+			<artifactId>spring-ai-starter-model-stability-ai</artifactId>
 		</dependency>
 
 
