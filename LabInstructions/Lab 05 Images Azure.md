@@ -25,11 +25,11 @@ If you have not already done so, Establish an Azure account.  Follow the instruc
       ai:
         retry:
           max-attempts: 1           # Maximum number of retry attempts.
+        model.image: azure-openai
         azure:
           openai:
             endpoint: ENDPOINT-GOES-HERE
             image:
-              enabled: true
               options:
                 deployment-name: DEPLOYMENT-NAME-GOES-HERE
                 n: 1                  # number of images to generate.

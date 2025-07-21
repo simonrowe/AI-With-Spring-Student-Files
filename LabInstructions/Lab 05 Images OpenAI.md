@@ -29,9 +29,9 @@ A half-completed skeleton project has been created for you to relieve you from t
     ai:
       retry:
         max-attempts: 1           # Maximum number of retry attempts.
+      model.image: openai
       openai:
         image:
-          enabled: true
           options:
             n: 1                  # number of images to generate.
             response_format: url  # or b64_json

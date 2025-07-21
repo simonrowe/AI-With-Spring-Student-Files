@@ -30,17 +30,17 @@ A half-completed skeleton project has been created for you to relieve you from t
       ai:
         retry:
           max-attempts: 1           # Maximum number of retry attempts.
+        model.image: stabilityai
         stabilityai:
           image:
-            enabled: true
-          option:
-            n: 1                          # Number of images to generate.
-            responseFormat: image/png     # or application/json
-            cfg_scale: 8.0                # 0-35, how closely the prompt is followed.
-            model: stable-diffusion-v1-6  # The model to use in Stability AI.
-            width: 512                    # Must be evenly divisible by 64
-            height: 512                   # Must be evenly divisible by 64
-            steps: 5                      # Number of diffusion steps to run. Valid range: 10 to 50.
+            option:
+              n: 1                          # Number of images to generate.
+              responseFormat: image/png     # or application/json
+              cfg_scale: 8.0                # 0-35, how closely the prompt is followed.
+              model: stable-diffusion-v1-6  # The model to use in Stability AI.
+              width: 512                    # Must be evenly divisible by 64
+              height: 512                   # Must be evenly divisible by 64
+              steps: 5                      # Number of diffusion steps to run. Valid range: 10 to 50.
     ```
     * SpringAI applications can run as part of a web application, but these exercises are built to avoid that extra step.
     * The retry* settings will override the `*ImageModel`'s default settings.  You are likely to experience errors while you learn the API's usage, and we don't want you to experience unnecessary expenses.  
