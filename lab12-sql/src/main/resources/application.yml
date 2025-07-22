@@ -68,6 +68,7 @@ spring:
     azure:
       openai:
         endpoint: ENDPOINT-GOES-HERE
+        chat:
           options:
             deployment-name: DEPLOYMENT-NAME-GOES-HERE
 

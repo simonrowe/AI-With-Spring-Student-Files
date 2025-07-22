@@ -16,9 +16,9 @@ import org.springframework.test.context.ActiveProfiles;
 //      For Ollama,             use "ollama".
 
 @SpringBootTest
-//@ActiveProfiles("openai")  
-//@ActiveProfiles("azure")   
-//@ActiveProfiles("aws")     
+//@ActiveProfiles("openai")
+//@ActiveProfiles("azure")
+//@ActiveProfiles("aws")
 //@ActiveProfiles("ollama")    
 public class ProductServiceTests {
 
