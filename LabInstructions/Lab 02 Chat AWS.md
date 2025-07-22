@@ -71,7 +71,7 @@ spring:
       aws.region: us-west-2 # Adjust as needed.
       converse:
           options:
-            model: amazon.nova-micro-v1:0  # Adjust as needed
+            model: us.amazon.nova-micro-v1:0  # Adjust as needed
 
 ```
 

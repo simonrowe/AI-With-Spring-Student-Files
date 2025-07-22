@@ -13,7 +13,7 @@ spring:
   #   - Set the spring.application.name to "Lab06 Bedrock Tool Calling" or something similar.
   #   - Set spring.ai.model.chat to bedrock-converse to tell SpringAI which autoconfigure class to use.
   #   - Set spring.ai.bedrock.aws.region to "us-west-2", or whichever region you have enabled the model in.
-  #   - Set spring.ai.bedrock.converse.chat.options.model to "amazon.nova-micro-v1:0" or equivalent (make sure it is enabled)
+  #   - Set spring.ai.bedrock.converse.chat.options.model to "us.amazon.nova-micro-v1:0" or equivalent (make sure it is enabled)
   #
   # If you plan to use OpenAI:
   #   - Scroll down to the 'openai' section to add these settings.

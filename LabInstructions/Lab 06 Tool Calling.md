@@ -66,7 +66,7 @@ An example is combining general knowlege about a given company with its current 
         * Scroll down to the 'aws' section to add these settings.
         * Set spring.ai.model.chat to bedrock-converse to tell SpringAI which autoconfigure class to use.
         * Adjust the region setting if needed.  Use your previous lab settings for guidance.
-        * At present, this lab uses _amazon.nova-micro-v1:0_, but other models may work as well.
+        * At present, this lab uses _us.amazon.nova-micro-v1:0_, but other models may work as well.
 
         ```
         spring:
@@ -80,7 +80,7 @@ An example is combining general knowlege about a given company with its current 
                 converse:
                     chat:
                     options:
-                        model: amazon.nova-micro-v1:0  # Adjust as needed.
+                        model: us.amazon.nova-micro-v1:0  # Adjust as needed.
         ```
 
 
