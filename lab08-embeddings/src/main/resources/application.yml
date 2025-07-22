@@ -10,16 +10,20 @@ spring:
       max-attempts: 1      # Maximum number of retry attempts.
 
 # TODO-03: Adjust the settings below based on the chat model you plan to use.
-# If you plan to use Amazon Bedrock: 
+# If you plan to use Amazon Bedrock:
+#   - Set spring.ai.model.embedding to bedrock-cohere.
 #   - Adjust the region setting if needed.
 #   - Adjust the model setting if needed.
 # If you plan to use OpenAI:
+#   - Set spring.ai.model.embedding to openai.
 #   - Adjust the model setting if needed.
 # If you plan to use Ollama:
+#   - Set spring.ai.model.embedding to ollama.
 #   - Adjust the base-url if needed.
 #   - We've found the best results with model: mxbai-embed-large.  Pull it if you have not already done so.
 #   - Make sure you have pulled the model you wish to use, and that Ollama is running.
 # Note that only one model will be active at a time.  The active model is determined by the active profile.
+
 
 ---
 spring:
@@ -27,9 +31,9 @@ spring:
 
   # OpenAI Settings:
   ai:
+    model.embedding: openai
     openai:
       embedding:
-        enabled: true
         options:
           model: text-embedding-ada-002
 
@@ -39,23 +43,24 @@ spring:
   
   # Amazon Bedrock Cohere Settings:
   ai:
+    model.embedding: bedrock-cohere
     bedrock:
-      aws.region: us-west-2 # Adjust as needed.   
+      aws.region: us-west-2 # Adjust as needed.
       cohere:
         embedding:
-          enabled: true
           model: cohere.embed-english-v3
 
 ---
 spring:
   config.activate.on-profile: ollama
 
-  # Ollama Settings:
   ai:
+    model.embedding: ollama
     ollama:
       base-url: http://localhost:11434  # Default base URL when you run Ollama from Docker
       embedding:
-        enabled: true
+        options:
+          model: mxbai-embed-large
 
 ---
 spring:
@@ -63,7 +68,5 @@ spring:
 
   # SpringAI internal embedding model settings:
   ai:
-    embedding:
-      transformer:
-        enabled: true
+    model.embedding: transformers
 
