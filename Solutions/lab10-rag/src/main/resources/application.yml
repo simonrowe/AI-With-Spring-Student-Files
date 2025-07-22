@@ -9,30 +9,32 @@ spring:
 
     openai.embedding.enabled:   false # Allow profile to enable this if needed.
     ollama.embedding.enabled:   false # Allow profile to enable this if needed.
-
-    model.chat: none            # Disable all chat models by default. Models will be explicitly enabled below.
+    bedrock.converse.chat.enabled: false # Allow profile to enable this if needed.
+    openai.chat.enabled:        false # Allow profile to enable this if needed.
+    azure.openai.chat.enabled:  false # Allow profile to enable this if needed.
+    ollama.chat.enabled:        false # Allow profile to enable this if needed.
 
 # TODO-03: Adjust the settings below based on the chat model you plan to use.
 # Use previous labs for guidance.
 #
-# If you plan to use Amazon Bedrock: 
+# If you plan to use Amazon Bedrock:
 #   - Adjust the region setting if needed.
-#   - Set spring.ai.model.chat to bedrock-converse to tell SpringAI which autoconfigure class to use.
+#   - Set the spring.ai.bedrock.converse.chat.enabled to true to enable the chat model.
 #   - Set the spring.ai.bedrock.converse.chat.options.model to "anthropic.claude-3-5-sonnet-20240620-v1:0" or equivalent (make sure it is enabled)
 #   - Adjust the model if desired or take the default.  See https://docs.aws.amazon.com/bedrock/latest/userguide/models-supported.html for latest list.
 #
 # If you plan to use OpenAI:
-#   - Set spring.ai.model.chat to openai to tell SpringAI which autoconfigure class to use.
+#   - Set spring.ai.openai.chat.enabled to true to enable the chat model.
 #   - Set spring.ai.openai.chat.options.model to "gpt-35-turbo", or see https://platform.openai.com/docs/models/embeddings for latest list.
 #
 # If you plan to use Azure OpenAI:
-#   - Set spring.ai.model.chat to azure-openai to tell SpringAI which autoconfigure class to use.
+#   - Set spring.ai.azure.openai.chat.enabled to true to enable the chat model.
 #   - Set spring.ai.azure.openai.endpoint to the value you established during Azure setup.
 #   - Set spring.ai.azure.openai.chat.options.deployment-name to the value you establised during setup.
 #   - Set spring.ai.azure.openai.chat.options.model to "gpt-35-turbo", or whichever model you have enabled.
 #
 # If you plan to use Ollama:
-#   - Set spring.ai.model.chat to ollama to tell SpringAI which autoconfigure class to use.
+#   - Set spring.ai.ollama.chat.enabled to true to enable the chat model.
 #   - Adjust the base-url if needed.
 #   - Make sure Ollama is running.
 #
@@ -44,11 +46,11 @@ spring:
   config.activate.on-profile: aws
 
   ai:
-    model.chat: bedrock-converse
     bedrock:
       aws.region: us-west-2 # Adjust as needed.
       converse:
         chat:
+          enabled: true
           options:
             model: anthropic.claude-3-5-sonnet-20240620-v1:0  # Adjust as needed
 
@@ -57,21 +59,22 @@ spring:
   config.activate.on-profile: openai
 
   ai:
-    model.chat: openai
     openai:
       api-key: NEVER-PLACE-SECRET-KEY-IN-CONFIG-FILE
+      chat:
+        enabled: true
 
 ---
 spring:
   config.activate.on-profile: azure
 
   ai:
-    model.chat: azure-openai
     azure:
       openai:
         api_key: NEVER-PLACE-SECRET-KEY-IN-CONFIG-FILE
         endpoint: ENDPOINT-GOES-HERE
         chat:
+          enabled: true
           options:
             deployment-name: DEPLOYMENT-NAME-GOES-HERE
             model: gpt-35-turbo
@@ -81,20 +84,22 @@ spring:
   config.activate.on-profile: ollama
 
   ai:
-    model.chat: ollama
     ollama:
       base-url: http://localhost:11434  # Default base URL when you run Ollama from Docker
+      chat:
+        enabled: true
+
 
 
 ---
 spring:
   config.activate.on-profile: simple-vector-store
-  
+
   # If running a simple vector store, exclude the Redis, PGVector, and DataSource autoconfigurations.
-  autoconfigure.exclude: 
-  - org.springframework.ai.autoconfigure.vectorstore.redis.RedisVectorStoreAutoConfiguration
-  - org.springframework.ai.autoconfigure.vectorstore.pgvector.PgVectorStoreAutoConfiguration
-  - org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration
+  autoconfigure.exclude:
+    - org.springframework.ai.autoconfigure.vectorstore.redis.RedisVectorStoreAutoConfiguration
+    - org.springframework.ai.autoconfigure.vectorstore.pgvector.PgVectorStoreAutoConfiguration
+    - org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration
 
 ---
 spring:
@@ -114,9 +119,9 @@ spring:
         initializeSchema: true       # Potentially destructive.
 
   # If running a redis vector store, exclude the PGVector and DataSource autoconfigurations.
-  autoconfigure.exclude: 
-  - org.springframework.ai.autoconfigure.vectorstore.pgvector.PgVectorStoreAutoConfiguration
-  - org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration
+  autoconfigure.exclude:
+    - org.springframework.ai.autoconfigure.vectorstore.pgvector.PgVectorStoreAutoConfiguration
+    - org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration
 
 ---
 spring:
@@ -147,9 +152,8 @@ spring:
         index-type: HNSW                # Hierarchical Navigable Small World (HNSW) algorithm, Alternatives: Annoy, LSH, KD-Tree, Ball Tree, Product Quantization, FAISS
         distance-type: COSINE_DISTANCE  # How it determines if one vector is similar to another.
         # CRITICAL: The PGVectorStore database must be initialized to the # of dimensions in the model you are using.
-        dimensions: 384                
+        dimensions: 384
 
   # If running a simple vector store, exclude the Redis auto configuration.
-  autoconfigure.exclude: 
-  - org.springframework.ai.autoconfigure.vectorstore.redis.RedisVectorStoreAutoConfiguration
-
+  autoconfigure.exclude:
+    - org.springframework.ai.autoconfigure.vectorstore.redis.RedisVectorStoreAutoConfiguration

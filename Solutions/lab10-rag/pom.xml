@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+		 xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
-		<version>3.5.3</version>
+		<version>3.2.6</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.example</groupId>
@@ -15,13 +15,13 @@
 	<description>Spring AI implementation of RAG</description>
 	<properties>
 		<java.version>21</java.version>
-		<spring-ai.version>1.0.0</spring-ai.version>
+		<spring-ai.version>1.0.0-M6</spring-ai.version>
 	</properties>
 	<dependencies>
 
 		<dependency>
 			<groupId>org.springframework.ai</groupId>
-			<artifactId>spring-ai-starter-model-openai</artifactId>
+			<artifactId>spring-ai-openai-spring-boot-starter</artifactId>
 		</dependency>
 
 		<!--
@@ -35,57 +35,57 @@
 		</dependency>
 
 
-		<!-- 
-		TODO-02: Notice the starters for OpenAI, Azure, Ollama, and Bedrock are present.	
-		 Only one of these will be active at a time. 
+		<!--
+		TODO-02: Notice the starters for OpenAI, Azure, Ollama, and Bedrock are present.
+		 Only one of these will be active at a time.
 		 -->
 
 
 		<dependency>
 			<groupId>org.springframework.ai</groupId>
-			<artifactId>spring-ai-starter-model-bedrock-converse</artifactId>
+			<artifactId>spring-ai-bedrock-converse-spring-boot-starter</artifactId>
 		</dependency>
 
 
 		<dependency>
 			<groupId>org.springframework.ai</groupId>
-			<artifactId>spring-ai-starter-model-openai</artifactId>
+			<artifactId>spring-ai-openai-spring-boot-starter</artifactId>
 		</dependency>
 
 
 		<dependency>
 			<groupId>org.springframework.ai</groupId>
-			<artifactId>spring-ai-starter-model-azure-openai</artifactId>
+			<artifactId>spring-ai-azure-openai-spring-boot-starter</artifactId>
 		</dependency>
 
 
 		<dependency>
 			<groupId>org.springframework.ai</groupId>
-			<artifactId>spring-ai-starter-model-ollama</artifactId>
+			<artifactId>spring-ai-ollama-spring-boot-starter</artifactId>
 		</dependency>
 
-		<!-- 
+		<!--
 		TODO-21 (OPTIONAL): Replace the simple in-memory vector store with Redis.
 		Remove the comment below to include the starter for Redis.
 		Follow the instructions in the lab setup guide to installing and running Redis as a Docker container
 		-->
-		<!-- 
+		<!--
 		<dependency>
 			<groupId>org.springframework.ai</groupId>
 			<artifactId>spring-ai-redis-store-spring-boot-starter</artifactId>
-		</dependency>  
+		</dependency>
 		-->
 
-		<!-- 
+		<!--
 		TODO-24 (OPTIONAL): Replace the simple in-memory vector store with PGVector.
 		Remove the comment below to include the starter for PGVector.
 		Follow the instructions in the lab setup guide to installing and running PGVector as a Docker container
 		-->
-		<!-- 
+		<!--
 		<dependency>
 			<groupId>org.springframework.ai</groupId>
 			<artifactId>spring-ai-pgvector-store-spring-boot-starter</artifactId>
-		</dependency>  
+		</dependency>
 		-->
 
 		<dependency>
@@ -121,7 +121,7 @@
 			<name>Spring Milestones</name>
 			<url>https://repo.spring.io/milestone</url>
 			<snapshots>
-			<enabled>false</enabled>
+				<enabled>false</enabled>
 			</snapshots>
 		</repository>
 		<repository>
@@ -130,7 +130,7 @@
 			<name>Spring Snapshots</name>
 			<url>https://repo.spring.io/snapshot</url>
 			<releases>
-			<enabled>false</enabled>
+				<enabled>false</enabled>
 			</releases>
 		</repository>
 	</repositories>
