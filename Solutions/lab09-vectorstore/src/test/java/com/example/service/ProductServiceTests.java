@@ -17,8 +17,8 @@ import org.springframework.test.context.ActiveProfiles;
 
 
 @SpringBootTest
-@ActiveProfiles({"simple-vector-store","aws-embedding"})
-// @ActiveProfiles({"simple-vector-store","openai-embedding"})
+@ActiveProfiles({"simple-vector-store","openai-embedding"})
+//@ActiveProfiles({"simple-vector-store","aws-embedding"})
 // @ActiveProfiles({"simple-vector-store","ollama-embedding"})
 public class ProductServiceTests {
 
