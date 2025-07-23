@@ -2,7 +2,7 @@
 # Set spring.main.web-application-type to none to run as a non-web application.
 # Set spring.ai.retry.max-attempts to 1 to fail fast.
 # Set spring.ai.retry.on-client-errors to false since there is typically no point in retrying such a request.
-# Set spring.ai.azure.openai.chat.enabled to true to enable the chatModel.
+# Set spring.ai.model.chat to azure-openai to tell SpringAI which autoconfigure class to use.
 # Set spring.ai.azure.openai.endpoint to the value you established during Azure setup.
 # Set spring.ai.azure.openai.chat.options.deployment-name to the value you establised during setup (probably "gpt-35-turbo").
 # Set spring.ai.azure.openai.chat.options.model to the value you established during setup (probably "gpt-35-turbo").

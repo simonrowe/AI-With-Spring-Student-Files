@@ -45,12 +45,15 @@ The instructions below are for VS Code. If you wish to use IntelliJ or Eclipse a
 1. **TODO-03**: The lab project is already setup with dependencies for Bedrock, Ollama, and OpenAI.  However, you may need to adjust the settings based on your own accounts / environments.  Adjust the settings to correspond to the model(s) you plan on using:
 
     1. If you plan to use **Amazon Bedrock**:
+        * Set the spring.ai.model.embedding to `bedrock-cohere`
         * Adjust the region setting if needed.  Use your previous lab settings for guidance.
         * Make sure you have followed the **[Lab Setup guide](https://github.com/kennyk65/AI-With-Spring-Student-Files/blob/main/LabInstructions/Lab%20Setup.md)** for AWS / Amazon Bedrock.
     1. If you plan to use **OpenAI**:
+        * Set the spring.ai.model.embedding to `openai`
         * Adjust the model setting if needed.  Use your previous lab settings for guidance.
         * Make sure you have followed the **[Lab Setup guide](https://github.com/kennyk65/AI-With-Spring-Student-Files/blob/main/LabInstructions/Lab%20Setup.md)** for OpenAI.
     1. If you plan to use **Ollama**:
+        * Set the spring.ai.model.embedding to `ollama`
         * Make sure you have followed the **[Lab Setup guide](https://github.com/kennyk65/AI-With-Spring-Student-Files/blob/main/LabInstructions/Lab%20Setup.md)** for Ollama.
         * Adjust the base-url if needed.  Use your previous lab settings for guidance.
         * Make sure your Ollama Docker container is running.
@@ -125,83 +128,6 @@ The instructions below are for VS Code. If you wish to use IntelliJ or Eclipse a
 
 1.  Organize your imports and save your work.
 
-
-
----
-**Part 4 - `@Test` the semantic search**
-
-Anything that we code, we should test.  Our test will provide a List of product descriptions and a customer query to the semantic search.
-
-14. Open to `src/test/java/com.example.service.EmbeddingServiceTests`.
-
-
-
-
-
----
-**Part 3 - Chat Conversation Memory**
-
-To implement interactive chat behavior when working with a foundational model, the `ChatClient` will be responsible for managing the state of the conversation, and managing different identifiers for the separate ongoing conversations
-
-4. Open `src/test/java/com.example.client.AIClientImplTests`.
-
-1. **TODO-02**: Alter the `@ActiveProfile` value to match the backing chat model you plan to use.  This will cause Spring to activate only a single `ChatModel` matching your selection:
-    * For Amazon Bedrock models,  use **aws**.
-    * For Azure-hosted OpenAI,    use **azure**.
-    * For standard OpenAI,        use **openai**.
-    * For Ollama,                 use **ollama**.
-
-1. **TODO-03:** Examine the logic in the `@Test` method.  It conducts two separate conversations.  One conversation discusses the Great Lakes.  The other discusses planets.  Our goal is to enable our logic to track multiple conversations without getting confused.
-    * Remove the `@Disabled` annotation from the `@Test` method.  
-    * Run the test.  We expect the test to **FAIL**.  
-        * The test fails because foundational models are stateless.  By default they do not associate any request with any other request.  Therefore, the request for "Which one is the deepest?" is not understood in the context of the earlier question.
-    * We will enhance our interactions with stateful behavior in the next step.
-    
-1. Open `src/main/java/com.example.client.AIClientImpl`
-
-1. **TODO-04:** Within the `AIClientImpl` class, define a member variable of type `InMemoryChatMemory`.  Initialize it with a `new InMemoryChatMemory()`.
-    * This will store the history of each conversation.  A production application should use a more persistent form of storage able to be shared between instances.
-
-    ```
-    InMemoryChatMemory memory = new InMemoryChatMemory(); 
-    ```
-1. **TODO-05:** Defined a member variable of type `MessageChatMemoryAdvisor`.  Initialize it with a new `MessageChatMemoryAdvisor`   injected with the `InMemoryChatMemory` instance defined above. 
-
-    ```
-    MessageChatMemoryAdvisor advisor = new MessageChatMemoryAdvisor(memory);
-    ```
-
-1. **TODO-06:**  Within the constructor, alter the creation of the `ChatClient`.  Use the `.defaultAdvisors()` method to add the `MessageChatMemoryAdvisor` defined earlier:
-
-    ```
-    public AIClientImpl(ChatModel model) {
-        client = ChatClient
-            .builder(model)
-            .defaultAdvisors(advisor)        
-            .build();
-    }
-    ```
-
-1. **TODO-07:**  Within the `conversationalChat()` method, alter the usage of the chat client to use the `.advisors()` method to inject an `AvisorSpec` Consumer to control conversational state.
-    * The `advisors()` method will accept a Lambda expression that implements the Consumer.
-    * The parameter to the Consumer is an `AdvisorSpec`.
-    * Use the `AdvisorSpec`'s `.param()` method to add a parameter identifying the conversation.
-        * The parameter key should be the `conversationKey` defined above.
-        * The parameter value should be the `conversationId` passed to this method.
-
-    ```
-    client
-        .prompt()
-        .user(input)
-        .advisors(a -> a.param(conversationKey, conversationId))
-        .call()
-        .content();
-    ```
-
-1.  Organize your imports and save your work.
-
-1.  **TODO-08:**  Return to the `@Test` method in `AIClientImplTests`.  Re-run the test.  It should now pass.
-
 ---
 **Part 4 - `@Test` the Semantic Search**
 
@@ -213,7 +139,7 @@ Anything that we code, we should test.  Our test will provide a List of product 
     * For Amazon Bedrock models,  use **aws**.
     * For standard OpenAI,        use **openai**.
     * For Ollama,                 use **ollama**.
-
+    
     ```
     @SpringBootTest
     @ActiveProfiles("openai")

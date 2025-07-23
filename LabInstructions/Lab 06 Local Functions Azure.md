@@ -1,1 +1,0 @@
-TODO:  Azure Local functions are not supported at the moment.

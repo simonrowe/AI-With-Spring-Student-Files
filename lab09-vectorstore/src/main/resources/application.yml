@@ -6,34 +6,38 @@ spring:
     retry:
       max-attempts: 1      # Maximum number of retry attempts.
       on-client-errors: false   # Do not retry 4xx client error codes.
-    openai.embedding.enabled: false   # Allow profile to enable this if needed.
-    ollama.embedding.enabled: false   # Allow profile to enable this if needed.
+
+    model.embedding: none             # Disable default autoconfiguration for embedding models.
 
 # TODO-01: Adjust the settings below based on the embedding model you plan to use.
-# If you plan to use AWS Bedrock: 
+# If you plan to use AWS Bedrock:
+#   - Set spring.ai.model.embedding to bedrock-cohere.
 #   - Adjust the region setting if needed.
 #   - Adjust the spring.ai.bedrock.cohere.embedding.model to cohere.embed-english-v3, or see https://docs.aws.amazon.com/bedrock/latest/userguide/models-supported.html for latest list.
 #
 # If you plan to use OpenAI:
+#   - Set spring.ai.model.embedding to openai.
 #   - Set spring.ai.openai.embedding.options.model to text-embedding-ada-002, or see https://platform.openai.com/docs/models/embeddings for latest list.
 #
 # If you plan to use Ollama:
+#   - Set spring.ai.model.embedding to ollama.
 #   - Adjust the base-url if needed.
 #   - Set spring.ai.ollama.embedding.options.model to mxbai-embed-large, or experiment with another embedding model
 #   - Make sure you have pulled the model you wish to use, and that Ollama is running.
 #
 # Note that only one model will be active at a time.  The active model is determined by the active profile.
 
+
 ---
 spring:
   config.activate.on-profile: aws-embedding
-
+  application.name: Lab8 VectorStore Bedrock
 
   ai:
+    model.embedding: bedrock-cohere
     bedrock:
       cohere:
         embedding:
-          enabled: true
           model: cohere.embed-english-v3
 
 ---
@@ -42,21 +46,22 @@ spring:
   application.name: Lab8 VectorStore OpenAI
 
   ai:
+    model.embedding: openai
     openai:
       embedding:
-        enabled: true
         options:
           model: text-embedding-ada-002
 
 ---
 spring:
   config.activate.on-profile: ollama-embedding
+  application.name: Lab8 VectorStore Ollama
 
   ai:
+    model.embedding: ollama
     ollama:
       base-url: http://localhost:11434  # Default base URL when you run Ollama from Docker
       embedding:
-        enabled: true
         options:
           model: mxbai-embed-large
 
@@ -65,10 +70,10 @@ spring:
   config.activate.on-profile: simple-vector-store
   
   # If running a simple vector store, exclude the Redis, PGVector, and DataSource autoconfigurations.
-  autoconfigure.exclude: 
-  - org.springframework.ai.autoconfigure.vectorstore.redis.RedisVectorStoreAutoConfiguration
-  - org.springframework.ai.autoconfigure.vectorstore.pgvector.PgVectorStoreAutoConfiguration
-  - org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration
+  autoconfigure.exclude:
+    - org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration
+    - org.springframework.ai.vectorstore.redis.autoconfigure.RedisVectorStoreAutoConfiguration
+    - org.springframework.ai.vectorstore.pgvector.autoconfigure.PgVectorStoreAutoConfiguration
 
 ---
 spring:
@@ -86,9 +91,9 @@ spring:
         prefix: "default:"           # Default.
 
   # If running a redis vector store, exclude the PGVector and DataSource autoconfigurations.
-  autoconfigure.exclude: 
-  - org.springframework.ai.autoconfigure.vectorstore.pgvector.PgVectorStoreAutoConfiguration
-  - org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration
+  autoconfigure.exclude:
+    - org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration
+    - org.springframework.ai.vectorstore.pgvector.autoconfigure.PgVectorStoreAutoConfiguration
 
 ---
 spring:
@@ -117,6 +122,6 @@ spring:
 
 
   # If running a simple vector store, exclude the Redis auto configuration.
-  autoconfigure.exclude: 
-  - org.springframework.ai.autoconfigure.vectorstore.redis.RedisVectorStoreAutoConfiguration
+  autoconfigure.exclude:
+  - org.springframework.ai.vectorstore.redis.autoconfigure.RedisVectorStoreAutoConfiguration
 

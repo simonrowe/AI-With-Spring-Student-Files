@@ -16,10 +16,10 @@ import org.springframework.test.context.ActiveProfiles;
 //      For Ollama,             use "ollama".
 
 @SpringBootTest
-@ActiveProfiles("openai")
-// @ActiveProfiles("aws")
+//@ActiveProfiles("openai")
+//@ActiveProfiles("aws")
 // @ActiveProfiles("ollama")
-//@ActiveProfiles("internal")
+@ActiveProfiles("internal")
 public class EmbeddingServiceTests {
 
     //  TODO-11: Use the @Autowired annotation to inject an instance of our EmbeddingService.

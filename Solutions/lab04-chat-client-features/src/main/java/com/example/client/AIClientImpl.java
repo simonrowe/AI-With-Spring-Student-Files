@@ -1,9 +1,8 @@
 package com.example.client;
 
 import org.springframework.ai.chat.client.ChatClient;
-import org.springframework.ai.chat.client.advisor.AbstractChatMemoryAdvisor;
 import org.springframework.ai.chat.client.advisor.MessageChatMemoryAdvisor;
-import org.springframework.ai.chat.memory.InMemoryChatMemory;
+import org.springframework.ai.chat.memory.ChatMemory;
 import org.springframework.ai.chat.model.ChatModel;
 import org.springframework.stereotype.Component;
 
@@ -12,25 +11,28 @@ public class AIClientImpl implements AIClient {
     
     private ChatClient client;
 
-    //  TODO-04: Define a member variable of type InMemoryChatMemory.
-    //  Initialize it with a new instance of InMemoryChatMemory.
-    InMemoryChatMemory memory = new InMemoryChatMemory(); 
+    //  TODO-04: Alter the signature of the constructor below.
+    //  Add an additional parameter named chatMemory of type ChatMemory.
+    //  (ChatMemory abstraction maintains contextual awareness throughout a conversation.)
 
-    String conversationKey = AbstractChatMemoryAdvisor.CHAT_MEMORY_CONVERSATION_ID_KEY;
+    public AIClientImpl(ChatModel model
+            , ChatMemory chatMemory
+    ) {
 
-    //  TODO-05: Defined a member variable of type MessageChatMemoryAdvisor.
-    //  Initialize it with a new instance of MessageChatMemoryAdvisor 
-    //  injected with the InMemoryChatMemory instance defined above. 
-    MessageChatMemoryAdvisor advisor = new MessageChatMemoryAdvisor(memory);
+        //  TODO-05: Define a variable named advisor of type MessageChatMemoryAdvisor.
+        //  Initialize it by using the MessageChatMemoryAdvisor.builder() method.
+        //  inject the builder() with the chatMemory parameter from the constructor.
+        MessageChatMemoryAdvisor advisor =
+                MessageChatMemoryAdvisor.builder(chatMemory).build();
 
-    public AIClientImpl(ChatModel model) {
+
         client = ChatClient
             .builder(model)
 
             //  TODO-06: Alter this ChatClient.
             //  Use the .defaultAdvisors() method to add the 
             //  MessageChatMemoryAdvisor defined above.
-            .defaultAdvisors(advisor)        
+            .defaultAdvisors(advisor)
             .build();
     }
 
@@ -45,9 +47,9 @@ public class AIClientImpl implements AIClient {
                 // The advisors() method will accept a Lambda expression that implements the Consumer.
                 // The parameter to the Consumer is an AdvisorSpec.
                 // Use the AdvisorSpec's .param() method to add a parameter identifying the conversation.
-                // The parameter key should be the conversationKey defined above.
+                // The parameter key should be ChatMemory.CONVERSATION_ID.
                 // The parameter value should be the conversationId passed to this method.
-                .advisors(a -> a.param(conversationKey, conversationId))
+                .advisors(a -> a.param(ChatMemory.CONVERSATION_ID, conversationId))
 
                 .call()
                 .content();

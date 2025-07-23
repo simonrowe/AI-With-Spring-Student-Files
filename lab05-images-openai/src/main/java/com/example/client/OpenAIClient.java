@@ -16,7 +16,7 @@ public class OpenAIClient implements AIClient {
     //   Define a constructor which dependency injects this field:
 
 
-    private static final OpenAiImageOptions DEFAULT_OPTIONS = OpenAiImageOptions.builder().withN(1).build();
+    private static final OpenAiImageOptions DEFAULT_OPTIONS = OpenAiImageOptions.builder().N(1).build();
 
     public String createImageUrl(String request) {
 

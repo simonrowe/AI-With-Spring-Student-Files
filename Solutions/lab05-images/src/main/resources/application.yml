@@ -9,35 +9,17 @@ spring:
 
   ai:
     retry:
-      max-attempts: 1           # Maximum number of retry attempts.
-
-    # Override autoconfiguration so each model needs explicit enablement.
-    stabilityai:
-      api_key: NEVER-PLACE-SECRET-KEY-IN-CONFIG-FILE
-      image:
-        enabled: false
-    zhipuai:
-      api_key: NEVER-PLACE-SECRET-KEY-IN-CONFIG-FILE
-      image:
-        enabled: false
-    openai:
-      api_key: NEVER-PLACE-SECRET-KEY-IN-CONFIG-FILE
-      image:
-        enabled: false
-    azure:
-      openai:
-        api_key: NEVER-PLACE-SECRET-KEY-IN-CONFIG-FILE
-        image:
-          enabled: false
+      max-attempts: 1       # Maximum number of retry attempts.
+    model.image: none       # Disable all autoconfiguration by default.
 
 ---
 spring:
   config.activate.on-profile: openai
 
   ai:
+    model.image: openai
     openai:
       image:
-        enabled: true
         options:
           n: 1                  # Number of images to generate.
           response_format: url  # or b64_json
@@ -49,11 +31,11 @@ spring:
   config.activate.on-profile: azure
 
   ai:
+    model.image: azure-openai
     azure:
       openai:
         endpoint: ENDPOINT-GOES-HERE
         image:
-          enabled: true
           options:
             deployment-name: DEPLOYMENT-NAME-GOES-HERE
             n: 1                  # number of images to generate.
@@ -66,9 +48,9 @@ spring:
   config.activate.on-profile: stabilityai
 
   ai:
+    model.image: stabilityai
     stabilityai:
       image:
-        enabled: true
         option:
           n: 1                          # Number of images to generate.
           responseFormat: image/png     # or application/json
@@ -81,8 +63,4 @@ spring:
 ---
 spring:
   config.activate.on-profile: zhipuai
-
-  ai:
-    zhipuai:
-      image:
-        enabled: true
+  model.image: zhipuai

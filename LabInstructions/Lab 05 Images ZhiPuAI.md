@@ -32,9 +32,7 @@ A half-completed skeleton project has been created for you to relieve you from t
       ai:
         retry:
           max-attempts: 1           # Maximum number of retry attempts.
-        zhipuai:
-          image:
-            enabled: true
+        model.image: zhipuai
     ```
     * SpringAI applications can run as part of a web application, but these exercises are built to avoid that extra step.
     * The retry* settings will override the `*ImageModel`'s default settings.  You are likely to experience errors while you learn the API's usage, and we don't want you to experience unnecessary expenses.  

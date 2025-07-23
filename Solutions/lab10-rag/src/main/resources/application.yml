@@ -17,7 +17,7 @@ spring:
 # TODO-03: Adjust the settings below based on the chat model you plan to use.
 # Use previous labs for guidance.
 #
-# If you plan to use Amazon Bedrock: 
+# If you plan to use Amazon Bedrock:
 #   - Adjust the region setting if needed.
 #   - Set the spring.ai.bedrock.converse.chat.enabled to true to enable the chat model.
 #   - Set the spring.ai.bedrock.converse.chat.options.model to "anthropic.claude-3-5-sonnet-20240620-v1:0" or equivalent (make sure it is enabled)
@@ -94,12 +94,12 @@ spring:
 ---
 spring:
   config.activate.on-profile: simple-vector-store
-  
+
   # If running a simple vector store, exclude the Redis, PGVector, and DataSource autoconfigurations.
-  autoconfigure.exclude: 
-  - org.springframework.ai.autoconfigure.vectorstore.redis.RedisVectorStoreAutoConfiguration
-  - org.springframework.ai.autoconfigure.vectorstore.pgvector.PgVectorStoreAutoConfiguration
-  - org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration
+  autoconfigure.exclude:
+    - org.springframework.ai.autoconfigure.vectorstore.redis.RedisVectorStoreAutoConfiguration
+    - org.springframework.ai.autoconfigure.vectorstore.pgvector.PgVectorStoreAutoConfiguration
+    - org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration
 
 ---
 spring:
@@ -119,9 +119,9 @@ spring:
         initializeSchema: true       # Potentially destructive.
 
   # If running a redis vector store, exclude the PGVector and DataSource autoconfigurations.
-  autoconfigure.exclude: 
-  - org.springframework.ai.autoconfigure.vectorstore.pgvector.PgVectorStoreAutoConfiguration
-  - org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration
+  autoconfigure.exclude:
+    - org.springframework.ai.autoconfigure.vectorstore.pgvector.PgVectorStoreAutoConfiguration
+    - org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration
 
 ---
 spring:
@@ -152,9 +152,8 @@ spring:
         index-type: HNSW                # Hierarchical Navigable Small World (HNSW) algorithm, Alternatives: Annoy, LSH, KD-Tree, Ball Tree, Product Quantization, FAISS
         distance-type: COSINE_DISTANCE  # How it determines if one vector is similar to another.
         # CRITICAL: The PGVectorStore database must be initialized to the # of dimensions in the model you are using.
-        dimensions: 384                
+        dimensions: 384
 
   # If running a simple vector store, exclude the Redis auto configuration.
-  autoconfigure.exclude: 
-  - org.springframework.ai.autoconfigure.vectorstore.redis.RedisVectorStoreAutoConfiguration
-
+  autoconfigure.exclude:
+    - org.springframework.ai.autoconfigure.vectorstore.redis.RedisVectorStoreAutoConfiguration

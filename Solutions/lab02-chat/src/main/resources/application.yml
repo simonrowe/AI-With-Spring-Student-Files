@@ -7,11 +7,7 @@ spring:
       max-attempts: 1           # Maximum number of retry attempts.
       on-client-errors: false   # Do not retry 4xx client error codes.
 
-    bedrock.converse.chat.enabled:  false # Disable all models by default.
-    ollama.chat.enabled:            false # Disable all models by default.
-    openai.chat.enabled:            false # Disable all models by default.
-    azure.openai.chat.enabled:      false # Disable all models by default.
-
+    model.chat: none            # Disable all chat models by default. Models will be explicitly enabled below.
 
 ---
 spring:
@@ -21,14 +17,15 @@ spring:
   # Set spring.main.web-application-type to none to run as a non-web application.
   # Set spring.ai.retry.max-attempts to 1 to fail fast.
   # Set spring.ai.retry.on-client-errors to false since there is typically no point in retrying such a request.
+  # Set spring.ai.model.chat to ollama to tell SpringAI which autoconfigure class to use.
   # Set spring.ai.ollama.base-url to http://localhost:11434, unless your container is running on a different URL.
 
   application.name: Lab02 Chat Ollama
   ai:
+    model.chat: ollama
     ollama:
       base-url: http://localhost:11434  # Default base URL when you run Ollama from Docker
       chat:
-        enabled: true
         options:
           model: mistral
 ---
@@ -39,20 +36,20 @@ spring:
   # Set spring.main.web-application-type to none to run as a non-web application.
   # Set spring.ai.retry.max-attempts to 1 to fail fast.
   # Set spring.ai.retry.on-client-errors to false since there is typically no point in retrying such a request.
-  # Set spring.ai.bedrock.aws.region to "us-west-2", or whichever region you have enabled the titan model in.
-  # Set spring.ai.bedrock.converse.chat.enabled to enable the chat model.
-  # Set spring.ai.bedrock.converse.chat.options.model to "amazon.titan-text-lite-v1" or equivalent (make sure it is enabled)
-
+  # Set spring.ai.model.chat to bedrock-converse to tell SpringAI which autoconfigure class to use.
+  # Set spring.ai.bedrock.aws.region to "us-west-2", or whichever region you have enabled the model in.
+  # Set spring.ai.bedrock.converse.chat.options.model to "us.amazon.nova-micro-v1:0" or equivalent (make sure it is enabled)
 
   application.name: Lab02 Chat AWS
   ai:
+    model.chat: bedrock-converse
     bedrock:
       aws.region: us-west-2 # Adjust as needed.
       converse:
         chat:
-          enabled: true
           options:
-            model: amazon.titan-text-lite-v1  # Adjust as needed.
+            # model: us.amazon.nova-micro-v1:0  # Adjust as needed.
+            model: anthropic.claude-3-5-haiku-20241022-v1:0
 
 ---
 spring:
@@ -62,12 +59,12 @@ spring:
   # Set spring.main.web-application-type to none to run as a non-web application.
   # Set spring.ai.retry.max-attempts to 1 to fail fast.
   # Set spring.ai.retry.on-client-errors to false since there is typically no point in retrying such a request.
-  # Set the spring.ai.openai.chat.enabled property to true to enable this chatModel.
+  # Set spring.ai.model.chat to openai to tell SpringAI which autoconfigure class to use.
   application.name: Lab02 Chat OpenAI
   ai:
+    model.chat: openai
     openai:
       api-key: NEVER-PLACE-SECRET-KEY-IN-CONFIG-FILE
-      chat.enabled: true
 
 ---
 spring:
@@ -77,19 +74,19 @@ spring:
   # Set spring.main.web-application-type to none to run as a non-web application.
   # Set spring.ai.retry.max-attempts to 1 to fail fast.
   # Set spring.ai.retry.on-client-errors to false since there is typically no point in retrying such a request.
-  # Set spring.ai.azure.openai.chat.enabled to true to enable the chatModel.
+  # Set spring.ai.model.chat to azure-openai to tell SpringAI which autoconfigure class to use.
   # Set spring.ai.azure.openai.endpoint to the value you established during Azure setup.
   # Set spring.ai.azure.openai.chat.options.deployment-name to the value you establised during setup (probably "gpt-35-turbo").
   # Set spring.ai.azure.openai.chat.options.model to the value you established during setup (probably "gpt-35-turbo").
 
   application.name: Lab02 Chat Azure
   ai:
+    model.chat: azure-openai
     azure:
       openai:
         api_key: NEVER-PLACE-SECRET-KEY-IN-CONFIG-FILE
         endpoint: ENDPOINT-GOES-HERE
         chat:
-          enabled: true
           options:
             deployment-name: DEPLOYMENT-NAME-GOES-HERE
             model: gpt-35-turbo

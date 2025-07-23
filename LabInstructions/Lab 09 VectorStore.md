@@ -23,15 +23,18 @@ Let's jump in.
 1. **TODO-01:** The lab project is already setup with dependencies for Bedrock, Ollama, and OpenAI.  However, you may need to adjust the settings based on your own accounts / environments.  Adjust the settings to correspond to the model(s) you plan on using:
 
     1. If you plan to use **Amazon Bedrock** :
+        * Set spring.ai.model.embedding to bedrock-cohere.
         * Adjust the region setting if needed.  Use your previous lab settings for guidance.
         * Set the spring.ai.bedrock.cohere.embedding.model to **cohere.embed-english-v3**
         * Make sure you have followed the **[Lab Setup guide](https://github.com/kennyk65/AI-With-Spring-Student-Files/blob/main/LabInstructions/Lab%20Setup.md)** for AWS / Amazon Bedrock.
         
     1. If you plan to use **OpenAI**:
+        * Set spring.ai.model.embedding to openai.
         * Set spring.ai.openai.embedding.options.model to **text-embedding-ada-002**, or see the **[latest list](https://platform.openai.com/docs/models/embeddings)**.
         * Make sure you have followed the **[Lab Setup guide](https://github.com/kennyk65/AI-With-Spring-Student-Files/blob/main/LabInstructions/Lab%20Setup.md)** for OpenAI.
 
     1. If you plan to use **Ollama**:
+        * Set spring.ai.model.embedding to ollama.
         * Make sure you have followed the **[Lab Setup guide](https://github.com/kennyk65/AI-With-Spring-Student-Files/blob/main/LabInstructions/Lab%20Setup.md)** for Ollama.
         * Adjust the base-url if needed.  Use your previous lab settings for guidance.
         * Set spring.ai.ollama.embedding.options.model to **mxbai-embed-large**, or experiment with another **[embedding model](https://ollama.com/blog/embedding-models)**
@@ -243,14 +246,14 @@ The existing implementation uses an in-memory Vector Store, which is not appropr
     ```
             <dependency>
                 <groupId>org.springframework.ai</groupId>
-                <artifactId>spring-ai-redis-store-spring-boot-starter</artifactId>
+                <artifactId>spring-ai-starter-vector-store-redis</artifactId>
             </dependency> 
     ```
 1.  Save your work.  You may need to prompt your IDE to refresh your project.
 
 1. Open the **application.yml** file.
 
-1. **TODO-21**: Set properties for the Redis vector store.
+1. **TODO-21**: Find the section of the file applicable to the `redis-vector-store` profile.  Set properties for the Redis vector store.
     * Note that these will only be used if the **redis-vector-store** profile is active.  This is done to prevent conflicts with the earlier lab steps.
     * Set `spring.ai.vectorstore.redis.uri` to redis://localhost:6379, unless your redis is running elsewhere.
     * Set `spring.ai.vectorstore.redis.initializeSchema` to true to create the necessary schema.  (You may not want to do this in a production environment.)
@@ -286,7 +289,7 @@ Another alternative to the in-memory and Redis vector stores is the PGVector sto
 ```
 		<dependency>
 			<groupId>org.springframework.ai</groupId>
-			<artifactId>spring-ai-pgvector-store-spring-boot-starter</artifactId>
+			<artifactId>spring-ai-starter-vector-store-pgvector</artifactId>
 		</dependency> 
 ```
 
@@ -294,7 +297,7 @@ Another alternative to the in-memory and Redis vector stores is the PGVector sto
 
 1. Open the **application.yml** file.
 
-1. **TODO-25**: Set properties for the Postgres vector store.
+1. **TODO-25**: Find the section of the file applicable to the `pg-vector-store` profile.Set properties for the Postgres vector store.
     * Note that these will only be used if the **pg-vector-store** profile is active.  This is done to prevent conflicts with the earlier lab steps.
     * Set `spring.datasource.url` to jdbc:postgresql://localhost:5432/postgres, unless your Postgres is running elsewhere.
     * Set `spring.datasource.username` and `spring.datasource.password` the username and password set when running the container.

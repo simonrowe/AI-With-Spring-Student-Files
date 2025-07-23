@@ -2,7 +2,7 @@
   # Set spring.main.web-application-type to none to run as a non-web application.
   # Set spring.ai.retry.max-attempts to 1 to fail fast.
   # Set spring.ai.retry.on-client-errors to false since there is typically no point in retrying such a request.
-  # Set spring.ai.openai.chat.enabled property to true to enable this chatModel.
+  # Set spring.ai.model.chat to openai to tell SpringAI which autoconfigure class to use.
 
 spring:
   application.name: Lab2 Chat

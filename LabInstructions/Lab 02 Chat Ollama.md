@@ -40,12 +40,12 @@ The instructions below are for VS Code. If you wish to use IntelliJ or Eclipse a
 ---
 **Part 3 - Initial Configuration and Test**
 
-4. **TODO-02**: Open the **pom.xml** file.  Add the dependency for **Ollama**.  The groupId value will be `org.springframework.ai`.  The artifactId will be `spring-ai-ollama-spring-boot-starter`.  Save your work.
+4. **TODO-02**: Open the **pom.xml** file.  Add the dependency for **Ollama**.  The groupId value will be `org.springframework.ai`.  The artifactId will be `spring-ai-starter-model-ollama`.  Save your work.
 
 ```
 <dependency>
 	<groupId>org.springframework.ai</groupId>
-	<artifactId>spring-ai-ollama-spring-boot-starter</artifactId>
+	<artifactId>spring-ai-starter-model-ollama</artifactId>
 </dependency>
 ```
 - Note: Some IDEs may require you to "refresh" your project after altering dependencies in Maven/Gradle.
@@ -67,17 +67,17 @@ spring:
   ai:
     retry:
       max-attempts: 1           # Maximum number of retry attempts.
+    model.chat: ollama
     ollama:
       base-url: http://localhost:11434  # Default base URL when you run Ollama from Docker
       chat:
-        enabled: true
         options:
           model: mistral
 
 ```
+  * The `spring.ai.model.chat` set to `ollama` tells SpringAI which autoconfigure class to use.
   * The `base-url` setting assumes a locally running Docker container.  You can omit this if you have not altered any default settings.
-  * The `model` setting should align with the Ollama model which you have pulled and run.  You may need to switch this to "llama2" or another model.
-  * The `spring.ai.ollama.chat.enabled` setting tells Spring Boot to specifically autoconfigure objects supporting Ollama.
+  * The `spring.ai.ollama.chat.options.model` setting should align with the Ollama model which you have pulled and run.  You may need to switch this to "llama2" or another model.
   * SpringAI applications can run as part of a web application, but these exercises are built to avoid that extra step.
   * Note: The retry settings will override the `ChatClient`'s default settings.  You are likely to experience errors while you learn the API's usage, and we don't want you to experience unnecessary delays.
   

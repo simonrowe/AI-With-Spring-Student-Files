@@ -9,12 +9,14 @@ import org.springframework.stereotype.Component;
 @Component
 public class AIClientImpl implements AIClient {
     
-    private ChatClient client;
-
-    //  TODO-06: Create a constructor for this bean.
+    //  TODO-06: Define a private member variable of type ChatClient named client.
+    //  Create a constructor for this bean.
     //  Inject a ChatModel object into the constructor.
     //  Pass the model to the ChatClient.builder to build a ChatClient object.
     //  Save the ChatClient object in the client field.
+    
+    private ChatClient client;
+    
     public AIClientImpl(ChatModel model) {
         client = ChatClient.builder(model).build();
     }

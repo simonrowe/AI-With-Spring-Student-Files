@@ -39,12 +39,12 @@ The instructions below are for VS Code. If you wish to use IntelliJ or Eclipse a
 ---
 **Part 3 - Initial Configuration and Test**
 
-4. **TODO-02**: Open the **pom.xml** file.  Add the dependency for Amazon Bedrock.  The groupId value will be `org.springframework.ai`.  The artifactId will be `spring-ai-bedrock-converse-spring-boot-starter`.  Save your work.
+4. **TODO-02**: Open the **pom.xml** file.  Add the dependency for Amazon Bedrock.  The groupId value will be `org.springframework.ai`.  The artifactId will be `spring-ai-starter-model-bedrock-converse`.  Save your work.
 
 ```
 <dependency>
 	<groupId>org.springframework.ai</groupId>
-	<artifactId>spring-ai-bedrock-converse-spring-boot-starter</artifactId>
+	<artifactId>spring-ai-starter-model-bedrock-converse</artifactId>
 </dependency>
 ```
 - Note: Some IDEs may require you to "refresh" your project after altering dependencies in Maven/Gradle.
@@ -65,19 +65,18 @@ spring:
   main.web-application-type: none     # Do not start a web server.
   ai:
     retry:
-      max-attempts: 1           # Maximum number of retry attempts.
+      max-attempts: 1  # Maximum retry attempts.
+    model.chat: bedrock-converse
     bedrock:
       aws.region: us-west-2 # Adjust as needed.
       converse:
-        chat:
-          enabled: true
           options:
-            model: amazon.titan-text-lite-v1  # Adjust as needed
+            model: us.amazon.nova-micro-v1:0  # Adjust as needed
 
 ```
 
+  - The `spring.ai.model.chat: bedrock-converse` tells Spring AI which autoconfiguration class to use if multiple are on the classpath. In this case, you could omit this entry.
   - Adjust the [region](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-regions-availability-zones.html#concepts-regions) code to match the region where you enabled the Bedrock model.
-  - The `bedrock.converse.chat.enabled` setting tells Spring Boot to autoconfigure a Bedrock-capable ChatModel.  But which specific model should it use??
   - The `bedrock.converse.chat.options.model` setting indicates the specific Bedrock model to use. This setting may change over time as new, improved models are introduced and older models are retired.  See the [latest model list](https://docs.aws.amazon.com/bedrock/latest/userguide/models-supported.html) for details.   
   - SpringAI applications can run as part of a web application, but these exercises are built to avoid that extra step.
   - Note: The retry settings will override the `ChatClient`'s default settings.  You are likely to experience errors while you learn the API's usage, and we don't want you to experience unnecessary delays or expense.
@@ -98,7 +97,8 @@ Now we can use the ChatClient to make API calls to Amazon Bedrock and any of its
 public class AIClientImpl implements AIClient {
 ```
 
-9. **TODO-06**: Create a constructor for this bean.  
+9. **TODO-06**: Define a private member variable of type ChatClient named client.
+    - Create a constructor for this bean.  
     - Inject a ChatModel object into the constructor.  
     - Pass the model to the ChatClient.builder to build a ChatClient object.  Save the ChatClient object in the client field.
         - The `ChatClient.Builder` is automatically created by auto-configuration when it sees the AWS/Bedrock dependency on the classpath, and Spring will automatically inject it into your constructor on bean creation.  
