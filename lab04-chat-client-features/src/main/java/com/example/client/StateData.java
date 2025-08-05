@@ -8,5 +8,9 @@ package com.example.client;
 
 public record StateData(
     String stateName, 
-    String capitalCity
+    String capitalCity,
+    String stateBird,
+    String stateMotto,
+    Long population,
+    String famousFor
     ) {}

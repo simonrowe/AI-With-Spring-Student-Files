@@ -14,7 +14,6 @@ import org.springframework.test.context.ActiveProfiles;
 //  For standard OpenAI,        use "openai".
 //  For Ollama,                 use "ollama".
 @SpringBootTest
-@ActiveProfiles("xxxxx")
 public class AIClientImplTests {
 
     @Autowired AIClient client;
@@ -27,7 +26,6 @@ public class AIClientImplTests {
     //  Move on to the next step to fix the error.
 
     @Test
-    @Disabled
     void testConversationalChat() {
 
         int conversation1Id = 111;
@@ -66,17 +64,16 @@ public class AIClientImplTests {
     //  Move on to the next step to add to the information retrieved about each state. 
 
     @Test
-    @Disabled
     public void testRetrieve() {
 
         StateData stateData = client.retrieve("Michigan");
         System.out.println("State data is: " + stateData );
         assertThat(stateData.stateName()).isEqualTo("Michigan");
         assertThat(stateData.capitalCity()).isEqualTo("Lansing");
-
-        //  TODO-12: Add additional assertions to this method to verify that 
-        //  the entity object is populated with the extra fields you established in the last step.
-        //  Run the test again.  It should pass. 
+        assertThat(stateData.stateBird()).isNotNull();
+        assertThat(stateData.stateMotto()).isNotNull();
+        assertThat(stateData.population()).isNotNull().isPositive();
+        assertThat(stateData.famousFor()).isNotNull(); 
 
     
     }

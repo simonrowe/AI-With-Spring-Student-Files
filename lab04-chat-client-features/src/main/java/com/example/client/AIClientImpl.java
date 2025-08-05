@@ -15,23 +15,10 @@ public class AIClientImpl implements AIClient {
     //  Add an additional parameter named chatMemory of type ChatMemory.
     //  (ChatMemory abstraction maintains contextual awareness throughout a conversation.)
 
-    public AIClientImpl(ChatModel model
-
-    ) {
-
-        //  TODO-05: Define a variable named advisor of type MessageChatMemoryAdvisor.
-        //  Initialize it by using the MessageChatMemoryAdvisor.builder() method.
-        //  inject the builder() with the chatMemory parameter from the constructor.
-
-
-
+    public AIClientImpl(ChatModel model, ChatMemory chatMemory) {
         client = ChatClient
             .builder(model)
-
-            //  TODO-06: Alter this ChatClient.
-            //  Use the .defaultAdvisors() method to add the 
-            //  MessageChatMemoryAdvisor defined above.
-
+            .defaultAdvisors(MessageChatMemoryAdvisor.builder(chatMemory).build())
             .build();
     }
 
@@ -41,14 +28,7 @@ public class AIClientImpl implements AIClient {
             client
                 .prompt()
                 .user(input)
-
-                // TODO-07:  Use the .advisors() method to inject an AvisorSpec Consumer to this call.
-                // The advisors() method will accept a Lambda expression that implements the Consumer.
-                // The parameter to the Consumer is an AdvisorSpec.
-                // Use the AdvisorSpec's .param() method to add a parameter identifying the conversation.
-                // The parameter key should be ChatMemory.CONVERSATION_ID.
-                // The parameter value should be the conversationId passed to this method.
-
+                .advisors(advisorSpec -> advisorSpec.param(ChatMemory.CONVERSATION_ID, conversationId))
                 .call()
                 .content();
     }
@@ -61,7 +41,8 @@ public class AIClientImpl implements AIClient {
         return
            client
                 .prompt()
-                .user(input)
+                .system("Provide information about the requested state. Return valid JSON only. Use plain numbers without underscores or separators for numeric values.")
+                .user("Provide detailed information about the state: " + input)
                 .call()
                 .entity(StateData.class);
     }
