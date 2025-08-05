@@ -25,11 +25,10 @@
 		-->
 		
 		
-		<!-- 
-		TODO-02: Add the dependency for ollama.  
-		The groupId value will be org.springframework.ai
-		The artifactId will be spring-ai-starter-model-ollama
-		-->
+		<dependency>
+			<groupId>org.springframework.ai</groupId>
+			<artifactId>spring-ai-starter-model-ollama</artifactId>
+		</dependency>
 
 
 		

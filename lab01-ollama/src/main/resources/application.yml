@@ -1,0 +1,10 @@
+spring:
+  application:
+    name: lab01-ollama
+  main:
+    web-application-type: none
+
+  ai:
+    retry:
+      max-attempts: 1
+
